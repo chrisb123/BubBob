@@ -7,6 +7,8 @@ export (int) var facing
 var velocity = 500
 var dying = false
 
+const pop_time = 0.75
+
 func _ready():
 	linear_velocity.x = velocity * facing
 	#print(facing)
@@ -41,3 +43,24 @@ func killbub():
 		#var anim = data.find_node("AnimatedSprite")
 		$AnimatedSprite.play()
 		
+func popbub():
+
+	if $pop/pop_time.is_stopped():
+		$pop/pop_time.start()
+	
+	$pop.interpolate_property($Sprite, 'scale', $Sprite.get_scale(), Vector2(0.25,0.25) , pop_time,
+	Tween.TRANS_QUAD, Tween.EASE_OUT)
+	$pop.interpolate_property($Sprite, 'rotation_degrees', 0 , 360 , pop_time,
+	Tween.TRANS_QUAD, Tween.EASE_OUT)	
+	
+	$pop.start()
+
+func _on_pop_tween_completed( object, key ):
+	$pop/pop_time.stop()
+	queue_free()
+
+func _on_pop_time_timeout():
+	if $Sprite.visible == true:
+		$Sprite.visible = false
+	else:
+		$Sprite.visible = true

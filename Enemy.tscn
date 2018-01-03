@@ -41,6 +41,13 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 80, 100 )
 _sections_unfolded = [ "Region", "Transform" ]
 
+[node name="Shrink" type="Tween" parent="Enemy" index="0"]
+
+playback_process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
 [node name="Bubble" type="Sprite" parent="." index="1"]
 
 visible = false

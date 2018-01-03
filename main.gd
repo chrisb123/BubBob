@@ -10,6 +10,7 @@ var title
 var player
 var gui
 var score = 0
+var max_enemies = 5
 
 # class member variables go here, for example:
 # var a = 2
@@ -62,6 +63,10 @@ func popped():
 	gui.get_child(0).text = str(score)
 
 func _on_Enemy_timeout():
-	var enemy = Enemy.instance()
-	enemy.position = Vector2(randi()%500+100,randi()%500+100)
-	add_child(enemy)
+	var enemy_count = get_tree().get_nodes_in_group("enemy").size()
+	print(enemy_count)
+	if enemy_count < max_enemies:
+		randomize()
+		var enemy = Enemy.instance()
+		enemy.position = Vector2(randi()%500+100,randi()%500+100)
+		add_child(enemy)

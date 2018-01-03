@@ -24,4 +24,10 @@ func _on_RigidBody2D_body_entered( body ):
 	if body.is_in_group("bubble") && ! _in_bubble:
 		$Bubble.show()
 		_in_bubble = true
-		$Enemy.scale = Vector2(0.33,0.33)
+		#Shrink monster into bubble (Animated)
+		$Enemy/Shrink.interpolate_property($Enemy, 'scale', $Enemy.get_scale(),
+		Vector2(0.33,0.33), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
+		#$Enemy/Shrink.set_speed_scale(5)
+		$Enemy/Shrink.start()
+
+		#$Enemy.scale = Vector2(0.33,0.33)
