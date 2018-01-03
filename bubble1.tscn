@@ -1,0 +1,111 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://bubble1.gd" type="Script" id=1]
+[ext_resource path="res://asset/bubble.png" type="Texture" id=2]
+[ext_resource path="res://asset/bubble_explode/bubble_explo1.png" type="Texture" id=3]
+[ext_resource path="res://asset/bubble_explode/bubble_explo2.png" type="Texture" id=4]
+[ext_resource path="res://asset/bubble_explode/bubble_explo3.png" type="Texture" id=5]
+[ext_resource path="res://asset/bubble_explode/bubble_explo4.png" type="Texture" id=6]
+[ext_resource path="res://asset/bubble_explode/bubble_explo5.png" type="Texture" id=7]
+[ext_resource path="res://asset/bubble_explode/bubble_explo6.png" type="Texture" id=8]
+[ext_resource path="res://asset/bubble_explode/bubble_explo7.png" type="Texture" id=9]
+[ext_resource path="res://asset/bubble_explode/bubble_explo8.png" type="Texture" id=10]
+[ext_resource path="res://asset/bubble_explode/bubble_explo9.png" type="Texture" id=11]
+[ext_resource path="res://asset/bubble_explode/bubble_explo10.png" type="Texture" id=12]
+
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ null, ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), null ],
+"loop": false,
+"name": "die",
+"speed": 10.0
+} ]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 14.9655
+
+[sub_resource type="CircleShape2D" id=3]
+
+custom_solver_bias = 0.0
+radius = 33.0
+
+[node name="Bubble" type="RigidBody2D" groups=[
+"bubble",
+]]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 0
+mass = 0.1
+friction = 0.5
+bounce = 0.25
+gravity_scale = -0.1
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 1
+contact_monitor = true
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = 0.1
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Linear", "Transform" ]
+facing = null
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="1"]
+
+frames = SubResource( 2 )
+animation = "die"
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Life" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 15.0
+one_shot = false
+autostart = true
+
+[node name="Float" type="Timer" parent="." index="4"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="." index="5"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
+shape = SubResource( 3 )
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+
+[connection signal="timeout" from="Life" to="." method="_on_Life_timeout"]
+
+[connection signal="timeout" from="Float" to="." method="_on_Float_timeout"]
+
+
