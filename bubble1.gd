@@ -4,7 +4,7 @@ extends RigidBody2D
 # var a = 2
 # var b = "textvar"
 export (int) var facing
-var velocity = 500
+var velocity = 250
 var dying = false
 
 const pop_time = 0.75
@@ -20,7 +20,8 @@ func _process(delta):
 		linear_velocity.x = -25
 
 func _on_Life_timeout():
-	queue_free()
+	popbub()
+	#queue_free()
 
 func _on_Float_timeout():
 	gravity_scale = -1

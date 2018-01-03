@@ -64,9 +64,9 @@ func popped():
 
 func _on_Enemy_timeout():
 	var enemy_count = get_tree().get_nodes_in_group("enemy").size()
-	print(enemy_count)
 	if enemy_count < max_enemies:
 		randomize()
 		var enemy = Enemy.instance()
 		enemy.position = Vector2(randi()%500+100,randi()%500+100)
 		add_child(enemy)
+		#remove_child(enemy)

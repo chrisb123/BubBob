@@ -17,8 +17,8 @@ input_pickable = false
 collision_layer = 1
 collision_mask = 1
 mode = 2
-mass = 1.0
-friction = 1.0
+mass = 0.1
+friction = 0.5
 bounce = 0.0
 gravity_scale = 0.0
 custom_integrator = false
@@ -32,6 +32,7 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
+_sections_unfolded = [ "Linear" ]
 
 [node name="Enemy" type="Sprite" parent="." index="0"]
 
@@ -42,6 +43,13 @@ region_rect = Rect2( 0, 0, 80, 100 )
 _sections_unfolded = [ "Region", "Transform" ]
 
 [node name="Shrink" type="Tween" parent="Enemy" index="0"]
+
+playback_process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="Pop" type="Tween" parent="Enemy" index="1"]
 
 playback_process_mode = 1
 playback/active = false
@@ -59,6 +67,26 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 position = Vector2( -0.17482, -0.349648 )
 shape = SubResource( 1 )
 
+[node name="Move_Timer" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 0.25
+one_shot = false
+autostart = true
+
+[node name="Bubble_Timer" type="Timer" parent="." index="4"]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = true
+autostart = false
+
 [connection signal="body_entered" from="." to="." method="_on_RigidBody2D_body_entered"]
+
+[connection signal="tween_completed" from="Enemy/Pop" to="." method="_on_Pop_tween_completed"]
+
+[connection signal="timeout" from="Move_Timer" to="." method="_on_Move_Timer_timeout"]
+
+[connection signal="timeout" from="Bubble_Timer" to="." method="_on_Bubble_Timer_timeout"]
 
 

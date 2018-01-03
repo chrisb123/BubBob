@@ -4,16 +4,35 @@ extends RigidBody2D
 # var a = 2
 # var b = "textvar"
 var _in_bubble = false
+var vel = Vector2()
+const MIN_SPEED = 150
+const MAX_SPEED = 350
+
 
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
 	pass
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+func _process(delta):
+	if _in_bubble == true:
+		if $Bubble_Timer.is_stopped():
+			$Bubble_Timer.start()
+	
+
+func _physics_process(delta):
+	rotation_degrees = 0
+	if _in_bubble == false:
+		linear_velocity.x = vel.x
+		linear_velocity.y = vel.y
+	else:
+		gravity_scale = -0.5
+		bounce = 0.35
+		if linear_velocity.x > 50:
+			linear_velocity.x = linear_velocity.x * 0.97
+		if linear_velocity.y > 50:
+			linear_velocity.y = linear_velocity.y * 0.97
+
 
 func killbub():
 	if _in_bubble:
@@ -28,6 +47,41 @@ func _on_RigidBody2D_body_entered( body ):
 		$Enemy/Shrink.interpolate_property($Enemy, 'scale', $Enemy.get_scale(),
 		Vector2(0.33,0.33), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
 		#$Enemy/Shrink.set_speed_scale(5)
-		$Enemy/Shrink.start()
+		$Enemy/Shrink.start() 
 
 		#$Enemy.scale = Vector2(0.33,0.33)
+
+
+func _on_Move_Timer_timeout():
+#Randomize Enemy direction and speed every timeout
+	randomize()
+	var temp = randi()%2
+	if temp == 1:
+		vel.x = randi()%MAX_SPEED
+		vel.x = clamp(vel.x, MIN_SPEED,MAX_SPEED)
+	else:
+		vel.x = -1 * randi()%MAX_SPEED
+		vel.x = clamp(vel.x, -MAX_SPEED,-MIN_SPEED)
+	var temp2 = randi()%2
+	if temp2 == 1:
+		vel.y = randi()%MAX_SPEED
+		vel.y = clamp(vel.y, MIN_SPEED,MAX_SPEED)
+	else:
+		vel.y = -1 * randi()%MAX_SPEED
+		vel.y = clamp(vel.y, -MAX_SPEED,-MIN_SPEED)
+	print(temp," ",temp2)
+
+func _on_Bubble_Timer_timeout():
+	#Remove Bubble and expand Enemy to original size
+	$Enemy/Pop.interpolate_property($Enemy, 'scale', $Enemy.get_scale(),
+	Vector2(1.0,1.0), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	$Enemy/Pop.start() 
+
+func _on_Pop_tween_completed( object, key ):
+
+	$Enemy/Shrink.interpolate_property($Enemy, 'scale', $Enemy.get_scale(),
+	Vector2(0.5,0.5), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	$Enemy/Shrink.start() 
+	$Bubble.hide() 
+	$Bubble_Timer.stop()
+	_in_bubble = false
