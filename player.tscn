@@ -9,7 +9,9 @@ custom_solver_bias = 0.0
 radius = 14.5143
 height = 22.8512
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=[
+"player",
+]]
 
 position = Vector2( 1, 0 )
 input_pickable = false
@@ -25,7 +27,7 @@ scale = Vector2( 1.25, 1.25 )
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 23, 15, 25, 45 )
-_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
+_sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform", "Visibility" ]
 
 [node name="Timer" type="Timer" parent="." index="1"]
 
@@ -54,6 +56,7 @@ linear_velocity = Vector2( 0, 0 )
 linear_damp = 0.1
 angular_velocity = 0.0
 angular_damp = 1.0
+_sections_unfolded = [ "Angular", "Collision", "Linear", "Material", "Pickable", "Transform", "Visibility", "Z" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
 
@@ -61,6 +64,15 @@ position = Vector2( 1.41364, 0.899582 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
+[node name="t_col_disabled" type="Timer" parent="CollisionShape2D" index="0"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[connection signal="timeout" from="CollisionShape2D/t_col_disabled" to="." method="_on_t_col_disabled_timeout"]
 
 

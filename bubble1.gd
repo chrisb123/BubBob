@@ -26,7 +26,6 @@ func _on_Life_timeout():
 func _on_Float_timeout():
 	gravity_scale = -1
 
-
 func _on_AnimatedSprite_animation_finished():
 	get_colliding_bodies()
 	queue_free()
@@ -65,3 +64,11 @@ func _on_pop_time_timeout():
 		$Sprite.visible = false
 	else:
 		$Sprite.visible = true
+
+
+func _on_Bubble_body_entered( body ):
+	if body.is_in_group("enemy"):
+		print (body._in_bubble)
+		if ! body._in_bubble:
+			queue_free()
+

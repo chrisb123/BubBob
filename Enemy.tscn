@@ -1,15 +1,34 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Enemy.gd" type="Script" id=1]
 [ext_resource path="res://asset/ogachallenge6.png" type="Texture" id=2]
 [ext_resource path="res://asset/bubble.png" type="Texture" id=3]
+[ext_resource path="res://asset/bubble_explode/bubble_explo1.png" type="Texture" id=4]
+[ext_resource path="res://asset/bubble_explode/bubble_explo2.png" type="Texture" id=5]
+[ext_resource path="res://asset/bubble_explode/bubble_explo3.png" type="Texture" id=6]
+[ext_resource path="res://asset/bubble_explode/bubble_explo4.png" type="Texture" id=7]
+[ext_resource path="res://asset/bubble_explode/bubble_explo5.png" type="Texture" id=8]
+[ext_resource path="res://asset/bubble_explode/bubble_explo6.png" type="Texture" id=9]
+[ext_resource path="res://asset/bubble_explode/bubble_explo7.png" type="Texture" id=10]
+[ext_resource path="res://asset/bubble_explode/bubble_explo8.png" type="Texture" id=11]
+[ext_resource path="res://asset/bubble_explode/bubble_explo9.png" type="Texture" id=12]
+[ext_resource path="res://asset/bubble_explode/bubble_explo10.png" type="Texture" id=13]
+
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ null, ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), null ],
+"loop": false,
+"name": "die",
+"speed": 10.0
+} ]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 16.6949
 
-[node name="RigidBody2D" type="RigidBody2D" groups=[
+[node name="RigidBody2D" type="RigidBody2D" index="0" groups=[
 "enemy",
 ]]
 
@@ -40,7 +59,7 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 80, 100 )
-_sections_unfolded = [ "Region", "Transform" ]
+_sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform", "Visibility" ]
 
 [node name="Shrink" type="Tween" parent="Enemy" index="0"]
 
@@ -62,19 +81,26 @@ visible = false
 texture = ExtResource( 3 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="2"]
+
+position = Vector2( 0, -1 )
+frames = SubResource( 2 )
+animation = "die"
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
 
 position = Vector2( -0.17482, -0.349648 )
 shape = SubResource( 1 )
 
-[node name="Move_Timer" type="Timer" parent="." index="3"]
+[node name="Move_Timer" type="Timer" parent="." index="4"]
 
 process_mode = 1
 wait_time = 0.25
 one_shot = false
 autostart = true
 
-[node name="Bubble_Timer" type="Timer" parent="." index="4"]
+[node name="Bubble_Timer" type="Timer" parent="." index="5"]
 
 process_mode = 1
 wait_time = 3.0
@@ -84,6 +110,8 @@ autostart = false
 [connection signal="body_entered" from="." to="." method="_on_RigidBody2D_body_entered"]
 
 [connection signal="tween_completed" from="Enemy/Pop" to="." method="_on_Pop_tween_completed"]
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 
 [connection signal="timeout" from="Move_Timer" to="." method="_on_Move_Timer_timeout"]
 
