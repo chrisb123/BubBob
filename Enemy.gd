@@ -44,6 +44,7 @@ func killbub():
 		$Move_Timer.stop()
 		$CollisionShape2D.disabled = true
 		linear_damp = 10
+		linear_velocity = Vector2(0,0)
 #And explode it
 func _on_AnimatedSprite_animation_finished():
 	queue_free()
