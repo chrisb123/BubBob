@@ -9,9 +9,29 @@ signal fired
 var fired = 1
 var facing = 1
 var action = 0
+var jumping = false
+var moving = 0
+const RIGHT = 1
+const LEFT = -1
+
+
 
 func _ready():
 	pass
+
+func _input(event):
+	if event.is_action_pressed("ui_up") && is_on_floor():
+		jumping = true
+	if event.is_action_pressed("ui_up") && ! is_on_floor():
+		jumping = false
+	if event.is_action_released("ui_up"):
+		jumping = false
+	if event.is_action("ui_right"):
+		moving = RIGHT
+	elif event.is_action("ui_left"):
+		moving = LEFT
+	else:
+		moving = 0
 
 func _physics_process(delta):
 	rotation_degrees = 0
@@ -19,7 +39,7 @@ func _physics_process(delta):
 		vel.y = 0
 	if is_on_ceiling():
 		vel.y = 0	
-	if Input.is_action_pressed("ui_up") && is_on_floor():
+	if jumping:
 		vel.y = -SPEED * delta
 		if vel.y < 425:
 			vel.y = -425
