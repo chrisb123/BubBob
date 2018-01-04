@@ -9,7 +9,9 @@ custom_solver_bias = 0.0
 radius = 14.5143
 height = 22.8512
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=[
+"player",
+]]
 
 position = Vector2( 1, 0 )
 input_pickable = false

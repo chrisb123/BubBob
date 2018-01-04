@@ -6,6 +6,7 @@ extends RigidBody2D
 export (int) var facing
 var velocity = 250
 var dying = false
+var player_pushing = false
 
 const pop_time = 0.75
 
@@ -14,10 +15,12 @@ func _ready():
 	#print(facing)
 
 func _process(delta):
-	if linear_velocity.x < 25 && linear_velocity.x >= 0:
-		linear_velocity.x = 25
-	if linear_velocity.x > -25 && linear_velocity.x <= 0:
-		linear_velocity.x = -25
+	#if playing is not pushing they limit min speed
+	if !player_pushing:
+		if linear_velocity.x < 25 && linear_velocity.x >= 0:
+			linear_velocity.x = 25
+		if linear_velocity.x > -25 && linear_velocity.x <= 0:
+			linear_velocity.x = -25
 
 func _on_Life_timeout():
 	popbub()
@@ -70,3 +73,12 @@ func _on_pop_time_timeout():
 		$Sprite.visible = false
 	else:
 		$Sprite.visible = true
+
+#is player nearyb, ie pushing
+func _on_Bubble_body_entered( body ):
+	if body.is_in_group("player"):
+		player_pushing = true
+
+func _on_Bubble_body_exited( body ):
+	if body.is_in_group("player"):
+		player_pushing = false

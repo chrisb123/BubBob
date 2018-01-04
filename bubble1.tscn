@@ -14,7 +14,7 @@ radius = 14.9655
 custom_solver_bias = 0.0
 radius = 33.0
 
-[node name="Bubble" type="RigidBody2D" groups=[
+[node name="Bubble" type="RigidBody2D" index="0" groups=[
 "bubble",
 ]]
 
@@ -94,6 +94,10 @@ process_mode = 1
 wait_time = 0.05
 one_shot = false
 autostart = false
+
+[connection signal="body_entered" from="." to="." method="_on_Bubble_body_entered"]
+
+[connection signal="body_exited" from="." to="." method="_on_Bubble_body_exited"]
 
 [connection signal="timeout" from="Life" to="." method="_on_Life_timeout"]
 
