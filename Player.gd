@@ -68,7 +68,7 @@ func _physics_process(delta):
 					vel.x = 500
 				elif vel.x < 0 && vel.x > -500:
 					vel.x = -500
-	
+	#If space is pressed fire bubble
 	if Input.is_key_pressed(KEY_SPACE) && fired:
 		fired = 0
 		$Timer.start()

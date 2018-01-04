@@ -27,7 +27,7 @@ use_filter = false
 font_data = ExtResource( 2 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Intro" type="Control"]
+[node name="Intro" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -135,10 +135,10 @@ mouse_filter = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 1 )
-text = "Info:
+text = "Instructions:
 Move = Left/Right
 Jump = Up
-Bubble = Down
+Bubble = Space
 Pop bubbles by head butting them"
 align = 1
 percent_visible = 1.0
