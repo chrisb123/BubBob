@@ -51,6 +51,7 @@ func _on_AnimatedSprite_animation_finished():
 
 func _on_RigidBody2D_body_entered( body ):
 	if body.is_in_group("bubble") && ! _in_bubble:
+		body.queue_free()
 		$Bubble.show()
 		_in_bubble = true
 		#Shrink monster into bubble (Animated)
@@ -79,7 +80,7 @@ func _on_Move_Timer_timeout():
 	else:
 		vel.y = -1 * randi()%MAX_SPEED
 		vel.y = clamp(vel.y, -MAX_SPEED,-MIN_SPEED)
-	print(temp," ",temp2)
+	#print(temp," ",temp2)
 
 func _on_Bubble_Timer_timeout():
 	#Remove Bubble and expand Enemy to original size
@@ -95,6 +96,3 @@ func _on_Pop_tween_completed( object, key ):
 	$Bubble.hide() 
 	$Bubble_Timer.stop()
 	_in_bubble = false
-
-
-	

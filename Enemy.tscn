@@ -10,7 +10,7 @@
 custom_solver_bias = 0.0
 radius = 16.6949
 
-[node name="RigidBody2D" type="RigidBody2D" groups=[
+[node name="RigidBody2D" type="RigidBody2D" index="0" groups=[
 "enemy",
 ]]
 
