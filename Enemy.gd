@@ -7,6 +7,7 @@ var _in_bubble = false
 var vel = Vector2()
 const MIN_SPEED = 150
 const MAX_SPEED = 350
+export (PackedScene) var Explode
 
 
 func _ready():
@@ -25,12 +26,6 @@ func _physics_process(delta):
 	if _in_bubble == false:
 		linear_velocity.x = vel.x
 		linear_velocity.y = vel.y
-		#Set Enemy facing direction
-		if vel.x > 0:
-			$Enemy.flip_h = false
-		else:
-			$Enemy.flip_h = true
-			 
 	else:
 		gravity_scale = -0.5
 		bounce = 0.35
@@ -39,20 +34,25 @@ func _physics_process(delta):
 		if linear_velocity.y > 50:
 			linear_velocity.y = linear_velocity.y * 0.97
 
+
 func killbub():
 	if _in_bubble:
-		Global.score += 1
-		$CollisionShape2D.disabled = true
+		#Stop enemy
+		$AnimatedSprite.play()
 		$Enemy.hide()
 		$Bubble.hide()
+		$Move_Timer.stop()
+		$CollisionShape2D.disabled = true
 		linear_damp = 10
-		#var anim = data.find_node("AnimatedSprite")
-		$AnimatedSprite.play()
-
+		linear_velocity = Vector2(0,0)
+#And explode it
+func _on_AnimatedSprite_animation_finished():
+	queue_free()
 
 
 func _on_RigidBody2D_body_entered( body ):
 	if body.is_in_group("bubble") && ! _in_bubble:
+		body.queue_free()
 		$Bubble.show()
 		_in_bubble = true
 		#Shrink monster into bubble (Animated)
@@ -81,26 +81,19 @@ func _on_Move_Timer_timeout():
 	else:
 		vel.y = -1 * randi()%MAX_SPEED
 		vel.y = clamp(vel.y, -MAX_SPEED,-MIN_SPEED)
+	#print(temp," ",temp2)
 
 func _on_Bubble_Timer_timeout():
-	#Expand bubble and enemy sprites (animation)
+	#Remove Bubble and expand Enemy to original size
 	$Enemy/Pop.interpolate_property($Enemy, 'scale', $Enemy.get_scale(),
 	Vector2(1.0,1.0), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
-	$Enemy/Pop.interpolate_property($Bubble, 'scale', $Enemy.get_scale(),
-	Vector2(2.0,2.0), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$Enemy/Pop.start() 
 
 func _on_Pop_tween_completed( object, key ):
-	#Bubble and enemy to original size. Hide bubble (animation)
+
 	$Enemy/Shrink.interpolate_property($Enemy, 'scale', $Enemy.get_scale(),
 	Vector2(0.5,0.5), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
-	$Bubble.scale.x = 1
-	$Bubble.scale.y = 1
 	$Enemy/Shrink.start() 
 	$Bubble.hide() 
 	$Bubble_Timer.stop()
 	_in_bubble = false
-
-
-func _on_AnimatedSprite_animation_finished():
-	queue_free()

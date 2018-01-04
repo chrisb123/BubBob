@@ -9,9 +9,6 @@ signal fired
 var fired = 1
 var facing = 1
 var action = 0
-var invincible = false
-
-onready var t_col_disabled = get_node("CollisionShape2D/t_col_disabled")
 
 func _ready():
 	pass
@@ -42,11 +39,6 @@ func _physics_process(delta):
 		vel.x -= SPEED * delta
 		if vel.x < -500:
 			vel.x = -500
-	if Input.is_action_pressed("ui_down") && fired:
-		fired = 0
-		$Timer.start()
-		emit_signal("fired",facing)
-
 	vel.x /= 1 + delta * 5
 	move_and_slide(vel,Vector2(0,-1))
 	var coli = get_slide_count()
@@ -60,7 +52,7 @@ func _physics_process(delta):
 			#hit bubble with head (explode), hit bubble with feet (shirnk/vanish)
 			if is_on_ceiling():
 				data.killbub()
-			elif is_on_floor() && !is_on_wall():
+			elif is_on_floor() && !is_on_wall() && !Input.is_action_pressed("ui_up"):
 				data.popbub()
 		#if collide with monster, kill if in bubble, or player bounce off
 		elif col.collider.is_in_group("enemy"):
@@ -69,25 +61,18 @@ func _physics_process(delta):
 				data.linear_velocity += col.remainder * 2
 				if is_on_ceiling() && !is_on_wall():
 					data.killbub()
+
 			else:
-				# set player invincible for X seconds
-				if invincible == false:
-					Global.lives -= 1
-					invincible = true
-					$Sprite.set_scale(Vector2(0.5, 0.5))
-				t_col_disabled.start()
-				# bump player with weighting on X axis
 				vel = Vector2(-3 * vel.x, 1 * vel.y).clamped(1000)
 				if vel.x < 500 && vel.x > 0:
 					vel.x = 500
 				elif vel.x < 0 && vel.x > -500:
 					vel.x = -500
-	
+	#If space is pressed fire bubble
+	if Input.is_key_pressed(KEY_SPACE) && fired:
+		fired = 0
+		$Timer.start()
+		emit_signal("fired",facing)
 
 func _on_Timer_timeout():
 	fired = 1
-
-func _on_t_col_disabled_timeout():
-	# disable invincibility and return to normal size
-	invincible = false
-	$Sprite.set_scale(Vector2(1.25, 1.25))

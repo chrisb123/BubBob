@@ -14,10 +14,6 @@ config/name="BubBob"
 run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 
-[autoload]
-
-Global="*res://Global_Vars.gd"
-
 [display]
 
 window/size/width=1280

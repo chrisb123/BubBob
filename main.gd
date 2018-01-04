@@ -27,9 +27,14 @@ func _ready():
 	#var gui = GUI.instance()
 	#add_child(gui)
 
+
+func _process(delta):
+	pass
+	#if Input.is_key_pressed("q"):
+		#get_tree().quit()
+
 func _start():
 	remove_child(title)
-
 	var level1 = Level1.instance()
 	add_child(level1)
 	var player = Player.instance()
@@ -39,22 +44,6 @@ func _start():
 	gui = GUI.instance()
 	add_child(gui)
 	$Enemy.start()
-
-func _process(delta):
-	# if number of lives reaches 0 reset game, remove all assests
-	if Global.lives == 0:
-		var enemies = get_tree().get_nodes_in_group("enemy")
-		for enemy in enemies:
-    		enemy.queue_free()
-		var temp = get_tree().get_nodes_in_group("player")
-		for player in temp:
-			player.queue_free()
-		#player.queue_free()
-		#gui.queue_free()
-		Global.score = 0
-		Global.lives = Global.start_lives
-		$Enemy.stop()
-		_ready()
 	
 	
 func _fired(facing):
@@ -66,12 +55,12 @@ func _fired(facing):
 	pos.x += 25 * facing
 	pos.y -= 5
 	bubble.position = pos
-	#var anim = bubble.find_node("AnimatedSprite")
-	#anim.connect("animation_finished",self,"popped")
+	var anim = bubble.find_node("AnimatedSprite")
+	anim.connect("animation_finished",self,"popped")
 	
-#func popped():
-	#score += 1
-	#gui.get_child(0).text = str(score)
+func popped():
+	score += 1
+	gui.get_child(0).text = str(score)
 
 func _on_Enemy_timeout():
 	var enemy_count = get_tree().get_nodes_in_group("enemy").size()

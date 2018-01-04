@@ -6,6 +6,7 @@ extends RigidBody2D
 export (int) var facing
 var velocity = 250
 var dying = false
+var player_pushing = false
 
 const pop_time = 0.75
 
@@ -14,10 +15,12 @@ func _ready():
 	#print(facing)
 
 func _process(delta):
-	if linear_velocity.x < 25 && linear_velocity.x >= 0:
-		linear_velocity.x = 25
-	if linear_velocity.x > -25 && linear_velocity.x <= 0:
-		linear_velocity.x = -25
+	#if playing is not pushing they limit min speed
+	if !player_pushing:
+		if linear_velocity.x < 25 && linear_velocity.x >= 0:
+			linear_velocity.x = 25
+		if linear_velocity.x > -25 && linear_velocity.x <= 0:
+			linear_velocity.x = -25
 
 func _on_Life_timeout():
 	popbub()
@@ -25,6 +28,7 @@ func _on_Life_timeout():
 
 func _on_Float_timeout():
 	gravity_scale = -1
+
 
 func _on_AnimatedSprite_animation_finished():
 	get_colliding_bodies()
@@ -40,8 +44,13 @@ func killbub():
 		$CollisionShape2D.disabled = true
 		$Sprite.hide()
 		linear_damp = 10
-		#var anim = data.find_node("AnimatedSprite")
-		$AnimatedSprite.play()
+		#var anim = data.find_node("AnimatedSprite")AnimatedSprite
+		#Bubble expand when killed
+		if $pop/pop_time.is_stopped():
+			$pop/pop_time.start()		
+		$pop.interpolate_property($Sprite, 'scale', $Sprite.get_scale(), Vector2(1.5,1.5) , pop_time, Tween.TRANS_QUAD, Tween.EASE_OUT)
+		$pop.start()
+		#$AnimatedSprite.play()
 		
 func popbub():
 
@@ -65,10 +74,11 @@ func _on_pop_time_timeout():
 	else:
 		$Sprite.visible = true
 
-
+#is player nearyb, ie pushing
 func _on_Bubble_body_entered( body ):
-	if body.is_in_group("enemy"):
-		print (body._in_bubble)
-		if ! body._in_bubble:
-			queue_free()
+	if body.is_in_group("player"):
+		player_pushing = true
 
+func _on_Bubble_body_exited( body ):
+	if body.is_in_group("player"):
+		player_pushing = false
