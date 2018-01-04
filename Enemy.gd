@@ -7,6 +7,7 @@ var _in_bubble = false
 var vel = Vector2()
 const MIN_SPEED = 150
 const MAX_SPEED = 350
+export (PackedScene) var Explode
 
 
 func _ready():
@@ -36,7 +37,16 @@ func _physics_process(delta):
 
 func killbub():
 	if _in_bubble:
-		queue_free()
+		#Stop enemy
+		$AnimatedSprite.play()
+		$Enemy.hide()
+		$Bubble.hide()
+		$Move_Timer.stop()
+		$CollisionShape2D.disabled = true
+		linear_damp = 10
+#And explode it
+func _on_AnimatedSprite_animation_finished():
+	queue_free()
 
 
 func _on_RigidBody2D_body_entered( body ):
@@ -85,3 +95,6 @@ func _on_Pop_tween_completed( object, key ):
 	$Bubble.hide() 
 	$Bubble_Timer.stop()
 	_in_bubble = false
+
+
+	

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Enemy.gd" type="Script" id=1]
-[ext_resource path="res://asset/ogachallenge6.png" type="Texture" id=2]
-[ext_resource path="res://asset/bubble.png" type="Texture" id=3]
+[ext_resource path="res://Explosion.tscn" type="PackedScene" id=2]
+[ext_resource path="res://asset/ogachallenge6.png" type="Texture" id=3]
+[ext_resource path="res://asset/bubble.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -33,11 +34,12 @@ angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Linear" ]
+Explode = ExtResource( 2 )
 
 [node name="Enemy" type="Sprite" parent="." index="0"]
 
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 80, 100 )
 _sections_unfolded = [ "Region", "Transform" ]
@@ -59,7 +61,7 @@ playback/speed = 1.0
 [node name="Bubble" type="Sprite" parent="." index="1"]
 
 visible = false
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
@@ -81,6 +83,8 @@ wait_time = 3.0
 one_shot = true
 autostart = false
 
+[node name="AnimatedSprite" parent="." index="5" instance=ExtResource( 2 )]
+
 [connection signal="body_entered" from="." to="." method="_on_RigidBody2D_body_entered"]
 
 [connection signal="tween_completed" from="Enemy/Pop" to="." method="_on_Pop_tween_completed"]
@@ -88,5 +92,7 @@ autostart = false
 [connection signal="timeout" from="Move_Timer" to="." method="_on_Move_Timer_timeout"]
 
 [connection signal="timeout" from="Bubble_Timer" to="." method="_on_Bubble_Timer_timeout"]
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 
 

@@ -41,8 +41,13 @@ func killbub():
 		$CollisionShape2D.disabled = true
 		$Sprite.hide()
 		linear_damp = 10
-		#var anim = data.find_node("AnimatedSprite")
-		$AnimatedSprite.play()
+		#var anim = data.find_node("AnimatedSprite")AnimatedSprite
+		#Bubble expand when killed
+		if $pop/pop_time.is_stopped():
+			$pop/pop_time.start()		
+		$pop.interpolate_property($Sprite, 'scale', $Sprite.get_scale(), Vector2(1.5,1.5) , pop_time, Tween.TRANS_QUAD, Tween.EASE_OUT)
+		$pop.start()
+		#$AnimatedSprite.play()
 		
 func popbub():
 

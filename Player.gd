@@ -52,7 +52,7 @@ func _physics_process(delta):
 			#hit bubble with head (explode), hit bubble with feet (shirnk/vanish)
 			if is_on_ceiling():
 				data.killbub()
-			elif is_on_floor() && !is_on_wall():
+			elif is_on_floor() && !is_on_wall() && !Input.is_action_pressed("ui_up"):
 				data.popbub()
 		#if collide with monster, kill if in bubble, or player bounce off
 		elif col.collider.is_in_group("enemy"):
@@ -69,7 +69,7 @@ func _physics_process(delta):
 				elif vel.x < 0 && vel.x > -500:
 					vel.x = -500
 	
-	if Input.is_action_pressed("ui_down") && fired:
+	if Input.is_key_pressed(KEY_SPACE) && fired:
 		fired = 0
 		$Timer.start()
 		emit_signal("fired",facing)
