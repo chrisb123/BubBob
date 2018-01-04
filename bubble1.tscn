@@ -13,7 +13,7 @@
 [ext_resource path="res://asset/bubble_explode/bubble_explo9.png" type="Texture" id=11]
 [ext_resource path="res://asset/bubble_explode/bubble_explo10.png" type="Texture" id=12]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
 "frames": [ null, ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), null ],
@@ -22,12 +22,12 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
 radius = 14.9655
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=3]
 
 custom_solver_bias = 0.0
 radius = 33.0
@@ -65,13 +65,13 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="1"]
 
-frames = SubResource( 2 )
+frames = SubResource( 1 )
 animation = "die"
 _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
 
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Life" type="Timer" parent="." index="3"]
@@ -101,7 +101,7 @@ audio_bus_name = "Master"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 
 position = Vector2( 0, -1 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="pop" type="Tween" parent="." index="6"]
 
