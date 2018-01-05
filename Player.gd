@@ -52,7 +52,7 @@ func _physics_process(delta):
 			data.linear_velocity += col.remainder * 2
 			#hit bubble with head (explode), hit bubble with feet (shirnk/vanish)
 			if is_on_ceiling():
-				data.killbub()
+				data.killbub(true)
 			#elif is_on_floor() && !is_on_wall() && !Input.is_action_pressed("ui_up"):
 				#data.popbub()
 		#if collide with monster, kill if in bubble, or player bounce off
@@ -61,7 +61,7 @@ func _physics_process(delta):
 				var data = col.collider
 				data.linear_velocity += col.remainder * 2
 				if is_on_ceiling() && !is_on_wall():
-					data.killbub()
+					data.killbub(true)
 
 			else:
 				if invincible == false:

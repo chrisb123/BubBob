@@ -36,8 +36,8 @@ func _process(delta):
 #			linear_velocity.y = linear_velocity.y * 0.97
 
 
-func killbub():
-	if _in_bubble:
+func killbub(pk):
+	if _in_bubble && pk:
 		#Stop enemy
 		$AnimatedSprite.play()
 		$Enemy.hide()

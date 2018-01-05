@@ -26,7 +26,7 @@ func _process(delta):
 			linear_velocity.x = -25
 
 func _on_Life_timeout():
-	killbub()
+	killbub(false)
 	#queue_free()
 
 func _on_Float_timeout():
@@ -37,13 +37,14 @@ func _on_AnimatedSprite_animation_finished():
 	get_colliding_bodies()
 	queue_free()
 
-func killbub():
+#pk, true if player popped the bubbles
+func killbub(pk):
 	if dying == false:
 		dying = true
 		$Area2D.monitorable = false
 		for item in $Area2D.get_overlapping_bodies():
 			if item.is_in_group("bubble") || item.is_in_group("enemy"):
-				item.killbub()
+				item.killbub(pk)
 		$CollisionShape2D.disabled = true
 		$Sprite.hide()
 		linear_damp = 10
