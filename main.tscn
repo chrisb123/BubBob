@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://Intro.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://gui.tscn" type="PackedScene" id=6]
 [ext_resource path="res://bubble1.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=8]
+[ext_resource path="res://PowerUp.tscn" type="PackedScene" id=9]
 
 [node name="Main" type="Node"]
 
@@ -19,6 +20,7 @@ Player = ExtResource( 5 )
 GUI = ExtResource( 6 )
 Bubble = ExtResource( 7 )
 Enemy = ExtResource( 8 )
+PowerUp = ExtResource( 9 )
 
 [node name="Enemy" type="Timer" parent="." index="0"]
 

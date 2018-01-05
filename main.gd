@@ -8,6 +8,9 @@ export (PackedScene) var Player
 export (PackedScene) var GUI
 export (PackedScene) var Bubble
 export (PackedScene) var Enemy
+export (PackedScene) var PowerUp
+
+
 var title
 var player
 var gui
@@ -40,7 +43,7 @@ func _process(delta):
 		clear_nodes()
 		gui.queue_free()
 		_ready()
-	if Global_Vars.score > 0 && leveln == 1:
+	if Global_Vars.score > 2 && leveln == 1:
 		clear_nodes()
 		#Change, make start start a function to start a level
 		level = Level2.instance()
@@ -52,7 +55,7 @@ func _process(delta):
 		player.connect("fired",self,"_fired")
 		$Enemy.start()
 		leveln += 1
-	if Global_Vars.score > 0 && leveln == 2:
+	if Global_Vars.score > 4 && leveln == 2:
 		clear_nodes()
 		gui.queue_free()
 		_ready()
@@ -85,6 +88,10 @@ func _start():
 	player.connect("fired",self,"_fired")
 	gui = GUI.instance()
 	add_child(gui)
+	#not final location for Powerup Spawn, only testing here
+	var powerup = PowerUp.instance()
+	powerup.position = Vector2(600,100)
+	add_child(powerup)
 	$Enemy.start()
 	
 	
