@@ -12,6 +12,9 @@ const pop_time = 0.75
 
 func _ready():
 	linear_velocity.x = velocity * facing
+	$Sprite.scale = Vector2(0.1,0.1)
+	$Sprite/Grow.interpolate_property($Sprite, 'scale', $Sprite.get_scale(), Vector2(1,1) , 1, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	$Sprite/Grow.start()
 	#print(facing)
 
 func _process(delta):

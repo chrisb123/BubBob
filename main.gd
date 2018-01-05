@@ -2,6 +2,8 @@ extends Node
 
 export (PackedScene) var Title
 export (PackedScene) var Level1
+#Level assigining needs fixing
+export (PackedScene) var Level2
 export (PackedScene) var Player
 export (PackedScene) var GUI
 export (PackedScene) var Bubble
@@ -34,25 +36,45 @@ func _ready():
 func _process(delta):
 	# If lives gets to zero, delete all enemies and player, restart
 	if Global_Vars.lives == 0:
-		var enemies = get_tree().get_nodes_in_group("enemy")
-		for enemy in enemies:
-			enemy.queue_free()
-		var bubbles = get_tree().get_nodes_in_group("bubble")
-		for bubble in bubbles:
-			bubble.queue_free()
-		var players = get_tree().get_nodes_in_group("player")
-		for player in players:
-			player.queue_free()
-		$Enemy.stop()
-		level.queue_free()
+		clear_nodes()
 		gui.queue_free()
 		_ready()
+	if Global_Vars.score > 0:
+		clear_nodes()
+		#Change, make start start a function to start a level
+		level = Level2.instance()
+		add_child(level)
+		player = Player.instance()
+		player.position = Vector2(140,180)
+		add_child(player)
+		player.connect("fired",self,"_fired")
+		gui = GUI.instance()
+		add_child(gui)
+		$Enemy.start()
+		
 
+func clear_nodes():
+	var enemies = get_tree().get_nodes_in_group("enemy")
+	for enemy in enemies:
+		enemy.queue_free()
+	var bubbles = get_tree().get_nodes_in_group("bubble")
+	for bubble in bubbles:
+		bubble.queue_free()
+	var players = get_tree().get_nodes_in_group("player")
+	for player in players:
+		player.queue_free()
+	$Enemy.stop()
+	level.queue_free()
+	Global_Vars.score = 0
+
+
+#parse level to "start"
 func _start():
+	#change to is title exists then remove
 	remove_child(title)
 	level = Level1.instance()
 	add_child(level)
-	var player = Player.instance()
+	player = Player.instance()
 	player.position = Vector2(140,180)
 	add_child(player)
 	player.connect("fired",self,"_fired")
@@ -66,7 +88,7 @@ func _fired(facing):
 	var bubble = Bubble.instance()
 	bubble.facing = facing
 	add_child(bubble)
-	var pos = $Player.position
+	var pos = player.position
 	pos.x += 25 * facing
 	pos.y -= 5
 	bubble.position = pos

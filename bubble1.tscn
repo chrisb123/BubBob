@@ -14,7 +14,7 @@ radius = 14.9655
 custom_solver_bias = 0.0
 radius = 33.0
 
-[node name="Bubble" type="RigidBody2D" index="0" groups=[
+[node name="Bubble" type="RigidBody2D" groups=[
 "bubble",
 ]]
 
@@ -44,6 +44,13 @@ facing = null
 
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="Grow" type="Tween" parent="Sprite" index="0"]
+
+playback_process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
 
 [node name="AnimatedSprite" parent="." index="1" instance=ExtResource( 3 )]
 
