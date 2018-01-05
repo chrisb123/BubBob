@@ -9,6 +9,7 @@ export (PackedScene) var Enemy
 var title
 var player
 var gui
+var level
 var score = 0
 var max_enemies = 5
 
@@ -43,12 +44,14 @@ func _process(delta):
 		for player in players:
 			player.queue_free()
 		$Enemy.stop()
+		level.queue_free()
+		gui.queue_free()
 		_ready()
 
 func _start():
 	remove_child(title)
-	var level1 = Level1.instance()
-	add_child(level1)
+	level = Level1.instance()
+	add_child(level)
 	var player = Player.instance()
 	player.position = Vector2(140,180)
 	add_child(player)
