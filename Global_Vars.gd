@@ -4,7 +4,7 @@ extends Node
 # var a = 2
 # var b = "textvar"
 
-const start_lives = 5
+const start_lives = 1
 
 var score = 0
 var lives = start_lives

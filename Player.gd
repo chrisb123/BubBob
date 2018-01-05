@@ -9,6 +9,7 @@ signal fired
 var fired = 1
 var facing = 1
 var action = 0
+var invincible = false
 
 func _ready():
 	pass
@@ -63,6 +64,11 @@ func _physics_process(delta):
 					data.killbub()
 
 			else:
+				if invincible == false:
+					invincible = true
+					Global_Vars.lives -= 1
+					$Invincible_Timer.start()
+					$Sprite.scale = Vector2(0.5, 0.5)
 				vel = Vector2(-3 * vel.x, 1 * vel.y).clamped(1000)
 				if vel.x < 500 && vel.x > 0:
 					vel.x = 500
@@ -76,3 +82,9 @@ func _physics_process(delta):
 
 func _on_Timer_timeout():
 	fired = 1
+
+func _on_Invincible_Timer_timeout():
+	$Invincible_Timer.stop()
+	invincible = false
+	$Sprite.scale = Vector2(1.25, 1.25)
+	

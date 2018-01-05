@@ -63,6 +63,15 @@ position = Vector2( 1.41364, 0.899582 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
+[node name="Invincible_Timer" type="Timer" parent="." index="4"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = false
+autostart = false
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[connection signal="timeout" from="Invincible_Timer" to="." method="_on_Invincible_Timer_timeout"]
 
 

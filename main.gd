@@ -17,6 +17,8 @@ var max_enemies = 5
 # var b = "textvar"
 
 func _ready():
+	Global_Vars.score = 0
+	Global_Vars.lives = Global_Vars.start_lives
 	title = Title.instance()
 	add_child(title)
 	title.connect("start",self,"_start")
@@ -29,9 +31,19 @@ func _ready():
 
 
 func _process(delta):
-	pass
-	#if Input.is_key_pressed("q"):
-		#get_tree().quit()
+	# If lives gets to zero, delete all enemies and player, restart
+	if Global_Vars.lives == 0:
+		var enemies = get_tree().get_nodes_in_group("enemy")
+		for enemy in enemies:
+			enemy.queue_free()
+		var bubbles = get_tree().get_nodes_in_group("bubble")
+		for bubble in bubbles:
+			bubble.queue_free()
+		var players = get_tree().get_nodes_in_group("player")
+		for player in players:
+			player.queue_free()
+		$Enemy.stop()
+		_ready()
 
 func _start():
 	remove_child(title)
@@ -56,11 +68,11 @@ func _fired(facing):
 	pos.y -= 5
 	bubble.position = pos
 	var anim = bubble.find_node("AnimatedSprite")
-	anim.connect("animation_finished",self,"popped")
+	#anim.connect("animation_finished",self,"popped")
 	
-func popped():
-	score += 1
-	gui.get_child(0).text = str(score)
+#func popped():
+	#score += 1
+	#gui.get_child(0).text = str(score)
 
 func _on_Enemy_timeout():
 	var enemy_count = get_tree().get_nodes_in_group("enemy").size()

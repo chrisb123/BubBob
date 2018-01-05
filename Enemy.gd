@@ -47,6 +47,7 @@ func killbub():
 		linear_velocity = Vector2(0,0)
 #And explode it
 func _on_AnimatedSprite_animation_finished():
+	Global_Vars.score += 1
 	queue_free()
 
 

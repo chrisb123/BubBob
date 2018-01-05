@@ -13,5 +13,5 @@ func _ready():
 	pass
 
 func _process(delta):
-	score.text = str("Score: " + str(Global.score))
-	lives.text = str("Lives: " + str(Global.lives))
+	score.text = str("Score: " + str(Global_Vars.score))
+	lives.text = str("Lives: " + str(Global_Vars.lives))
