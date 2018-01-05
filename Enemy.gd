@@ -21,18 +21,19 @@ func _process(delta):
 			$Bubble_Timer.start()
 	
 
-func _physics_process(delta):
-	rotation_degrees = 0
-	if _in_bubble == false:
-		linear_velocity.x = vel.x
-		linear_velocity.y = vel.y
-	else:
-		gravity_scale = -0.5
-		bounce = 0.35
-		if linear_velocity.x > 50:
-			linear_velocity.x = linear_velocity.x * 0.97
-		if linear_velocity.y > 50:
-			linear_velocity.y = linear_velocity.y * 0.97
+#no need to process physics every frame for rigid bodies
+#func _physics_process(delta):
+#	rotation_degrees = 0
+#	if _in_bubble == false:
+#		linear_velocity.x = vel.x
+#		linear_velocity.y = vel.y
+#	else:
+#		gravity_scale = -0.5
+#		bounce = 0.35
+#		if linear_velocity.x > 50:
+#			linear_velocity.x = linear_velocity.x * 0.97
+#		if linear_velocity.y > 50:
+#			linear_velocity.y = linear_velocity.y * 0.97
 
 
 func killbub():
@@ -61,7 +62,10 @@ func _on_RigidBody2D_body_entered( body ):
 		Vector2(0.33,0.33), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
 		#$Enemy/Shrink.set_speed_scale(5)
 		$Enemy/Shrink.start() 
-
+		gravity_scale = -0.5
+		bounce = 0.35
+		linear_velocity.x = vel.x / 5
+		linear_velocity.y = vel.y / 5
 		#$Enemy.scale = Vector2(0.33,0.33)
 
 
@@ -83,6 +87,10 @@ func _on_Move_Timer_timeout():
 		vel.y = -1 * randi()%MAX_SPEED
 		vel.y = clamp(vel.y, -MAX_SPEED,-MIN_SPEED)
 	#print(temp," ",temp2)
+	if _in_bubble == false:
+		linear_velocity.x = vel.x
+		linear_velocity.y = vel.y
+	
 
 func _on_Bubble_Timer_timeout():
 	#Remove Bubble and expand Enemy to original size
@@ -91,6 +99,9 @@ func _on_Bubble_Timer_timeout():
 	$Enemy/Pop.interpolate_property($Bubble, 'scale', $Enemy.get_scale(),
 	Vector2(2.0,2.0), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$Enemy/Pop.start() 
+	gravity_scale = 0
+	bounce = 0
+
 
 func _on_Pop_tween_completed( object, key ):
 
