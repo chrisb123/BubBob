@@ -87,7 +87,9 @@ func _on_Move_Timer_timeout():
 func _on_Bubble_Timer_timeout():
 	#Remove Bubble and expand Enemy to original size
 	$Enemy/Pop.interpolate_property($Enemy, 'scale', $Enemy.get_scale(),
-	Vector2(1.0,1.0), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	Vector2(0.8,0.8), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	$Enemy/Pop.interpolate_property($Bubble, 'scale', $Enemy.get_scale(),
+	Vector2(2.0,2.0), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$Enemy/Pop.start() 
 
 func _on_Pop_tween_completed( object, key ):
@@ -96,5 +98,6 @@ func _on_Pop_tween_completed( object, key ):
 	Vector2(0.5,0.5), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$Enemy/Shrink.start() 
 	$Bubble.hide() 
+	$Bubble.scale = Vector2(1.0,1.0)
 	$Bubble_Timer.stop()
 	_in_bubble = false

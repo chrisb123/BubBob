@@ -23,7 +23,7 @@ func _process(delta):
 			linear_velocity.x = -25
 
 func _on_Life_timeout():
-	popbub()
+	killbub()
 	#queue_free()
 
 func _on_Float_timeout():
@@ -50,19 +50,20 @@ func killbub():
 			$pop/pop_time.start()		
 		$pop.interpolate_property($Sprite, 'scale', $Sprite.get_scale(), Vector2(1.5,1.5) , pop_time, Tween.TRANS_QUAD, Tween.EASE_OUT)
 		$pop.start()
+		$pop.interpolate_property($Sprite, 'rotation_degrees', 0 , 360 , pop_time, Tween.TRANS_QUAD, Tween.EASE_OUT)	
 		#$AnimatedSprite.play()
 		
-func popbub():
+#func popbub():
 
-	if $pop/pop_time.is_stopped():
-		$pop/pop_time.start()
+#	if $pop/pop_time.is_stopped():
+#		$pop/pop_time.start()
 	
-	$pop.interpolate_property($Sprite, 'scale', $Sprite.get_scale(), Vector2(0.25,0.25) , pop_time,
-	Tween.TRANS_QUAD, Tween.EASE_OUT)
-	$pop.interpolate_property($Sprite, 'rotation_degrees', 0 , 360 , pop_time,
-	Tween.TRANS_QUAD, Tween.EASE_OUT)	
+#	$pop.interpolate_property($Sprite, 'scale', $Sprite.get_scale(), Vector2(0.25,0.25) , pop_time,
+#	Tween.TRANS_QUAD, Tween.EASE_OUT)
+#	$pop.interpolate_property($Sprite, 'rotation_degrees', 0 , 360 , pop_time,
+#	Tween.TRANS_QUAD, Tween.EASE_OUT)	
 	
-	$pop.start()
+#	$pop.start()
 
 func _on_pop_tween_completed( object, key ):
 	$pop/pop_time.stop()
