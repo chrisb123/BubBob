@@ -9,7 +9,7 @@
 [ext_resource path="res://bubble1.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=8]
 
-[node name="Main" type="Node" index="0"]
+[node name="Main" type="Node"]
 
 script = ExtResource( 1 )
 Title = ExtResource( 2 )

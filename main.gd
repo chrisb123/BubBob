@@ -14,6 +14,7 @@ var gui
 var level
 var score = 0
 var max_enemies = 5
+var leveln = 0
 
 # class member variables go here, for example:
 # var a = 2
@@ -39,19 +40,22 @@ func _process(delta):
 		clear_nodes()
 		gui.queue_free()
 		_ready()
-	if Global_Vars.score > 0:
+	if Global_Vars.score > 0 && leveln == 1:
 		clear_nodes()
 		#Change, make start start a function to start a level
 		level = Level2.instance()
 		add_child(level)
+		move_child(level,0)
 		player = Player.instance()
 		player.position = Vector2(140,180)
 		add_child(player)
 		player.connect("fired",self,"_fired")
-		gui = GUI.instance()
-		add_child(gui)
 		$Enemy.start()
-		
+		leveln += 1
+	if Global_Vars.score > 0 && leveln == 2:
+		clear_nodes()
+		gui.queue_free()
+		_ready()
 
 func clear_nodes():
 	var enemies = get_tree().get_nodes_in_group("enemy")
@@ -72,6 +76,7 @@ func clear_nodes():
 func _start():
 	#change to is title exists then remove
 	remove_child(title)
+	leveln = 1
 	level = Level1.instance()
 	add_child(level)
 	player = Player.instance()
