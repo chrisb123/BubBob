@@ -10,9 +10,10 @@ var fired = 1
 var facing = 1
 var action = 0
 var invincible = false
+const FIRING_SPEED = 0.1 #0.3 normal
 
 func _ready():
-	pass
+	$Timer.wait_time = FIRING_SPEED
 
 func _physics_process(delta):
 	rotation_degrees = 0

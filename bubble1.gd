@@ -7,10 +7,11 @@ export (int) var facing
 var velocity = 250
 var dying = false
 var player_pushing = false
-
+const LIFE_TIME = 10
 const pop_time = 0.75
 
 func _ready():
+	$Life.wait_time = LIFE_TIME
 	linear_velocity.x = velocity * facing
 	$Sprite.scale = Vector2(0.1,0.1)
 	$Sprite/Grow.interpolate_property($Sprite, 'scale', $Sprite.get_scale(), Vector2(1,1) , 1, Tween.TRANS_QUAD, Tween.EASE_OUT)
@@ -26,7 +27,10 @@ func _process(delta):
 			linear_velocity.x = -25
 
 func _on_Life_timeout():
-	killbub(false)
+	#killbub(false)
+	#If bubble life times out it should die and not take out every bubble with it
+	$pop.interpolate_property($Sprite, 'scale', $Sprite.get_scale(), Vector2(1.5,1.5) , pop_time, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	$pop.start()
 	#queue_free()
 
 func _on_Float_timeout():
