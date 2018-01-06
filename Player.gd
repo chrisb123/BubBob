@@ -76,7 +76,7 @@ func _physics_process(delta):
 				elif vel.x < 0 && vel.x > -500:
 					vel.x = -500
 	#If space is pressed fire bubble
-	if Input.is_key_pressed(KEY_SPACE) && fired:
+	if Input.is_action_pressed("ui_accept") && fired:
 		fired = 0
 		$Timer.start()
 		emit_signal("fired",facing)
