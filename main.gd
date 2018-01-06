@@ -121,7 +121,14 @@ func _on_Enemy_timeout():
 	var enemy_count = get_tree().get_nodes_in_group("enemy").size()
 	if enemy_count < max_enemies:
 		randomize()
+		var mag = 0
+		var epos = Vector2()
+		while mag < 150:
+			epos.x = randi()%1180+50
+			epos.y = randi()%600+50
+			var ab = epos - player.position
+			mag = sqrt(ab.x*ab.x+ab.y*ab.y)
 		var enemy = Enemy.instance()
-		enemy.position = Vector2(randi()%500+100,randi()%500+100)
+		enemy.position = Vector2(epos.x,epos.y)
 		add_child(enemy)
 		#remove_child(enemy)
