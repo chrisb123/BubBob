@@ -59,6 +59,7 @@ func killbub(pk):
 		$pop.interpolate_property($Sprite, 'scale', $Sprite.get_scale(), Vector2(1.5,1.5) , pop_time, Tween.TRANS_QUAD, Tween.EASE_OUT)
 		$pop.start()
 		$pop.interpolate_property($Sprite, 'rotation_degrees', 0 , 360 , pop_time, Tween.TRANS_QUAD, Tween.EASE_OUT)	
+		$Particles.emitting = true
 		#$AnimatedSprite.play()
 		
 #func popbub():

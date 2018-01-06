@@ -19,6 +19,7 @@ var score = 0
 var max_enemies = 5
 var leveln = 0
 const MAX_LEVEL = 3
+const SCORE_TO_LEVEL = 5
 
 # class member variables go here, for example:
 # var a = 2
@@ -44,7 +45,7 @@ func _process(delta):
 		clear_nodes()
 		gui.queue_free()
 		_ready()
-	if Global_Vars.score > 0 && leveln < MAX_LEVEL:
+	if Global_Vars.score > SCORE_TO_LEVEL && leveln < MAX_LEVEL:
 		clear_nodes()
 		#Change, make start start a function to start a level
 		leveln += 1
@@ -58,7 +59,7 @@ func _process(delta):
 		add_child(player)
 		player.connect("fired",self,"_fired")
 		$Enemy.start()
-	if Global_Vars.score > 0 && leveln == MAX_LEVEL:
+	if Global_Vars.score > SCORE_TO_LEVEL && leveln == MAX_LEVEL:
 		print("fdsfa")
 		clear_nodes()
 		gui.queue_free()

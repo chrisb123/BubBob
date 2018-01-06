@@ -40,6 +40,7 @@ func killbub(pk):
 	if _in_bubble && pk:
 		#Stop enemy
 		$AnimatedSprite.play()
+		$Particles.emitting = true
 		$Enemy.hide()
 		$Bubble.hide()
 		$Move_Timer.stop()
