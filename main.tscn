@@ -1,26 +1,22 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://Intro.tscn" type="PackedScene" id=2]
-[ext_resource path="res://level1.tscn" type="PackedScene" id=3]
-[ext_resource path="res://level2.tscn" type="PackedScene" id=4]
-[ext_resource path="res://player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://gui.tscn" type="PackedScene" id=6]
-[ext_resource path="res://bubble1.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Enemy.tscn" type="PackedScene" id=8]
-[ext_resource path="res://PowerUp.tscn" type="PackedScene" id=9]
+[ext_resource path="res://player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://gui.tscn" type="PackedScene" id=4]
+[ext_resource path="res://bubble1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Enemy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://PowerUp.tscn" type="PackedScene" id=7]
 
 [node name="Main" type="Node"]
 
 script = ExtResource( 1 )
 Title = ExtResource( 2 )
-Level1 = ExtResource( 3 )
-Level2 = ExtResource( 4 )
-Player = ExtResource( 5 )
-GUI = ExtResource( 6 )
-Bubble = ExtResource( 7 )
-Enemy = ExtResource( 8 )
-PowerUp = ExtResource( 9 )
+Player = ExtResource( 3 )
+GUI = ExtResource( 4 )
+Bubble = ExtResource( 5 )
+Enemy = ExtResource( 6 )
+PowerUp = ExtResource( 7 )
 
 [node name="Enemy" type="Timer" parent="." index="0"]
 

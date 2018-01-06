@@ -1,9 +1,9 @@
 extends Node
 
 export (PackedScene) var Title
-export (PackedScene) var Level1
+#export (PackedScene) var Level1
 #Level assigining needs fixing
-export (PackedScene) var Level2
+#export (PackedScene) var Level2
 export (PackedScene) var Player
 export (PackedScene) var GUI
 export (PackedScene) var Bubble
@@ -18,6 +18,7 @@ var level
 var score = 0
 var max_enemies = 5
 var leveln = 0
+const MAX_LEVEL = 3
 
 # class member variables go here, for example:
 # var a = 2
@@ -43,10 +44,13 @@ func _process(delta):
 		clear_nodes()
 		gui.queue_free()
 		_ready()
-	if Global_Vars.score > 2 && leveln == 1:
+	if Global_Vars.score > 0 && leveln < MAX_LEVEL:
 		clear_nodes()
 		#Change, make start start a function to start a level
-		level = Level2.instance()
+		leveln += 1
+		#dynamically load next level
+		var resource = load("res://levels/level"+str(leveln)+".tscn")
+		level = resource.instance()
 		add_child(level)
 		move_child(level,0)
 		player = Player.instance()
@@ -54,8 +58,8 @@ func _process(delta):
 		add_child(player)
 		player.connect("fired",self,"_fired")
 		$Enemy.start()
-		leveln += 1
-	if Global_Vars.score > 4 && leveln == 2:
+	if Global_Vars.score > 0 && leveln == MAX_LEVEL:
+		print("fdsfa")
 		clear_nodes()
 		gui.queue_free()
 		_ready()
@@ -80,7 +84,8 @@ func _start():
 	#change to is title exists then remove
 	remove_child(title)
 	leveln = 1
-	level = Level1.instance()
+	var resource = load("res://levels/level1.tscn")
+	level = resource.instance()
 	add_child(level)
 	player = Player.instance()
 	player.position = Vector2(140,180)
