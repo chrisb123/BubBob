@@ -32,18 +32,17 @@ func _on_Life_timeout():
 	$pop.interpolate_property($Sprite, 'scale', $Sprite.get_scale(), Vector2(1.5,1.5) , pop_time, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$pop.start()
 	$pop/pop_time.start()
-	$Pop_Bubble.volume_db = -(randi()%20) - 10
 		
 	#queue_free()
 
 func _on_pop_tween_completed( object, key ):
-	$Pop_Bubble.play()
+	$Pop_Timer.volume_db = -(randi()%20) - 5
+	$Pop_Timer.play()
 	$pop/pop_time.stop()
 	$Sprite.hide()
 	$CollisionShape2D.disabled = true
 
-
-func _on_Pop_Bubble_finished():
+func _on_Pop_Timer_finished():
 	queue_free()
 
 func _on_pop_time_timeout():
@@ -54,7 +53,6 @@ func _on_pop_time_timeout():
 
 func _on_Float_timeout():
 	gravity_scale = -1
-
 
 func _on_AnimatedSprite_animation_finished():
 	get_colliding_bodies()
@@ -73,12 +71,16 @@ func killbub(pk):
 		linear_damp = 10
 		#var anim = data.find_node("AnimatedSprite")AnimatedSprite
 		#Bubble expand when killed
-		$pop.interpolate_property($Sprite, 'scale', $Sprite.get_scale(), Vector2(1.5,1.5) , pop_time, Tween.TRANS_QUAD, Tween.EASE_OUT)
-		$pop.start()
-		$pop.interpolate_property($Sprite, 'rotation_degrees', 0 , 360 , pop_time, Tween.TRANS_QUAD, Tween.EASE_OUT)	
+		#$pop.interpolate_property($Sprite, 'scale', $Sprite.get_scale(), Vector2(1.5,1.5) , pop_time, Tween.TRANS_QUAD, Tween.EASE_OUT)
+		#$pop.interpolate_property($Sprite, 'rotation_degrees', 0 , 360 , pop_time, Tween.TRANS_QUAD, Tween.EASE_OUT)	
+		#$pop.start()
 		$Particles.emitting = true
+		$Pop_Bubble.volume_db = -(randi()%20) - 5
+		$Pop_Bubble.play()
 		#$AnimatedSprite.play()
-		
+
+func _on_Pop_Bubble_finished():
+	queue_free()
 #func popbub():
 
 #	if $pop/pop_time.is_stopped():
@@ -101,5 +103,8 @@ func _on_Bubble_body_entered( body ):
 func _on_Bubble_body_exited( body ):
 	if body.is_in_group("player"):
 		player_pushing = false
+
+
+
 
 
