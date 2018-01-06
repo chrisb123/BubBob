@@ -89,8 +89,10 @@ func _on_Move_Timer_timeout():
 		vel.y = clamp(vel.y, -MAX_SPEED,-MIN_SPEED)
 	#print(temp," ",temp2)
 	if _in_bubble == false:
-		linear_velocity.x = vel.x
-		linear_velocity.y = vel.y
+		#linear_velocity.x = vel.x
+		#linear_velocity.y = vel.y
+		$Enemy/Move.interpolate_property(self, 'linear_velocity', linear_velocity, Vector2(vel.x,vel.y), 0.25, Tween.TRANS_QUAD, Tween.EASE_OUT)
+		$Enemy/Move.start()
 	
 
 func _on_Bubble_Timer_timeout():
