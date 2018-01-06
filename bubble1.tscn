@@ -3,7 +3,7 @@
 [ext_resource path="res://bubble1.gd" type="Script" id=1]
 [ext_resource path="res://asset/bubble.png" type="Texture" id=2]
 [ext_resource path="res://Explosion.tscn" type="PackedScene" id=3]
-[ext_resource path="res://sounds/explosion_dull.wav" type="AudioStream" id=4]
+[ext_resource path="res://sounds/pop.wav" type="AudioStream" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -55,7 +55,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Emission Shape", "Gravity", "Initial Velocity", "Spread" ]
 
-[node name="Bubble" type="RigidBody2D" index="0" groups=[
+[node name="Bubble" type="RigidBody2D" groups=[
 "bubble",
 ]]
 
