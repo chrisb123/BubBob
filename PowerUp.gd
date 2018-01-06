@@ -17,4 +17,9 @@ func _on_Area2D_body_entered( body ):
 	#Solution Use Area2d so its not affected by physics
 	if body.is_in_group("player"):
 		Global_Vars.lives += 1
+		$PowerUp.hide()
+		$CollisionShape2D.disabled = true
+		$PowerUp/AudioStreamPlayer.play()
+		
+func _on_AudioStreamPlayer_finished():
 		queue_free()

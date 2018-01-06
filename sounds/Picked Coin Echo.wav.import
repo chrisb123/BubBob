@@ -1,0 +1,20 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Picked Coin Echo.wav-31111c20d64bbf4e35d1226bc9aa88d9.sample"
+
+[deps]
+
+source_md5="4f7523406d2c28b65b4e056c99c5c9af"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
