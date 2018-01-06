@@ -94,6 +94,7 @@ playback_process_mode = 1
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
+_sections_unfolded = [ "playback" ]
 
 [node name="pop_time" type="Timer" parent="pop" index="0"]
 
