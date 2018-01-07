@@ -16,10 +16,10 @@ var player
 var gui
 var level
 var score = 0
-var max_enemies = 9999
+var max_enemies = 5
 var leveln = 0
 const MAX_LEVEL = 3
-const SCORE_TO_LEVEL = 9999
+const SCORE_TO_LEVEL = 5
 
 # class member variables go here, for example:
 # var a = 2
