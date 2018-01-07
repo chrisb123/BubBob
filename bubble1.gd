@@ -32,16 +32,17 @@ func _on_Life_timeout():
 	$pop.interpolate_property($Sprite, 'scale', $Sprite.get_scale(), Vector2(1.5,1.5) , pop_time, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$pop.start()
 	$pop/pop_time.start()
-		
+	$Pop_Bubble.volume_db = -(randi()%20) - 10
 	#queue_free()
 
 func _on_pop_tween_completed( object, key ):
 	$Pop_Bubble.play()
-	#$Pop_Timer.volume_db = -(randi()%20) - 5
-	#$Pop_Timer.play()
 	$pop/pop_time.stop()
 	$Sprite.hide()
 	$CollisionShape2D.disabled = true
+
+func _on_Pop_Bubble_finished():
+	queue_free()
 
 func _on_pop_time_timeout():
 	if $Sprite.visible == true:
@@ -77,8 +78,6 @@ func killbub(pk):
 		$Pop_Bubble.play()
 		#$AnimatedSprite.play()
 
-func _on_Pop_Bubble_finished():
-	queue_free()
 #func popbub():
 
 #	if $pop/pop_time.is_stopped():
