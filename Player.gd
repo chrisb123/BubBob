@@ -47,8 +47,12 @@ func _physics_process(delta):
 	elif vel.y > 15:
 		$AnimatedSprite.animation = "fall"	
 	elif vel.x > 20 or vel.x < -20:
+		if $AnimatedSprite.animation == "fall":
+			$AnimatedSprite/Land.play()
 		$AnimatedSprite.animation = "running"
 	else:
+		if $AnimatedSprite.animation == "fall":
+			$AnimatedSprite/Land.play()
 		$AnimatedSprite.animation = "idle"
 	move_and_slide(vel,Vector2(0,-1))
 	var coli = get_slide_count()
