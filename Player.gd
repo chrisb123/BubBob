@@ -62,7 +62,7 @@ func _physics_process(delta):
 		#if collide with bubble then pop bubble
 		if col.collider.is_in_group("bubble"):
 			var data = col.collider
-			data.linear_velocity += col.remainder * 2
+			data.apply_impulse(Vector2(),col.remainder*2)
 			#hit bubble with head (explode), hit bubble with feet (shirnk/vanish)
 			if is_on_ceiling() && vel.y < 0:
 				data.killbub(true)
@@ -72,7 +72,7 @@ func _physics_process(delta):
 		elif col.collider.is_in_group("enemy"):
 			if col.collider._in_bubble == true:
 				var data = col.collider
-				data.linear_velocity += col.remainder * 2
+				data.apply_impulse(Vector2(),col.remainder)
 				if is_on_ceiling() && !is_on_wall():
 					data.killbub(true)
 
