@@ -42,6 +42,7 @@ func _on_pop_tween_completed( object, key ):
 	$CollisionShape2D.disabled = true
 
 func _on_Pop_Bubble_finished():
+	yield(get_tree().create_timer(0.75),"timeout")
 	queue_free()
 
 func _on_pop_time_timeout():
@@ -66,7 +67,7 @@ func killbub(pk):
 			if item.is_in_group("bubble") || item.is_in_group("enemy"):
 				item.killbub(pk)
 		$CollisionShape2D.disabled = true
-		#$Sprite.hide()
+		$Sprite.hide()
 		linear_damp = 10
 		#var anim = data.find_node("AnimatedSprite")AnimatedSprite
 		#Bubble expand when killed
