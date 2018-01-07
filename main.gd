@@ -117,6 +117,9 @@ func _fired(facing):
 	#score += 1
 	#gui.get_child(0).text = str(score)
 
+func do_nothing():
+	pass
+
 func _on_Enemy_timeout():
 	var enemy_count = get_tree().get_nodes_in_group("enemy").size()
 	if enemy_count < max_enemies:
