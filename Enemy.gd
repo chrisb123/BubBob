@@ -108,7 +108,7 @@ func _on_Bubble_Timer_timeout():
 
 
 func _on_Pop_tween_completed( object, key ):
-
+	$Pop_Bubble.play()
 	$Enemy/Shrink.interpolate_property($Enemy, 'scale', $Enemy.get_scale(),
 	Vector2(0.5,0.5), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$Enemy/Shrink.start() 
