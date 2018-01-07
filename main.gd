@@ -15,8 +15,8 @@ var title
 var player
 var gui
 var level
-var score = 0
-var max_enemies = 3
+var score = 2
+var max_enemies = 5
 var leveln = 0
 const MAX_LEVEL = 3
 const SCORE_TO_LEVEL = 10
