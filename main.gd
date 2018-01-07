@@ -15,11 +15,11 @@ var title
 var player
 var gui
 var level
-var score = 2
+var score = 0
 var max_enemies = 5
 var leveln = 0
 const MAX_LEVEL = 3
-const SCORE_TO_LEVEL = 10
+const SCORE_TO_LEVEL = 5
 
 # class member variables go here, for example:
 # var a = 2
@@ -116,6 +116,9 @@ func _fired(facing):
 #func popped():
 	#score += 1
 	#gui.get_child(0).text = str(score)
+
+func do_nothing():
+	pass
 
 func _on_Enemy_timeout():
 	var enemy_count = get_tree().get_nodes_in_group("enemy").size()
