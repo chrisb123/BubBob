@@ -44,7 +44,7 @@ func _physics_process(delta):
 	vel.x /= 1 + delta * 5
 	if vel.y < 0:
 		$AnimatedSprite.animation = "jump"
-	elif vel.y > 15:
+	elif vel.y > 100:
 		$AnimatedSprite.animation = "fall"	
 	elif vel.x > 20 or vel.x < -20:
 		if $AnimatedSprite.animation == "fall":
