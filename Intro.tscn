@@ -129,7 +129,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 115.0
 margin_right = 542.0
-margin_bottom = 302.0
+margin_bottom = 378.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 2
 size_flags_horizontal = 4
@@ -139,6 +139,8 @@ text = "Instructions:
 Move = Left/Right
 Jump = Up
 Bubble = Space
+Music on/off = m
+Change Zoom = Tab
 Pop bubbles by head butting them"
 align = 1
 percent_visible = 1.0

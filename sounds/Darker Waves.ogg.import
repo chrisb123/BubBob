@@ -1,0 +1,14 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Darker Waves.ogg-ce256314075454cbd6ff71ed4954dc5d.oggstr"
+
+[deps]
+
+source_md5="9efd053629057f5f8f5a8f431605504b"
+
+[params]
+
+loop=true
+loop_offset=0

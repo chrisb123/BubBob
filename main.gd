@@ -40,6 +40,8 @@ func _ready():
 
 
 func _process(delta):
+	if Input.is_action_just_pressed("ui_music"):
+		get_node("Music").playing = !get_node("Music").playing
 	# If lives gets to zero, delete all enemies and player, restart
 	if Global_Vars.lives == 0:
 		clear_nodes()
