@@ -73,7 +73,7 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( 64, 32 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 96, 32, 32, 32 )
+region_rect = Rect2( 96, 128, 32, 32 )
 _sections_unfolded = [ "Region", "Transform" ]
 __meta__ = {
 "_edit_group_": true
@@ -125,7 +125,7 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( 96, 32 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 0, 96, 32, 32 )
+region_rect = Rect2( 0, 97, 32, 32 )
 _sections_unfolded = [ "Region", "Transform" ]
 __meta__ = {
 "_edit_group_": true
@@ -151,7 +151,7 @@ polygon = PoolVector2Array( 16, -1, -16, -16, -16, 16, 16, 16 )
 position = Vector2( 128, 32 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 32, 96, 32, 32 )
+region_rect = Rect2( 31, 97, 32, 32 )
 _sections_unfolded = [ "Region", "Transform" ]
 __meta__ = {
 "_edit_group_": true
@@ -177,7 +177,7 @@ polygon = PoolVector2Array( -16, -1, -16, 16, 16, 16 )
 position = Vector2( 160, 32 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 128, 64, 32, 32 )
+region_rect = Rect2( 127, 65, 32, 32 )
 _sections_unfolded = [ "Region", "Transform" ]
 __meta__ = {
 "_edit_group_": true
@@ -203,7 +203,7 @@ polygon = PoolVector2Array( -16, -16, -16, 16, 16, 16 )
 position = Vector2( 192, 32 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 128, 32, 32, 32 )
+region_rect = Rect2( 129, 32, 32, 32 )
 _sections_unfolded = [ "Region", "Transform" ]
 __meta__ = {
 "_edit_group_": true

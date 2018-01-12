@@ -2,7 +2,7 @@
 
 [ext_resource path="res://tileset.tres" type="TileSet" id=1]
 
-[node name="Level1" type="TileMap"]
+[node name="Level3" type="TileMap"]
 
 mode = 0
 tile_set = ExtResource( 1 )
