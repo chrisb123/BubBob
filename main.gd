@@ -109,7 +109,7 @@ func _fired(facing):
 	bubble.facing = facing
 	add_child(bubble)
 	var pos = player.position
-	pos.x += 25 * facing
+	pos.x += 33 * facing
 	pos.y -= 5
 	bubble.position = pos
 	var anim = bubble.find_node("AnimatedSprite")

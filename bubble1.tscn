@@ -56,7 +56,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Emission Shape", "Gravity", "Initial Velocity", "Spread" ]
 
-[node name="Bubble" type="RigidBody2D" groups=[
+[node name="Bubble" type="RigidBody2D" index="0" groups=[
 "bubble",
 ]]
 
@@ -75,7 +75,7 @@ contact_monitor = true
 sleeping = false
 can_sleep = true
 linear_velocity = Vector2( 0, 0 )
-linear_damp = 0.1
+linear_damp = 0.75
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
@@ -106,7 +106,7 @@ _sections_unfolded = [ "Transform" ]
 process_mode = 1
 wait_time = 5.0
 one_shot = false
-autostart = true
+autostart = false
 
 [node name="Float" type="Timer" parent="." index="4"]
 

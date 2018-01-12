@@ -12,7 +12,9 @@ const pop_time = 0.75
 
 func _ready():
 	$Life.wait_time = LIFE_TIME
-	linear_velocity.x = velocity * facing
+	$Life.start()
+	#linear_velocity.x = velocity * facing
+	apply_impulse(Vector2(),Vector2(velocity * facing,0))
 	$Sprite.scale = Vector2(0.1,0.1)
 	$Sprite/Grow.interpolate_property($Sprite, 'scale', $Sprite.get_scale(), Vector2(1,1) , 1, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$Sprite/Grow.start()
@@ -22,9 +24,9 @@ func _process(delta):
 	#if playing is not pushing they limit min speed
 	if !player_pushing:
 		if linear_velocity.x < 25 && linear_velocity.x >= 0:
-			linear_velocity.x = 25
+			apply_impulse(Vector2(),Vector2(1,0))
 		if linear_velocity.x > -25 && linear_velocity.x <= 0:
-			linear_velocity.x = -25
+			apply_impulse(Vector2(),Vector2(-1,0))
 
 func _on_Life_timeout():
 	#killbub(false)
@@ -42,7 +44,7 @@ func _on_pop_tween_completed( object, key ):
 	$CollisionShape2D.disabled = true
 
 func _on_Pop_Bubble_finished():
-	yield(get_tree().create_timer(0.75),"timeout")
+	yield(get_tree().create_timer(pop_time),"timeout")
 	queue_free()
 
 func _on_pop_time_timeout():

@@ -62,7 +62,8 @@ func _physics_process(delta):
 		#if collide with bubble then pop bubble
 		if col.collider.is_in_group("bubble"):
 			var data = col.collider
-			data.linear_velocity += col.remainder * 2
+			#data.linear_velocity += col.remainder * 2
+			data.apply_impulse(Vector2(),col.remainder)
 			#hit bubble with head (explode), hit bubble with feet (shirnk/vanish)
 			if is_on_ceiling() && vel.y < 0:
 				data.killbub(true)
