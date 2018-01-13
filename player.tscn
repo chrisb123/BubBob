@@ -4,14 +4,14 @@
 [ext_resource path="res://asset/human-male-base.png" type="Texture" id=2]
 [ext_resource path="res://asset/player/idle/idle-frame-1.png" type="Texture" id=3]
 [ext_resource path="res://asset/player/idle/idle-frame-2.png" type="Texture" id=4]
-[ext_resource path="res://asset/player/jump/jump_up.png" type="Texture" id=5]
+[ext_resource path="res://asset/player/jump/jump_fall.png" type="Texture" id=5]
 [ext_resource path="res://asset/player/running/run-frame-1.png" type="Texture" id=6]
 [ext_resource path="res://asset/player/running/run-frame-2.png" type="Texture" id=7]
 [ext_resource path="res://asset/player/running/run-frame-3.png" type="Texture" id=8]
 [ext_resource path="res://asset/player/running/run-frame-4.png" type="Texture" id=9]
 [ext_resource path="res://asset/player/running/run-frame-6.png" type="Texture" id=10]
 [ext_resource path="res://asset/player/running/run-frame-5.png" type="Texture" id=11]
-[ext_resource path="res://asset/player/jump/jump_fall.png" type="Texture" id=12]
+[ext_resource path="res://asset/player/jump/jump_up.png" type="Texture" id=12]
 [ext_resource path="res://AnimatedSprite.gd" type="Script" id=13]
 [ext_resource path="res://sounds/steps_platform.ogg" type="AudioStream" id=14]
 [ext_resource path="res://sounds/Jump.wav" type="AudioStream" id=15]
@@ -28,7 +28,7 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
-"name": "jump",
+"name": "fall",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
@@ -38,7 +38,7 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 12 ) ],
 "loop": true,
-"name": "fall",
+"name": "jump",
 "speed": 5.0
 } ]
 
@@ -48,7 +48,7 @@ custom_solver_bias = 0.0
 radius = 15.7876
 height = 22.1018
 
-[node name="Player" type="KinematicBody2D" index="0" groups=[
+[node name="Player" type="KinematicBody2D" groups=[
 "player",
 ]]
 
@@ -104,7 +104,6 @@ _sections_unfolded = [ "Transform" ]
 scale = Vector2( 0.075, 0.075 )
 frames = SubResource( 1 )
 animation = "idle"
-frame = 1
 playing = true
 script = ExtResource( 13 )
 _sections_unfolded = [ "Transform" ]

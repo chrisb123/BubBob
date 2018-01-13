@@ -64,7 +64,7 @@ func _process(delta):
 	if Global_Vars.score > SCORE_TO_LEVEL && leveln == MAX_LEVEL:
 		print("fdsfa")
 		clear_nodes()
-		gui.queue_free()
+		$GUI_Layer/gui.queue_free()
 		_ready()
 
 func clear_nodes():
@@ -95,7 +95,7 @@ func _start():
 	add_child(player)
 	player.connect("fired",self,"_fired")
 	gui = GUI.instance()
-	add_child(gui)
+	$GUI_Layer.add_child(gui)
 	#not final location for Powerup Spawn, only testing here
 	var powerup = PowerUp.instance()
 	powerup.position = Vector2(600,100)

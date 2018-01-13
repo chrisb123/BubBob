@@ -9,7 +9,7 @@
 [ext_resource path="res://PowerUp.tscn" type="PackedScene" id=7]
 [ext_resource path="res://sounds/Darker Waves.ogg" type="AudioStream" id=8]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" index="0"]
 
 script = ExtResource( 1 )
 Title = ExtResource( 2 )
@@ -33,6 +33,13 @@ volume_db = 0.0
 autoplay = true
 mix_target = 0
 bus = "Master"
+
+[node name="GUI_Layer" type="CanvasLayer" parent="." index="2"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
 
 [connection signal="timeout" from="Enemy" to="." method="_on_Enemy_timeout"]
 
