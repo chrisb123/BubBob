@@ -64,7 +64,9 @@ func _process(delta):
 	if Global_Vars.score > SCORE_TO_LEVEL && leveln == MAX_LEVEL:
 		print("fdsfa")
 		clear_nodes()
-		$GUI_Layer/gui.queue_free()
+		#Should be GUI not Control
+		$GUI_Layer/Control.queue_free()
+		#Clear power up node
 		_ready()
 
 func clear_nodes():
