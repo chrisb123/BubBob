@@ -9,17 +9,21 @@ export (PackedScene) var GUI
 export (PackedScene) var Bubble
 export (PackedScene) var Enemy
 export (PackedScene) var PowerUp
+export (PackedScene) var GameOver
+export (PackedScene) var File_Main
 
 
 var title
 var player
 var gui
 var level
+var gameover
+var file_main
 var score = 0
 var max_enemies = 10
 var leveln = 0
 const MAX_LEVEL = 3
-const SCORE_TO_LEVEL = 5
+const SCORE_TO_LEVEL = 10
 
 # class member variables go here, for example:
 # var a = 2
@@ -46,8 +50,12 @@ func _process(delta):
 	if Global_Vars.lives == 0:
 		clear_nodes()
 		gui.queue_free()
-		_ready()
-	if Global_Vars.score > SCORE_TO_LEVEL && leveln < MAX_LEVEL:
+		file_main = File_Main.instance()
+		add_child(file_main)
+		_gameover()
+		remove_child(file_main)
+		#_ready()
+	if Global_Vars.score > (SCORE_TO_LEVEL * leveln) && leveln < MAX_LEVEL:
 		clear_nodes()
 		#Change, make start start a function to start a level
 		leveln += 1
@@ -61,7 +69,7 @@ func _process(delta):
 		add_child(player)
 		player.connect("fired",self,"_fired")
 		$Enemy.start()
-	if Global_Vars.score > SCORE_TO_LEVEL && leveln == MAX_LEVEL:
+	if Global_Vars.score > (SCORE_TO_LEVEL * leveln) && leveln == MAX_LEVEL:
 		print("fdsfa")
 		clear_nodes()
 		#Should be GUI not Control
@@ -79,9 +87,12 @@ func clear_nodes():
 	var players = get_tree().get_nodes_in_group("player")
 	for player in players:
 		player.queue_free()
+	var powerups = get_tree().get_nodes_in_group("powerup")
+	for powerup in powerups:
+		powerup.queue_free()
 	$Enemy.stop()
 	level.queue_free()
-	Global_Vars.score = 0
+	#Global_Vars.score = 0
 
 
 #parse level to "start"
@@ -139,3 +150,9 @@ func _on_Enemy_timeout():
 		enemy.position = Vector2(epos.x,epos.y)
 		add_child(enemy)
 		#remove_child(enemy)
+		
+func _gameover():
+	gameover = GameOver.instance()
+	add_child(gameover)
+
+	#Global_Vars.lives = 50

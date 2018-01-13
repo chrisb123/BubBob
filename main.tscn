@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://Intro.tscn" type="PackedScene" id=2]
@@ -7,7 +7,9 @@
 [ext_resource path="res://bubble1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://PowerUp.tscn" type="PackedScene" id=7]
-[ext_resource path="res://sounds/Darker Waves.ogg" type="AudioStream" id=8]
+[ext_resource path="res://GameOver.tscn" type="PackedScene" id=8]
+[ext_resource path="res://File_Main.tscn" type="PackedScene" id=9]
+[ext_resource path="res://sounds/Darker Waves.ogg" type="AudioStream" id=10]
 
 [node name="Main" type="Node" index="0"]
 
@@ -18,6 +20,8 @@ GUI = ExtResource( 4 )
 Bubble = ExtResource( 5 )
 Enemy = ExtResource( 6 )
 PowerUp = ExtResource( 7 )
+GameOver = ExtResource( 8 )
+File_Main = ExtResource( 9 )
 
 [node name="Enemy" type="Timer" parent="." index="0"]
 
@@ -28,7 +32,7 @@ autostart = false
 
 [node name="Music" type="AudioStreamPlayer" parent="." index="1"]
 
-stream = ExtResource( 8 )
+stream = ExtResource( 10 )
 volume_db = 0.0
 autoplay = true
 mix_target = 0
