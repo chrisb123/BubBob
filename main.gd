@@ -50,10 +50,9 @@ func _process(delta):
 	if Global_Vars.lives == 0:
 		clear_nodes()
 		gui.queue_free()
-		file_main = File_Main.instance()
-		add_child(file_main)
 		_gameover()
-		remove_child(file_main)
+		#cant stay at 0 during gameover screen, otherwise godot crashes
+		Global_Vars.lives = 999 
 		#_ready()
 	if Global_Vars.score > (SCORE_TO_LEVEL * leveln) && leveln < MAX_LEVEL:
 		clear_nodes()
