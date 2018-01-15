@@ -8,13 +8,15 @@ export (PackedScene) var Player
 export (PackedScene) var GUI
 export (PackedScene) var Bubble
 export (PackedScene) var Enemy
+export (PackedScene) var Enemy2
+export (PackedScene) var Enemy3
 export (PackedScene) var PowerUp
 export (PackedScene) var GameOver
 export (PackedScene) var File_Main
 
-
 var title
 var player
+var enemy
 var gui
 var level
 var gameover
@@ -145,10 +147,18 @@ func _on_Enemy_timeout():
 			epos.y = randi()%600+50
 			var ab = epos - player.position
 			mag = sqrt(ab.x*ab.x+ab.y*ab.y)
-		var enemy = Enemy.instance()
+		#randomize new enemy type
+		randomize()
+		var enemy_type = randi()%4
+		if enemy_type == 1:
+			enemy = Enemy.instance()
+		elif enemy_type == 2:
+			enemy = Enemy2.instance()
+		elif enemy_type == 3:
+			enemy = Enemy3.instance()
+		#add randomized enemy
 		enemy.position = Vector2(epos.x,epos.y)
 		add_child(enemy)
-		#remove_child(enemy)
 		
 func _gameover():
 	gameover = GameOver.instance()
