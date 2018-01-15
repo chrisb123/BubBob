@@ -69,9 +69,6 @@ func _process(delta):
 		player.position = Vector2(140,180)
 		add_child(player)
 		player.connect("fired",self,"_fired")
-		var powerup = PowerUp.instance()
-		powerup.position = Vector2(600,100)
-		add_child(powerup)
 		$Enemy.start()
 	if Global_Vars.score > (SCORE_TO_LEVEL * leveln) && leveln == MAX_LEVEL:
 		print("fdsfa")

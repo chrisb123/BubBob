@@ -8,10 +8,11 @@
 [ext_resource path="res://sounds/Enemy_Spawn.wav" type="AudioStream" id=6]
 [ext_resource path="res://sounds/pop.wav" type="AudioStream" id=7]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id=8]
 
 custom_solver_bias = 0.0
-radius = 16.6949
+radius = 13.3334
+height = 20.0
 
 [sub_resource type="Gradient" id=2]
 
@@ -142,11 +143,12 @@ Explode = null
 
 [node name="Enemy" type="Sprite" parent="." index="0"]
 
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( -1.25, -8.5 )
+scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 73, 0, 70, 100 )
-_sections_unfolded = [ "Animation", "Region", "Transform" ]
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 
 [node name="Shrink" type="Tween" parent="Enemy" index="0"]
 
@@ -179,7 +181,8 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
 
 position = Vector2( -0.17482, -0.349648 )
-shape = SubResource( 1 )
+shape = SubResource( 8 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="Move_Timer" type="Timer" parent="." index="3"]
 

@@ -113,7 +113,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Color", "Emission Shape", "Gravity", "Initial Velocity", "Spread" ]
 
-[node name="RigidBody2D" type="RigidBody2D" groups=[
+[node name="RigidBody2D" type="RigidBody2D" index="0" groups=[
 "enemy2",
 "enemy",
 ]]
@@ -142,11 +142,12 @@ Explode = null
 
 [node name="Enemy" type="Sprite" parent="." index="0"]
 
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( -0.60553, -6.6028 )
+scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 143, 0, 70, 100 )
-_sections_unfolded = [ "Animation", "Region", "Transform" ]
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 
 [node name="Shrink" type="Tween" parent="Enemy" index="0"]
 
@@ -174,12 +175,13 @@ _sections_unfolded = [ "playback" ]
 
 visible = false
 texture = ExtResource( 3 )
-_sections_unfolded = [ "Transform", "Visibility" ]
+_sections_unfolded = [ "Offset", "Region", "Transform", "Visibility" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
 
 position = Vector2( -0.17482, -0.349648 )
 shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="Move_Timer" type="Timer" parent="." index="3"]
 
