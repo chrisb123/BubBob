@@ -5,9 +5,9 @@ extends RigidBody2D
 # var b = "textvar"
 var _in_bubble = false
 var vel = Vector2()
-const MIN_SPEED = 150
-const MAX_SPEED = 350
-const Y_SPEED_REDUCTION = 0.5 #divisor factor for Y axis speeds
+const MIN_SPEED = 50
+const MAX_SPEED = 150
+const Y_SPEED_REDUCTION = 3 #divisor factor for Y axis speeds
 export (PackedScene) var Explode
 
 
