@@ -105,7 +105,7 @@ func _start():
 	level = resource.instance()
 	add_child(level)
 	player = Player.instance()
-	player.position = Vector2(140,180)
+	player.position = Vector2(0,0)
 	add_child(player)
 	player.connect("fired",self,"_fired")
 	gui = GUI.instance()
