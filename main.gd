@@ -149,7 +149,7 @@ func _on_Enemy_timeout():
 			mag = sqrt(ab.x*ab.x+ab.y*ab.y)
 		#randomize new enemy type
 		randomize()
-		var enemy_type = randi()%4
+		var enemy_type = randi()%3+1
 		if enemy_type == 1:
 			enemy = Enemy.instance()
 		elif enemy_type == 2:
