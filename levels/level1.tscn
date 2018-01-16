@@ -30,8 +30,8 @@ _sections_unfolded = [ "Cell", "Collision" ]
 
 [node name="Size" type="Position2D" parent="." index="1"]
 
-position = Vector2( -105, -106 )
-scale = Vector2( 10.5, 10.5 )
+position = Vector2( 280, 174 )
+scale = Vector2( 70, 52.5 )
 script = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]
 
