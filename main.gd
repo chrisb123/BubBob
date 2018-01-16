@@ -26,7 +26,7 @@ var max_enemies = 10
 var leveln = 0
 var levsize
 const MAX_LEVEL = 4
-const SCORE_TO_LEVEL = 1
+const SCORE_TO_LEVEL = 10
 
 # class member variables go here, for example:
 # var a = 2
