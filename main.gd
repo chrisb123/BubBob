@@ -24,6 +24,7 @@ var file_main
 var score = 0
 var max_enemies = 10
 var leveln = 0
+var levsize
 const MAX_LEVEL = 3
 const SCORE_TO_LEVEL = 10
 
@@ -65,8 +66,9 @@ func _process(delta):
 		level = resource.instance()
 		add_child(level)
 		move_child(level,0)
+		levsize = level.find_node("Size").size()
 		player = Player.instance()
-		player.position = Vector2(140,180)
+		player.position = Vector2(0,0)
 		add_child(player)
 		player.connect("fired",self,"_fired")
 		$Enemy.start()
@@ -104,6 +106,7 @@ func _start():
 	var resource = load("res://levels/level1.tscn")
 	level = resource.instance()
 	add_child(level)
+	levsize = level.find_node("Size").size()
 	player = Player.instance()
 	player.position = Vector2(0,0)
 	add_child(player)
@@ -143,8 +146,12 @@ func _on_Enemy_timeout():
 		var mag = 0
 		var epos = Vector2()
 		while mag < 150:
-			epos.x = randi()%1180+50
-			epos.y = randi()%600+50
+			var i = 0
+			#dont create enemies on tile map
+			while i >= 0:
+				epos.x = randi()%int(levsize[0])+int(levsize[1])
+				epos.y = randi()%int(levsize[2])+int(levsize[3])
+				i = level.get_cellv(level.world_to_map(Vector2(epos))) 
 			var ab = epos - player.position
 			mag = sqrt(ab.x*ab.x+ab.y*ab.y)
 		#randomize new enemy type
