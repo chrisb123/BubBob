@@ -9,7 +9,8 @@ const MIN_SPEED = 250
 const MAX_SPEED = 600
 const Y_SPEED_REDUCTION = 2 #divisor factor for Y axis speeds
 export (PackedScene) var Explode
-
+export (PackedScene) var Fireball
+var facing #1 right, 2 left
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -79,9 +80,13 @@ func _on_Move_Timer_timeout():
 	if temp == 1:
 		vel.x = randi()%MAX_SPEED
 		vel.x = clamp(vel.x, MIN_SPEED,MAX_SPEED)
+		facing = 1
+		$Enemy.flip_h = false
 	else:
 		vel.x = -1 * randi()%MAX_SPEED
 		vel.x = clamp(vel.x, -MAX_SPEED,-MIN_SPEED)
+		facing = -1
+		$Enemy.flip_h = true
 	var temp2 = randi()%2
 	if temp2 == 1:
 		vel.y = randi()%MAX_SPEED
@@ -117,3 +122,15 @@ func _on_Pop_tween_completed( object, key ):
 	$Bubble.scale = Vector2(1.0,1.0)
 	$Bubble_Timer.stop()
 	_in_bubble = false
+
+
+func _on_Fireball_Timer_timeout():
+	var fireball = Fireball.instance()
+	var pos = $Enemy.position
+	pos.x += 50 * facing
+	pos.y -= 0
+	fireball.linear_velocity = Vector2(100 * facing,0)
+	fireball.position = pos
+	add_child(fireball)
+
+	pass # replace with function body

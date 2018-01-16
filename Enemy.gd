@@ -79,9 +79,11 @@ func _on_Move_Timer_timeout():
 	if temp == 1:
 		vel.x = randi()%MAX_SPEED
 		vel.x = clamp(vel.x, MIN_SPEED,MAX_SPEED)
+		$Enemy.flip_h = false
 	else:
 		vel.x = -1 * randi()%MAX_SPEED
 		vel.x = clamp(vel.x, -MAX_SPEED,-MIN_SPEED)
+		$Enemy.flip_h = true
 	var temp2 = randi()%2
 	if temp2 == 1:
 		vel.y = randi()%MAX_SPEED
