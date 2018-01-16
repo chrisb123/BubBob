@@ -8,7 +8,7 @@
 [ext_resource path="res://sounds/Enemy_Spawn.wav" type="AudioStream" id=6]
 [ext_resource path="res://sounds/pop.wav" type="AudioStream" id=7]
 
-[sub_resource type="CapsuleShape2D" id=8]
+[sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 17.6847
@@ -114,9 +114,9 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Color", "Emission Shape", "Gravity", "Initial Velocity", "Spread" ]
 
-[node name="RigidBody2D" type="RigidBody2D" groups=[
-"enemy1",
+[node name="RigidBody2D" type="RigidBody2D" index="0" groups=[
 "enemy",
+"enemy1",
 ]]
 
 input_pickable = false
@@ -180,7 +180,7 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
 
 position = Vector2( -0.17482, -0.349648 )
-shape = SubResource( 8 )
+shape = SubResource( 1 )
 
 [node name="Move_Timer" type="Timer" parent="." index="3"]
 

@@ -13,7 +13,7 @@
 [ext_resource path="res://File_Main.tscn" type="PackedScene" id=11]
 [ext_resource path="res://sounds/Darker Waves.ogg" type="AudioStream" id=12]
 
-[node name="Main" type="Node" index="0"]
+[node name="Main" type="Node"]
 
 script = ExtResource( 1 )
 Title = ExtResource( 2 )
@@ -48,7 +48,6 @@ layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
 [connection signal="timeout" from="Enemy" to="." method="_on_Enemy_timeout"]
 
