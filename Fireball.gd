@@ -15,3 +15,7 @@ func _process():
 	print (item.get_name())
 	var item2 = $Fireball.get_overlapping_areas()
 	print (item2.get_name())
+
+func _on_Area2D_area_entered( area ):
+	if area.is_in_group("bubble_area"):
+		area.get_parent()._on_Life_timeout()

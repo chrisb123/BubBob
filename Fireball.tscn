@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Fireball.gd" type="Script" id=1]
 [ext_resource path="res://asset/fireball/0018.png" type="Texture" id=2]
@@ -26,7 +26,12 @@ animations = [ {
 "speed": 20.0
 } ]
 
-[node name="Fireball" type="RigidBody2D" index="0" groups=[
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 22.8141
+
+[node name="Fireball" type="RigidBody2D" groups=[
 "fireball",
 ]]
 
@@ -40,7 +45,7 @@ bounce = 0.0
 gravity_scale = 0.0
 custom_integrator = false
 continuous_cd = 0
-contacts_reported = 5
+contacts_reported = 1
 contact_monitor = true
 sleeping = false
 can_sleep = true
@@ -57,7 +62,7 @@ rotation = -1.5708
 scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 1 )
 animation = "New Anim"
-frame = 7
+frame = 1
 playing = true
 _sections_unfolded = [ "Transform" ]
 
@@ -74,5 +79,13 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 _sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
+position = Vector2( 10.7815, -2.8387 )
+scale = Vector2( 1, 1.60544 )
+shape = SubResource( 2 )
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 
 
