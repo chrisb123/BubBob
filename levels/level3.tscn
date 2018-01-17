@@ -4,7 +4,9 @@
 [ext_resource path="res://levels/BackGround.tscn" type="PackedScene" id=2]
 [ext_resource path="res://levels/Size.gd" type="Script" id=3]
 
-[node name="Level3" type="TileMap"]
+[node name="Level3" type="TileMap" groups=[
+"tiles",
+]]
 
 mode = 0
 tile_set = ExtResource( 1 )
