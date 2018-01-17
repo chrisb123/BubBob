@@ -5,11 +5,13 @@ extends RigidBody2D
 # var b = "textvar"
 
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
-	pass
+	if linear_velocity.x > 0:
+		$Fireballanim.flip_v = false
+	else:
+		$Fireballanim.flip_v = true
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+func _process():
+	var item = $Area2d.get_overlapping_areas()
+	print (item.get_name())
+	var item2 = $Fireball.get_overlapping_areas()
+	print (item2.get_name())

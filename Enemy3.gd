@@ -129,7 +129,7 @@ func _on_Fireball_Timer_timeout():
 	var pos = $Enemy.position
 	pos.x += 50 * facing
 	pos.y -= 0
-	fireball.linear_velocity = Vector2(100 * facing,0)
+	fireball.linear_velocity = Vector2(300 * facing,0)
 	fireball.position = pos
 	add_child(fireball)
 
