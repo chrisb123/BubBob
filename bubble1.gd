@@ -42,6 +42,7 @@ func _on_pop_tween_completed( object, key ):
 	$pop/pop_time.stop()
 	$Sprite.hide()
 	$CollisionShape2D.disabled = true
+	$Particles.emitting = true
 
 func _on_Pop_Bubble_finished():
 	yield(get_tree().create_timer(pop_time),"timeout")

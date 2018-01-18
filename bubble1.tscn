@@ -56,7 +56,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Emission Shape", "Gravity", "Initial Velocity", "Spread" ]
 
-[node name="Bubble" type="RigidBody2D" groups=[
+[node name="Bubble" type="RigidBody2D" index="0" groups=[
 "bubble",
 ]]
 
