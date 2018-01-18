@@ -54,7 +54,7 @@ linear_damp = 0.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Linear", "Transform" ]
+_sections_unfolded = [ "Collision", "Linear", "Pickable", "Transform" ]
 
 [node name="Fireballanim" type="AnimatedSprite" parent="." index="0"]
 
@@ -62,7 +62,7 @@ rotation = -1.5708
 scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 1 )
 animation = "New Anim"
-frame = 6
+frame = 8
 playing = true
 _sections_unfolded = [ "Transform" ]
 

@@ -48,7 +48,6 @@ layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
 [connection signal="timeout" from="Enemy" to="." method="_on_Enemy_timeout"]
 

@@ -89,9 +89,7 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="Grow" type="Tween" parent="Sprite" index="0"]
 
-repeat = false
 playback_process_mode = 1
-playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
@@ -137,9 +135,7 @@ shape = SubResource( 2 )
 
 [node name="pop" type="Tween" parent="." index="6"]
 
-repeat = false
 playback_process_mode = 1
-playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
