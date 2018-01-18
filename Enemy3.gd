@@ -125,12 +125,11 @@ func _on_Pop_tween_completed( object, key ):
 
 
 func _on_Fireball_Timer_timeout():
-	var fireball = Fireball.instance()
-	var pos = $Enemy.position
-	pos.x += 50 * facing
-	pos.y -= 0
-	fireball.linear_velocity = Vector2(300 * facing,0)
-	fireball.position = pos
-	add_child(fireball)
-
-	pass # replace with function body
+	if _in_bubble == false:
+		var fireball = Fireball.instance()
+		var pos = $Enemy.position
+		pos.x += 50 * facing
+		pos.y -= 0
+		fireball.linear_velocity = Vector2(300 * facing,0)
+		fireball.position = pos
+		add_child(fireball)
