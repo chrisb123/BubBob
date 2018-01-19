@@ -1,12 +1,13 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Enemy2.gd" type="Script" id=1]
 [ext_resource path="res://Explosion.tscn" type="PackedScene" id=2]
-[ext_resource path="res://asset/ogachallenge6.png" type="Texture" id=3]
-[ext_resource path="res://asset/bubble.png" type="Texture" id=4]
-[ext_resource path="res://sounds/explosion.wav" type="AudioStream" id=5]
-[ext_resource path="res://sounds/Enemy_Spawn.wav" type="AudioStream" id=6]
-[ext_resource path="res://sounds/pop.wav" type="AudioStream" id=7]
+[ext_resource path="res://Fireball.tscn" type="PackedScene" id=3]
+[ext_resource path="res://asset/ogachallenge6.png" type="Texture" id=4]
+[ext_resource path="res://asset/bubble.png" type="Texture" id=5]
+[ext_resource path="res://sounds/explosion.wav" type="AudioStream" id=6]
+[ext_resource path="res://sounds/Enemy_Spawn.wav" type="AudioStream" id=7]
+[ext_resource path="res://sounds/pop.wav" type="AudioStream" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -114,7 +115,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Color", "Emission Shape", "Gravity", "Initial Velocity", "Spread" ]
 
-[node name="RigidBody2D" type="RigidBody2D" groups=[
+[node name="RigidBody2D" type="RigidBody2D" index="0" groups=[
 "enemy",
 "enemy2",
 ]]
@@ -140,12 +141,13 @@ angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Linear" ]
 Explode = ExtResource( 2 )
+Fireball = ExtResource( 3 )
 
 [node name="Enemy" type="Sprite" parent="." index="0"]
 
 position = Vector2( -1.25, -8.5 )
 scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 73, 0, 70, 100 )
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
@@ -175,7 +177,7 @@ _sections_unfolded = [ "playback" ]
 [node name="Bubble" type="Sprite" parent="." index="1"]
 
 visible = false
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
@@ -198,9 +200,16 @@ wait_time = 3.0
 one_shot = true
 autostart = false
 
-[node name="AnimatedSprite" parent="." index="5" instance=ExtResource( 2 )]
+[node name="Fireball_Timer" type="Timer" parent="." index="5"]
 
-[node name="Particles" type="Particles2D" parent="." index="6"]
+process_mode = 1
+wait_time = 3.0
+one_shot = false
+autostart = true
+
+[node name="AnimatedSprite" parent="." index="6" instance=ExtResource( 2 )]
+
+[node name="Particles" type="Particles2D" parent="." index="7"]
 
 emitting = false
 amount = 100
@@ -222,7 +231,7 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material", "Time" ]
 
-[node name="Particles_start" type="Particles2D" parent="." index="7"]
+[node name="Particles_start" type="Particles2D" parent="." index="8"]
 
 emitting = true
 amount = 500
@@ -244,25 +253,25 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Process Material", "Time" ]
 
-[node name="Death_Sound" type="AudioStreamPlayer" parent="." index="8"]
+[node name="Death_Sound" type="AudioStreamPlayer" parent="." index="9"]
 
-stream = ExtResource( 5 )
+stream = ExtResource( 6 )
 volume_db = -10.0
 autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="Enemy_Spawn" type="AudioStreamPlayer" parent="." index="9"]
+[node name="Enemy_Spawn" type="AudioStreamPlayer" parent="." index="10"]
 
-stream = ExtResource( 6 )
+stream = ExtResource( 7 )
 volume_db = -10.0
 autoplay = true
 mix_target = 0
 bus = "Master"
 
-[node name="Pop_Bubble" type="AudioStreamPlayer" parent="." index="10"]
+[node name="Pop_Bubble" type="AudioStreamPlayer" parent="." index="11"]
 
-stream = ExtResource( 7 )
+stream = ExtResource( 8 )
 volume_db = -5.0
 autoplay = false
 mix_target = 0
@@ -275,6 +284,8 @@ bus = "Master"
 [connection signal="timeout" from="Move_Timer" to="." method="_on_Move_Timer_timeout"]
 
 [connection signal="timeout" from="Bubble_Timer" to="." method="_on_Bubble_Timer_timeout"]
+
+[connection signal="timeout" from="Fireball_Timer" to="." method="_on_Fireball_Timer_timeout"]
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 
