@@ -42,13 +42,13 @@ light_mode = 0
 render_priority = 0
 trail_divisor = 1
 emission_shape = 1
-emission_sphere_radius = 20.0
+emission_sphere_radius = 40.0
 flag_align_y = false
 flag_rotate_y = false
 flag_disable_z = true
-spread = 40.0
+spread = 100.0
 flatness = 1.0
-gravity = Vector3( 0, 98, 0 )
+gravity = Vector3( 0, 0, 0 )
 initial_velocity = 1.0
 initial_velocity_random = 0.0
 angular_velocity = 5.73131e-43
@@ -65,7 +65,7 @@ damping = 20.0
 damping_random = 0.0
 angle = 0.0
 angle_random = 0.0
-scale = 10.0
+scale = 1.0
 scale_random = 1.0
 color = Color( 0.976563, 0, 0, 1 )
 hue_variation = 0.0
@@ -75,9 +75,9 @@ anim_speed_random = 0.0
 anim_offset = 0.0
 anim_offset_random = 0.0
 anim_loop = false
-_sections_unfolded = [ "Angle", "Color", "Damping", "Emission Shape", "Flags", "Radial Accel", "Scale", "Spread", "Trail" ]
+_sections_unfolded = [ "Angle", "Color", "Damping", "Emission Shape", "Flags", "Gravity", "Radial Accel", "Scale", "Spread", "Trail" ]
 
-[node name="Fireball" type="RigidBody2D" index="0" groups=[
+[node name="Fireball" type="RigidBody2D" groups=[
 "fireball",
 ]]
 
@@ -108,7 +108,7 @@ rotation = -1.5708
 scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 1 )
 animation = "New Anim"
-frame = 7
+frame = 8
 playing = true
 _sections_unfolded = [ "Transform", "Visibility" ]
 
@@ -135,17 +135,17 @@ shape = SubResource( 2 )
 [node name="Particles2D" type="Particles2D" parent="." index="2"]
 
 material = SubResource( 3 )
-position = Vector2( 11.6698, 0.353566 )
+position = Vector2( 20.0407, -1.14891 )
 rotation = 1.5708
 scale = Vector2( 0.368457, 0.664825 )
 emitting = false
-amount = 20
+amount = 100
 lifetime = 1.0
-one_shot = false
+one_shot = true
 preprocess = 0.0
 speed_scale = 5.0
 explosiveness = 1.0
-randomness = 0.0
+randomness = 1.0
 fixed_fps = 0
 fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
@@ -156,12 +156,12 @@ texture = null
 normal_map = null
 h_frames = 1
 v_frames = 1
-_sections_unfolded = [ "Material", "Process Material", "Time", "Transform", "Visibility" ]
+_sections_unfolded = [ "Drawing", "Material", "Process Material", "Time", "Transform", "Visibility" ]
 
 [node name="Particle_Timer" type="Timer" parent="Particles2D" index="0"]
 
 process_mode = 1
-wait_time = 0.25
+wait_time = 0.15
 one_shot = true
 autostart = false
 

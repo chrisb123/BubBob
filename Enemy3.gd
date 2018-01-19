@@ -131,5 +131,9 @@ func _on_Fireball_Timer_timeout():
 		pos.x += 50 * facing
 		pos.y -= 0
 		fireball.linear_velocity = Vector2(300 * facing,0)
+		if fireball.linear_velocity.x > 0:
+			fireball.rotation_degrees += 0 
+		else:
+			fireball.rotation_degrees += 180
 		fireball.position = pos
 		add_child(fireball)

@@ -82,7 +82,7 @@ func _physics_process(delta):
 					invincible = true
 					Global_Vars.lives -= 1
 					$Invincible_Timer.start()
-					$Sprite.scale = Vector2(0.5, 0.5)
+					#$Sprite.scale = Vector2(0.5, 0.5)
 				vel = Vector2(-3 * vel.x, 1 * vel.y).clamped(1000)
 				if vel.x < 500 && vel.x > 0:
 					vel.x = 500
@@ -100,7 +100,8 @@ func _on_Timer_timeout():
 func _on_Invincible_Timer_timeout():
 	$Invincible_Timer.stop()
 	invincible = false
-	$Sprite.scale = Vector2(1.25, 1.25)
+	$AnimatedSprite.visible = true
+	#$Sprite.scale = Vector2(1.25, 1.25)
 	
 
 func _on_Area2D_area_entered( area ):
@@ -110,11 +111,21 @@ func _on_Area2D_area_entered( area ):
 			invincible = true
 			Global_Vars.lives -= 1
 			$Invincible_Timer.start()
-			$Sprite.scale = Vector2(0.5, 0.5)
+			#$Sprite.scale = Vector2(0.5, 0.5)
 			vel = Vector2(-3 * vel.x, 1 * vel.y).clamped(1000)
 			if vel.x < 500 && vel.x > 0:
 				vel.x = 500
 			elif vel.x < 0 && vel.x > -500:
 				vel.x = -500
-			area.get_parent().queue_free()
+			area.get_parent()._die()
 	pass # replace with function body
+
+
+func _on_Invincible_Flash_timeout():
+	if invincible == true:
+		if $AnimatedSprite.visible == true:
+			$AnimatedSprite.visible = false
+		else:
+			$AnimatedSprite.visible = true
+	else:
+		$AnimatedSprite.visible = true

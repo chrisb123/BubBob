@@ -136,7 +136,7 @@ func _on_Fireball_Timer_timeout():
 		while i <= NUM_FIREBALLS:
 			var fireball = Fireball.instance()
 			rot = (360 / NUM_FIREBALLS) * i
-			fireball.rotation_degrees = rot - 180
+			fireball.rotation_degrees = rot
 			lin += 0
 			fireball.apply_impulse(Vector2(0,0), Vector2(lin * 1,0).rotated(deg2rad(rot)))
 			fireball.position = pos
