@@ -11,6 +11,7 @@ const Y_SPEED_REDUCTION = 3 #divisor factor for Y axis speeds
 export (PackedScene) var Explode
 export (PackedScene) var Fireball
 var facing #1 right, 2 left
+const NUM_FIREBALLS = 8
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -130,14 +131,14 @@ func _on_Fireball_Timer_timeout():
 		var rot = 0
 		var lin = 150
 		var i = 1
-		pos.x += 50 * facing
+		pos.x += 50 #* facing
 		pos.y -= 0
-		while i < 8:
+		while i < NUM_FIREBALLS:
 			var fireball = Fireball.instance()
-			#rot += 45
-			#fireball.rotation_degrees = rot
-			lin += 50
-			fireball.linear_velocity = Vector2(lin * facing,0)
+			rot = (360 / NUM_FIREBALLS) * i
+			fireball.rotation_degrees = rot
+			lin += 0
+			fireball.apply_impulse(Vector2(0,0), Vector2(lin * facing,0).rotated(deg2rad(rot)))
 			fireball.position = pos
 			add_child(fireball)
 			i += 1
