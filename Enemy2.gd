@@ -133,7 +133,7 @@ func _on_Fireball_Timer_timeout():
 		var i = 1
 		pos.x += 50 #* facing
 		pos.y -= 0
-		while i < NUM_FIREBALLS:
+		while i <= NUM_FIREBALLS:
 			var fireball = Fireball.instance()
 			rot = (360 / NUM_FIREBALLS) * i
 			fireball.rotation_degrees = rot
