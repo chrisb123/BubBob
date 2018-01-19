@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Fireball.gd" type="Script" id=1]
 [ext_resource path="res://asset/fireball/0018.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://asset/fireball/0025.png" type="Texture" id=9]
 [ext_resource path="res://asset/fireball/0026.png" type="Texture" id=10]
 [ext_resource path="res://asset/fireball/0027.png" type="Texture" id=11]
+[ext_resource path="res://sounds/explosion.wav" type="AudioStream" id=12]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -108,7 +109,7 @@ rotation = -1.5708
 scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 1 )
 animation = "New Anim"
-frame = 8
+frame = 1
 playing = true
 _sections_unfolded = [ "Transform", "Visibility" ]
 
@@ -158,17 +159,18 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Material", "Process Material", "Time", "Transform", "Visibility" ]
 
-[node name="Particle_Timer" type="Timer" parent="Particles2D" index="0"]
+[node name="Explosion" type="AudioStreamPlayer" parent="." index="3"]
 
-process_mode = 1
-wait_time = 0.15
-one_shot = true
-autostart = false
+stream = ExtResource( 12 )
+volume_db = -30.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 
-[connection signal="timeout" from="Particles2D/Particle_Timer" to="." method="_on_Particle_Timer_timeout"]
+[connection signal="finished" from="Explosion" to="." method="_on_Explosion_finished"]
 
 

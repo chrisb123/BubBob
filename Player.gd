@@ -82,6 +82,7 @@ func _physics_process(delta):
 					invincible = true
 					Global_Vars.lives -= 1
 					$Invincible_Timer.start()
+					$AnimatedSprite/Pain.play()
 					#$Sprite.scale = Vector2(0.5, 0.5)
 				vel = Vector2(-3 * vel.x, 1 * vel.y).clamped(1000)
 				if vel.x < 500 && vel.x > 0:
@@ -111,6 +112,7 @@ func _on_Area2D_area_entered( area ):
 			invincible = true
 			Global_Vars.lives -= 1
 			$Invincible_Timer.start()
+			$AnimatedSprite/Pain.play()
 			#$Sprite.scale = Vector2(0.5, 0.5)
 			vel = Vector2(-3 * vel.x, 1 * vel.y).clamped(1000)
 			if vel.x < 500 && vel.x > 0:

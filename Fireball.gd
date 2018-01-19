@@ -21,14 +21,15 @@ func _on_Area2D_body_entered( body ):
 		
 func _die():
 	linear_velocity = Vector2(0,0)
-	$Particles2D.rotation_degrees = $Fireballanim.rotation_degrees
+	$Area2D.monitoring = false
+	$Area2D.monitorable = false
 	$Particles2D.emitting = true
-	$Particles2D/Particle_Timer.start()
+	$Explosion.playing = true
 	$Fireballanim.visible = false
 		
 func _on_Area2D_area_entered( area ):
 	if area.is_in_group("bubble_area"):
 		area.get_parent()._on_Life_timeout()
 
-func _on_Particle_Timer_timeout():
+func _on_Explosion_finished():
 	queue_free()
