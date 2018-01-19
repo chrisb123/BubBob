@@ -15,8 +15,16 @@ func _on_Area2D_body_entered( body ):
 	#	print("hit")
 	if body.is_in_group("tiles"):
 		print("tilemap hit")
-		queue_free()
+		linear_velocity = Vector2(0,0)
+		$Particles2D.rotation_degrees = $Fireballanim.rotation_degrees
+		$Particles2D.emitting = true
+		$Particles2D/Particle_Timer.start()
+		$Fireballanim.visible = false
+		
 		
 func _on_Area2D_area_entered( area ):
 	if area.is_in_group("bubble_area"):
 		area.get_parent()._on_Life_timeout()
+
+func _on_Particle_Timer_timeout():
+	queue_free()
