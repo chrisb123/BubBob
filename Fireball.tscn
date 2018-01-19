@@ -109,7 +109,6 @@ rotation = -1.5708
 scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 1 )
 animation = "New Anim"
-frame = 1
 playing = true
 _sections_unfolded = [ "Transform", "Visibility" ]
 

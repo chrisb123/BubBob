@@ -23,6 +23,7 @@ func _die():
 	linear_velocity = Vector2(0,0)
 	$Area2D.monitoring = false
 	$Area2D.monitorable = false
+	$Area2D/CollisionShape2D.disabled = true
 	$Particles2D.emitting = true
 	$Explosion.playing = true
 	$Fireballanim.visible = false

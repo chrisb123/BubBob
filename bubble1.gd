@@ -4,11 +4,11 @@ extends RigidBody2D
 # var a = 2
 # var b = "textvar"
 export (int) var facing
-var velocity = 250
+var velocity = 350
 var dying = false
 var player_pushing = false
 const LIFE_TIME = 10
-const pop_time = 0.75
+const pop_time = 0.25
 
 func _ready():
 	$Life.wait_time = LIFE_TIME

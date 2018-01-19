@@ -3,14 +3,14 @@ extends KinematicBody2D
 # class member variables go here, for example:
 # var a = 2
 var vel = Vector2()
-var SPEED = 1000
+var SPEED = 1500
 var onGround = 0
 signal fired
 var fired = 1
 var facing = 1
 var action = 0
 var invincible = false
-const FIRING_SPEED = 0.1 #0.3 normal
+const FIRING_SPEED = 0.15 #0.3 normal
 
 func _ready():
 	$Timer.wait_time = FIRING_SPEED
