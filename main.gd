@@ -47,6 +47,7 @@ func _ready():
 
 
 func _process(delta):
+	Global_Vars.leveln = leveln
 	if Input.is_action_just_pressed("ui_music"):
 		get_node("Music").playing = !get_node("Music").playing
 	# If lives gets to zero, delete all enemies and player, restart
@@ -154,18 +155,46 @@ func _on_Enemy_timeout():
 				i = level.get_cellv(level.world_to_map(Vector2(epos))) 
 			var ab = epos - player.position
 			mag = sqrt(ab.x*ab.x+ab.y*ab.y)
+
 		#randomize new enemy type
 		randomize()
-		var enemy_type = randi()%3+1
-		if enemy_type == 1:
-			enemy = Enemy.instance()
-		elif enemy_type == 2:
-			enemy = Enemy2.instance()
-		elif enemy_type == 3:
-			enemy = Enemy3.instance()
-		#add randomized enemy
-		enemy.position = Vector2(epos.x,epos.y)
-		add_child(enemy)
+		#Enemy spawn is defined in Global_Vars in as array
+		var EnemyArray
+		if leveln == 1:
+			EnemyArray = Global_Vars.Level1Enemies
+		elif leveln == 2:
+			EnemyArray = Global_Vars.Level2Enemies
+		elif leveln == 3:
+			EnemyArray = Global_Vars.Level3Enemies
+		else:
+			EnemyArray = Global_Vars.Level0Enemies #Emtpy Array
+		var i = 0
+		for i in range (EnemyArray.size()):
+			if EnemyArray[i] != 0:
+				if EnemyArray[i] == 1:
+					enemy = Enemy.instance()
+				elif EnemyArray[i] == 2:
+					enemy = Enemy2.instance()
+				elif EnemyArray[i] == 3:
+					enemy = Enemy3.instance()
+				EnemyArray[i] = 0
+				enemy.position = Vector2(epos.x,epos.y)
+				add_child(enemy)
+				return
+			else:
+				pass
+			i += 1
+#		else:			
+#			var enemy_type = randi()%3+1
+#			if enemy_type == 1:
+#				enemy = Enemy.instance()
+#			elif enemy_type == 2:
+#				enemy = Enemy2.instance()
+#			elif enemy_type == 3:
+#				enemy = Enemy3.instance()
+#		#add randomized enemy
+#		enemy.position = Vector2(epos.x,epos.y)
+#		add_child(enemy)
 		
 func _gameover():
 	gameover = GameOver.instance()
