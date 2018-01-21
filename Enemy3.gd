@@ -53,6 +53,7 @@ func killbub(pk):
 #And explode it
 func _on_AnimatedSprite_animation_finished():
 	Global_Vars.score += 1
+	get_parent().enemyn -= 1	
 	queue_free()
 
 

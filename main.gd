@@ -24,8 +24,9 @@ var file_main
 var score = 0
 var max_enemies = 10
 var leveln = 0
+var waven = 0
+var enemyn = 0
 var levsize
-const MAX_LEVEL = 4
 const SCORE_TO_LEVEL = 10
 
 # class member variables go here, for example:
@@ -58,10 +59,14 @@ func _process(delta):
 		#cant stay at 0 during gameover screen, otherwise godot crashes
 		Global_Vars.lives = 999 
 		#_ready()
-	if Global_Vars.score > (SCORE_TO_LEVEL * leveln) && leveln < MAX_LEVEL:
+		
+		# change to "if waven > Global_Vars.MAX_WAVES:" (Should spawn all availble waves then change levels)
+	if waven > Global_Vars.MAX_WAVES:
+	#if Global_Vars.score > (SCORE_TO_LEVEL * leveln) && leveln < Global_Vars.MAX_LEVEL:
 		clear_nodes()
 		#Change, make start start a function to start a level
 		leveln += 1
+		waven = 1
 		#dynamically load next level
 		var resource = load("res://levels/level"+str(leveln)+".tscn")
 		level = resource.instance()
@@ -73,14 +78,26 @@ func _process(delta):
 		add_child(player)
 		player.connect("fired",self,"_fired")
 		$Enemy.start()
-	if Global_Vars.score > (SCORE_TO_LEVEL * leveln) && leveln == MAX_LEVEL:
+	if waven > Global_Vars.MAX_WAVES && leveln == Global_Vars.MAX_LEVELS:
+	#if Global_Vars.score > (SCORE_TO_LEVEL * leveln) && leveln == Global_Vars.MAX_LEVEL:
 		print("fdsfa")
 		clear_nodes()
 		#Should be GUI not Control
 		$GUI_Layer/Control.queue_free()
 		#Clear power up node
 		_ready()
-
+		
+		# calculate move to next wave ( Wave spawn Array empty and all Enemies dead )
+	if leveln != 0 && waven != 0:
+		for i in range (Global_Vars.Enemy_Spawn[leveln][waven].size()):
+			print(enemyn, "   " , Global_Vars.Enemy_Spawn[leveln][waven], "   ", Global_Vars.Enemy_Spawn[leveln][waven].size(), i,   waven)
+			if Global_Vars.Enemy_Spawn[leveln][waven][i] == 999:
+				if i == (Global_Vars.Enemy_Spawn[leveln][waven].size() - 1) && enemyn == 0:
+					waven += 1
+				i += i
+			else:
+				return
+			
 func clear_nodes():
 	var enemies = get_tree().get_nodes_in_group("enemy")
 	for enemy in enemies:
@@ -104,6 +121,7 @@ func _start():
 	#change to is title exists then remove
 	remove_child(title)
 	leveln = 1
+	waven = 1
 	var resource = load("res://levels/level1.tscn")
 	level = resource.instance()
 	add_child(level)
@@ -161,25 +179,29 @@ func _on_Enemy_timeout():
 		#Enemy spawn is defined in Global_Vars in as array
 		var EnemyArray
 		if leveln == 1:
-			EnemyArray = Global_Vars.Level1Enemies
+			EnemyArray = Global_Vars.Enemy_Spawn[leveln][waven]
 		elif leveln == 2:
-			EnemyArray = Global_Vars.Level2Enemies
+			EnemyArray = Global_Vars.Enemy_Spawn[leveln][waven]
 		elif leveln == 3:
-			EnemyArray = Global_Vars.Level3Enemies
+			EnemyArray = Global_Vars.Enemy_Spawn[leveln][waven]
 		else:
 			EnemyArray = Global_Vars.Level0Enemies #Emtpy Array
 		var i = 0
 		for i in range (EnemyArray.size()):
-			if EnemyArray[i] != 0:
-				if EnemyArray[i] == 1:
+			if EnemyArray[i] != 999:	#999 = already completed spawn
+				if EnemyArray[i] == 0:	#Empty spawn cycle
+					EnemyArray[i] = 999
+					return
+				elif EnemyArray[i] == 1:
 					enemy = Enemy.instance()
 				elif EnemyArray[i] == 2:
 					enemy = Enemy2.instance()
 				elif EnemyArray[i] == 3:
 					enemy = Enemy3.instance()
-				EnemyArray[i] = 0
+				EnemyArray[i] = 999
 				enemy.position = Vector2(epos.x,epos.y)
 				add_child(enemy)
+				enemyn += 1	#increase enemy count
 				return
 			else:
 				pass
