@@ -10,6 +10,7 @@ export (PackedScene) var Bubble
 export (PackedScene) var Enemy
 export (PackedScene) var Enemy2
 export (PackedScene) var Enemy3
+export (PackedScene) var EnemyBoss1
 export (PackedScene) var PowerUp
 export (PackedScene) var GameOver
 export (PackedScene) var File_Main
@@ -198,7 +199,9 @@ func _on_Enemy_timeout():
 					enemy = Enemy2.instance()
 				elif EnemyArray[i] == 3:
 					enemy = Enemy3.instance()
-				elif EnemyArray[i] == 998:
+				elif EnemyArray[i] == 101:
+					enemy = EnemyBoss1.instance()
+				elif EnemyArray[i] == 998: #wait till all enemies destroyed
 					if enemyn == 0:
 						EnemyArray[i] = 999
 						return

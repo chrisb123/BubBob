@@ -18,13 +18,16 @@ var leveln = 0
 #add all levels to Enemy_Spawn array
 #waves change tested, level change tested, End game NOT tested.
 
+#0 = nothing this spawn cycle
+#998 = wait till all all enemies detroyed before continuing
+
 const MAX_LEVELS = 4
 const MAX_WAVES = 3
 
 var Level0Enemies = [0]	# for title screens etc. to ensure nothing spawns at wrong time.
 
 # level 1 wave structure
-var level1wave1 = [1,998,1,1,1,3,3,1,1,1]
+var level1wave1 = [1,1,1,1,1,3,3,1,998,101]
 var level1wave2 = [1,1,3,3,1,1,1,3,3,1]
 var level1wave3 = [3,3,1,1,2,1,1,3,3,1]
 var level1 = [0, level1wave1, level1wave2, level1wave3]

@@ -1,0 +1,282 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://EnemyBoss1.gd" type="Script" id=1]
+[ext_resource path="res://asset/ogachallenge6.png" type="Texture" id=2]
+[ext_resource path="res://asset/bubble.png" type="Texture" id=3]
+[ext_resource path="res://Explosion.tscn" type="PackedScene" id=4]
+[ext_resource path="res://sounds/explosion.wav" type="AudioStream" id=5]
+[ext_resource path="res://sounds/Enemy_Spawn.wav" type="AudioStream" id=6]
+[ext_resource path="res://sounds/pop.wav" type="AudioStream" id=7]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 41.9004
+height = 56.6809
+
+[sub_resource type="Gradient" id=2]
+
+offsets = PoolRealArray( 0, 0.556213, 1 )
+colors = PoolColorArray( 0.785156, 0.311829, 0.0552063, 1, 1, 0, 0, 1, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=3]
+
+gradient = SubResource( 2 )
+width = 2048
+
+[sub_resource type="ParticlesMaterial" id=4]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 1
+emission_sphere_radius = 10.0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 20, 0 )
+initial_velocity = 50.0
+initial_velocity_random = 1.0
+angular_velocity = 1.01174e-42
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 3.0
+scale_random = 1.0
+color_ramp = SubResource( 3 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Color", "Emission Shape", "Gravity", "Initial Velocity", "Scale", "Spread" ]
+
+[sub_resource type="Gradient" id=5]
+
+offsets = PoolRealArray( 0, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=6]
+
+gradient = SubResource( 5 )
+width = 2048
+
+[sub_resource type="ParticlesMaterial" id=7]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 1
+emission_sphere_radius = 20.0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 50.0
+initial_velocity_random = 0.0
+angular_velocity = 1.01174e-42
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 1.0
+scale_random = 0.0
+color_ramp = SubResource( 6 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Color", "Emission Shape", "Gravity", "Initial Velocity", "Spread" ]
+
+[node name="RigidBody2D" type="RigidBody2D" index="0" groups=[
+"enemy",
+"enemy1",
+]]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 2
+mass = 0.1
+friction = 0.5
+bounce = 0.0
+gravity_scale = 0.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 1
+contact_monitor = true
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Linear" ]
+Explode = null
+
+[node name="Enemy" type="Sprite" parent="." index="0"]
+
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 80, 100 )
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
+
+[node name="Shrink" type="Tween" parent="Enemy" index="0"]
+
+playback_process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="Pop" type="Tween" parent="Enemy" index="1"]
+
+playback_process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="Move" type="Tween" parent="Enemy" index="2"]
+
+playback_process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+_sections_unfolded = [ "playback" ]
+
+[node name="Bubble" type="Sprite" parent="." index="1"]
+
+visible = false
+scale = Vector2( 4, 4 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+
+position = Vector2( -0.17482, 10.6504 )
+shape = SubResource( 1 )
+
+[node name="Move_Timer" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 0.25
+one_shot = false
+autostart = true
+
+[node name="Bubble_Timer" type="Timer" parent="." index="4"]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = true
+autostart = false
+
+[node name="AnimatedSprite" parent="." index="5" instance=ExtResource( 4 )]
+
+scale = Vector2( 3, 3 )
+
+[node name="Particles" type="Particles2D" parent="." index="6"]
+
+emitting = false
+amount = 100
+lifetime = 1.5
+one_shot = true
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.9
+randomness = 1.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 4 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing", "Process Material", "Time" ]
+
+[node name="Particles_start" type="Particles2D" parent="." index="7"]
+
+emitting = true
+amount = 500
+lifetime = 0.5
+one_shot = true
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.5
+randomness = 1.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 7 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Time" ]
+
+[node name="Death_Sound" type="AudioStreamPlayer" parent="." index="8"]
+
+stream = ExtResource( 5 )
+volume_db = -10.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Enemy_Spawn" type="AudioStreamPlayer" parent="." index="9"]
+
+stream = ExtResource( 6 )
+volume_db = -10.0
+autoplay = true
+mix_target = 0
+bus = "Master"
+
+[node name="Pop_Bubble" type="AudioStreamPlayer" parent="." index="10"]
+
+stream = ExtResource( 7 )
+volume_db = -5.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[connection signal="body_entered" from="." to="." method="_on_RigidBody2D_body_entered"]
+
+[connection signal="tween_completed" from="Enemy/Pop" to="." method="_on_Pop_tween_completed"]
+
+[connection signal="timeout" from="Move_Timer" to="." method="_on_Move_Timer_timeout"]
+
+[connection signal="timeout" from="Bubble_Timer" to="." method="_on_Bubble_Timer_timeout"]
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+
+
