@@ -198,6 +198,12 @@ func _on_Enemy_timeout():
 					enemy = Enemy2.instance()
 				elif EnemyArray[i] == 3:
 					enemy = Enemy3.instance()
+				elif EnemyArray[i] == 998:
+					if enemyn == 0:
+						EnemyArray[i] = 999
+						return
+					else:
+						return
 				EnemyArray[i] = 999
 				enemy.position = Vector2(epos.x,epos.y)
 				add_child(enemy)
