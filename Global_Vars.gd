@@ -9,6 +9,9 @@ const start_lives = 2
 var score = 0
 var lives = start_lives
 var leveln = 0
+var waven = 0
+
+var enemyn = 0
 
 #Enemy spawning
 #Set Maximum levels and maximum waves
@@ -27,7 +30,7 @@ const MAX_WAVES = 3
 var Level0Enemies = [0]	# for title screens etc. to ensure nothing spawns at wrong time.
 
 # level 1 wave structure
-var level1wave1 = [1,1,1,1,1,3,3,1,998,101]
+var level1wave1 = [101,998,3,2,1,2,1,1,998,101]
 var level1wave2 = [1,1,3,3,1,1,1,3,3,1]
 var level1wave3 = [3,3,1,1,2,1,1,3,3,1]
 var level1 = [0, level1wave1, level1wave2, level1wave3]
@@ -47,7 +50,8 @@ func _ready():
 	# Initialization here
 	pass
 
-#func _process(delta):
+func _process(delta):
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
+	print(enemyn)
 #	pass

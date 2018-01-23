@@ -9,9 +9,11 @@ const MIN_SPEED = 150
 const MAX_SPEED = 350
 const Y_SPEED_REDUCTION = 0.5 #divisor factor for Y axis speeds
 export (PackedScene) var Explode
-
+var _is_minion = false
 
 func _ready():
+	if get_parent().is_in_group("enemyboss"):
+		_is_minion = true
 	# Called every time the node is added to the scene.
 	# Initialization here
 	pass
@@ -51,8 +53,11 @@ func killbub(pk):
 		linear_velocity = Vector2(0,0)
 #And explode it
 func _on_AnimatedSprite_animation_finished():
-	Global_Vars.score += 1
-	get_parent().enemyn -= 1
+	if _is_minion == false:
+		Global_Vars.score += 1
+		Global_Vars.enemyn -= 1
+	else:
+		get_parent().minion_count -= 1
 	queue_free()
 
 

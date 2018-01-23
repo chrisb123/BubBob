@@ -5,11 +5,14 @@ extends RigidBody2D
 # var b = "textvar"
 var _in_bubble = false
 var vel = Vector2()
+const MAX_MINIONS = 4
 const MIN_SPEED = 150
 const MAX_SPEED = 350
 const Y_SPEED_REDUCTION = 0.5 #divisor factor for Y axis speeds
 export (PackedScene) var Explode
-
+export (PackedScene) var Enemy
+var facing = 1
+var minion_count = 0
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -52,7 +55,7 @@ func killbub(pk):
 #And explode it
 func _on_AnimatedSprite_animation_finished():
 	Global_Vars.score += 1
-	get_parent().enemyn -= 1
+	Global_Vars.enemyn -= 1
 	queue_free()
 
 
@@ -63,7 +66,7 @@ func _on_RigidBody2D_body_entered( body ):
 		_in_bubble = true
 		#Shrink monster into bubble (Animated)
 		$Enemy/Shrink.interpolate_property($Enemy, 'scale', $Enemy.get_scale(),
-		Vector2(0.33,0.33), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
+		Vector2(0.75,0.75), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
 		#$Enemy/Shrink.set_speed_scale(5)
 		$Enemy/Shrink.start() 
 		gravity_scale = -0.5
@@ -81,10 +84,12 @@ func _on_Move_Timer_timeout():
 		vel.x = randi()%MAX_SPEED
 		vel.x = clamp(vel.x, MIN_SPEED,MAX_SPEED)
 		$Enemy.flip_h = false
+		facing = 1
 	else:
 		vel.x = -1 * randi()%MAX_SPEED
 		vel.x = clamp(vel.x, -MAX_SPEED,-MIN_SPEED)
 		$Enemy.flip_h = true
+		facing = -1
 	var temp2 = randi()%2
 	if temp2 == 1:
 		vel.y = randi()%MAX_SPEED
@@ -103,20 +108,32 @@ func _on_Move_Timer_timeout():
 func _on_Bubble_Timer_timeout():
 	#Remove Bubble and expand Enemy to original size
 	$Enemy/Pop.interpolate_property($Enemy, 'scale', $Enemy.get_scale(),
-	Vector2(0.8,0.8), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
-	$Enemy/Pop.interpolate_property($Bubble, 'scale', $Enemy.get_scale(),
-	Vector2(2.0,2.0), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	Vector2(3.0,3.0), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	$Enemy/Pop.interpolate_property($Bubble, 'scale', $Bubble.get_scale(),
+	Vector2(5.0,5.0), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$Enemy/Pop.start() 
 	gravity_scale = 0
 	bounce = 0
 
 
 func _on_Pop_tween_completed( object, key ):
+	$Particles_start.emitting = true
 	$Pop_Bubble.play()
 	$Enemy/Shrink.interpolate_property($Enemy, 'scale', $Enemy.get_scale(),
-	Vector2(0.75,0.75), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	Vector2(2.0,2.0), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$Enemy/Shrink.start() 
 	$Bubble.hide() 
-	$Bubble.scale = Vector2(1.0,1.0)
+	$Bubble.scale = Vector2(4.0,4.0)
 	$Bubble_Timer.stop()
 	_in_bubble = false
+
+
+func _on_Minion_Spawn_timeout():
+	if _in_bubble == false:
+		if minion_count < MAX_MINIONS:
+			var enemy = Enemy.instance()
+			var pos = $Enemy.position
+			pos.x += 50 * facing
+			pos.y -= 0
+			minion_count += 1
+			add_child(enemy)

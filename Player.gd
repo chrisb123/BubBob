@@ -106,7 +106,6 @@ func _on_Invincible_Timer_timeout():
 	
 
 func _on_Area2D_area_entered( area ):
-	print(area.get_parent().get_name())
 	if area.get_parent().is_in_group("fireball"):
 		if invincible == false:
 			invincible = true
