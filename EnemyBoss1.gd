@@ -13,6 +13,7 @@ export (PackedScene) var Explode
 export (PackedScene) var Enemy
 var facing = 1
 var minion_count = 0
+var bubble_count = 0
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -63,18 +64,26 @@ func _on_RigidBody2D_body_entered( body ):
 	if body.is_in_group("bubble") && ! _in_bubble:
 		body.queue_free()
 		$Bubble.show()
-		_in_bubble = true
-		#Shrink monster into bubble (Animated)
-		$Enemy/Shrink.interpolate_property($Enemy, 'scale', $Enemy.get_scale(),
-		Vector2(0.75,0.75), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
-		#$Enemy/Shrink.set_speed_scale(5)
-		$Enemy/Shrink.start() 
-		gravity_scale = -0.5
-		bounce = 0.35
-		linear_velocity.x = vel.x / 5
-		linear_velocity.y = vel.y / 5
-		#$Enemy.scale = Vector2(0.33,0.33)
+		$Bubble.scale += Vector2(0.15,0.15)
+		bubble_count += 1
+		if bubble_count == 20:
+			_in_bubble = true
+			#Shrink monster into bubble (Animated)
+			$Enemy/Shrink.interpolate_property($Enemy, 'scale', $Enemy.get_scale(),
+			Vector2(0.75,0.75), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
+			#$Enemy/Shrink.set_speed_scale(5)
+			$Enemy/Shrink.start() 
+			gravity_scale = -0.5
+			bounce = 0.35
+			linear_velocity.x = vel.x / 5
+			linear_velocity.y = vel.y / 5
+			#$Enemy.scale = Vector2(0.33,0.33)
+			$Bubble_Shrink.stop()
 
+		if bubble_count > 0:
+			$Bubble_Shrink.start()
+		else:
+			$Bubble_Shrink.stop()
 
 func _on_Move_Timer_timeout():
 #Randomize Enemy direction and speed every timeout
@@ -123,8 +132,9 @@ func _on_Pop_tween_completed( object, key ):
 	Vector2(2.0,2.0), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$Enemy/Shrink.start() 
 	$Bubble.hide() 
-	$Bubble.scale = Vector2(4.0,4.0)
+	$Bubble.scale = Vector2(1.0,1.0)
 	$Bubble_Timer.stop()
+	bubble_count = 0
 	_in_bubble = false
 
 
@@ -137,3 +147,11 @@ func _on_Minion_Spawn_timeout():
 			pos.y -= 0
 			minion_count += 1
 			add_child(enemy)
+
+
+func _on_Bubble_Shrink_timeout():
+	$Bubble.scale -= Vector2(0.15,0.15)
+	bubble_count -= 1
+	if bubble_count == 0:
+		$Bubble.hide()
+	pass # replace with function body

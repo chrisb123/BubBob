@@ -177,7 +177,6 @@ _sections_unfolded = [ "playback" ]
 [node name="Bubble" type="Sprite" parent="." index="1"]
 
 visible = false
-scale = Vector2( 4, 4 )
 texture = ExtResource( 5 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
@@ -200,11 +199,18 @@ wait_time = 3.0
 one_shot = true
 autostart = false
 
-[node name="AnimatedSprite" parent="." index="5" instance=ExtResource( 2 )]
+[node name="Bubble_Shrink" type="Timer" parent="." index="5"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = false
+autostart = false
+
+[node name="AnimatedSprite" parent="." index="6" instance=ExtResource( 2 )]
 
 scale = Vector2( 3, 3 )
 
-[node name="Particles" type="Particles2D" parent="." index="6"]
+[node name="Particles" type="Particles2D" parent="." index="7"]
 
 emitting = false
 amount = 100
@@ -226,7 +232,7 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material", "Time" ]
 
-[node name="Particles_start" type="Particles2D" parent="." index="7"]
+[node name="Particles_start" type="Particles2D" parent="." index="8"]
 
 emitting = false
 amount = 500
@@ -248,7 +254,7 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Process Material", "Time" ]
 
-[node name="Death_Sound" type="AudioStreamPlayer" parent="." index="8"]
+[node name="Death_Sound" type="AudioStreamPlayer" parent="." index="9"]
 
 stream = ExtResource( 6 )
 volume_db = -10.0
@@ -256,7 +262,7 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="Enemy_Spawn" type="AudioStreamPlayer" parent="." index="9"]
+[node name="Enemy_Spawn" type="AudioStreamPlayer" parent="." index="10"]
 
 stream = ExtResource( 7 )
 volume_db = -10.0
@@ -264,7 +270,7 @@ autoplay = true
 mix_target = 0
 bus = "Master"
 
-[node name="Pop_Bubble" type="AudioStreamPlayer" parent="." index="10"]
+[node name="Pop_Bubble" type="AudioStreamPlayer" parent="." index="11"]
 
 stream = ExtResource( 8 )
 volume_db = -5.0
@@ -272,7 +278,7 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="Minion_Spawn" type="Timer" parent="." index="11"]
+[node name="Minion_Spawn" type="Timer" parent="." index="12"]
 
 process_mode = 1
 wait_time = 1.01
@@ -286,6 +292,8 @@ autostart = true
 [connection signal="timeout" from="Move_Timer" to="." method="_on_Move_Timer_timeout"]
 
 [connection signal="timeout" from="Bubble_Timer" to="." method="_on_Bubble_Timer_timeout"]
+
+[connection signal="timeout" from="Bubble_Shrink" to="." method="_on_Bubble_Shrink_timeout"]
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 
