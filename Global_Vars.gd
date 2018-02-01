@@ -53,5 +53,5 @@ func _ready():
 func _process(delta):
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
-	print(enemyn)
+	print(enemyn, waven, leveln)
 #	pass

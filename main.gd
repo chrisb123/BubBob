@@ -34,6 +34,9 @@ const SCORE_TO_LEVEL = 10
 func _ready():
 	Global_Vars.score = 0
 	Global_Vars.lives = Global_Vars.start_lives
+	Global_Vars.enemyn = 0
+	Global_Vars.waven = 0
+	Global_Vars.leveln = 0
 	title = Title.instance()
 	add_child(title)
 	title.connect("start",self,"_start")
