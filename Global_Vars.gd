@@ -4,7 +4,7 @@ extends Node
 # var a = 2
 # var b = "textvar"
 
-const start_lives = 2
+const start_lives = 20
 
 var score = 0
 var lives = start_lives
@@ -53,5 +53,5 @@ func _ready():
 func _process(delta):
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
-	print(enemyn, waven, leveln)
-#	pass
+	#print(enemyn, waven, leveln)
+	pass

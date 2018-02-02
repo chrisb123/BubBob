@@ -21,6 +21,12 @@ func _physics_process(delta):
 		vel.y = 0
 	if is_on_ceiling():
 		vel.y = 0	
+	if Input.is_action_just_pressed("ui_page_up"):
+		print("kill all")
+		var enemies = get_tree().get_nodes_in_group("enemy")
+		for i in enemies:
+			print(i)
+			i.get_node("AnimatedSprite").play()
 	if Input.is_action_pressed("ui_up") && is_on_floor():
 		vel.y = -SPEED * delta
 		if vel.y < 425:

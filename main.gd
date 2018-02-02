@@ -26,6 +26,7 @@ var score = 0
 var max_enemies = 10
 var levsize
 const SCORE_TO_LEVEL = 10
+var Enemy_Spawn
 
 # class member variables go here, for example:
 # var a = 2
@@ -73,6 +74,8 @@ func _process(delta):
 		add_child(level)
 		move_child(level,0)
 		levsize = level.find_node("Size").size()
+		Enemy_Spawn = level.waves()
+		print(Enemy_Spawn)
 		player = Player.instance()
 		player.position = Vector2(0,0)
 		add_child(player)
@@ -89,10 +92,10 @@ func _process(delta):
 		
 		# calculate move to next wave ( Wave spawn Array empty and all Enemies dead )
 	if Global_Vars.leveln != 0 && Global_Vars.waven != 0:
-		for i in range (Global_Vars.Enemy_Spawn[Global_Vars.leveln][Global_Vars.waven].size()):
+		for i in range (Enemy_Spawn[Global_Vars.waven].size()):
 			#print(Global_Vars.enemyn, "   " , Global_Vars.Enemy_Spawn[Global_Vars.leveln][Global_Vars.waven], "   ", Global_Vars.Enemy_Spawn[leveln][waven].size(), i,   Global_Vars.waven)
-			if Global_Vars.Enemy_Spawn[Global_Vars.leveln][Global_Vars.waven][i] == 999:
-				if i == (Global_Vars.Enemy_Spawn[Global_Vars.leveln][Global_Vars.waven].size() - 1) && Global_Vars.enemyn == 0:
+			if Enemy_Spawn[Global_Vars.waven][i] == 999:
+				if i == (Enemy_Spawn[Global_Vars.waven].size() - 1) && Global_Vars.enemyn == 0:
 					Global_Vars.waven += 1
 				i += i
 			else:
@@ -126,6 +129,8 @@ func _start():
 	level = resource.instance()
 	add_child(level)
 	levsize = level.find_node("Size").size()
+	Enemy_Spawn = level.waves()
+	print(Enemy_Spawn)
 	player = Player.instance()
 	player.position = Vector2(0,0)
 	add_child(player)
@@ -178,14 +183,15 @@ func _on_Enemy_timeout():
 		randomize()
 		#Enemy spawn is defined in Global_Vars in as array
 		var EnemyArray
-		if Global_Vars.leveln == 1:
-			EnemyArray = Global_Vars.Enemy_Spawn[Global_Vars.leveln][Global_Vars.waven]
-		elif Global_Vars.leveln == 2:
-			EnemyArray = Global_Vars.Enemy_Spawn[Global_Vars.leveln][Global_Vars.waven]
-		elif Global_Vars.leveln == 3:
-			EnemyArray = Global_Vars.Enemy_Spawn[Global_Vars.leveln][Global_Vars.waven]
-		else:
-			EnemyArray = Global_Vars.Level0Enemies #Emtpy Array
+		#if Global_Vars.leveln == 1:
+		#	EnemyArray = Global_Vars.Enemy_Spawn[Global_Vars.leveln][Global_Vars.waven]
+		EnemyArray = Enemy_Spawn[Global_Vars.waven]
+		#elif Global_Vars.leveln == 2:
+		#	EnemyArray = Global_Vars.Enemy_Spawn[Global_Vars.leveln][Global_Vars.waven]
+		#elif Global_Vars.leveln == 3:
+		#	EnemyArray = Global_Vars.Enemy_Spawn[Global_Vars.leveln][Global_Vars.waven]
+		#else:
+		#	EnemyArray = Global_Vars.Level0Enemies #Emtpy Array
 		var i = 0
 		for i in range (EnemyArray.size()):
 			if EnemyArray[i] != 999:	#999 = already completed spawn
