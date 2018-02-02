@@ -14,7 +14,7 @@
 [ext_resource path="res://File_Main.tscn" type="PackedScene" id=12]
 [ext_resource path="res://sounds/Darker Waves.ogg" type="AudioStream" id=13]
 
-[node name="Main" type="Node" index="0"]
+[node name="Main" type="Node"]
 
 script = ExtResource( 1 )
 Title = ExtResource( 2 )
