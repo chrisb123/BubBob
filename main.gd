@@ -182,55 +182,43 @@ func _on_Enemy_timeout():
 		#randomize new enemy type
 		randomize()
 		#Enemy spawn is defined in Global_Vars in as array
-		var EnemyArray
-		#if Global_Vars.leveln == 1:
-		#	EnemyArray = Global_Vars.Enemy_Spawn[Global_Vars.leveln][Global_Vars.waven]
-		EnemyArray = Enemy_Spawn[Global_Vars.waven]
-		#elif Global_Vars.leveln == 2:
-		#	EnemyArray = Global_Vars.Enemy_Spawn[Global_Vars.leveln][Global_Vars.waven]
-		#elif Global_Vars.leveln == 3:
-		#	EnemyArray = Global_Vars.Enemy_Spawn[Global_Vars.leveln][Global_Vars.waven]
-		#else:
-		#	EnemyArray = Global_Vars.Level0Enemies #Emtpy Array
+
+		var EnemyArray = Enemy_Spawn[Global_Vars.waven]
+
 		var i = 0
 		for i in range (EnemyArray.size()):
 			if EnemyArray[i] != 999:	#999 = already completed spawn
 				if EnemyArray[i] == 0:	#Empty spawn cycle
 					EnemyArray[i] = 999
 					return
-				elif EnemyArray[i] == 1:
+				elif EnemyArray[i] == 1:	#Enemy
 					enemy = Enemy.instance()
-				elif EnemyArray[i] == 2:
+				elif EnemyArray[i] == 2:	#Enemy2
 					enemy = Enemy2.instance()
-				elif EnemyArray[i] == 3:
+				elif EnemyArray[i] == 3:	#Enemy3
 					enemy = Enemy3.instance()
-				elif EnemyArray[i] == 101:
+				elif EnemyArray[i] == 101:	#EnemyBoss1
 					enemy = EnemyBoss1.instance()
+				elif EnemyArray[i] == 201:	#Powerup, no enemy +1 count
+					enemy = PowerUp.instance()
 				elif EnemyArray[i] == 998: #wait till all enemies destroyed
 					if Global_Vars.enemyn == 0:
 						EnemyArray[i] = 999
 						return
 					else:
 						return
+				if EnemyArray[i] < 200 || EnemyArray[i] > 299: #200 range reserved for powerups
+					Global_Vars.enemyn += 1		#increase enemy count
+				else:
+					print("no +1 enemy")
 				EnemyArray[i] = 999
 				enemy.position = Vector2(epos.x,epos.y)
 				add_child(enemy)
-				Global_Vars.enemyn += 1	#increase enemy count
 				return
 			else:
 				pass
 			i += 1
-#		else:			
-#			var enemy_type = randi()%3+1
-#			if enemy_type == 1:
-#				enemy = Enemy.instance()
-#			elif enemy_type == 2:
-#				enemy = Enemy2.instance()
-#			elif enemy_type == 3:
-#				enemy = Enemy3.instance()
-#		#add randomized enemy
-#		enemy.position = Vector2(epos.x,epos.y)
-#		add_child(enemy)
+
 		
 func _gameover():
 	gameover = GameOver.instance()
