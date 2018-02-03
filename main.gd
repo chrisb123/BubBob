@@ -11,6 +11,8 @@ export (PackedScene) var Enemy
 export (PackedScene) var Enemy2
 export (PackedScene) var Enemy3
 export (PackedScene) var EnemyBoss1
+export (PackedScene) var EnemyBoss2
+export (PackedScene) var EnemyBoss3
 export (PackedScene) var PowerUp
 export (PackedScene) var GameOver
 export (PackedScene) var File_Main
@@ -199,6 +201,8 @@ func _on_Enemy_timeout():
 					enemy = Enemy3.instance()
 				elif EnemyArray[i] == 101:	#EnemyBoss1
 					enemy = EnemyBoss1.instance()
+				elif EnemyArray[i] == 103:	#EnemyBoss1
+					enemy = EnemyBoss3.instance()
 				elif EnemyArray[i] == 201:	#Powerup, no enemy +1 count
 					enemy = PowerUp.instance()
 					

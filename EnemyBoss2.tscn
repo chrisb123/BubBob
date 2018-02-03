@@ -1,18 +1,18 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://Enemy3.gd" type="Script" id=1]
-[ext_resource path="res://Explosion.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Fireball.tscn" type="PackedScene" id=3]
-[ext_resource path="res://asset/ogachallenge6.png" type="Texture" id=4]
-[ext_resource path="res://asset/bubble.png" type="Texture" id=5]
-[ext_resource path="res://sounds/explosion.wav" type="AudioStream" id=6]
-[ext_resource path="res://sounds/Enemy_Spawn.wav" type="AudioStream" id=7]
-[ext_resource path="res://sounds/pop.wav" type="AudioStream" id=8]
+[ext_resource path="res://EnemyBoss2.gd" type="Script" id=1]
+[ext_resource path="res://asset/ogachallenge6.png" type="Texture" id=2]
+[ext_resource path="res://asset/bubble.png" type="Texture" id=3]
+[ext_resource path="res://Explosion.tscn" type="PackedScene" id=4]
+[ext_resource path="res://sounds/explosion.wav" type="AudioStream" id=5]
+[ext_resource path="res://sounds/Enemy_Spawn.wav" type="AudioStream" id=6]
+[ext_resource path="res://sounds/pop.wav" type="AudioStream" id=7]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 16.6949
+radius = 41.9004
+height = 56.6809
 
 [sub_resource type="Gradient" id=2]
 
@@ -81,14 +81,14 @@ width = 2048
 render_priority = 0
 trail_divisor = 1
 emission_shape = 1
-emission_sphere_radius = 20.0
+emission_sphere_radius = 100.0
 flag_align_y = false
 flag_rotate_y = false
 flag_disable_z = true
 spread = 180.0
 flatness = 0.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 50.0
+initial_velocity = 20.0
 initial_velocity_random = 0.0
 angular_velocity = 1.01174e-42
 angular_velocity_random = 0.0
@@ -104,7 +104,7 @@ damping = 0.0
 damping_random = 0.0
 angle = 0.0
 angle_random = 0.0
-scale = 1.0
+scale = 2.0
 scale_random = 0.0
 color_ramp = SubResource( 6 )
 hue_variation = 0.0
@@ -114,11 +114,12 @@ anim_speed_random = 0.0
 anim_offset = 0.0
 anim_offset_random = 0.0
 anim_loop = false
-_sections_unfolded = [ "Color", "Emission Shape", "Gravity", "Initial Velocity", "Spread" ]
+_sections_unfolded = [ "Color", "Emission Shape", "Gravity", "Initial Velocity", "Scale", "Spread" ]
 
 [node name="RigidBody2D" type="RigidBody2D" groups=[
 "enemy",
-"enemy2",
+"enemy1",
+"enemyboss",
 ]]
 
 input_pickable = false
@@ -140,17 +141,16 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Angular", "Collision", "Linear", "Transform" ]
-Explode = ExtResource( 2 )
-Fireball = ExtResource( 3 )
+_sections_unfolded = [ "Linear" ]
+Explode = null
+Enemy = null
 
 [node name="Enemy" type="Sprite" parent="." index="0"]
 
-position = Vector2( -0.60553, -6.6028 )
-scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 4 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 143, 0, 70, 100 )
+region_rect = Rect2( 72, 0, 73, 100 )
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 
 [node name="Shrink" type="Tween" parent="Enemy" index="0"]
@@ -184,14 +184,13 @@ _sections_unfolded = [ "playback" ]
 [node name="Bubble" type="Sprite" parent="." index="1"]
 
 visible = false
-texture = ExtResource( 5 )
-_sections_unfolded = [ "Offset", "Region", "Transform", "Visibility" ]
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
 
-position = Vector2( -0.17482, -0.349648 )
+position = Vector2( -0.17482, 10.6504 )
 shape = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
 
 [node name="Move_Timer" type="Timer" parent="." index="3"]
 
@@ -207,14 +206,16 @@ wait_time = 3.0
 one_shot = true
 autostart = false
 
-[node name="Fireball_Timer" type="Timer" parent="." index="5"]
+[node name="Bubble_Shrink" type="Timer" parent="." index="5"]
 
 process_mode = 1
-wait_time = 3.0
+wait_time = 2.0
 one_shot = false
-autostart = true
+autostart = false
 
-[node name="AnimatedSprite" parent="." index="6" instance=ExtResource( 2 )]
+[node name="AnimatedSprite" parent="." index="6" instance=ExtResource( 4 )]
+
+scale = Vector2( 3, 3 )
 
 [node name="Particles" type="Particles2D" parent="." index="7"]
 
@@ -240,7 +241,7 @@ _sections_unfolded = [ "Drawing", "Process Material", "Time" ]
 
 [node name="Particles_start" type="Particles2D" parent="." index="8"]
 
-emitting = true
+emitting = false
 amount = 500
 lifetime = 0.5
 one_shot = true
@@ -262,7 +263,7 @@ _sections_unfolded = [ "Process Material", "Time" ]
 
 [node name="Death_Sound" type="AudioStreamPlayer" parent="." index="9"]
 
-stream = ExtResource( 6 )
+stream = ExtResource( 5 )
 volume_db = -10.0
 autoplay = false
 mix_target = 0
@@ -270,7 +271,7 @@ bus = "Master"
 
 [node name="Enemy_Spawn" type="AudioStreamPlayer" parent="." index="10"]
 
-stream = ExtResource( 7 )
+stream = ExtResource( 6 )
 volume_db = -10.0
 autoplay = true
 mix_target = 0
@@ -278,11 +279,18 @@ bus = "Master"
 
 [node name="Pop_Bubble" type="AudioStreamPlayer" parent="." index="11"]
 
-stream = ExtResource( 8 )
+stream = ExtResource( 7 )
 volume_db = -5.0
 autoplay = false
 mix_target = 0
 bus = "Master"
+
+[node name="Minion_Spawn" type="Timer" parent="." index="12"]
+
+process_mode = 1
+wait_time = 1.01
+one_shot = false
+autostart = true
 
 [connection signal="body_entered" from="." to="." method="_on_RigidBody2D_body_entered"]
 
@@ -292,8 +300,10 @@ bus = "Master"
 
 [connection signal="timeout" from="Bubble_Timer" to="." method="_on_Bubble_Timer_timeout"]
 
-[connection signal="timeout" from="Fireball_Timer" to="." method="_on_Fireball_Timer_timeout"]
+[connection signal="timeout" from="Bubble_Shrink" to="." method="_on_Bubble_Shrink_timeout"]
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+
+[connection signal="timeout" from="Minion_Spawn" to="." method="_on_Minion_Spawn_timeout"]
 
 

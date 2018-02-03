@@ -22,6 +22,7 @@ colors = PoolColorArray( 0.785156, 0.311829, 0.0552063, 1, 1, 0, 0, 1, 0, 0, 0, 
 
 [sub_resource type="GradientTexture" id=3]
 
+flags = 4
 gradient = SubResource( 2 )
 width = 2048
 
@@ -72,6 +73,7 @@ colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 0 )
 
 [sub_resource type="GradientTexture" id=6]
 
+flags = 4
 gradient = SubResource( 5 )
 width = 2048
 
@@ -115,10 +117,10 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Color", "Emission Shape", "Gravity", "Initial Velocity", "Scale", "Spread" ]
 
-[node name="RigidBody2D" type="RigidBody2D" index="0" groups=[
+[node name="RigidBody2D" type="RigidBody2D" groups=[
+"enemy",
 "enemy1",
 "enemyboss",
-"enemy",
 ]]
 
 input_pickable = false
@@ -154,21 +156,27 @@ _sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 
 [node name="Shrink" type="Tween" parent="Enemy" index="0"]
 
+repeat = false
 playback_process_mode = 1
+playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
 [node name="Pop" type="Tween" parent="Enemy" index="1"]
 
+repeat = false
 playback_process_mode = 1
+playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
 [node name="Move" type="Tween" parent="Enemy" index="2"]
 
+repeat = false
 playback_process_mode = 1
+playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
