@@ -3,7 +3,7 @@ extends KinematicBody2D
 # class member variables go here, for example:
 # var a = 2
 var vel = Vector2()
-var SPEED = 1500
+var SPEED = 1750
 var onGround = 0
 signal fired
 var fired = 1
@@ -30,7 +30,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_up") && is_on_floor():
 		vel.y = -SPEED * delta
 		if vel.y < 425:
-			vel.y = -425
+			vel.y = -525
 	else:
 		vel.y += delta * 700
 		if vel.y > 1000:

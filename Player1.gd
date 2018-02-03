@@ -16,7 +16,7 @@ func _process(delta):
 	var vel = linear_velocity
 	if Input.is_action_pressed("ui_up"):
 		action = 1
-		vel.y = -200
+		$Player.applyimpulse = Vector2(0, -1500)
 	if Input.is_action_pressed("ui_right"):
 		action = 1
 		facing = 1

@@ -201,17 +201,18 @@ func _on_Enemy_timeout():
 					enemy = EnemyBoss1.instance()
 				elif EnemyArray[i] == 201:	#Powerup, no enemy +1 count
 					enemy = PowerUp.instance()
+					
 				elif EnemyArray[i] == 998: #wait till all enemies destroyed
 					if Global_Vars.enemyn == 0:
 						EnemyArray[i] = 999
-						return
+						return		#No enemy coutn increase
 					else:
-						return
-				if EnemyArray[i] < 200 || EnemyArray[i] > 299: #200 range reserved for powerups
+						return		# No enemy count increase
+						
+				if EnemyArray[i] < 200 || EnemyArray[i] > 299: #200 range reserved for powerups. No count up
 					Global_Vars.enemyn += 1		#increase enemy count
-				else:
-					print("no +1 enemy")
-				EnemyArray[i] = 999
+					
+				EnemyArray[i] = 999				#Clear Entry
 				enemy.position = Vector2(epos.x,epos.y)
 				add_child(enemy)
 				return
