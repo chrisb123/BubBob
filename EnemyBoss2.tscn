@@ -1,12 +1,13 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://EnemyBoss2.gd" type="Script" id=1]
-[ext_resource path="res://asset/ogachallenge6.png" type="Texture" id=2]
-[ext_resource path="res://asset/bubble.png" type="Texture" id=3]
-[ext_resource path="res://Explosion.tscn" type="PackedScene" id=4]
-[ext_resource path="res://sounds/explosion.wav" type="AudioStream" id=5]
-[ext_resource path="res://sounds/Enemy_Spawn.wav" type="AudioStream" id=6]
-[ext_resource path="res://sounds/pop.wav" type="AudioStream" id=7]
+[ext_resource path="res://Explosion.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Fireball.tscn" type="PackedScene" id=3]
+[ext_resource path="res://asset/ogachallenge6.png" type="Texture" id=4]
+[ext_resource path="res://asset/bubble.png" type="Texture" id=5]
+[ext_resource path="res://sounds/explosion.wav" type="AudioStream" id=6]
+[ext_resource path="res://sounds/Enemy_Spawn.wav" type="AudioStream" id=7]
+[ext_resource path="res://sounds/pop.wav" type="AudioStream" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -142,15 +143,15 @@ angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Linear" ]
-Explode = null
-Enemy = null
+Explode = ExtResource( 2 )
+Fireball = ExtResource( 3 )
 
 [node name="Enemy" type="Sprite" parent="." index="0"]
 
 scale = Vector2( 2, 2 )
-texture = ExtResource( 2 )
+texture = ExtResource( 4 )
 region_enabled = true
-region_rect = Rect2( 72, 0, 73, 100 )
+region_rect = Rect2( 73, 0, 72, 100 )
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 
 [node name="Shrink" type="Tween" parent="Enemy" index="0"]
@@ -184,7 +185,7 @@ _sections_unfolded = [ "playback" ]
 [node name="Bubble" type="Sprite" parent="." index="1"]
 
 visible = false
-texture = ExtResource( 3 )
+texture = ExtResource( 5 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
@@ -213,7 +214,7 @@ wait_time = 2.0
 one_shot = false
 autostart = false
 
-[node name="AnimatedSprite" parent="." index="6" instance=ExtResource( 4 )]
+[node name="AnimatedSprite" parent="." index="6" instance=ExtResource( 2 )]
 
 scale = Vector2( 3, 3 )
 
@@ -263,7 +264,7 @@ _sections_unfolded = [ "Process Material", "Time" ]
 
 [node name="Death_Sound" type="AudioStreamPlayer" parent="." index="9"]
 
-stream = ExtResource( 5 )
+stream = ExtResource( 6 )
 volume_db = -10.0
 autoplay = false
 mix_target = 0
@@ -271,7 +272,7 @@ bus = "Master"
 
 [node name="Enemy_Spawn" type="AudioStreamPlayer" parent="." index="10"]
 
-stream = ExtResource( 6 )
+stream = ExtResource( 7 )
 volume_db = -10.0
 autoplay = true
 mix_target = 0
@@ -279,7 +280,7 @@ bus = "Master"
 
 [node name="Pop_Bubble" type="AudioStreamPlayer" parent="." index="11"]
 
-stream = ExtResource( 7 )
+stream = ExtResource( 8 )
 volume_db = -5.0
 autoplay = false
 mix_target = 0
@@ -288,7 +289,7 @@ bus = "Master"
 [node name="Minion_Spawn" type="Timer" parent="." index="12"]
 
 process_mode = 1
-wait_time = 1.01
+wait_time = 0.25
 one_shot = false
 autostart = true
 

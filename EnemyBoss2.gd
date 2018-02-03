@@ -5,15 +5,16 @@ extends RigidBody2D
 # var b = "textvar"
 var _in_bubble = false
 var vel = Vector2()
-const MAX_MINIONS = 4
 const MIN_SPEED = 150
 const MAX_SPEED = 350
 const Y_SPEED_REDUCTION = 0.5 #divisor factor for Y axis speeds
 export (PackedScene) var Explode
-export (PackedScene) var Enemy
+export (PackedScene) var Fireball
 var facing = 1
 var minion_count = 0
 var bubble_count = 0
+var RotationInc = 18
+var rottemp = 0
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -140,13 +141,19 @@ func _on_Pop_tween_completed( object, key ):
 
 func _on_Minion_Spawn_timeout():
 	if _in_bubble == false:
-		if minion_count < MAX_MINIONS:
-			var enemy = Enemy.instance()
-			var pos = $Enemy.position
-			pos.x += 50 * facing
-			pos.y -= 0
-			minion_count += 1
-			add_child(enemy)
+		var pos = $Enemy.position
+		var lin = 150
+		pos.x += 0 #* facing
+		pos.y = -30
+		var fireball = Fireball.instance()
+		rottemp += RotationInc
+		if rottemp > 360:
+			rottemp = RotationInc
+		#rot = (360 / NUM_FIREBALLS) * i
+		fireball.rotation_degrees = rottemp
+		fireball.apply_impulse(Vector2(0,0), Vector2(lin * 1,0).rotated(deg2rad(rottemp)))
+		fireball.position = pos
+		add_child(fireball)
 
 
 func _on_Bubble_Shrink_timeout():

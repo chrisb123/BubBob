@@ -201,6 +201,8 @@ func _on_Enemy_timeout():
 					enemy = Enemy3.instance()
 				elif EnemyArray[i] == 101:	#EnemyBoss1
 					enemy = EnemyBoss1.instance()
+				elif EnemyArray[i] == 102:	#EnemyBoss1
+					enemy = EnemyBoss2.instance()
 				elif EnemyArray[i] == 103:	#EnemyBoss1
 					enemy = EnemyBoss3.instance()
 				elif EnemyArray[i] == 201:	#Powerup, no enemy +1 count
