@@ -185,6 +185,7 @@ func _on_Enemy_timeout():
 		randomize()
 		#Enemy spawn is defined in Global_Vars in as array
 
+		print ("waven-",Global_Vars.waven)
 		var EnemyArray = Enemy_Spawn[Global_Vars.waven]
 
 		var i = 0
