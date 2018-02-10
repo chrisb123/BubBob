@@ -22,6 +22,7 @@ Global_Vars="*res://Global_Vars.gd"
 
 window/size/width=1280
 window/size/height=720
+window/handheld/emulate_touchscreen=true
 window/stretch/aspect="keep"
 window/stretch/shrink="1"
 

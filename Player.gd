@@ -10,9 +10,11 @@ var fired = 1
 var facing = 1
 var action = 0
 var invincible = false
+var Screen_Shoot = 0
 const FIRING_SPEED = 0.15 #0.3 normal
 
 func _ready():
+	set_process_input(true)
 	$Timer.wait_time = FIRING_SPEED
 
 func _physics_process(delta):
@@ -96,8 +98,9 @@ func _physics_process(delta):
 				elif vel.x < 0 && vel.x > -500:
 					vel.x = -500
 	#If space is pressed fire bubble
-	if Input.is_action_pressed("ui_accept") && fired:
+	if (Input.is_action_pressed("ui_accept") || Screen_Shoot) && fired:
 		fired = 0
+		#shoot = 0
 		$Timer.start()
 		emit_signal("fired",facing)
 
@@ -136,3 +139,11 @@ func _on_Invincible_Flash_timeout():
 			$AnimatedSprite.visible = true
 	else:
 		$AnimatedSprite.visible = true
+		
+func _input(event):
+	if event.get_class() == ("InputEventScreenTouch") && event.is_pressed() == true:
+		print ("shooting")
+		Screen_Shoot = 1
+	if event.get_class() == ("InputEventScreenTouch") && event.is_pressed() == false:
+		print ("stopping")
+		Screen_Shoot = 0
