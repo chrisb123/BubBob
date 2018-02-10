@@ -21,10 +21,11 @@ margin_right = 70.0
 margin_bottom = 70.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 0
+mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 1 )
-_sections_unfolded = [ "Anchor" ]
+_sections_unfolded = [ "Anchor", "Theme" ]
 
 [node name="Score" type="Label" parent="." index="0"]
 
@@ -38,6 +39,7 @@ margin_right = 121.0
 margin_bottom = 58.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 2
+mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 1 )
@@ -59,6 +61,7 @@ margin_right = 963.0
 margin_bottom = 58.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 2
+mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 1 )
@@ -81,6 +84,7 @@ margin_bottom = 67.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
 mouse_filter = 2
+mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 1 )
@@ -94,7 +98,9 @@ _sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Hint", "Margin", "M
 
 [node name="Level_Change" type="Tween" parent="Level" index="0"]
 
+repeat = false
 playback_process_mode = 1
+playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0

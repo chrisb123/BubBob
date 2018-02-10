@@ -11,6 +11,9 @@ var facing = 1
 var action = 0
 var invincible = false
 var Screen_Shoot = 0
+var Screen_Left = 0
+var Screen_Right = 0
+var Screen_Up = 0
 const FIRING_SPEED = 0.15 #0.3 normal
 
 func _ready():
@@ -29,7 +32,7 @@ func _physics_process(delta):
 		for i in enemies:
 			print(i)
 			i.get_node("AnimatedSprite").play()
-	if Input.is_action_pressed("ui_up") && is_on_floor():
+	if (Input.is_action_pressed("ui_up") || Screen_Up) && is_on_floor():
 		vel.y = -SPEED * delta
 		if vel.y < 425:
 			vel.y = -525
@@ -37,13 +40,13 @@ func _physics_process(delta):
 		vel.y += delta * 700
 		if vel.y > 1000:
 			vel.y = 1000
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("ui_right") || Screen_Right:
 		facing = 1
 		$AnimatedSprite.flip_h = false
 		vel.x += SPEED * delta
 		if vel.x > 500:
 			vel.x = 500
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("ui_left") || Screen_Left:
 		facing = -1
 		$AnimatedSprite.flip_h = true
 		vel.x -= SPEED * delta
@@ -141,9 +144,62 @@ func _on_Invincible_Flash_timeout():
 		$AnimatedSprite.visible = true
 		
 func _input(event):
-	if event.get_class() == ("InputEventScreenTouch") && event.is_pressed() == true:
-		print ("shooting")
-		Screen_Shoot = 1
+	var screen_xsize = (get_viewport().get_visible_rect().size.x)
+	var screen_ysize = (get_viewport().get_visible_rect().size.y)
+
+	var ShootButton = Vector2(screen_xsize * 0.75, screen_ysize * 0.75) # somewhere on lower left
+	var CentreButton =  Vector2(screen_xsize * 0.25, screen_ysize * 0.75) # somewhere on lower right
+	var LeftButton = CentreButton + Vector2(-50,0)
+	var RightButton = CentreButton + Vector2(50,0)
+	var UpButton = CentreButton + Vector2(0,-50)
+	var event_pos = Vector2()
+	#print(event.get_class())
+	
+	if event.get_class() == ("InputEventScreenTouch"):
+		event_pos = event.position #Becuase too many input classes have no position variable, causing a crash
+		if event_pos.distance_to(ShootButton) < 100 && event.is_pressed() == true:
+			Screen_Shoot = 1
+		#starts movement with just press, in case player does not drag yet	
+		if event_pos.distance_to(LeftButton) < 50 && event.is_pressed() == true: 
+			print("Left")
+			Screen_Left = 1
+			Screen_Right = 0
+			Screen_Up = 0
+		if event_pos.distance_to(RightButton) < 50 && event.is_pressed() == true:
+			print("right")
+			Screen_Left = 0
+			Screen_Right = 1
+			Screen_Up = 0
+		if event_pos.distance_to(UpButton) < 50 && event.is_pressed() == true:
+			print("up")
+			Screen_Left = 0
+			Screen_Right = 0
+			Screen_Up = 1
+			
 	if event.get_class() == ("InputEventScreenTouch") && event.is_pressed() == false:
-		print ("stopping")
+		event_pos = event.position #Becuase too many input classes have no position variable, causing a crash
 		Screen_Shoot = 0
+		if event_pos.x < (screen_xsize / 2): #release occured on left side, so reset movement
+			Screen_Left = 0
+			Screen_Right = 0
+			Screen_Up = 0
+				
+		
+	if event.get_class() == ("InputEventScreenDrag"):
+		event_pos = event.position
+		
+		if event_pos.distance_to(LeftButton) < 50:
+			print("Left")
+			Screen_Left = 1
+			Screen_Right = 0
+			Screen_Up = 0
+		if event_pos.distance_to(RightButton) < 50:
+			print("right")
+			Screen_Left = 0
+			Screen_Right = 1
+			Screen_Up = 0
+		if event_pos.distance_to(UpButton) < 50:
+			print("up")
+			Screen_Left = 0
+			Screen_Right = 0
+			Screen_Up = 1

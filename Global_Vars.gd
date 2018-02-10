@@ -15,7 +15,7 @@ var enemyn = 0
 
 #Enemy spawning
 #Set Maximum levels and maximum waves
-#copy and paste level structure as below
+#copy and paste level structure as bep
 #anything larger than MAX_LEVELS AND MAX_WAVES is ignored in MAIN
 #add all waves to levelX array
 #add all levels to Enemy_Spawn array
@@ -55,3 +55,30 @@ func _process(delta):
 #	# Update game logic here.
 	#print(enemyn, waven, leveln)
 	pass
+
+
+
+#-------------------------------------------------------------
+#TO DO LIST  -  add ideas, task etc here
+#-------------------------------------------------------------
+
+# --------------------  IDEAS --------------------------------
+#
+# - Need Transparent overlay of move and shoot buttons
+# - quit button for android while playing
+# - implement Advertising (Splash screen before level start, or constant banner while playing)
+# - balance monster waves
+# 
+#---------------------- BUGS ----------------------------------
+#
+# xxxxxx
+#
+#--------------- ADRIAN CURRENT TASKS -------------------------
+#
+# - More Power Ups
+#
+# -------------- CHRIS CURRENT TASKS ---------------------------
+#
+# xxxxxx
+#
+# --------------------------------------------------------------
