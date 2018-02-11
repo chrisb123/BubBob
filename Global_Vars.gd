@@ -4,7 +4,7 @@ extends Node
 # var a = 2
 # var b = "textvar"
 
-const start_lives = 2
+const start_lives = 5
 
 var score = 0
 var lives = start_lives
@@ -24,24 +24,24 @@ var enemyn = 0
 #0 = nothing this spawn cycle
 #998 = wait till all all enemies detroyed before continuing
 
-const MAX_LEVELS = 1
+const MAX_LEVELS = 4
 var  MAX_WAVES = 0
 
-var Level0Enemies = [0]	# for title screens etc. to ensure nothing spawns at wrong time.
+#var Level0Enemies = [0]	# for title screens etc. to ensure nothing spawns at wrong time.
 
 # level 1 wave structure
-var level1wave1 = [101,998,3,2,1,2,1,1,998,101]
-var level1wave2 = [1,1,3,3,1,1,1,3,3,1]
-var level1wave3 = [3,3,1,1,2,1,1,3,3,1]
-var level1 = [0, level1wave1, level1wave2, level1wave3]
-
-# level 2 wave structure
-var level2wave1 = [2,2,1]
-var level2wave2 = [3,3,1]
-var level2wave3 = [1,1,1]
-var level2 = [0, level2wave1, level2wave2, level2wave3]
-
-var Enemy_Spawn = [0, level1, level2]
+#var level1wave1 = [101,998,3,2,1,2,1,1,998,101]
+#var level1wave2 = [1,1,3,3,1,1,1,3,3,1]
+#var level1wave3 = [3,3,1,1,2,1,1,3,3,1]
+#var level1 = [0, level1wave1, level1wave2, level1wave3]
+#
+## level 2 wave structure
+#var level2wave1 = [2,2,1]
+#var level2wave2 = [3,3,1]
+#var level2wave3 = [1,1,1]
+#var level2 = [0, level2wave1, level2wave2, level2wave3]
+#
+#var Enemy_Spawn = [0, level1, level2]
 
 
 func _ready():
@@ -75,7 +75,6 @@ func _process(delta):
 #---------------------- BUGS ----------------------------------
 #
 # High score sorting
-# Waves are skipped on first level except first wave
 #
 #--------------- ADRIAN CURRENT TASKS -------------------------
 #

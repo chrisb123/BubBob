@@ -18,7 +18,8 @@ func waves():
 	var level1wave1 = [101,998,102,998,103,998,0,0,0,0]
 	var level1wave2 = [1,1,3,3,1,1,1,3,3,1]
 	var level1wave3 = [3,3,1,1,2,1,1,3,3,1]
-	var testwave = [3]
+	var test1wave = [1,1,1,1,1,1,1,1,1,1,1]
+	var test2wave = [1,1,1,1,1,1,1,1,1,1]
 	#return [0, level1wave1, level1wave2, level1wave3]
-	return [0, testwave, testwave]
+	return [0, test1wave, test2wave]
 	
