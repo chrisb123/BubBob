@@ -15,10 +15,22 @@ var Screen_Left = 0
 var Screen_Right = 0
 var Screen_Up = 0
 const FIRING_SPEED = 0.15 #0.3 normal
+var screen_xsize
+var screen_ysize
+var scrx10
+var scry10
+var scrx90
+var scry90
 
 func _ready():
 	set_process_input(true)
 	$Timer.wait_time = FIRING_SPEED
+	screen_xsize = (get_viewport().get_visible_rect().size.x)
+	screen_ysize = (get_viewport().get_visible_rect().size.y)
+	scrx10 = screen_xsize * 0.10
+	scry10 = screen_ysize * 0.10
+	scrx90 = screen_xsize * 0.90
+	scry90 = screen_ysize * 0.90
 
 func _physics_process(delta):
 	rotation_degrees = 0
@@ -144,37 +156,37 @@ func _on_Invincible_Flash_timeout():
 		$AnimatedSprite.visible = true
 		
 func _input(event):
-	var screen_xsize = (get_viewport().get_visible_rect().size.x)
-	var screen_ysize = (get_viewport().get_visible_rect().size.y)
 
-	var ShootButton = Vector2(screen_xsize * 0.75, screen_ysize * 0.75) # somewhere on lower left
-	var CentreButton =  Vector2(screen_xsize * 0.25, screen_ysize * 0.75) # somewhere on lower right
-	var LeftButton = CentreButton + Vector2(-50,0)
-	var RightButton = CentreButton + Vector2(50,0)
-	var UpButton = CentreButton + Vector2(0,-50)
+	#Bad idea to process constants in a loop, also no longer needed
+	#var ShootButton = Vector2(screen_xsize * 0.90, screen_ysize * 0.90) # somewhere on lower left
+	#var CentreButton =  Vector2(screen_xsize * 0.10, screen_ysize * 0.90) # somewhere on lower right
+	#var LeftButton = CentreButton + Vector2(-50,0)
+	#var RightButton = CentreButton + Vector2(50,0)
+	#var UpButton = CentreButton + Vector2(0,-50)
 	var event_pos = Vector2()
 	#print(event.get_class())
 	
 	if event.get_class() == ("InputEventScreenTouch"):
 		event_pos = event.position #Becuase too many input classes have no position variable, causing a crash
-		if event_pos.distance_to(ShootButton) < 100 && event.is_pressed() == true:
+		if event_pos.x > scrx90 - scrx10 and event_pos.y > scry90 - scry10 && event.is_pressed() == true:
 			Screen_Shoot = 1
 		#starts movement with just press, in case player does not drag yet	
-		if event_pos.distance_to(LeftButton) < 50 && event.is_pressed() == true: 
-			print("Left")
-			Screen_Left = 1
-			Screen_Right = 0
-			Screen_Up = 0
-		if event_pos.distance_to(RightButton) < 50 && event.is_pressed() == true:
-			print("right")
-			Screen_Left = 0
-			Screen_Right = 1
-			Screen_Up = 0
-		if event_pos.distance_to(UpButton) < 50 && event.is_pressed() == true:
-			print("up")
-			Screen_Left = 0
-			Screen_Right = 0
-			Screen_Up = 1
+		if event.is_pressed() == true and event_pos.x < scrx10 * 2 and event_pos.y > scry90 - scry10:
+			if event_pos.x < scrx10 and event_pos.y > scry90: 
+				print("Left")
+				Screen_Left = 1
+				Screen_Right = 0
+				Screen_Up = 0
+			if event_pos.x > scrx10 and event_pos.y > scry90: 
+				print("right")
+				Screen_Left = 0
+				Screen_Right = 1
+				Screen_Up = 0
+			if event_pos.y < scry90: 
+				print("up")
+				Screen_Left = 0
+				Screen_Right = 0
+				Screen_Up = 1
 			
 	if event.get_class() == ("InputEventScreenTouch") && event.is_pressed() == false:
 		event_pos = event.position #Becuase too many input classes have no position variable, causing a crash
@@ -188,18 +200,19 @@ func _input(event):
 	if event.get_class() == ("InputEventScreenDrag"):
 		event_pos = event.position
 		
-		if event_pos.distance_to(LeftButton) < 50:
-			print("Left")
-			Screen_Left = 1
-			Screen_Right = 0
-			Screen_Up = 0
-		if event_pos.distance_to(RightButton) < 50:
-			print("right")
-			Screen_Left = 0
-			Screen_Right = 1
-			Screen_Up = 0
-		if event_pos.distance_to(UpButton) < 50:
-			print("up")
-			Screen_Left = 0
-			Screen_Right = 0
-			Screen_Up = 1
+		if event_pos.x < scrx10 * 2 and event_pos.y > scry90 - scry10:
+			if event_pos.x < scrx10 and event_pos.y > scry90: 
+				print("Left")
+				Screen_Left = 1
+				Screen_Right = 0
+				Screen_Up = 0
+			if event_pos.x > scrx10 and event_pos.y > scry90: 
+				print("right")
+				Screen_Left = 0
+				Screen_Right = 1
+				Screen_Up = 0
+			if event_pos.y < scry90: 
+				print("up")
+				Screen_Left = 0
+				Screen_Right = 0
+				Screen_Up = 1

@@ -48,7 +48,9 @@ autoplay = true
 mix_target = 0
 bus = "Master"
 
-[node name="GUI_Layer" type="CanvasLayer" parent="." index="2"]
+[node name="GUI_Layer" type="CanvasLayer" parent="." index="2" groups=[
+"gui",
+]]
 
 layer = 1
 offset = Vector2( 0, 0 )
