@@ -20,5 +20,5 @@ func waves():
 	var level1wave3 = [3,3,1,1,2,1,1,3,3,1]
 	var testwave = [3]
 	#return [0, level1wave1, level1wave2, level1wave3]
-	return [0, testwave, testwave, testwave]
+	return [0, testwave, testwave]
 	

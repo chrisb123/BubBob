@@ -75,7 +75,7 @@ func _process(delta):
 		#_ready()
 	if Global_Vars.waven > Global_Vars.MAX_WAVES:
 	#if Global_Vars.score > (SCORE_TO_LEVEL * leveln) && leveln < Global_Vars.MAX_LEVEL:
-		print("dont get this bit", Global_Vars.waven," > ",Global_Vars.MAX_WAVES) 
+		print("level 1 skps all waves", Global_Vars.waven," > ",Global_Vars.MAX_WAVES) 
 		clear_nodes()
 		#Change, make start start a function to start a level
 		Global_Vars.leveln += 1
@@ -105,6 +105,7 @@ func _process(delta):
 			if Enemy_Spawn[Global_Vars.waven][i] == 999:
 				if i == (Enemy_Spawn[Global_Vars.waven].size() - 1) && Global_Vars.enemyn == 0:
 					Global_Vars.waven += 1
+					print("increasing wave number",Global_Vars.waven)
 				i += i
 			else:
 				return
@@ -118,8 +119,8 @@ func _load_level():
 	levsize = level.find_node("Size").size()
 	Enemy_Spawn = level.waves()
 	Global_Vars.MAX_WAVES = Enemy_Spawn.size() - 1
-	print(Enemy_Spawn)
-	print(Global_Vars.MAX_WAVES)
+	print("Enemy array ", Enemy_Spawn)
+	print("Waves in level ",Global_Vars.MAX_WAVES)
 	player = Player.instance()
 	player.position = Vector2(0,0)
 	add_child(player)
@@ -211,7 +212,7 @@ func _on_Enemy_timeout():
 		randomize()
 		#Enemy spawn is defined in Global_Vars in as array
 
-		print ("waven-",Global_Vars.waven)
+		print ("wave # ",Global_Vars.waven)
 		var EnemyArray = Enemy_Spawn[Global_Vars.waven]
 
 		var i = 0

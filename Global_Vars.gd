@@ -75,6 +75,7 @@ func _process(delta):
 #---------------------- BUGS ----------------------------------
 #
 # High score sorting
+# Waves are skipped on first level except first wave
 #
 #--------------- ADRIAN CURRENT TASKS -------------------------
 #
