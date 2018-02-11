@@ -12,6 +12,7 @@ export (PackedScene) var Explode
 export (PackedScene) var Fireball
 var facing #1 right, 2 left
 const NUM_FIREBALLS = 8
+var score_for_killing = Global_Vars.score_enemy2
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -53,7 +54,7 @@ func killbub(pk):
 		linear_velocity = Vector2(0,0)
 #And explode it
 func _on_AnimatedSprite_animation_finished():
-	Global_Vars.score += 1
+	Global_Vars.score += score_for_killing
 	Global_Vars.enemyn -= 1	
 	queue_free()
 

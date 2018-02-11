@@ -10,6 +10,7 @@ const MAX_SPEED = 350
 const Y_SPEED_REDUCTION = 0.5 #divisor factor for Y axis speeds
 export (PackedScene) var Explode
 var _is_minion = false
+var score_for_killing = Global_Vars.score_enemy1 
 
 func _ready():
 	if get_parent().is_in_group("enemyboss"):
@@ -54,7 +55,7 @@ func killbub(pk):
 #And explode it
 func _on_AnimatedSprite_animation_finished():
 	if _is_minion == false:
-		Global_Vars.score += 1
+		Global_Vars.score += score_for_killing
 		Global_Vars.enemyn -= 1
 	else:
 		get_parent().minion_count -= 1
