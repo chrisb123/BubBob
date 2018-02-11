@@ -4,7 +4,7 @@ extends Node
 # var a = 2
 # var b = "textvar"
 
-const start_lives = 5
+const start_lives = 20
 
 var score = 0
 var lives = start_lives
@@ -64,7 +64,6 @@ func _process(delta):
 
 # --------------------  IDEAS --------------------------------
 #
-# - Need Transparent overlay of move and shoot buttons
 # - quit button for android while playing
 # - implement Advertising (Splash screen before level start, or constant banner while playing)
 # - balance monster waves
@@ -74,15 +73,11 @@ func _process(delta):
 # 
 #---------------------- BUGS ----------------------------------
 #
-# High score sorting
 #
 #--------------- ADRIAN CURRENT TASKS -------------------------
 #
 # - More Power Ups
 #
 # -------------- CHRIS CURRENT TASKS ---------------------------
-#
-# Setting up waves to be dynamic depending on waves from level
-# Setting up games over to be out of lives or completing game
 #
 # --------------------------------------------------------------
