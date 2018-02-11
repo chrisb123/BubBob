@@ -190,7 +190,8 @@ func _input(event):
 			
 	if event.get_class() == ("InputEventScreenTouch") && event.is_pressed() == false:
 		event_pos = event.position #Becuase too many input classes have no position variable, causing a crash
-		Screen_Shoot = 0
+		if event_pos.x > (screen_xsize / 2):
+			Screen_Shoot = 0
 		if event_pos.x < (screen_xsize / 2): #release occured on left side, so reset movement
 			Screen_Left = 0
 			Screen_Right = 0
