@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://gui.gd" type="Script" id=1]
 [ext_resource path="res://asset/font/Comfortaa-Bold.ttf" type="DynamicFontData" id=2]
@@ -10,6 +10,14 @@ use_mipmaps = false
 use_filter = false
 font_data = ExtResource( 2 )
 _sections_unfolded = [ "Font", "Resource", "Settings" ]
+
+[sub_resource type="DynamicFont" id=2]
+
+size = 36
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 2 )
+_sections_unfolded = [ "Font", "Settings" ]
 
 [node name="Control" type="Control" index="0"]
 
@@ -25,7 +33,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 1 )
-_sections_unfolded = [ "Anchor", "Theme" ]
+_sections_unfolded = [ "Anchor", "Theme", "Visibility" ]
 
 [node name="Score" type="Label" parent="." index="0"]
 
@@ -104,6 +112,114 @@ playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
+
+[node name="Shoot" type="Button" parent="." index="3"]
+
+modulate = Color( 1, 1, 1, 0.392157 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -123.0
+margin_top = -66.0
+margin_right = 133.0
+margin_bottom = 78.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "SHOOT"
+flat = false
+align = 1
+_sections_unfolded = [ "Margin", "Visibility", "custom_fonts" ]
+
+[node name="Left" type="Button" parent="." index="4"]
+
+modulate = Color( 1, 1, 1, 0.392157 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -123.0
+margin_top = -66.0
+margin_right = 133.0
+margin_bottom = 78.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "LEFT"
+flat = false
+align = 1
+_sections_unfolded = [ "Margin", "Visibility", "custom_fonts" ]
+
+[node name="Right" type="Button" parent="." index="5"]
+
+modulate = Color( 1, 1, 1, 0.392157 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -123.0
+margin_top = -66.0
+margin_right = 133.0
+margin_bottom = 78.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "RIGHT"
+flat = false
+align = 1
+_sections_unfolded = [ "Margin", "Visibility", "custom_fonts" ]
+
+[node name="Jump" type="Button" parent="." index="6"]
+
+modulate = Color( 1, 1, 1, 0.392157 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -123.0
+margin_top = -66.0
+margin_right = 133.0
+margin_bottom = 78.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "JUMP"
+flat = false
+align = 1
+_sections_unfolded = [ "Margin", "Visibility", "custom_fonts" ]
 
 [connection signal="tween_completed" from="Level/Level_Change" to="." method="_on_Level_Change_tween_completed"]
 

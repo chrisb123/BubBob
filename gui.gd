@@ -10,10 +10,26 @@ onready var level = get_node("Level")
 var leveln_backup = 0
 
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
-	pass
-
+	var xsize = (get_viewport().get_visible_rect().size.x)
+	var ysize = (get_viewport().get_visible_rect().size.y)
+	$Shoot.margin_right = xsize
+	$Shoot.margin_bottom = ysize
+	$Shoot.margin_left = xsize - xsize * 0.2
+	$Shoot.margin_top = ysize - ysize * 0.2
+	$Jump.margin_right = xsize * 0.2
+	$Jump.margin_bottom = ysize - ysize * 0.1
+	$Jump.margin_left = 0
+	$Jump.margin_top = ysize - ysize * 0.2
+	$Left.margin_right = xsize * 0.1
+	$Left.margin_bottom = ysize
+	$Left.margin_left = 0
+	$Left.margin_top = ysize - ysize * 0.1
+	$Right.margin_right = xsize * 0.2
+	$Right.margin_bottom = ysize
+	$Right.margin_left = xsize * 0.1
+	$Right.margin_top = ysize - ysize * 0.1
+	
+	
 func _process(delta):
 	score.text = str("Score: " + str(Global_Vars.score))
 	lives.text = str("Lives: " + str(Global_Vars.lives))
