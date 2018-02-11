@@ -54,8 +54,9 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("ui_music"):
 		get_node("Music").playing = !get_node("Music").playing
-	# If lives gets to zero, delete all enemies and player, restart
-	if Global_Vars.lives == 0:
+	# If lives gets to zero, or game is completed, delete all enemies and player, restart
+	if Global_Vars.lives == 0:# or ( Global_Vars.waven > Global_Vars.MAX_WAVES and Global_Vars.leveln == Global_Vars.MAX_LEVELS ):
+		print ("game over?")
 		clear_nodes()
 		gui.queue_free()
 		_gameover()
@@ -64,33 +65,38 @@ func _process(delta):
 		#_ready()
 		
 		# change to "if waven > Global_Vars.MAX_WAVES:" (Should spawn all availble waves then change levels)
+	#if Global_Vars.waven > Global_Vars.MAX_WAVES && Global_Vars.leveln == Global_Vars.MAX_LEVELS:
+	#if Global_Vars.score > (SCORE_TO_LEVEL * leveln) && leveln == Global_Vars.MAX_LEVEL:
+		#print("fdsfa")
+		#clear_nodes()
+		#Should be GUI not Control
+		#$GUI_Layer/Control.queue_free()
+		#Clear power up node
+		#_ready()
 	if Global_Vars.waven > Global_Vars.MAX_WAVES:
 	#if Global_Vars.score > (SCORE_TO_LEVEL * leveln) && leveln < Global_Vars.MAX_LEVEL:
+		print("dont get this bit", Global_Vars.waven," > ",Global_Vars.MAX_WAVES) 
 		clear_nodes()
 		#Change, make start start a function to start a level
 		Global_Vars.leveln += 1
 		Global_Vars.waven = 1
 		#dynamically load next level
-		var resource = load("res://levels/level"+str(Global_Vars.leveln)+".tscn")
-		level = resource.instance()
-		add_child(level)
-		move_child(level,0)
-		levsize = level.find_node("Size").size()
-		Enemy_Spawn = level.waves()
-		print(Enemy_Spawn)
-		player = Player.instance()
-		player.position = Vector2(0,0)
-		add_child(player)
-		player.connect("fired",self,"_fired")
-		$Enemy.start()
-	if Global_Vars.waven > Global_Vars.MAX_WAVES && Global_Vars.leveln == Global_Vars.MAX_LEVELS:
-	#if Global_Vars.score > (SCORE_TO_LEVEL * leveln) && leveln == Global_Vars.MAX_LEVEL:
-		print("fdsfa")
-		clear_nodes()
-		#Should be GUI not Control
-		$GUI_Layer/Control.queue_free()
-		#Clear power up node
-		_ready()
+		_load_level()
+		#var resource = load("res://levels/level"+str(Global_Vars.leveln)+".tscn")
+		#level = resource.instance()
+		#add_child(level)
+		#move_child(level,0)
+		#levsize = level.find_node("Size").size()
+		#Enemy_Spawn = level.waves()
+		#Global_Vars.MAX_WAVES = Enemy_Spawn.size() - 1
+		#print(Enemy_Spawn)
+#		print(Global_Vars.MAX_WAVES)
+#		player = Player.instance()
+#		player.position = Vector2(0,0)
+#		add_child(player)
+#		player.connect("fired",self,"_fired")
+#		$Enemy.start()
+
 		
 		# calculate move to next wave ( Wave spawn Array empty and all Enemies dead )
 	if Global_Vars.leveln != 0 && Global_Vars.waven != 0:
@@ -103,6 +109,51 @@ func _process(delta):
 			else:
 				return
 			
+func _load_level():
+	print("loading level")
+	var resource = load("res://levels/level"+str(Global_Vars.leveln)+".tscn")
+	level = resource.instance()
+	add_child(level)
+	move_child(level,0)
+	levsize = level.find_node("Size").size()
+	Enemy_Spawn = level.waves()
+	Global_Vars.MAX_WAVES = Enemy_Spawn.size() - 1
+	print(Enemy_Spawn)
+	print(Global_Vars.MAX_WAVES)
+	player = Player.instance()
+	player.position = Vector2(0,0)
+	add_child(player)
+	player.connect("fired",self,"_fired")
+	$Enemy.start()
+
+
+#parse level to "start"
+func _start():
+	#change to is title exists then remove
+	remove_child(title)
+	Global_Vars.leveln = 1
+	Global_Vars.waven = 1
+	_load_level()
+#	var resource = load("res://levels/level1.tscn")
+#	level = resource.instance()
+#	add_child(level)
+#	levsize = level.find_node("Size").size()
+#	Enemy_Spawn = level.waves()
+#	print(Enemy_Spawn)
+#	player = Player.instance()
+#	player.position = Vector2(0,0)
+#	add_child(player)
+#	player.connect("fired",self,"_fired")
+#	$Enemy.start()
+	
+	gui = GUI.instance()
+	$GUI_Layer.add_child(gui)
+	#not final location for Powerup Spawn, only testing here
+	var powerup = PowerUp.instance()
+	powerup.position = Vector2(600,100)
+	add_child(powerup)
+	
+
 func clear_nodes():
 	var enemies = get_tree().get_nodes_in_group("enemy")
 	for enemy in enemies:
@@ -119,31 +170,6 @@ func clear_nodes():
 	$Enemy.stop()
 	level.queue_free()
 	#Global_Vars.score = 0
-
-
-#parse level to "start"
-func _start():
-	#change to is title exists then remove
-	remove_child(title)
-	Global_Vars.leveln = 1
-	Global_Vars.waven = 1
-	var resource = load("res://levels/level1.tscn")
-	level = resource.instance()
-	add_child(level)
-	levsize = level.find_node("Size").size()
-	Enemy_Spawn = level.waves()
-	print(Enemy_Spawn)
-	player = Player.instance()
-	player.position = Vector2(0,0)
-	add_child(player)
-	player.connect("fired",self,"_fired")
-	gui = GUI.instance()
-	$GUI_Layer.add_child(gui)
-	#not final location for Powerup Spawn, only testing here
-	var powerup = PowerUp.instance()
-	powerup.position = Vector2(600,100)
-	add_child(powerup)
-	$Enemy.start()
 	
 	
 func _fired(facing):

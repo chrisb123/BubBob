@@ -40,4 +40,5 @@ func _ready():
 
 	#print contents of file from array
 	for i in range(array.size()):
-		print(array[i])
+		pass
+		#print(array[i])

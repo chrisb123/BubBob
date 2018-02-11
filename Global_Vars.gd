@@ -4,7 +4,7 @@ extends Node
 # var a = 2
 # var b = "textvar"
 
-const start_lives = 20
+const start_lives = 2
 
 var score = 0
 var lives = start_lives
@@ -24,8 +24,8 @@ var enemyn = 0
 #0 = nothing this spawn cycle
 #998 = wait till all all enemies detroyed before continuing
 
-const MAX_LEVELS = 4
-const MAX_WAVES = 3
+const MAX_LEVELS = 1
+var  MAX_WAVES = 0
 
 var Level0Enemies = [0]	# for title screens etc. to ensure nothing spawns at wrong time.
 
@@ -68,10 +68,13 @@ func _process(delta):
 # - quit button for android while playing
 # - implement Advertising (Splash screen before level start, or constant banner while playing)
 # - balance monster waves
+# - Change lives to unlimited but reduce score
+# - Change poping bubble combos and emey to a higher score
+# - Change enemy score to be higher
 # 
 #---------------------- BUGS ----------------------------------
 #
-# xxxxxx
+# High score sorting
 #
 #--------------- ADRIAN CURRENT TASKS -------------------------
 #
@@ -79,6 +82,7 @@ func _process(delta):
 #
 # -------------- CHRIS CURRENT TASKS ---------------------------
 #
-# xxxxxx
+# Setting up waves to be dynamic depending on waves from level
+# Setting up games over to be out of lives or completing game
 #
 # --------------------------------------------------------------
