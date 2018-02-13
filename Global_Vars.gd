@@ -4,7 +4,7 @@ extends Node
 # var a = 2
 # var b = "textvar"
 
-const start_lives = 20
+const start_lives = 1
 
 var score = 0
 var lives = start_lives
@@ -21,6 +21,7 @@ var score_enemy3 = 30
 var score_enemyboss1 = 100
 var score_enemyboss2 = 200
 var score_enemyboss3 = 300
+var score_death = -20
 
 #Enemy spawning
 #Set Maximum levels and maximum waves

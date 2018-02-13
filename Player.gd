@@ -103,7 +103,8 @@ func _physics_process(delta):
 			else:
 				if invincible == false:
 					invincible = true
-					Global_Vars.lives -= 1
+					Global_Vars.score += Global_Vars.score_death
+					Global_Vars.lives += 1
 					$Invincible_Timer.start()
 					$AnimatedSprite/Pain.play()
 					#$Sprite.scale = Vector2(0.5, 0.5)
@@ -133,7 +134,8 @@ func _on_Area2D_area_entered( area ):
 	if area.get_parent().is_in_group("fireball"):
 		if invincible == false:
 			invincible = true
-			Global_Vars.lives -= 1
+			Global_Vars.score += Global_Vars.score_death
+			Global_Vars.lives += 1
 			$Invincible_Timer.start()
 			$AnimatedSprite/Pain.play()
 			#$Sprite.scale = Vector2(0.5, 0.5)
