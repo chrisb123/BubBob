@@ -117,8 +117,8 @@ anim_loop = false
 _sections_unfolded = [ "Color", "Emission Shape", "Gravity", "Initial Velocity", "Spread" ]
 
 [node name="RigidBody2D" type="RigidBody2D" groups=[
-"enemy",
 "enemy2",
+"enemy",
 ]]
 
 input_pickable = false
@@ -216,6 +216,8 @@ autostart = true
 
 [node name="AnimatedSprite" parent="." index="6" instance=ExtResource( 2 )]
 
+frame = 11
+
 [node name="Particles" type="Particles2D" parent="." index="7"]
 
 emitting = false
@@ -240,7 +242,7 @@ _sections_unfolded = [ "Drawing", "Process Material", "Time" ]
 
 [node name="Particles_start" type="Particles2D" parent="." index="8"]
 
-emitting = true
+emitting = false
 amount = 500
 lifetime = 0.5
 one_shot = true
