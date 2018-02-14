@@ -54,19 +54,19 @@ func _input(event):
 	if event.is_action_pressed("ui_music"):
 		get_node("Music").playing = !get_node("Music").playing
 
-func _process(delta):
+#func _process(delta):
 #	if Input.is_action_just_pressed("ui_music"):
 #		get_node("Music").playing = !get_node("Music").playing
 	# If lives gets to zero, or game is completed, delete all enemies and player, restart
-	if Global_Vars.gameover == true or ( Global_Vars.waven > Global_Vars.MAX_WAVES and Global_Vars.leveln == Global_Vars.MAX_LEVELS ):
-		#if Global_Vars.lives != 999:
-		gui.queue_free()
-		clear_nodes()
-		_gameover()
-		#cant stay at 0 during gameover screen, otherwise godot crashes
-	#	Global_Vars.lives = 999 #
-		Global_Vars.gameover = false
-		return
+#	if Global_Vars.gameover == true or ( Global_Vars.waven > Global_Vars.MAX_WAVES and Global_Vars.leveln == Global_Vars.MAX_LEVELS ):
+#		#if Global_Vars.lives != 999:
+#		gui.queue_free()
+#		clear_nodes()
+#		_gameover()
+#		#cant stay at 0 during gameover screen, otherwise godot crashes
+#	#	Global_Vars.lives = 999 #
+#		Global_Vars.gameover = false
+#		return
 		#_ready()
 		
 		# change to "if waven > Global_Vars.MAX_WAVES:" (Should spawn all availble waves then change levels)
@@ -78,14 +78,14 @@ func _process(delta):
 		#$GUI_Layer/Control.queue_free()
 		#Clear power up node
 		#_ready()
-	if Global_Vars.waven > Global_Vars.MAX_WAVES:
-	#if Global_Vars.score > (SCORE_TO_LEVEL * leveln) && leveln < Global_Vars.MAX_LEVEL:
-		clear_nodes()
-		#Change, make start start a function to start a level
-		Global_Vars.leveln += 1
-		Global_Vars.waven = 1
-		#dynamically load next level
-		_load_level()
+#	if Global_Vars.waven > Global_Vars.MAX_WAVES:
+#	#if Global_Vars.score > (SCORE_TO_LEVEL * leveln) && leveln < Global_Vars.MAX_LEVEL:
+#		clear_nodes()
+#		#Change, make start start a function to start a level
+#		Global_Vars.leveln += 1
+#
+#		#dynamically load next level
+#		_load_level()
 		#var resource = load("res://levels/level"+str(Global_Vars.leveln)+".tscn")
 		#level = resource.instance()
 		#add_child(level)
@@ -113,6 +113,7 @@ func _process(delta):
 #				i += i
 			
 func _load_level():
+	Global_Vars.waven = 1
 	print("loading level ",Global_Vars.leveln)
 	var resource = load("res://levels/level"+str(Global_Vars.leveln)+".tscn")
 	level = resource.instance()
@@ -268,6 +269,18 @@ func _on_Enemy_timeout():
 			if Enemy_Spawn[Global_Vars.waven][i] == 999 && i == (Enemy_Spawn[Global_Vars.waven].size() - 1) && Global_Vars.enemyn == 0:
 				Global_Vars.waven += 1
 			i += i
+	
+	if Global_Vars.gameover == true or ( Global_Vars.waven > Global_Vars.MAX_WAVES and Global_Vars.leveln == Global_Vars.MAX_LEVELS ):
+		gui.queue_free()
+		clear_nodes()
+		_gameover()
+		Global_Vars.gameover = false
+		return
+	
+	if Global_Vars.waven > Global_Vars.MAX_WAVES:
+		clear_nodes()
+		Global_Vars.leveln += 1
+		_load_level()
 		
 func _gameover():
 	gameover = GameOver.instance()
