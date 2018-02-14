@@ -11,16 +11,28 @@ const MAX_SPEED = 350
 const Y_SPEED_REDUCTION = 0.5 #divisor factor for Y axis speeds
 export (PackedScene) var Explode
 export (PackedScene) var Enemy
+export (PackedScene) var Fireball
 var facing = 1
 var minion_count = 0
 var bubble_count = 0
+var RotationInc = 18
+var rottemp = 0
+var FireballCount = 12
+var FireballSpeed = 250
 var score_for_killing = Global_Vars.score_enemyboss1 
+export (int) var boss_type 
 
-
+#setup boss type
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
-	pass
+	if boss_type == 1:
+		$Enemy.region_rect = Rect2(0,0,80,100)
+		score_for_killing = Global_Vars.score_enemyboss1
+	if boss_type == 2:
+		$Enemy.region_rect = Rect2(73,0,70,100)
+		score_for_killing = Global_Vars.score_enemyboss2
+	if boss_type == 3:
+		$Enemy.region_rect = Rect2(143,0,70,100)
+		score_for_killing = Global_Vars.score_enemyboss3
 
 func _process(delta):
 	if _in_bubble == true:
@@ -139,9 +151,9 @@ func _on_Pop_tween_completed( object, key ):
 	bubble_count = 0
 	_in_bubble = false
 
-
+#add code from each boss for its special power
 func _on_Minion_Spawn_timeout():
-	if _in_bubble == false:
+	if _in_bubble == false and boss_type == 1:
 		if minion_count < MAX_MINIONS:
 			var enemy = Enemy.instance()
 			var pos = $Enemy.position
@@ -149,6 +161,40 @@ func _on_Minion_Spawn_timeout():
 			pos.y -= 0
 			minion_count += 1
 			add_child(enemy)
+
+	if _in_bubble == false and boss_type == 2:
+		var pos = $Enemy.position
+		var lin = 150
+		pos.x += 0 #* facing
+		pos.y = -30
+		var fireball = Fireball.instance()
+		rottemp += RotationInc
+		if rottemp > 360:
+			rottemp = RotationInc
+		#rot = (360 / NUM_FIREBALLS) * i
+		fireball.rotation_degrees = rottemp
+		fireball.apply_impulse(Vector2(0,0), Vector2(lin * 1,0).rotated(deg2rad(rottemp)))
+		fireball.position = pos
+		add_child(fireball)
+			
+	if _in_bubble == false and boss_type == 3:
+		var yoffset = -50
+		for i in range(FireballCount):
+			i += 1
+			var fireball = Fireball.instance()
+			var pos = $Enemy.position
+			pos.x += 50 * facing
+			if yoffset > 50:
+				yoffset = -50				
+			pos.y += yoffset
+			fireball.linear_velocity = Vector2(float(FireballSpeed + FireballSpeed / FireballCount * i) * facing,0)
+			if fireball.linear_velocity.x > 0:
+				fireball.rotation_degrees += 0 
+			else:
+				fireball.rotation_degrees += 180
+			fireball.position = pos
+			yoffset += 50
+			add_child(fireball)
 
 
 func _on_Bubble_Shrink_timeout():

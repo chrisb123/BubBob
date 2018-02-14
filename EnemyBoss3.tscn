@@ -117,10 +117,10 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Color", "Emission Shape", "Gravity", "Initial Velocity", "Scale", "Spread" ]
 
-[node name="RigidBody2D" type="RigidBody2D" index="0" groups=[
-"enemy",
+[node name="RigidBody2D" type="RigidBody2D" groups=[
 "enemy1",
 "enemyboss",
+"enemy",
 ]]
 
 input_pickable = false

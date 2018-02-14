@@ -38,6 +38,8 @@ func _physics_process(delta):
 		vel.y = 0
 	if is_on_ceiling():
 		vel.y = 0	
+	if Input.is_action_just_pressed("ui_page_down"):
+		Global_Vars.gameover = true
 	if Input.is_action_just_pressed("ui_page_up"):
 		print("kill all")
 		var enemies = get_tree().get_nodes_in_group("enemy")
@@ -219,3 +221,5 @@ func _input(event):
 				Screen_Left = 0
 				Screen_Right = 0
 				Screen_Up = 1
+	
+

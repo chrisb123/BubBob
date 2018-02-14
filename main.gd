@@ -55,13 +55,14 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_music"):
 		get_node("Music").playing = !get_node("Music").playing
 	# If lives gets to zero, or game is completed, delete all enemies and player, restart
-	if Global_Vars.lives == 0 or Global_Vars.waven > Global_Vars.MAX_WAVES and Global_Vars.leveln == Global_Vars.MAX_LEVELS:
-		if Global_Vars.lives != 999:
-			gui.queue_free()
-			clear_nodes()
-			_gameover()
+	if Global_Vars.gameover == true or Global_Vars.waven > Global_Vars.MAX_WAVES and Global_Vars.leveln == Global_Vars.MAX_LEVELS:
+		#if Global_Vars.lives != 999:
+		gui.queue_free()
+		clear_nodes()
+		_gameover()
 		#cant stay at 0 during gameover screen, otherwise godot crashes
-		Global_Vars.lives = 999 
+	#	Global_Vars.lives = 999 #
+		Global_Vars.gameover = false
 		return
 		#_ready()
 		
@@ -231,10 +232,13 @@ func _on_Enemy_timeout():
 					enemy.enemy_type = 3
 				elif EnemyArray[i] == 101:	#EnemyBoss1
 					enemy = EnemyBoss1.instance()
-				elif EnemyArray[i] == 102:	#EnemyBoss1
-					enemy = EnemyBoss2.instance()
-				elif EnemyArray[i] == 103:	#EnemyBoss1
-					enemy = EnemyBoss3.instance()
+					enemy.boss_type = 1 #set boss_type
+				elif EnemyArray[i] == 102:	#EnemyBoss2
+					enemy = EnemyBoss1.instance()
+					enemy.boss_type = 2
+				elif EnemyArray[i] == 103:	#EnemyBoss3
+					enemy = EnemyBoss1.instance()
+					enemy.boss_type = 3
 				elif EnemyArray[i] == 201:	#Powerup, no enemy +1 count
 					enemy = PowerUp.instance()
 					

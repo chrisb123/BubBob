@@ -4,8 +4,8 @@ extends Node
 # var a = 2
 # var b = "textvar"
 
-const start_lives = 1
-
+const start_lives = 0
+var gameover = false #add gameover ability
 var score = 0
 var lives = start_lives
 var leveln = 0
