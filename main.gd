@@ -17,6 +17,12 @@ export (PackedScene) var PowerUp
 export (PackedScene) var GameOver
 export (PackedScene) var File_Main
 
+#Advertising
+export (PackedScene) var AdMob
+
+#Debugging
+export (PackedScene) var Debug
+
 var title
 var player
 var enemy
@@ -43,13 +49,24 @@ func _ready():
 	title = Title.instance()
 	add_child(title)
 	title.connect("start",self,"_start")
-	#var level1 = Level1.instance()
-	#add_child(level1)
-	#var player = Player.instance()
-	#add_child(player)
-	#var gui = GUI.instance()
-	#add_child(gui)
 
+	#Instance Debug Overlay if in Debug
+	if OS.is_debug_build():
+		var debug = Debug.instance()
+		add_child(debug)
+		get_node("/root/Main/Debug")._String1("Debug Mode")
+	
+	#Instance AdMob if available
+	if OS.is_debug_build():
+		get_node("/root/Main/Debug")._String2("AdMob Initializing")
+		get_node("/root/Main/Debug")._String3("AdMob Network OK")
+	if(Engine.has_singleton("AdMob")):
+		var admob = AdMob.instance()
+		add_child(admob)
+		admob._initialize(!OS.is_debug_build())	#CAREFUL, TRUE = real ads delivered
+		if OS.is_debug_build():
+			get_node("/root/Main/Debug")._String2("AdMob Initialized OK")
+		
 func _input(event):
 	if event.is_action_pressed("ui_music"):
 		get_node("Music").playing = !get_node("Music").playing

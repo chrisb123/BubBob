@@ -87,6 +87,8 @@ func _process(delta):
 #--------------- ADRIAN CURRENT TASKS -------------------------
 #
 # - More Power Ups
+# - AdMob Installation
+# - Debug Overlay
 #
 # -------------- CHRIS CURRENT TASKS ---------------------------
 #

@@ -8,6 +8,10 @@
 
 config_version=3
 
+[android]
+
+modules="org/godotengine/godot/GodotAdMob"
+
 [application]
 
 config/name="BubBob"
