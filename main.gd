@@ -50,12 +50,15 @@ func _ready():
 	#var gui = GUI.instance()
 	#add_child(gui)
 
+func _input(event):
+	if event.is_action_pressed("ui_music"):
+		get_node("Music").playing = !get_node("Music").playing
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_music"):
-		get_node("Music").playing = !get_node("Music").playing
+#	if Input.is_action_just_pressed("ui_music"):
+#		get_node("Music").playing = !get_node("Music").playing
 	# If lives gets to zero, or game is completed, delete all enemies and player, restart
-	if Global_Vars.gameover == true or Global_Vars.waven > Global_Vars.MAX_WAVES and Global_Vars.leveln == Global_Vars.MAX_LEVELS:
+	if Global_Vars.gameover == true or ( Global_Vars.waven > Global_Vars.MAX_WAVES and Global_Vars.leveln == Global_Vars.MAX_LEVELS ):
 		#if Global_Vars.lives != 999:
 		gui.queue_free()
 		clear_nodes()

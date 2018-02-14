@@ -38,7 +38,7 @@ func _physics_process(delta):
 		vel.y = 0
 	if is_on_ceiling():
 		vel.y = 0	
-	if Input.is_action_just_pressed("ui_page_down"):
+	if Input.is_action_just_pressed("ui_page_down"): #page down for quit
 		Global_Vars.gameover = true
 	if Input.is_action_just_pressed("ui_page_up"):
 		print("kill all")
