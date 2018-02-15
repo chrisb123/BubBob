@@ -81,6 +81,16 @@ func _String2(string):
 func _String3(string):
 	$CanvasLayer/str3.text = string
 
+func _String(string):
+	$CanvasLayer/str9.text = $CanvasLayer/str8.text
+	$CanvasLayer/str8.text = $CanvasLayer/str7.text
+	$CanvasLayer/str7.text = $CanvasLayer/str6.text
+	$CanvasLayer/str6.text = $CanvasLayer/str5.text
+	$CanvasLayer/str5.text = $CanvasLayer/str4.text
+	$CanvasLayer/str4.text = $CanvasLayer/str3.text
+	$CanvasLayer/str3.text = $CanvasLayer/str2.text
+	$CanvasLayer/str2.text = $CanvasLayer/str1.text
+	$CanvasLayer/str1.text = string
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.

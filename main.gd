@@ -54,22 +54,23 @@ func _ready():
 	if OS.is_debug_build():
 		var debug = Debug.instance()
 		add_child(debug)
-		get_node("/root/Main/Debug")._String1("Debug Mode")
+		get_node("/root/Main/Debug")._String("Debug Mode")
 	
 	#Instance AdMob if available
 	if OS.is_debug_build():
-		get_node("/root/Main/Debug")._String2("AdMob Initializing")
-		get_node("/root/Main/Debug")._String3("AdMob Network OK")
+		get_node("/root/Main/Debug")._String("AdMob Initializing")
+		get_node("/root/Main/Debug")._String("AdMob Network OK")
 	if(Engine.has_singleton("AdMob")):
 		var admob = AdMob.instance()
 		add_child(admob)
 		admob._initialize(!OS.is_debug_build())	#CAREFUL, TRUE = real ads delivered
 		if OS.is_debug_build():
-			get_node("/root/Main/Debug")._String2("AdMob Initialized OK")
+			get_node("/root/Main/Debug")._String("AdMob Initialized OK")
 		
 func _input(event):
 	if event.is_action_pressed("ui_music"):
 		get_node("Music").playing = !get_node("Music").playing
+		get_node("/root/Main/Debug")._String("Toggle music")
 
 #func _process(delta):
 #	if Input.is_action_just_pressed("ui_music"):
@@ -215,7 +216,7 @@ func do_nothing():
 func _on_Enemy_timeout():
 
 	var enemy_count = get_tree().get_nodes_in_group("enemy").size()
-	if enemy_count < max_enemies:
+	if enemy_count < max_enemies and Global_Vars.gameover == false:
 		randomize()
 		var mag = 0
 		var epos = Vector2()

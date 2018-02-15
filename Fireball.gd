@@ -21,8 +21,8 @@ func _on_Area2D_body_entered( body ):
 		
 func _die():
 	linear_velocity = Vector2(0,0)
-	$Area2D.monitoring = false
-	$Area2D.monitorable = false
+	#$Area2D.monitoring = false #not needed and causes error messages
+	#$Area2D.monitorable = false
 	$Area2D/CollisionShape2D.disabled = true
 	$Particles2D.emitting = true
 	$Explosion.playing = true
