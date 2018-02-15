@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Debug.gd" type="Script" id=1]
 
-[node name="Debug" type="Node"]
+[node name="Debug" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -14,7 +14,36 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="str1" type="RichTextLabel" parent="CanvasLayer" index="0"]
+[node name="FPS" type="RichTextLabel" parent="CanvasLayer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 10.0
+margin_top = 50.0
+margin_right = 400.0
+margin_bottom = 90.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+bbcode_enabled = false
+bbcode_text = ""
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = true
+tab_size = 4
+text = ""
+scroll_active = true
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+_sections_unfolded = [ "Margin", "Rect" ]
+
+[node name="str1" type="RichTextLabel" parent="CanvasLayer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -43,7 +72,7 @@ selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "Margin", "Rect" ]
 
-[node name="str2" type="RichTextLabel" parent="CanvasLayer" index="1"]
+[node name="str2" type="RichTextLabel" parent="CanvasLayer" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -72,7 +101,7 @@ selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "Margin" ]
 
-[node name="str3" type="RichTextLabel" parent="CanvasLayer" index="2"]
+[node name="str3" type="RichTextLabel" parent="CanvasLayer" index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -100,7 +129,7 @@ scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 
-[node name="str4" type="RichTextLabel" parent="CanvasLayer" index="3"]
+[node name="str4" type="RichTextLabel" parent="CanvasLayer" index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -128,7 +157,7 @@ scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 
-[node name="str5" type="RichTextLabel" parent="CanvasLayer" index="4"]
+[node name="str5" type="RichTextLabel" parent="CanvasLayer" index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -156,7 +185,7 @@ scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 
-[node name="str6" type="RichTextLabel" parent="CanvasLayer" index="5"]
+[node name="str6" type="RichTextLabel" parent="CanvasLayer" index="6"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -184,7 +213,7 @@ scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 
-[node name="str7" type="RichTextLabel" parent="CanvasLayer" index="6"]
+[node name="str7" type="RichTextLabel" parent="CanvasLayer" index="7"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -212,7 +241,7 @@ scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 
-[node name="str8" type="RichTextLabel" parent="CanvasLayer" index="7"]
+[node name="str8" type="RichTextLabel" parent="CanvasLayer" index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -240,7 +269,7 @@ scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 
-[node name="str9" type="RichTextLabel" parent="CanvasLayer" index="8"]
+[node name="str9" type="RichTextLabel" parent="CanvasLayer" index="9"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -267,5 +296,323 @@ scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "Margin", "Rect" ]
+
+[node name="str10" type="RichTextLabel" parent="CanvasLayer" index="10"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 100.0
+margin_right = 400.0
+margin_bottom = 140.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+bbcode_enabled = false
+bbcode_text = ""
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = true
+tab_size = 4
+text = ""
+scroll_active = true
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+_sections_unfolded = [ "Margin", "Rect" ]
+
+[node name="str11" type="RichTextLabel" parent="CanvasLayer" index="11"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 100.0
+margin_right = 400.0
+margin_bottom = 140.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+bbcode_enabled = false
+bbcode_text = ""
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = true
+tab_size = 4
+text = ""
+scroll_active = true
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+_sections_unfolded = [ "Margin", "Rect" ]
+
+[node name="str12" type="RichTextLabel" parent="CanvasLayer" index="12"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 100.0
+margin_right = 400.0
+margin_bottom = 140.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+bbcode_enabled = false
+bbcode_text = ""
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = true
+tab_size = 4
+text = ""
+scroll_active = true
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+_sections_unfolded = [ "Margin", "Rect" ]
+
+[node name="str13" type="RichTextLabel" parent="CanvasLayer" index="13"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 100.0
+margin_right = 400.0
+margin_bottom = 140.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+bbcode_enabled = false
+bbcode_text = ""
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = true
+tab_size = 4
+text = ""
+scroll_active = true
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+_sections_unfolded = [ "Margin", "Rect" ]
+
+[node name="str14" type="RichTextLabel" parent="CanvasLayer" index="14"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 100.0
+margin_right = 400.0
+margin_bottom = 140.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+bbcode_enabled = false
+bbcode_text = ""
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = true
+tab_size = 4
+text = ""
+scroll_active = true
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+_sections_unfolded = [ "Margin", "Rect" ]
+
+[node name="str15" type="RichTextLabel" parent="CanvasLayer" index="15"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 100.0
+margin_right = 400.0
+margin_bottom = 140.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+bbcode_enabled = false
+bbcode_text = ""
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = true
+tab_size = 4
+text = ""
+scroll_active = true
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+_sections_unfolded = [ "Margin", "Rect" ]
+
+[node name="str16" type="RichTextLabel" parent="CanvasLayer" index="16"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 100.0
+margin_right = 400.0
+margin_bottom = 140.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+bbcode_enabled = false
+bbcode_text = ""
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = true
+tab_size = 4
+text = ""
+scroll_active = true
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+_sections_unfolded = [ "Margin", "Rect" ]
+
+[node name="str17" type="RichTextLabel" parent="CanvasLayer" index="17"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 100.0
+margin_right = 400.0
+margin_bottom = 140.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+bbcode_enabled = false
+bbcode_text = ""
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = true
+tab_size = 4
+text = ""
+scroll_active = true
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+_sections_unfolded = [ "Margin", "Rect" ]
+
+[node name="str18" type="RichTextLabel" parent="CanvasLayer" index="18"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 100.0
+margin_right = 400.0
+margin_bottom = 140.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+bbcode_enabled = false
+bbcode_text = ""
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = true
+tab_size = 4
+text = ""
+scroll_active = true
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+_sections_unfolded = [ "Margin", "Rect" ]
+
+[node name="str19" type="RichTextLabel" parent="CanvasLayer" index="19"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 100.0
+margin_right = 400.0
+margin_bottom = 140.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+bbcode_enabled = false
+bbcode_text = ""
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = true
+tab_size = 4
+text = ""
+scroll_active = true
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+_sections_unfolded = [ "Margin", "Rect" ]
+
+[node name="str20" type="RichTextLabel" parent="CanvasLayer" index="20"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 10.0
+margin_top = 71.0
+margin_right = 410.0
+margin_bottom = 111.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+bbcode_enabled = false
+bbcode_text = ""
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = true
+tab_size = 4
+text = ""
+scroll_active = true
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+_sections_unfolded = [ "Margin", "Rect" ]
+
+[node name="FPS Timer" type="Timer" parent="." index="1"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = true
+
+[connection signal="timeout" from="FPS Timer" to="." method="_on_FPS_Timer_timeout"]
 
 

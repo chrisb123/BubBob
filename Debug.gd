@@ -1,32 +1,17 @@
 extends Node
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
 
-var DebugStr1 = ""
-var DebugStr2 = ""
-var DebugStr3 = ""
-var DebugStr4 = ""
-var DebugStr5 = ""
-var DebugStr6 = ""
-var DebugStr7 = ""
-var DebugStr8 = ""
-var DebugStr9 = ""
+# String 1 - 10 Monitoring variables
+# String 11 - 20 String Stack
 
 var StrOffsetY = 20
 
 func _ready():
-	$CanvasLayer/str1.text = DebugStr1
-	$CanvasLayer/str2.text = DebugStr2
-	$CanvasLayer/str3.text = DebugStr3
-	$CanvasLayer/str4.text = DebugStr4
-	$CanvasLayer/str5.text = DebugStr5
-	$CanvasLayer/str6.text = DebugStr6
-	$CanvasLayer/str7.text = DebugStr7
-	$CanvasLayer/str8.text = DebugStr8
-	$CanvasLayer/str9.text = DebugStr9
-		
+	$CanvasLayer/FPS.margin_top = 50
+	$CanvasLayer/FPS.margin_bottom = 90
+	$CanvasLayer/FPS.margin_left = 10
+	$CanvasLayer/FPS.margin_right = 400
+
 	$CanvasLayer/str1.margin_top = 100
 	$CanvasLayer/str1.margin_bottom = 140
 	$CanvasLayer/str1.margin_left = 10
@@ -72,6 +57,69 @@ func _ready():
 	$CanvasLayer/str9.margin_left = 10
 	$CanvasLayer/str9.margin_right = 400
 
+	$CanvasLayer/str9.margin_top = ($CanvasLayer/str8.margin_top + StrOffsetY)
+	$CanvasLayer/str9.margin_bottom = ($CanvasLayer/str8.margin_bottom + StrOffsetY)
+	$CanvasLayer/str9.margin_left = 10
+	$CanvasLayer/str9.margin_right = 400
+
+	$CanvasLayer/str10.margin_top = ($CanvasLayer/str9.margin_top + StrOffsetY)
+	$CanvasLayer/str10.margin_bottom = ($CanvasLayer/str9.margin_bottom + StrOffsetY)
+	$CanvasLayer/str10.margin_left = 10
+	$CanvasLayer/str10.margin_right = 400
+
+	#Empty Space
+
+	$CanvasLayer/str11.margin_top = ($CanvasLayer/str10.margin_top + (2 * StrOffsetY))
+	$CanvasLayer/str11.margin_bottom = ($CanvasLayer/str10.margin_bottom + (2 * StrOffsetY))
+	$CanvasLayer/str11.margin_left = 10
+	$CanvasLayer/str11.margin_right = 400
+
+	$CanvasLayer/str12.margin_top = ($CanvasLayer/str11.margin_top + StrOffsetY)
+	$CanvasLayer/str12.margin_bottom = ($CanvasLayer/str11.margin_bottom + StrOffsetY)
+	$CanvasLayer/str12.margin_left = 10
+	$CanvasLayer/str12.margin_right = 400
+
+	$CanvasLayer/str13.margin_top = ($CanvasLayer/str12.margin_top + StrOffsetY)
+	$CanvasLayer/str13.margin_bottom = ($CanvasLayer/str12.margin_bottom + StrOffsetY)
+	$CanvasLayer/str13.margin_left = 10
+	$CanvasLayer/str13.margin_right = 400
+
+	$CanvasLayer/str14.margin_top = ($CanvasLayer/str13.margin_top + StrOffsetY)
+	$CanvasLayer/str14.margin_bottom = ($CanvasLayer/str13.margin_bottom + StrOffsetY)
+	$CanvasLayer/str14.margin_left = 10
+	$CanvasLayer/str14.margin_right = 400
+
+	$CanvasLayer/str15.margin_top = ($CanvasLayer/str14.margin_top + StrOffsetY)
+	$CanvasLayer/str15.margin_bottom = ($CanvasLayer/str14.margin_bottom + StrOffsetY)
+	$CanvasLayer/str15.margin_left = 10
+	$CanvasLayer/str15.margin_right = 400
+
+	$CanvasLayer/str16.margin_top = ($CanvasLayer/str15.margin_top + StrOffsetY)
+	$CanvasLayer/str16.margin_bottom = ($CanvasLayer/str15.margin_bottom + StrOffsetY)
+	$CanvasLayer/str16.margin_left = 10
+	$CanvasLayer/str16.margin_right = 400
+
+	$CanvasLayer/str17.margin_top = ($CanvasLayer/str16.margin_top + StrOffsetY)
+	$CanvasLayer/str17.margin_bottom = ($CanvasLayer/str16.margin_bottom + StrOffsetY)
+	$CanvasLayer/str17.margin_left = 10
+	$CanvasLayer/str17.margin_right = 400
+
+	$CanvasLayer/str18.margin_top = ($CanvasLayer/str17.margin_top + StrOffsetY)
+	$CanvasLayer/str18.margin_bottom = ($CanvasLayer/str17.margin_bottom + StrOffsetY)
+	$CanvasLayer/str18.margin_left = 10
+	$CanvasLayer/str18.margin_right = 400
+
+	$CanvasLayer/str19.margin_top = ($CanvasLayer/str18.margin_top + StrOffsetY)
+	$CanvasLayer/str19.margin_bottom = ($CanvasLayer/str18.margin_bottom + StrOffsetY)
+	$CanvasLayer/str19.margin_left = 10
+	$CanvasLayer/str19.margin_right = 400
+
+	$CanvasLayer/str20.margin_top = ($CanvasLayer/str19.margin_top + StrOffsetY)
+	$CanvasLayer/str20.margin_bottom = ($CanvasLayer/str19.margin_bottom + StrOffsetY)
+	$CanvasLayer/str20.margin_left = 10
+	$CanvasLayer/str20.margin_right = 400
+
+
 func _String1(string):
 	$CanvasLayer/str1.text = string
 	
@@ -81,18 +129,43 @@ func _String2(string):
 func _String3(string):
 	$CanvasLayer/str3.text = string
 
+func _String4(string):
+	$CanvasLayer/str4.text = string
+
+func _String5(string):
+	$CanvasLayer/str5.text = string
+
+func _String6(string):
+	$CanvasLayer/str6.text = string
+
+func _String7(string):
+	$CanvasLayer/str7.text = string
+
+func _String8(string):
+	$CanvasLayer/str8.text = string
+
+func _String9(string):
+	$CanvasLayer/str9.text = string
+
+func _String10(string):
+	$CanvasLayer/str10.text = string
+
 func _String(string):
-	$CanvasLayer/str9.text = $CanvasLayer/str8.text
-	$CanvasLayer/str8.text = $CanvasLayer/str7.text
-	$CanvasLayer/str7.text = $CanvasLayer/str6.text
-	$CanvasLayer/str6.text = $CanvasLayer/str5.text
-	$CanvasLayer/str5.text = $CanvasLayer/str4.text
-	$CanvasLayer/str4.text = $CanvasLayer/str3.text
-	$CanvasLayer/str3.text = $CanvasLayer/str2.text
-	$CanvasLayer/str2.text = $CanvasLayer/str1.text
-	$CanvasLayer/str1.text = string
+	$CanvasLayer/str19.text = $CanvasLayer/str18.text
+	$CanvasLayer/str18.text = $CanvasLayer/str17.text
+	$CanvasLayer/str17.text = $CanvasLayer/str16.text
+	$CanvasLayer/str16.text = $CanvasLayer/str15.text
+	$CanvasLayer/str15.text = $CanvasLayer/str14.text
+	$CanvasLayer/str14.text = $CanvasLayer/str13.text
+	$CanvasLayer/str13.text = $CanvasLayer/str12.text
+	$CanvasLayer/str12.text = $CanvasLayer/str11.text
+	$CanvasLayer/str11.text = string
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
 #	pass
+
+func _on_FPS_Timer_timeout():
+	$CanvasLayer/FPS.text = str("FPS ", Engine.get_frames_per_second())
+	pass # replace with function body
