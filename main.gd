@@ -59,14 +59,18 @@ func _ready():
 	#Instance AdMob if available
 	if OS.is_debug_build():
 		get_node("/root/Main/Debug")._String("AdMob Initializing")
-		get_node("/root/Main/Debug")._String("AdMob Network OK")
 	if(Engine.has_singleton("AdMob")):
+		if OS.is_debug_build():
+			get_node("/root/Main/Debug")._String("AdMob Singleton OK")
 		var admob = AdMob.instance()
 		add_child(admob)
 		admob._initialize(!OS.is_debug_build())	#CAREFUL, TRUE = real ads delivered
 		if OS.is_debug_build():
 			get_node("/root/Main/Debug")._String("AdMob Initialized OK")
-		
+	else:
+		if OS.is_debug_build():
+			get_node("/root/Main/Debug")._String("AdMob Singleton NOK")
+
 func _input(event):
 	if event.is_action_pressed("ui_music"):
 		get_node("Music").playing = !get_node("Music").playing

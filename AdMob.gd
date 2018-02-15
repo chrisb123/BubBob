@@ -7,6 +7,13 @@ var adBannerId = "ca-app-pub-3940256099942544/6300978111" # [Replace with your A
 var adInterstitialId = "ca-app-pub-3940256099942544/1033173712" # [Replace with your Ad Unit ID and delete this message.]
 var adRewardedId = "ca-app-pub-3940256099942544/5224354917" # [There is no testing option for rewarded videos, so you can use this id for testing]
 
+# Debug Vars
+
+var BannerStartTime
+var BannerEndTime
+var InterStartTime
+var InterEndTime
+
 func _ready():
 	if(Engine.has_singleton("AdMob")):
 		admob = Engine.get_singleton("AdMob")
@@ -35,11 +42,17 @@ func _initialize(isReal):
 func loadBanner():
 	if admob != null:
 		admob.loadBanner(adBannerId, isTop)
-		admob.showBanner()
+	if OS.is_debug_build():
+		get_node("/root/Main/Debug")._String("AdMob Banner Loading")
+		BannerStartTime = OS.get_unix_time()
+	admob.showBanner() #tesing only, should be called in program proper
 		
 func loadInterstitial():
 	if admob != null:
 		admob.loadInterstitial(adInterstitialId)
+	if OS.is_debug_build():
+		InterStartTime = OS.get_unix_time()
+		get_node("/root/Main/Debug")._String("AdMob Inter Loading")
 		
 #func loadRewardedVideo():
 #	if admob != null:
@@ -62,20 +75,29 @@ func loadInterstitial():
 
 func _on_admob_network_error():
 	if OS.is_debug_build():
-		get_node("/root/Main/Debug")._String3("AdMob Network Error")
+		get_node("/root/Main/Debug")._String("AdMob Network Error")
 
-#func _on_admob_ad_loaded():
+func _on_admob_ad_loaded():
+	if OS.is_debug_build():
+		BannerEndTime = OS.get_unix_time()
+		get_node("/root/Main/Debug")._String(str("Admob Banner Loaded ", BannerEndTime - BannerStartTime, "s"))
+
 #	print("Ad loaded success")
 #	get_node("CanvasLayer/BtnBanner").set_disabled(false)
 
 #func _on_interstitial_not_loaded():
 #	print("Error: Interstitial not loaded")
 
-#func _on_interstitial_loaded():
+func _on_interstitial_loaded():
+	if OS.is_debug_build():
+		InterEndTime = OS.get_unix_time()
+		get_node("/root/Main/Debug")._String(str("Admob Inter Loaded ", InterEndTime - InterStartTime, "s"))
 #	print("Interstitial loaded")
 #	get_node("CanvasLayer/BtnInterstitial").set_disabled(false)
 
-#func _on_interstitial_close():
+func _on_interstitial_close():
+	if OS.is_debug_build():
+		get_node("/root/Main/Debug")._String("Admob Inter Closed")
 #	print("Interstitial closed")
 #	get_node("CanvasLayer/BtnInterstitial").set_disabled(true)
 

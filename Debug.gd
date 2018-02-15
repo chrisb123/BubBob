@@ -2,13 +2,13 @@ extends Node
 
 
 # String 1 - 10 Monitoring variables
-# String 11 - 20 String Stack
+# String 11 - 20 String push stack
 
 var StrOffsetY = 20
 
 func _ready():
-	$CanvasLayer/FPS.margin_top = 50
-	$CanvasLayer/FPS.margin_bottom = 90
+	$CanvasLayer/FPS.margin_top = 70
+	$CanvasLayer/FPS.margin_bottom = 110
 	$CanvasLayer/FPS.margin_left = 10
 	$CanvasLayer/FPS.margin_right = 400
 
