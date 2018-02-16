@@ -118,8 +118,8 @@ anim_loop = false
 _sections_unfolded = [ "Color", "Emission Shape", "Gravity", "Initial Velocity", "Spread" ]
 
 [node name="RigidBody2D" type="RigidBody2D" groups=[
-"enemy1",
 "enemy",
+"enemy1",
 ]]
 
 input_pickable = false
@@ -141,7 +141,7 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Linear" ]
+_sections_unfolded = [ "Collision", "Linear" ]
 Explode = ExtResource( 2 )
 Fireball = ExtResource( 3 )
 enemy_type = null

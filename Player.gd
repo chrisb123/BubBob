@@ -4,6 +4,7 @@ extends KinematicBody2D
 # var a = 2
 var vel = Vector2()
 var SPEED = 1750
+const jump_speed = -525
 var onGround = 0
 signal fired
 var fired = 1
@@ -34,10 +35,7 @@ func _ready():
 
 func _physics_process(delta):
 	rotation_degrees = 0
-	if is_on_floor():
-		vel.y = 0
-	if is_on_ceiling():
-		vel.y = 0	
+
 	if Input.is_action_just_pressed("ui_page_down"): #page down for quit
 		Global_Vars.gameover = true
 	if Input.is_action_just_pressed("ui_page_up"):
@@ -46,14 +44,21 @@ func _physics_process(delta):
 		for i in enemies:
 			print(i)
 			i.get_node("AnimatedSprite").play()
-	if (Input.is_action_pressed("ui_up") || Screen_Up) && is_on_floor():
-		vel.y = -SPEED * delta
-		if vel.y < 425:
-			vel.y = -525
+	
+	if is_on_floor():
+		vel.y = 0
+		if Input.is_action_pressed("ui_up") || Screen_Up:
+			vel.y = jump_speed
+#		vel.y = -SPEED * delta #justify this? why jump at a rate determined by delta
+#		if vel.y < 425: #this makes no sense, if you are trying to jump and your velocity is smashing you into the ground
+#			vel.y = -525 #then jump instead
+	elif is_on_ceiling():
+		vel.y = 0	
 	else:
-		vel.y += delta * 700
-		if vel.y > 1000:
+		vel.y += delta * 700 #decelerate
+		if vel.y > 1000: #max out falling speen
 			vel.y = 1000
+			
 	if Input.is_action_pressed("ui_right") || Screen_Right:
 		facing = 1
 		$AnimatedSprite.flip_h = false
