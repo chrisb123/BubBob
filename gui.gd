@@ -14,25 +14,25 @@ func _ready():
 	var ysize = (get_viewport().get_visible_rect().size.y)
 	$Shoot.margin_right = xsize
 	$Shoot.margin_bottom = ysize
-	$Shoot.margin_left = xsize - xsize * 0.2
-	$Shoot.margin_top = ysize - ysize * 0.2
-	$Jump.margin_right = xsize * 0.2
-	$Jump.margin_bottom = ysize - ysize * 0.1
-	$Jump.margin_left = 0
-	$Jump.margin_top = ysize - ysize * 0.2
-	$Left.margin_right = xsize * 0.1
+	$Shoot.margin_left = xsize - xsize * 0.15
+	$Shoot.margin_top = ysize - ysize * 0.15
+	$Jump.margin_right = xsize
+	$Jump.margin_bottom = ysize - ysize * 0.15
+	$Jump.margin_left = xsize - xsize * 0.15
+	$Jump.margin_top = ysize - ysize * 0.3
+	$Left.margin_right = xsize * 0.15
 	$Left.margin_bottom = ysize
 	$Left.margin_left = 0
-	$Left.margin_top = ysize - ysize * 0.1
-	$Right.margin_right = xsize * 0.2
+	$Left.margin_top = ysize - ysize * 0.15
+	$Right.margin_right = xsize * 0.3
 	$Right.margin_bottom = ysize
-	$Right.margin_left = xsize * 0.1
-	$Right.margin_top = ysize - ysize * 0.1
-	if ! OS.has_virtual_keyboard():
-		$Shoot.hide()
-		$Jump.hide()
-		$Left.hide()
-		$Right.hide()
+	$Right.margin_left = xsize * 0.15
+	$Right.margin_top = ysize - ysize * 0.15
+#	if ! OS.has_virtual_keyboard():
+#		$Shoot.hide()
+#		$Jump.hide()
+#		$Left.hide()
+#		$Right.hide()
 	
 	
 func _process(delta):

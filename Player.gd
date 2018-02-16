@@ -18,20 +18,20 @@ var Screen_Up = 0
 const FIRING_SPEED = 0.15 #0.3 normal
 var screen_xsize
 var screen_ysize
-var scrx10
-var scry10
-var scrx90
-var scry90
+var scrxa
+var scrya
+var scrxb
+var scryb
 
 func _ready():
 	set_process_input(true)
 	$Timer.wait_time = FIRING_SPEED
 	screen_xsize = (get_viewport().get_visible_rect().size.x)
 	screen_ysize = (get_viewport().get_visible_rect().size.y)
-	scrx10 = screen_xsize * 0.10
-	scry10 = screen_ysize * 0.10
-	scrx90 = screen_xsize * 0.90
-	scry90 = screen_ysize * 0.90
+	scrxa = screen_xsize * 0.15
+	scrya = screen_ysize * 0.15
+	scrxb = screen_xsize * 0.85
+	scryb = screen_ysize * 0.85
 
 func _physics_process(delta):
 	rotation_degrees = 0
@@ -177,54 +177,65 @@ func _input(event):
 	
 	if event.get_class() == ("InputEventScreenTouch"):
 		event_pos = event.position #Becuase too many input classes have no position variable, causing a crash
-		if event_pos.x > scrx90 - scrx10 and event_pos.y > scry90 - scry10 && event.is_pressed() == true:
-			Screen_Shoot = 1
+		if event_pos.x > scrxb and event_pos.y > scryb - scrya && event.is_pressed() == true:
+			if event_pos.y > scryb:
+				Screen_Shoot = 1
+				Screen_Up = 0
+			else: 
+				print("up")
+				Screen_Shoot = 0
+				Screen_Up = 1
+		
 		#starts movement with just press, in case player does not drag yet	
-		if event.is_pressed() == true and event_pos.x < scrx10 * 2 and event_pos.y > scry90 - scry10:
-			if event_pos.x < scrx10 and event_pos.y > scry90: 
+		if event.is_pressed() == true and event_pos.x < scrxa * 2 and event_pos.y > scryb:
+			if event_pos.x < scrxa: 
 				print("Left")
 				Screen_Left = 1
 				Screen_Right = 0
-				Screen_Up = 0
-			if event_pos.x > scrx10 and event_pos.y > scry90: 
+			else: 
 				print("right")
 				Screen_Left = 0
 				Screen_Right = 1
-				Screen_Up = 0
-			if event_pos.y < scry90: 
-				print("up")
-				Screen_Left = 0
-				Screen_Right = 0
-				Screen_Up = 1
+				
 			
 	if event.get_class() == ("InputEventScreenTouch") && event.is_pressed() == false:
 		event_pos = event.position #Becuase too many input classes have no position variable, causing a crash
 		if event_pos.x > (screen_xsize / 2):
 			Screen_Shoot = 0
-		if event_pos.x < (screen_xsize / 2): #release occured on left side, so reset movement
+			Screen_Up = 0
+		else: #release occured on left side, so reset movement
 			Screen_Left = 0
 			Screen_Right = 0
-			Screen_Up = 0
 				
 		
 	if event.get_class() == ("InputEventScreenDrag"):
 		event_pos = event.position
 		
-		if event_pos.x < scrx10 * 2 and event_pos.y > scry90 - scry10:
-			if event_pos.x < scrx10 and event_pos.y > scry90: 
+		if event_pos.x > scrxb and event_pos.y > scryb - scrya:
+			if event_pos.y > scryb:
+				Screen_Shoot = 1
+				Screen_Up = 0
+			else: 
+				print("up")
+				Screen_Shoot = 0
+				Screen_Up = 1
+		elif event_pos.x > (screen_xsize / 2):
+			Screen_Shoot = 0
+			Screen_Up = 0
+			
+		
+		#starts movement with just press, in case player does not drag yet	
+		if event_pos.x < scrxa * 2 and event_pos.y > scryb:
+			if event_pos.x < scrxa: 
 				print("Left")
 				Screen_Left = 1
 				Screen_Right = 0
-				Screen_Up = 0
-			if event_pos.x > scrx10 and event_pos.y > scry90: 
+			else: 
 				print("right")
 				Screen_Left = 0
 				Screen_Right = 1
-				Screen_Up = 0
-			if event_pos.y < scry90: 
-				print("up")
-				Screen_Left = 0
-				Screen_Right = 0
-				Screen_Up = 1
-	
+		elif event_pos.x < (screen_xsize / 2):
+			Screen_Left = 0
+			Screen_Right = 0
+		
 
