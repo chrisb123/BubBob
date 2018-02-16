@@ -194,23 +194,23 @@ func _input(event):
 					Screen_Right = 0
 					get_node("/root/Main/Debug")._String2("UP")
 	
-				if angle > 20 && angle < 70:
+				if angle > 45 && angle < 70:
 					Screen_Up = 1
 					Screen_Left = 1
 					Screen_Right = 0
 					get_node("/root/Main/Debug")._String2("UP LEFT")
-				if angle > -10 && angle < 20:
+				if angle > -45 && angle < 20:
 					Screen_Up = 0
 					Screen_Left = 1
 					Screen_Right = 0
 					get_node("/root/Main/Debug")._String2("LEFT")
 					
-				if angle > 110 && angle < 160:
+				if angle > 110 && angle < 135:
 					Screen_Up = 1
 					Screen_Left = 0
 					Screen_Right = 1
 					get_node("/root/Main/Debug")._String2("UP RIGHT")
-				if angle > 160 && angle < 190:
+				if angle > 135 && angle < 225:
 					Screen_Up = 0
 					Screen_Left = 0
 					Screen_Right = 1

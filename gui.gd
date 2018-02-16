@@ -43,11 +43,11 @@ func _process(delta):
 	lives.text = str("Lives: " + str(Global_Vars.lives))
 	level.text = str("Level " + str(Global_Vars.leveln))
 	
-	if Global_Vars.leveln != leveln_backup:
-		leveln_backup = Global_Vars.leveln
-		level.visible = true
-		$Level/Level_Change.interpolate_property($Level, 'rect_scale', $Level.get_scale(), Vector2(3,3) , 2, Tween.TRANS_QUAD, Tween.EASE_OUT)
-		$Level/Level_Change.start()
+	#if Global_Vars.leveln != leveln_backup:
+	#	leveln_backup = Global_Vars.leveln
+	#	level.visible = true
+	#	$Level/Level_Change.interpolate_property($Level, 'rect_scale', $Level.get_scale(), Vector2(3,3) , 2, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	#	$Level/Level_Change.start()
 		
 
 func _on_Level_Change_tween_completed( object, key ):

@@ -135,6 +135,11 @@ func _input(event):
 #				i += i
 			
 func _load_level():
+	if(Engine.has_singleton("AdMob")):
+		get_node("/root/Main/AdMob")._LoadingScreen_Interstital()
+		
+		yield(get_node("/root/Main/AdMob"),"LoadScreen_Finished")
+		
 	Global_Vars.waven = 1
 	print("loading level ",Global_Vars.leveln)
 	var resource = load("res://levels/level"+str(Global_Vars.leveln)+".tscn")
@@ -157,6 +162,8 @@ func _load_level():
 func _start():
 	#change to is title exists then remove
 	remove_child(title)
+	if(Engine.has_singleton("AdMob")):
+		get_node("/root/Main/AdMob")._hide_banner()
 	Global_Vars.leveln = 1
 	Global_Vars.waven = 1
 	_load_level()
@@ -175,9 +182,9 @@ func _start():
 	gui = GUI.instance()
 	$GUI_Layer.add_child(gui)
 	#not final location for Powerup Spawn, only testing here
-	var powerup = PowerUp.instance()
-	powerup.position = Vector2(600,100)
-	add_child(powerup)
+	#var powerup = PowerUp.instance()
+	#powerup.position = Vector2(600,100)
+	#add_child(powerup)
 	
 
 func clear_nodes():

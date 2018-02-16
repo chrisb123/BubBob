@@ -1,5 +1,7 @@
 extends Node
 
+signal LoadScreen_Finished
+
 var admob = null
 var isReal = false
 var isTop = true
@@ -45,7 +47,7 @@ func loadBanner():
 	if OS.is_debug_build():
 		get_node("/root/Main/Debug")._String("AdMob Banner Loading")
 		BannerStartTime = OS.get_unix_time()
-	admob.showBanner() #tesing only, should be called in program proper
+	#admob.showBanner() #tesing only, should be called in program proper
 		
 func loadInterstitial():
 	if admob != null:
@@ -60,10 +62,9 @@ func loadInterstitial():
 
 # Events
 
-#func _on_BtnBanner_toggled(pressed):
-#	if admob != null:
-#		if pressed: admob.showBanner()
-#		else: admob.hideBanner()
+func _hide_banner():
+	if admob != null:
+		admob.hideBanner()
 
 #func _on_BtnInterstitial_pressed():
 #	if admob != null:
@@ -95,9 +96,16 @@ func _on_interstitial_loaded():
 #	print("Interstitial loaded")
 #	get_node("CanvasLayer/BtnInterstitial").set_disabled(false)
 
+func _LoadingScreen_Interstital():
+	yield(get_tree().create_timer(1),"timeout")
+	admob.showInterstitial()
+	if OS.is_debug_build():
+		get_node("/root/Main/Debug")._String("AdMob Inter Shown")
+
 func _on_interstitial_close():
 	if OS.is_debug_build():
 		get_node("/root/Main/Debug")._String("Admob Inter Closed")
+	emit_signal("LoadScreen_Finished")
 #	print("Interstitial closed")
 #	get_node("CanvasLayer/BtnInterstitial").set_disabled(true)
 
