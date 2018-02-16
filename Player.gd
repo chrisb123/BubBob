@@ -22,6 +22,8 @@ var scrxa
 var scrya
 var scrxb
 var scryb
+var joypad_eventid = null
+var shoot_eventid = null
 
 func _ready():
 	set_process_input(true)
@@ -166,16 +168,84 @@ func _on_Invincible_Flash_timeout():
 		
 func _input(event):
 
+#JOY PAD	
+
+	#Record index of only first touch inside joypad
+	if event.get_class() == ("InputEventScreenTouch") && joypad_eventid == null:
+		if event.position.distance_to(Vector2(616,623)) < 300:
+			joypad_eventid = event.get_index()	
+
+	#check screen touch release for IDX. if same set EventID to null
+	if event.get_class() == ("InputEventScreenTouch") && event.get_index() == joypad_eventid && !event.pressed:
+		joypad_eventid = null
+		Screen_Up = 0
+		Screen_Left = 0
+		Screen_Right = 0
+		get_node("/root/Main/Debug")._String2("NOT TOUCHED")
+
+	#If touched or dragging, check index and alter movement if drag IDX is same as touch IDX. else ignore.
+	if (event.get_class() == ("InputEventScreenTouch") || event.get_class() == ("InputEventScreenDrag")) && joypad_eventid == event.get_index():
+			if event.position.distance_to(Vector2(616,623)) < 300 && event.position.distance_to(Vector2(616,623)) > 40:
+				var angle = rad2deg(Vector2(616,623).angle_to_point(event.position))
+
+				if angle > 70 && angle < 110:
+					Screen_Up = 1
+					Screen_Left = 0
+					Screen_Right = 0
+					get_node("/root/Main/Debug")._String2("UP")
+	
+				if angle > 20 && angle < 70:
+					Screen_Up = 1
+					Screen_Left = 1
+					Screen_Right = 0
+					get_node("/root/Main/Debug")._String2("UP LEFT")
+				if angle > -10 && angle < 20:
+					Screen_Up = 0
+					Screen_Left = 1
+					Screen_Right = 0
+					get_node("/root/Main/Debug")._String2("LEFT")
+					
+				if angle > 110 && angle < 160:
+					Screen_Up = 1
+					Screen_Left = 0
+					Screen_Right = 1
+					get_node("/root/Main/Debug")._String2("UP RIGHT")
+				if angle > 160 && angle < 190:
+					Screen_Up = 0
+					Screen_Left = 0
+					Screen_Right = 1
+					get_node("/root/Main/Debug")._String2("RIGHT")
+			else:
+				Screen_Up = 0
+				Screen_Left = 0
+				Screen_Right = 0
+				get_node("/root/Main/Debug")._String2("OFF KEYPAD")
+				
+#Shoot Bubbles
+	#Set index only on first tough
+	if event.get_class() == ("InputEventScreenTouch") && shoot_eventid == null:
+		if event.position.x > scrxb && event.position.y > scryb:
+			Screen_Shoot = 1
+			shoot_eventid = event.get_index()
+
+	#Rest index and stop shooting upon touch release
+	if event.get_class() == ("InputEventScreenTouch") && shoot_eventid == event.get_index() && !event.pressed:
+		Screen_Shoot = 0
+		shoot_eventid = null
+	
+	
+	
+
 	#Bad idea to process constants in a loop, also no longer needed
 	#var ShootButton = Vector2(screen_xsize * 0.90, screen_ysize * 0.90) # somewhere on lower left
 	#var CentreButton =  Vector2(screen_xsize * 0.10, screen_ysize * 0.90) # somewhere on lower right
 	#var LeftButton = CentreButton + Vector2(-50,0)
 	#var RightButton = CentreButton + Vector2(50,0)
 	#var UpButton = CentreButton + Vector2(0,-50)
-	var event_pos = Vector2()
+	#var event_pos = Vector2()
 	#print(event.get_class())
 	
-	if event.get_class() == ("InputEventScreenTouch"):
+"""	if event.get_class() == ("InputEventScreenTouch"):
 		event_pos = event.position #Becuase too many input classes have no position variable, causing a crash
 		if event_pos.x > scrxb and event_pos.y > scryb - scrya && event.is_pressed() == true:
 			if event_pos.y > scryb:
@@ -237,5 +307,7 @@ func _input(event):
 		elif event_pos.x < (screen_xsize / 2):
 			Screen_Left = 0
 			Screen_Right = 0
+			
+"""
 		
 

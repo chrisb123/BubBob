@@ -28,6 +28,9 @@ func _ready():
 	$Right.margin_bottom = ysize
 	$Right.margin_left = xsize * 0.15
 	$Right.margin_top = ysize - ysize * 0.15
+	
+	$JoyPad.rect_position.x = 600
+	$JoyPad.rect_position.x = 600
 #	if ! OS.has_virtual_keyboard():
 #		$Shoot.hide()
 #		$Jump.hide()

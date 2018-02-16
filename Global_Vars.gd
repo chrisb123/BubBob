@@ -67,29 +67,38 @@ func _process(delta):
 	pass
 
 
+"""
+-------------------------------------------------------------
+TO DO LIST  -  add ideas, task etc here
+-------------------------------------------------------------
 
-#-------------------------------------------------------------
-#TO DO LIST  -  add ideas, task etc here
-#-------------------------------------------------------------
+ --------------------  IDEAS --------------------------------
 
-# --------------------  IDEAS --------------------------------
-#
-# - quit button for android while playing
-# - implement Advertising (Splash screen before level start, or constant banner while playing)
-# - balance monster waves
-# - Change lives to unlimited but reduce score
-# - Change poping bubble combos and emey to a higher score
-# - Change enemy score to be higher
-# 
-#---------------------- BUGS ----------------------------------
-#
-#
-#--------------- ADRIAN CURRENT TASKS -------------------------
-#
-# - More Power Ups
-# - AdMob Installation
-# - Debug Overlay
-#
-# -------------- CHRIS CURRENT TASKS ---------------------------
-#
-# --------------------------------------------------------------
+ - quit button for android while playing
+ - implement Advertising (Splash screen before level start, or constant banner while playing)
+ - balance monster waves
+ - Change lives to unlimited but reduce score
+ - Change poping bubble combos and emey to a higher score
+ - Change enemy score to be higher
+ 
+----------------------- NOTES ----------------------------------
+
+- I did some multitouch tests on android, godot connects touch idx and drag idx
+even with multiple fingers touching at same time
+- joypad is centred around X "button"
+- small deadspace just around the X, joypad has range of about 150 pixels
+- Joypad position currently fixed, will make dynamic later, if better than buttons.
+
+---------------------- BUGS ----------------------------------
+
+
+--------------- ADRIAN CURRENT TASKS -------------------------
+
+ - More Power Ups
+ - AdMob Installation
+ - Debug Overlay
+
+ -------------- CHRIS CURRENT TASKS ---------------------------
+
+ --------------------------------------------------------------
+"""

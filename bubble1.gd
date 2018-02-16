@@ -68,6 +68,7 @@ func killbub(pk):
 			if item.is_in_group("bubble") || item.is_in_group("enemy"):
 				item.killbub(pk)
 		$CollisionShape2D.disabled = true
+		$Area2D/CollisionShape2D.disabled = true
 		$Sprite.hide()
 		linear_damp = 10
 		#var anim = data.find_node("AnimatedSprite")AnimatedSprite
