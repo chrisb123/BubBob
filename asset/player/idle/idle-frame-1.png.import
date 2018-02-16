@@ -6,7 +6,11 @@ path="res://.import/idle-frame-1.png-762fe0e5aa34a8058d4be1c85781c99c.stex"
 
 [deps]
 
-source_md5="0f89b82b5644b9d9d5a528dc0279cbf3"
+source_file="res://asset/player/idle/idle-frame-1.png"
+source_md5="bb004834df907f5c2ed25e7046c79aca"
+
+dest_files=[ "res://.import/idle-frame-1.png-762fe0e5aa34a8058d4be1c85781c99c.stex" ]
+dest_md5="52639bfce91fc326b9791bc62dc37067"
 
 [params]
 

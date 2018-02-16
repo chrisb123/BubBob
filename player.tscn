@@ -4,8 +4,8 @@
 [ext_resource path="res://asset/human-male-base.png" type="Texture" id=2]
 [ext_resource path="res://asset/player/idle/idle-frame-1.png" type="Texture" id=3]
 [ext_resource path="res://asset/player/idle/idle-frame-2.png" type="Texture" id=4]
-[ext_resource path="res://asset/player/jump/jump_fall.png" type="Texture" id=5]
-[ext_resource path="res://asset/player/jump/jump_up.png" type="Texture" id=6]
+[ext_resource path="res://asset/player/jump/jump_up.png" type="Texture" id=5]
+[ext_resource path="res://asset/player/jump/jump_fall.png" type="Texture" id=6]
 [ext_resource path="res://asset/player/running/run-frame-1.png" type="Texture" id=7]
 [ext_resource path="res://asset/player/running/run-frame-2.png" type="Texture" id=8]
 [ext_resource path="res://asset/player/running/run-frame-3.png" type="Texture" id=9]
@@ -35,12 +35,12 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
-"name": "fall",
+"name": "jump",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
-"name": "jump",
+"name": "fall",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
@@ -55,7 +55,7 @@ custom_solver_bias = 0.0
 radius = 15.7876
 height = 22.1018
 
-[node name="Player" type="KinematicBody2D" index="0" groups=[
+[node name="Player" type="KinematicBody2D" groups=[
 "player",
 ]]
 
@@ -122,7 +122,6 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="3"]
 
-scale = Vector2( 0.075, 0.075 )
 frames = SubResource( 2 )
 animation = "idle"
 playing = true

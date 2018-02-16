@@ -6,7 +6,11 @@ path="res://.import/spritesheet_players.png-0fafdbe172df81cac27d75061b7ded56.ste
 
 [deps]
 
+source_file="res://asset/spritesheet_players.png"
 source_md5="4633ac0fa3264b4c5c064732d29c39e5"
+
+dest_files=[ "res://.import/spritesheet_players.png-0fafdbe172df81cac27d75061b7ded56.stex" ]
+dest_md5="e23e7aeaf889cf5227847198ae8d9592"
 
 [params]
 

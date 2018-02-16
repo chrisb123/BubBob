@@ -196,7 +196,7 @@ shape = SubResource( 1 )
 [node name="Move_Timer" type="Timer" parent="." index="3"]
 
 process_mode = 1
-wait_time = 0.25
+wait_time = 0.5
 one_shot = false
 autostart = true
 

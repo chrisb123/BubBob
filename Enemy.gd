@@ -21,6 +21,7 @@ var score_for_killing
 #initialise scene depending on enemy_type
 # - Need to add in different speeds and other changes to make enemies different
 func _ready():
+	randomize()
 	if enemy_type == 1:
 		$Enemy.region_rect = Rect2(0,0,80,100)
 		score_for_killing = Global_Vars.score_enemy1
@@ -99,7 +100,7 @@ func _on_RigidBody2D_body_entered( body ):
 
 func _on_Move_Timer_timeout():
 #Randomize Enemy direction and speed every timeout
-	randomize()
+	
 	var temp = randi()%2
 	if temp == 1:
 		vel.x = randi()%MAX_SPEED
@@ -122,7 +123,7 @@ func _on_Move_Timer_timeout():
 	if _in_bubble == false:
 		#linear_velocity.x = vel.x
 		#linear_velocity.y = vel.y
-		$Enemy/Move.interpolate_property(self, 'linear_velocity', linear_velocity, Vector2(vel.x,vel.y), 0.25, Tween.TRANS_QUAD, Tween.EASE_OUT)
+		$Enemy/Move.interpolate_property(self, 'linear_velocity', linear_velocity, Vector2(vel.x,vel.y), 0.25, Tween.TRANS_LINEAR, Tween.EASE_IN)
 		$Enemy/Move.start()
 	
 

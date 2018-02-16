@@ -33,14 +33,16 @@ func _on_Life_timeout():
 	#If bubble life times out it should die and not take out every bubble with it
 	$pop.interpolate_property($Sprite, 'scale', $Sprite.get_scale(), Vector2(1.5,1.5) , pop_time, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$pop.start()
-	$pop/pop_time.start()
+	$Sprite/AnimationPlayer.play("Flicker")
+#	$pop/pop_time.start()
 	$Pop_Bubble.volume_db = -(randi()%20) - 10
 	#queue_free()
 
 func _on_pop_tween_completed( object, key ):
 	$Pop_Bubble.play()
-	$pop/pop_time.stop()
-	$Sprite.hide()
+	#$pop/pop_time.stop()
+	$Sprite/AnimationPlayer.stop()
+	$Sprite.visible = false
 	$CollisionShape2D.disabled = true
 	$Particles.emitting = true
 
@@ -56,10 +58,6 @@ func _on_pop_time_timeout():
 
 func _on_Float_timeout():
 	gravity_scale = -1
-
-func _on_AnimatedSprite_animation_finished():
-	get_colliding_bodies()
-	queue_free()
 
 #pk, true if player popped the bubbles
 func killbub(pk):

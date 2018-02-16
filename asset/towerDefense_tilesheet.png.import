@@ -6,7 +6,11 @@ path="res://.import/towerDefense_tilesheet.png-32f8da2d876371732e461d3866f17baa.
 
 [deps]
 
+source_file="res://asset/towerDefense_tilesheet.png"
 source_md5="ed9b168ac272e560c9fe2563f60c46a2"
+
+dest_files=[ "res://.import/towerDefense_tilesheet.png-32f8da2d876371732e461d3866f17baa.stex" ]
+dest_md5="a0e205a1b7ec6af3ef33965e94b5576a"
 
 [params]
 

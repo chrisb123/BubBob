@@ -2,9 +2,27 @@
 
 [ext_resource path="res://bubble1.gd" type="Script" id=1]
 [ext_resource path="res://asset/bubble.png" type="Texture" id=2]
-[ext_resource path="res://Explosion.tscn" type="PackedScene" id=3]
-[ext_resource path="res://sounds/bubble.wav" type="AudioStream" id=4]
-[ext_resource path="res://sounds/pop.wav" type="AudioStream" id=5]
+[ext_resource path="res://sounds/bubble.wav" type="AudioStream" id=3]
+[ext_resource path="res://sounds/pop.wav" type="AudioStream" id=4]
+
+[sub_resource type="Animation" id=4]
+
+resource_name = "Flicker"
+length = 0.1
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -56,7 +74,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Emission Shape", "Gravity", "Initial Velocity", "Spread" ]
 
-[node name="Bubble" type="RigidBody2D" groups=[
+[node name="Bubble" type="RigidBody2D" index="0" groups=[
 "bubble",
 ]]
 
@@ -79,13 +97,13 @@ linear_damp = 0.75
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Linear", "Transform" ]
+_sections_unfolded = [ "Applied Forces", "Collision", "Linear", "Transform" ]
 facing = null
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Transform", "Visibility" ]
+_sections_unfolded = [ "Animation", "Transform", "Visibility" ]
 
 [node name="Grow" type="Tween" parent="Sprite" index="0"]
 
@@ -96,28 +114,37 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="AnimatedSprite" parent="." index="1" instance=ExtResource( 3 )]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite" index="1"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/Flicker = SubResource( 4 )
+blend_times = [  ]
+_sections_unfolded = [ "Playback Options" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Life" type="Timer" parent="." index="3"]
+[node name="Life" type="Timer" parent="." index="2"]
 
 process_mode = 1
 wait_time = 5.0
 one_shot = false
 autostart = false
 
-[node name="Float" type="Timer" parent="." index="4"]
+[node name="Float" type="Timer" parent="." index="3"]
 
 process_mode = 1
 wait_time = 0.5
 one_shot = true
 autostart = true
 
-[node name="Area2D" type="Area2D" parent="." index="5" groups=[
+[node name="Area2D" type="Area2D" parent="." index="4" groups=[
 "bubble_area",
 ]]
 
@@ -135,7 +162,7 @@ _sections_unfolded = [ "Collision" ]
 position = Vector2( 0, -1 )
 shape = SubResource( 2 )
 
-[node name="pop" type="Tween" parent="." index="6"]
+[node name="pop" type="Tween" parent="." index="5"]
 
 repeat = false
 playback_process_mode = 1
@@ -152,7 +179,7 @@ wait_time = 0.05
 one_shot = false
 autostart = false
 
-[node name="Particles" type="Particles2D" parent="." index="7"]
+[node name="Particles" type="Particles2D" parent="." index="6"]
 
 emitting = false
 amount = 20
@@ -174,17 +201,17 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Process Material", "Time" ]
 
-[node name="Blow_Bubble" type="AudioStreamPlayer" parent="." index="8"]
+[node name="Blow_Bubble" type="AudioStreamPlayer" parent="." index="7"]
 
-stream = ExtResource( 4 )
+stream = ExtResource( 3 )
 volume_db = -10.0
 autoplay = true
 mix_target = 0
 bus = "Master"
 
-[node name="Pop_Bubble" type="AudioStreamPlayer" parent="." index="9"]
+[node name="Pop_Bubble" type="AudioStreamPlayer" parent="." index="8"]
 
-stream = ExtResource( 5 )
+stream = ExtResource( 4 )
 volume_db = 0.0
 autoplay = false
 mix_target = 0

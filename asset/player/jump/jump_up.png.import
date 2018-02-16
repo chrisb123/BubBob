@@ -6,7 +6,11 @@ path="res://.import/jump_up.png-b8bc6a5d1c72470b63e472376547e070.stex"
 
 [deps]
 
-source_md5="174fc01efbf8d01e236746bc222f6760"
+source_file="res://asset/player/jump/jump_up.png"
+source_md5="82eb6d99fb5277ed26721704f3bcea77"
+
+dest_files=[ "res://.import/jump_up.png-b8bc6a5d1c72470b63e472376547e070.stex" ]
+dest_md5="5b80a5e26af465e23b4b9a7ae820e154"
 
 [params]
 

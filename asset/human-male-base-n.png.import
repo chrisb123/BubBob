@@ -6,7 +6,11 @@ path="res://.import/human-male-base-n.png-9e06bc6ca732df9aae61ea8b688a0fe7.stex"
 
 [deps]
 
+source_file="res://asset/human-male-base-n.png"
 source_md5="8b4e22ac76b432e0bd123661a84ad48a"
+
+dest_files=[ "res://.import/human-male-base-n.png-9e06bc6ca732df9aae61ea8b688a0fe7.stex" ]
+dest_md5="f46df6dff970d6dfc7b92d194e5c12fc"
 
 [params]
 

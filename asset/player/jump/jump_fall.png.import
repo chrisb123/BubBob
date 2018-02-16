@@ -6,7 +6,11 @@ path="res://.import/jump_fall.png-ce807025f3543aabb48f52593e561719.stex"
 
 [deps]
 
-source_md5="e5b5f1a716f7982bee99463fdfb862dd"
+source_file="res://asset/player/jump/jump_fall.png"
+source_md5="402dc21368033d57def89901ffb63073"
+
+dest_files=[ "res://.import/jump_fall.png-ce807025f3543aabb48f52593e561719.stex" ]
+dest_md5="c33df7673cd166ec6186b1c24d546b9a"
 
 [params]
 

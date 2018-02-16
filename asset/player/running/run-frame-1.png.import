@@ -6,7 +6,11 @@ path="res://.import/run-frame-1.png-414618a3ac1f8bab77752030e9fefd71.stex"
 
 [deps]
 
-source_md5="d0be19ce81c74b0c3b81b3eff391985e"
+source_file="res://asset/player/running/run-frame-1.png"
+source_md5="db4874f67924fd79635b0e6999d44c48"
+
+dest_files=[ "res://.import/run-frame-1.png-414618a3ac1f8bab77752030e9fefd71.stex" ]
+dest_md5="5c90c5eff5b2ee287461d79e85faf52a"
 
 [params]
 
