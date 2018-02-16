@@ -28,6 +28,11 @@ func _ready():
 	$Right.margin_bottom = ysize
 	$Right.margin_left = xsize * 0.1
 	$Right.margin_top = ysize - ysize * 0.1
+	if ! OS.has_virtual_keyboard():
+		$Shoot.hide()
+		$Jump.hide()
+		$Left.hide()
+		$Right.hide()
 	
 	
 func _process(delta):
