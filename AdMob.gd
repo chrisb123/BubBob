@@ -9,6 +9,11 @@ var adBannerId = "ca-app-pub-3940256099942544/6300978111" # [Replace with your A
 var adInterstitialId = "ca-app-pub-3940256099942544/1033173712" # [Replace with your Ad Unit ID and delete this message.]
 var adRewardedId = "ca-app-pub-3940256099942544/5224354917" # [There is no testing option for rewarded videos, so you can use this id for testing]
 
+# Ad States
+
+var inter_ready = false
+var banner_ready = false
+
 # Debug Vars
 
 var BannerStartTime
@@ -51,6 +56,7 @@ func loadBanner():
 		
 func loadInterstitial():
 	if admob != null:
+		inter_ready = false
 		admob.loadInterstitial(adInterstitialId)
 	if OS.is_debug_build():
 		InterStartTime = OS.get_unix_time()
@@ -82,22 +88,22 @@ func _on_admob_ad_loaded():
 	if OS.is_debug_build():
 		BannerEndTime = OS.get_unix_time()
 		get_node("/root/Main/Debug")._String(str("Admob Banner Loaded ", BannerEndTime - BannerStartTime, "s"))
+		BannerStartTime = OS.get_unix_time()
 
-#	print("Ad loaded success")
-#	get_node("CanvasLayer/BtnBanner").set_disabled(false)
-
-#func _on_interstitial_not_loaded():
-#	print("Error: Interstitial not loaded")
+func _on_interstitial_not_loaded():
+	if OS.is_debug_build():
+		get_node("/root/Main/Debug")._String("AdMob Inter Load Error")
+	yield(get_tree().create_timer(5),"timeout")
+	loadInterstitial()
 
 func _on_interstitial_loaded():
+	if admob != null:
+		inter_ready = true
 	if OS.is_debug_build():
 		InterEndTime = OS.get_unix_time()
 		get_node("/root/Main/Debug")._String(str("Admob Inter Loaded ", InterEndTime - InterStartTime, "s"))
-#	print("Interstitial loaded")
-#	get_node("CanvasLayer/BtnInterstitial").set_disabled(false)
 
-func _LoadingScreen_Interstital():
-	yield(get_tree().create_timer(1),"timeout")
+func _show_interstital():
 	admob.showInterstitial()
 	if OS.is_debug_build():
 		get_node("/root/Main/Debug")._String("AdMob Inter Shown")
@@ -105,9 +111,10 @@ func _LoadingScreen_Interstital():
 func _on_interstitial_close():
 	if OS.is_debug_build():
 		get_node("/root/Main/Debug")._String("Admob Inter Closed")
+		get_node("/root/Main/Debug")._String("AdMob Inter Loading")
+		InterStartTime = OS.get_unix_time()
 	emit_signal("LoadScreen_Finished")
-#	print("Interstitial closed")
-#	get_node("CanvasLayer/BtnInterstitial").set_disabled(true)
+	#loadInterstitial() #Closing internally automatically starts loadinterstitional()
 
 #func _on_rewarded_video_ad_loaded():
 #	print("Rewarded loaded success")
@@ -124,8 +131,8 @@ func _on_interstitial_close():
 
 # Resize
 
-#func onResize():
-#	if admob != null:
-#		admob.resize()
+func onResize():
+	if admob != null:
+		admob.resize()
 
 

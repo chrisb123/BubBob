@@ -15,13 +15,14 @@ var Screen_Shoot = 0
 var Screen_Left = 0
 var Screen_Right = 0
 var Screen_Up = 0
-const FIRING_SPEED = 0.15 #0.3 normal
+const FIRING_SPEED = 0.2 #0.3 normal
 var screen_xsize
 var screen_ysize
 var scrxa
 var scrya
 var scrxb
 var scryb
+
 var joypad_eventid = null
 var shoot_eventid = null
 
@@ -176,7 +177,7 @@ func _input(event):
 			joypad_eventid = event.get_index()	
 
 	#check screen touch release for IDX. if same set EventID to null
-	if event.get_class() == ("InputEventScreenTouch") && event.get_index() == joypad_eventid && !event.pressed:
+	elif event.get_class() == ("InputEventScreenTouch") && event.get_index() == joypad_eventid && !event.pressed:
 		joypad_eventid = null
 		Screen_Up = 0
 		Screen_Left = 0
@@ -184,42 +185,50 @@ func _input(event):
 		get_node("/root/Main/Debug")._String2("NOT TOUCHED")
 
 	#If touched or dragging, check index and alter movement if drag IDX is same as touch IDX. else ignore.
-	if (event.get_class() == ("InputEventScreenTouch") || event.get_class() == ("InputEventScreenDrag")) && joypad_eventid == event.get_index():
+	elif (event.get_class() == ("InputEventScreenTouch") || event.get_class() == ("InputEventScreenDrag")) && joypad_eventid == event.get_index():
 			if event.position.distance_to(Vector2(616,623)) < 300 && event.position.distance_to(Vector2(616,623)) > 40:
 				var angle = rad2deg(Vector2(616,623).angle_to_point(event.position))
+				if OS.is_debug_build():
+					get_node("/root/Main/Debug")._String3(str(angle))
 
 				if angle > 70 && angle < 110:
 					Screen_Up = 1
 					Screen_Left = 0
 					Screen_Right = 0
-					get_node("/root/Main/Debug")._String2("UP")
+					if OS.is_debug_build():
+						get_node("/root/Main/Debug")._String2("UP")
 	
-				if angle > 45 && angle < 70:
+				elif angle > 45 && angle < 70:
 					Screen_Up = 1
 					Screen_Left = 1
 					Screen_Right = 0
-					get_node("/root/Main/Debug")._String2("UP LEFT")
-				if angle > -45 && angle < 20:
+					if OS.is_debug_build():
+						get_node("/root/Main/Debug")._String2("UP LEFT")
+				elif angle > -45 && angle < 20:
 					Screen_Up = 0
 					Screen_Left = 1
 					Screen_Right = 0
-					get_node("/root/Main/Debug")._String2("LEFT")
+					if OS.is_debug_build():
+						get_node("/root/Main/Debug")._String2("LEFT")
 					
-				if angle > 110 && angle < 135:
+				elif angle > 110 && angle < 135:
 					Screen_Up = 1
 					Screen_Left = 0
 					Screen_Right = 1
-					get_node("/root/Main/Debug")._String2("UP RIGHT")
-				if angle > 135 && angle < 225:
+					if OS.is_debug_build():
+						get_node("/root/Main/Debug")._String2("UP RIGHT")
+				elif angle > 135 && angle < 180 || angle > -180 && angle < -135: #Angle (0 - 180 degrees CW and 0 - -180 degrees CCW)
 					Screen_Up = 0
 					Screen_Left = 0
 					Screen_Right = 1
-					get_node("/root/Main/Debug")._String2("RIGHT")
+					if OS.is_debug_build():
+						get_node("/root/Main/Debug")._String2("RIGHT")
 			else:
 				Screen_Up = 0
 				Screen_Left = 0
 				Screen_Right = 0
-				get_node("/root/Main/Debug")._String2("OFF KEYPAD")
+				if OS.is_debug_build():
+					get_node("/root/Main/Debug")._String2("OFF KEYPAD")
 				
 #Shoot Bubbles
 	#Set index only on first tough
@@ -229,7 +238,7 @@ func _input(event):
 			shoot_eventid = event.get_index()
 
 	#Rest index and stop shooting upon touch release
-	if event.get_class() == ("InputEventScreenTouch") && shoot_eventid == event.get_index() && !event.pressed:
+	elif event.get_class() == ("InputEventScreenTouch") && shoot_eventid == event.get_index() && !event.pressed:
 		Screen_Shoot = 0
 		shoot_eventid = null
 	

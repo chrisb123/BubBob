@@ -135,10 +135,20 @@ func _input(event):
 #				i += i
 			
 func _load_level():
+	
+	#Show Interstital ADs if available
 	if(Engine.has_singleton("AdMob")):
-		get_node("/root/Main/AdMob")._LoadingScreen_Interstital()
-		
-		yield(get_node("/root/Main/AdMob"),"LoadScreen_Finished")
+		if get_node("/root/Main/AdMob").inter_ready:
+			#Show Loading Screen here
+			yield(get_tree().create_timer(1),"timeout")
+			get_node("/root/Main/AdMob")._show_interstital()
+			yield(get_node("/root/Main/AdMob"),"LoadScreen_Finished") #emitted when ad closed
+			#remove loading screen
+		else:
+			#Show loading screen here
+			get_node("/root/Main/AdMob").loadInterstitial() #try reloading interstital for next LVL change
+			yield(get_tree().create_timer(5),"timeout") #Fake loading time, avoids turning off network to skip ads
+			#remove loading Screen
 		
 	Global_Vars.waven = 1
 	print("loading level ",Global_Vars.leveln)
