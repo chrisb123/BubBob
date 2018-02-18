@@ -9,14 +9,15 @@ var dying = false
 var player_pushing = false
 const LIFE_TIME = 10
 const pop_time = 0.25
+const sprite_size = Vector2(0.075,0.075)	#(0.1 0.1) with new bubble - (1,1) with old bubble
 
 func _ready():
 	$Life.wait_time = LIFE_TIME
 	$Life.start()
 	#linear_velocity.x = velocity * facing
 	apply_impulse(Vector2(),Vector2(velocity * facing,0))
-	$Sprite.scale = Vector2(0.1,0.1)
-	$Sprite/Grow.interpolate_property($Sprite, 'scale', $Sprite.get_scale(), Vector2(1,1) , 1, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	$Sprite.scale = (sprite_size / 10)
+	$Sprite/Grow.interpolate_property($Sprite, 'scale', $Sprite.get_scale(), sprite_size , 1, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$Sprite/Grow.start()
 	#print(facing)
 
@@ -31,7 +32,7 @@ func _process(delta):
 func _on_Life_timeout():
 	#killbub(false)
 	#If bubble life times out it should die and not take out every bubble with it
-	$pop.interpolate_property($Sprite, 'scale', $Sprite.get_scale(), Vector2(1.5,1.5) , pop_time, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	$pop.interpolate_property($Sprite, 'scale', $Sprite.get_scale(), (sprite_size * 1.5) , pop_time, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$pop.start()
 	$Sprite/AnimationPlayer.play("Flicker")
 #	$pop/pop_time.start()

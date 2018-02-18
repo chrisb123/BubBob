@@ -2,8 +2,17 @@
 
 [ext_resource path="res://AdMob.gd" type="Script" id=1]
 
-[node name="AdMob" type="Node" index="0"]
+[node name="AdMob" type="Node"]
 
 script = ExtResource( 1 )
+
+[node name="Inter_Timeout" type="Timer" parent="." index="0"]
+
+process_mode = 1
+wait_time = 20.0
+one_shot = true
+autostart = false
+
+[connection signal="timeout" from="Inter_Timeout" to="." method="_on_Inter_Timeout_timeout"]
 
 

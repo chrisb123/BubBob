@@ -74,13 +74,33 @@ TO DO LIST  -  add ideas, task etc here
 
  --------------------  IDEAS --------------------------------
 
- - quit button for android while playing
- - implement Advertising (Splash screen before level start, or constant banner while playing)
- - balance monster waves
- - Change lives to unlimited but reduce score
- - Change poping bubble combos and emey to a higher score
- - Change enemy score to be higher
- 
+- quit button for android while playing
+- Zoom & Music button implemented for android 
+- implement Advertising (Splash screen before level start, or constant banner while playing)
+- balance monster waves
+- Change lives to unlimited but reduce score
+- Change poping bubble combos and emey to a higher score
+- Change enemy score to be higher
+
+----------------------- ToDO ----------------------------------
+
+ - (Intial done) CIMAD spalsh screen before title screen
+ - (Initial done) Loading screen for 1s before showing intertital ads (admob requirment)
+ - add killall button to debug screen (add other uncoded buttons for future use)
+
+ - Asset citation screen (licence requirments)
+	- Background		Alekei - OpenGameArt.org/users/alekei
+	- Angry Kid			Public Domain CCO - http://bevouliin.com
+	- Monsters			Stephen Challener (Redshrike) - www.angry-turtle.com  (maybe look for animated ones)
+	- Fireball			Public Domain CCO - No citaction required no webpage
+	- Bubble			Wolfgang Wozniak - http://wolfgame.com/
+		- new bubble	Alok Narula - http://fb.com/aloknarula
+	- Music				Zander Noriega - https://soundcloud.com/zander-noriega
+	- SFX Bubble pop	Public DOmain CCO - Fabien - https://twitter.com/farfadet46
+	- Explosion			@Chris, can you find this one out. i cant find it (maybe look for a better one)
+	- Tilemap			@Chris, can you find this one out. i cant find it
+	- 
+
 ----------------------- NOTES ----------------------------------
 
 - I did some multitouch tests on android, godot connects touch idx and drag idx

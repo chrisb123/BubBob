@@ -15,7 +15,7 @@ var Screen_Shoot = 0
 var Screen_Left = 0
 var Screen_Right = 0
 var Screen_Up = 0
-const FIRING_SPEED = 0.2 #0.3 normal
+const FIRING_SPEED = 0.25 #0.3 normal
 var screen_xsize
 var screen_ysize
 var scrxa

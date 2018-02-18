@@ -58,6 +58,7 @@ func loadInterstitial():
 	if admob != null:
 		inter_ready = false
 		admob.loadInterstitial(adInterstitialId)
+		$Inter_Timeout.start() #Stopped once ad loaded (_on_interstitial_loaded())
 	if OS.is_debug_build():
 		InterStartTime = OS.get_unix_time()
 		get_node("/root/Main/Debug")._String("AdMob Inter Loading")
@@ -99,6 +100,7 @@ func _on_interstitial_not_loaded():
 func _on_interstitial_loaded():
 	if admob != null:
 		inter_ready = true
+		$Inter_Timeout.stop()
 	if OS.is_debug_build():
 		InterEndTime = OS.get_unix_time()
 		get_node("/root/Main/Debug")._String(str("Admob Inter Loaded ", InterEndTime - InterStartTime, "s"))
@@ -135,4 +137,6 @@ func onResize():
 	if admob != null:
 		admob.resize()
 
-
+func _on_Inter_Timeout_timeout():
+	get_node("/root/Main/Debug")._String("AdMob Inter Timeout (reloading)")
+	loadInterstitial()

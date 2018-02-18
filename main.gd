@@ -1,6 +1,8 @@
 extends Node
 
 export (PackedScene) var Title
+export (PackedScene) var CIMAD
+export (PackedScene) var Loading_Screen
 #export (PackedScene) var Level1
 #Level assigining needs fixing
 #export (PackedScene) var Level2
@@ -46,9 +48,6 @@ func _ready():
 	Global_Vars.enemyn = 0
 	Global_Vars.waven = 0
 	Global_Vars.leveln = 0
-	title = Title.instance()
-	add_child(title)
-	title.connect("start",self,"_start")
 
 	#Instance Debug Overlay if in Debug
 	if OS.is_debug_build():
@@ -70,6 +69,18 @@ func _ready():
 	else:
 		if OS.is_debug_build():
 			get_node("/root/Main/Debug")._String("AdMob Singleton NOK")
+
+	#CIMAD spalsh screen + Allow time for Admob to load ads.
+
+	var CIMAD_splash = CIMAD.instance()
+	add_child(CIMAD_splash)
+	yield(get_tree().create_timer(5),"timeout")
+	remove_child(CIMAD_splash)
+
+	#Show title screen
+	title = Title.instance()
+	add_child(title)
+	title.connect("start",self,"_start")
 
 func _input(event):
 	if event.is_action_pressed("ui_music"):
@@ -136,19 +147,22 @@ func _input(event):
 			
 func _load_level():
 	
-	#Show Interstital ADs if available
+	#step 1:- Show Loading Screen, Interstital Available determines loading screen time
+	var Loading = Loading_Screen.instance()
+	add_child(Loading)
+	
+	#Step 2:- Show Interstital ADs if available
 	if(Engine.has_singleton("AdMob")):
 		if get_node("/root/Main/AdMob").inter_ready:
-			#Show Loading Screen here
 			yield(get_tree().create_timer(1),"timeout")
 			get_node("/root/Main/AdMob")._show_interstital()
 			yield(get_node("/root/Main/AdMob"),"LoadScreen_Finished") #emitted when ad closed
-			#remove loading screen
 		else:
-			#Show loading screen here
 			get_node("/root/Main/AdMob").loadInterstitial() #try reloading interstital for next LVL change
 			yield(get_tree().create_timer(5),"timeout") #Fake loading time, avoids turning off network to skip ads
-			#remove loading Screen
+
+	#Step 3:- Remove Loading Screen after Ad closed, or no ad shown
+	remove_child(Loading)
 		
 	Global_Vars.waven = 1
 	print("loading level ",Global_Vars.leveln)
