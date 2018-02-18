@@ -12,6 +12,7 @@ const pop_time = 0.25
 const sprite_size = Vector2(0.075,0.075)	#(0.1 0.1) with new bubble - (1,1) with old bubble
 
 func _ready():
+	$Sprite.scale = sprite_size
 	$Life.wait_time = LIFE_TIME
 	$Life.start()
 	#linear_velocity.x = velocity * facing

@@ -15,12 +15,14 @@ var facing #1 right, 2 left
 const NUM_FIREBALLS = 8
 export (int) var enemy_type 
 var score_for_killing 
+const bubble_size = Vector2(0.075,0.075)
 
 #add variables and node from other enemies
 #add enemy_type variable
 #initialise scene depending on enemy_type
 # - Need to add in different speeds and other changes to make enemies different
 func _ready():
+	$Bubble.scale = bubble_size
 	randomize()
 	if enemy_type == 1:
 		$Enemy.region_rect = Rect2(0,0,80,100)
@@ -131,8 +133,8 @@ func _on_Bubble_Timer_timeout():
 	#Remove Bubble and expand Enemy to original size
 	$Enemy/Pop.interpolate_property($Enemy, 'scale', $Enemy.get_scale(),
 	Vector2(0.8,0.8), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
-	$Enemy/Pop.interpolate_property($Bubble, 'scale', $Enemy.get_scale(),
-	Vector2(2.0,2.0), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	$Enemy/Pop.interpolate_property($Bubble, 'scale', $Bubble.get_scale(),
+	(bubble_size * 2), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$Enemy/Pop.start() 
 	gravity_scale = 0
 	bounce = 0
@@ -145,7 +147,7 @@ func _on_Pop_tween_completed( object, key ):
 	Vector2(0.75,0.75), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$Enemy/Shrink.start() 
 	$Bubble.hide() 
-	$Bubble.scale = Vector2(1.0,1.0)
+	$Bubble.scale = bubble_size
 	$Bubble_Timer.stop()
 	_in_bubble = false
 	if enemy_type != 1:
