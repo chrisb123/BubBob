@@ -21,9 +21,12 @@ var FireballCount = 12
 var FireballSpeed = 250
 var score_for_killing = Global_Vars.score_enemyboss1 
 export (int) var boss_type 
+const bubble_size = Vector2(0.075,0.075)
+const bubble_size_inc = Vector2(0.005,0.005)
 
 #setup boss type
 func _ready():
+	$Bubble.scale = bubble_size
 	if boss_type == 1:
 		$Enemy.region_rect = Rect2(0,0,80,100)
 		score_for_killing = Global_Vars.score_enemyboss1
@@ -78,7 +81,7 @@ func _on_RigidBody2D_body_entered( body ):
 	if body.is_in_group("bubble") && ! _in_bubble:
 		body.queue_free()
 		$Bubble.show()
-		$Bubble.scale += Vector2(0.15,0.15)
+		$Bubble.scale += bubble_size_inc
 		bubble_count += 1
 		if bubble_count == 20:
 			_in_bubble = true
@@ -133,7 +136,7 @@ func _on_Bubble_Timer_timeout():
 	$Enemy/Pop.interpolate_property($Enemy, 'scale', $Enemy.get_scale(),
 	Vector2(3.0,3.0), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$Enemy/Pop.interpolate_property($Bubble, 'scale', $Bubble.get_scale(),
-	Vector2(5.0,5.0), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	($Bubble.get_scale() * 2), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$Enemy/Pop.start() 
 	gravity_scale = 0
 	bounce = 0
@@ -146,7 +149,7 @@ func _on_Pop_tween_completed( object, key ):
 	Vector2(2.0,2.0), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$Enemy/Shrink.start() 
 	$Bubble.hide() 
-	$Bubble.scale = Vector2(1.0,1.0)
+	$Bubble.scale = bubble_size
 	$Bubble_Timer.stop()
 	bubble_count = 0
 	_in_bubble = false
@@ -198,7 +201,7 @@ func _on_Minion_Spawn_timeout():
 
 
 func _on_Bubble_Shrink_timeout():
-	$Bubble.scale -= Vector2(0.15,0.15)
+	$Bubble.scale -= bubble_size_inc
 	bubble_count -= 1
 	if bubble_count == 0:
 		$Bubble.hide()

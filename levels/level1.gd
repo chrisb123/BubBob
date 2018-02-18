@@ -15,11 +15,15 @@ func _ready():
 #	pass
 
 func waves():
-	var level1wave1 = [101,998,102,998,103,998,0,0,0,0]
-	var level1wave2 = [1,2,3,1,2,3,1,2,3]
-	var level1wave3 = [3,3,1,1,2,1,1,3,3,1]
-	var test1wave = [1]
-	var test2wave = [3]
-#	return [0, level1wave1, level1wave2, level1wave3]
-	return [0, test1wave, test2wave]
+	var levelwave1 = [1,1,1,1,1,998,1,1,1,1,1]
+	var levelwave2 = [1,2,3,1,2,3,1,2,3]
+	var levelwave3 = [3,3,1,1,2,1,1,3,3,1]
+	var debugwave1 = [101,998,102,998,103]
+	var debugwave2 = [3]
+	var debugwave3 = [3]
+	
+	if OS.is_debug_build():
+		return [0, debugwave1, debugwave2, debugwave3]
+	else:
+		return [0, levelwave1, levelwave2, levelwave3]
 	
