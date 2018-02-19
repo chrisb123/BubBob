@@ -29,15 +29,21 @@ func _ready():
 	$Right.margin_left = xsize * 0.15
 	$Right.margin_top = ysize - ysize * 0.15
 	
-	$JoyPad.rect_position.x = 600
-	$JoyPad.rect_position.y = 600
-#	if ! OS.has_virtual_keyboard():
-#		$Shoot.hide()
-#		$Jump.hide()
-#		$Left.hide()
-#		$Right.hide()
+	$JoyPad.rect_position.x = xsize * 0.12
+	$JoyPad.rect_position.y = ysize * 0.85
 	
-	
+	if OS.has_touchscreen_ui_hint():
+		#$Shoot.hide()
+		$Jump.hide()
+		$Left.hide()
+		$Right.hide()
+		$JoyPad.show()
+	else:
+		$Jump.show()
+		$Left.show()
+		$Right.show()
+		$JoyPad.hide()
+
 func _process(delta):
 	score.text = str("Score: " + str(Global_Vars.score))
 	lives.text = str("Lives: " + str(Global_Vars.lives))

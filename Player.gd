@@ -26,6 +26,13 @@ var scryb
 var joypad_eventid = null
 var shoot_eventid = null
 
+var joypad_xpos = 150	# how to get this dynamically from GUI ?
+var joypad_ypos = 600	# how to get this dynamically from GUI ?
+var joypad_xoffset = 16	# to centre point
+var joypad_yoffset = 23 # to centre point
+var joypad_xcentre = joypad_xpos + joypad_xoffset
+var joypad_ycentre = joypad_ypos + joypad_yoffset
+
 func _ready():
 	set_process_input(true)
 	$Timer.wait_time = FIRING_SPEED
@@ -173,7 +180,7 @@ func _input(event):
 
 	#Record index of only first touch inside joypad
 	if event.get_class() == ("InputEventScreenTouch") && joypad_eventid == null:
-		if event.position.distance_to(Vector2(616,623)) < 300:
+		if event.position.distance_to(Vector2(joypad_xcentre,joypad_ycentre)) < 300:
 			joypad_eventid = event.get_index()	
 
 	#check screen touch release for IDX. if same set EventID to null
@@ -186,8 +193,8 @@ func _input(event):
 
 	#If touched or dragging, check index and alter movement if drag IDX is same as touch IDX. else ignore.
 	elif (event.get_class() == ("InputEventScreenTouch") || event.get_class() == ("InputEventScreenDrag")) && joypad_eventid == event.get_index():
-			if event.position.distance_to(Vector2(616,623)) < 300 && event.position.distance_to(Vector2(616,623)) > 40:
-				var angle = rad2deg(Vector2(616,623).angle_to_point(event.position))
+			if event.position.distance_to(Vector2(joypad_xcentre,joypad_ycentre)) < 300 && event.position.distance_to(Vector2(joypad_xcentre,joypad_ycentre)) > 40:
+				var angle = rad2deg(Vector2(joypad_xcentre,joypad_ycentre).angle_to_point(event.position))
 				if OS.is_debug_build():
 					get_node("/root/Main/Debug")._String3(str(angle))
 

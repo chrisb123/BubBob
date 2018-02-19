@@ -74,7 +74,10 @@ func _ready():
 
 	var CIMAD_splash = CIMAD.instance()
 	add_child(CIMAD_splash)
-	yield(get_tree().create_timer(5),"timeout")
+	if OS.is_debug_build():
+		yield(get_tree().create_timer(1),"timeout")
+	else:
+		yield(get_tree().create_timer(5),"timeout")		
 	remove_child(CIMAD_splash)
 
 	#Show title screen
@@ -209,6 +212,7 @@ func _start():
 	#var powerup = PowerUp.instance()
 	#powerup.position = Vector2(600,100)
 	#add_child(powerup)
+
 	
 
 func clear_nodes():
