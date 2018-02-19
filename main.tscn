@@ -1,45 +1,47 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://Intro.tscn" type="PackedScene" id=2]
-[ext_resource path="res://CIMAD.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Loading_Screen.tscn" type="PackedScene" id=4]
-[ext_resource path="res://player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://gui.tscn" type="PackedScene" id=6]
-[ext_resource path="res://bubble1.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Enemy.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Enemy2.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Enemy3.tscn" type="PackedScene" id=10]
-[ext_resource path="res://EnemyBoss1.tscn" type="PackedScene" id=11]
-[ext_resource path="res://EnemyBoss2.tscn" type="PackedScene" id=12]
-[ext_resource path="res://EnemyBoss3.tscn" type="PackedScene" id=13]
-[ext_resource path="res://PowerUp.tscn" type="PackedScene" id=14]
-[ext_resource path="res://GameOver.tscn" type="PackedScene" id=15]
-[ext_resource path="res://File_Main.tscn" type="PackedScene" id=16]
-[ext_resource path="res://AdMob.tscn" type="PackedScene" id=17]
-[ext_resource path="res://Debug.tscn" type="PackedScene" id=18]
-[ext_resource path="res://sounds/Darker Waves.ogg" type="AudioStream" id=19]
+[ext_resource path="res://Credits.tscn" type="PackedScene" id=3]
+[ext_resource path="res://CIMAD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Loading_Screen.tscn" type="PackedScene" id=5]
+[ext_resource path="res://player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://gui.tscn" type="PackedScene" id=7]
+[ext_resource path="res://bubble1.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Enemy.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Enemy2.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Enemy3.tscn" type="PackedScene" id=11]
+[ext_resource path="res://EnemyBoss1.tscn" type="PackedScene" id=12]
+[ext_resource path="res://EnemyBoss2.tscn" type="PackedScene" id=13]
+[ext_resource path="res://EnemyBoss3.tscn" type="PackedScene" id=14]
+[ext_resource path="res://PowerUp.tscn" type="PackedScene" id=15]
+[ext_resource path="res://GameOver.tscn" type="PackedScene" id=16]
+[ext_resource path="res://File_Main.tscn" type="PackedScene" id=17]
+[ext_resource path="res://AdMob.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Debug.tscn" type="PackedScene" id=19]
+[ext_resource path="res://sounds/Darker Waves.ogg" type="AudioStream" id=20]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" index="0"]
 
 script = ExtResource( 1 )
 Title = ExtResource( 2 )
-CIMAD = ExtResource( 3 )
-Loading_Screen = ExtResource( 4 )
-Player = ExtResource( 5 )
-GUI = ExtResource( 6 )
-Bubble = ExtResource( 7 )
-Enemy = ExtResource( 8 )
-Enemy2 = ExtResource( 9 )
-Enemy3 = ExtResource( 10 )
-EnemyBoss1 = ExtResource( 11 )
-EnemyBoss2 = ExtResource( 12 )
-EnemyBoss3 = ExtResource( 13 )
-PowerUp = ExtResource( 14 )
-GameOver = ExtResource( 15 )
-File_Main = ExtResource( 16 )
-AdMob = ExtResource( 17 )
-Debug = ExtResource( 18 )
+Credits = ExtResource( 3 )
+CIMAD = ExtResource( 4 )
+Loading_Screen = ExtResource( 5 )
+Player = ExtResource( 6 )
+GUI = ExtResource( 7 )
+Bubble = ExtResource( 8 )
+Enemy = ExtResource( 9 )
+Enemy2 = ExtResource( 10 )
+Enemy3 = ExtResource( 11 )
+EnemyBoss1 = ExtResource( 12 )
+EnemyBoss2 = ExtResource( 13 )
+EnemyBoss3 = ExtResource( 14 )
+PowerUp = ExtResource( 15 )
+GameOver = ExtResource( 16 )
+File_Main = ExtResource( 17 )
+AdMob = ExtResource( 18 )
+Debug = ExtResource( 19 )
 
 [node name="Enemy" type="Timer" parent="." index="0"]
 
@@ -50,7 +52,7 @@ autostart = false
 
 [node name="Music" type="AudioStreamPlayer" parent="." index="1"]
 
-stream = ExtResource( 19 )
+stream = ExtResource( 20 )
 volume_db = 0.0
 autoplay = true
 mix_target = 0

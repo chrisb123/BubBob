@@ -1,13 +1,14 @@
 extends Control
 
-signal start
-signal credits
-
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
 
+signal quit_credits
+
 func _ready():
+	# Called every time the node is added to the scene.
+	# Initialization here
 	pass
 
 #func _process(delta):
@@ -16,13 +17,6 @@ func _ready():
 #	pass
 
 
-func _on_Start_pressed():
-	emit_signal("start")
-
-func _on_Quit_pressed():
-	get_tree().quit()
-
-
-func _on_Credits_pressed():
-	emit_signal("credits")
+func _on_Button_pressed():
+	emit_signal("quit_credits")
 	pass # replace with function body

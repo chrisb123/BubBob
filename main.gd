@@ -1,6 +1,7 @@
 extends Node
 
 export (PackedScene) var Title
+export (PackedScene) var Credits
 export (PackedScene) var CIMAD
 export (PackedScene) var Loading_Screen
 #export (PackedScene) var Level1
@@ -26,6 +27,7 @@ export (PackedScene) var AdMob
 export (PackedScene) var Debug
 
 var title
+var credits
 var player
 var enemy
 var gui
@@ -79,11 +81,8 @@ func _ready():
 	else:
 		yield(get_tree().create_timer(5),"timeout")		
 	remove_child(CIMAD_splash)
+	_title()
 
-	#Show title screen
-	title = Title.instance()
-	add_child(title)
-	title.connect("start",self,"_start")
 
 func _input(event):
 	if event.is_action_pressed("ui_music"):
@@ -184,6 +183,19 @@ func _load_level():
 	player.connect("fired",self,"_fired")
 	$Enemy.start()
 
+func _title():
+	#Show title screen
+	remove_child(credits)
+	title = Title.instance()
+	add_child(title)
+	title.connect("start",self,"_start")
+	title.connect("credits",self,"_credits")	
+
+func _credits():
+	remove_child(title)
+	credits = Credits.instance()
+	add_child(credits)
+	credits.connect("quit_credits",self,"_title")
 
 #parse level to "start"
 func _start():
