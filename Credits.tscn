@@ -1,6 +1,31 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Credits.gd" type="Script" id=1]
+[ext_resource path="res://asset/font/Comfortaa-Bold.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+
+size = 70
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 2 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=2]
+
+size = 20
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 2 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=3]
+
+size = 25
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 2 )
+_sections_unfolded = [ "Font", "Settings" ]
 
 [node name="Credits" type="Control"]
 
@@ -23,16 +48,17 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 569.0
-margin_top = 65.0
-margin_right = 658.0
-margin_bottom = 92.0
+margin_left = 408.0
+margin_top = 33.0
+margin_right = 843.0
+margin_bottom = 119.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = false
 bbcode_text = ""
 visible_characters = -1
@@ -44,6 +70,7 @@ scroll_active = true
 scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
+_sections_unfolded = [ "custom_fonts" ]
 
 [node name="Button" type="Button" parent="." index="1"]
 
@@ -51,16 +78,17 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 573.0
-margin_top = 163.0
-margin_right = 660.0
-margin_bottom = 213.0
+margin_left = 512.0
+margin_top = 634.0
+margin_right = 741.0
+margin_bottom = 713.0
 rect_pivot_offset = Vector2( 0, 0 )
 focus_mode = 2
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -68,6 +96,41 @@ group = null
 text = "Main Menu"
 flat = false
 align = 1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="Label" type="Label" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 10.0
+margin_top = 150.0
+margin_right = 2586.0
+margin_bottom = 544.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 3 )
+text = "	- Background          Alekei - OpenGameArt.org/users/alekei
+	- Angry Kid              Public Domain CCO - http://bevouliin.com
+	- Monsters              Stephen Challener (Redshrike) - www.angry-turtle.com
+	- Fireball                  Public Domain CCO - No citaction required no webpage
+	- Bubble                   Alok Narula - http://fb.com/aloknarula
+	- Music	                    Zander Noriega - https://soundcloud.com/zander-noriega
+	- SFX Bubble pop    Public Domain CCO - Fabien - https://twitter.com/farfadet46
+	- Explosion              @Chris, can you find this one out. i cant find it
+	- Tilemap                @Chris, can you find this one out. i cant find it
+	
+	If you feel there is an asset in the game that you have not been given credit for or contact
+	details are incorrect please contact us an we will add  or update your information to the list"
+valign = 3
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 
