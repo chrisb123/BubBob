@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://asset/font/Comfortaa-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://levels/Full Moon - background.png" type="Texture" id=2]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -18,7 +19,7 @@ use_filter = false
 font_data = ExtResource( 1 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="CIMAD" type="Control"]
+[node name="CIMAD" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -86,5 +87,12 @@ scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "custom_colors", "custom_fonts" ]
+
+[node name="Full Moon - background" type="Sprite" parent="." index="2"]
+
+position = Vector2( 558, 551 )
+z_index = -1
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Z Index" ]
 
 
