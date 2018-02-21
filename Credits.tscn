@@ -1,30 +1,89 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Credits.gd" type="Script" id=1]
-[ext_resource path="res://asset/font/Comfortaa-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://levels/Full Moon - background.png" type="Texture" id=2]
+[ext_resource path="res://asset/font/Comfortaa-Bold.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 
 size = 70
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 2 )
+font_data = ExtResource( 3 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="StyleBoxFlat" id=2]
 
-size = 20
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+bg_color = Color( 0.6, 0.6, 0.6, 0.187843 )
+draw_center = true
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 0
+border_color = Color( 0.513043, 0.882813, 0.106903, 1 )
+border_blend = false
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 8
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+shadow_color = Color( 0, 0, 0, 0.6 )
+shadow_size = 0
+anti_aliasing = true
+anti_aliasing_size = 1
+_sections_unfolded = [ "Border", "Border Width", "Corner Radius" ]
+
+[sub_resource type="StyleBoxFlat" id=3]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+bg_color = Color( 0.6, 0.6, 0.6, 0.187843 )
+draw_center = true
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.863281, 0.461121, 0.13826, 1 )
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 8
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+shadow_color = Color( 0, 0, 0, 0.6 )
+shadow_size = 0
+anti_aliasing = true
+anti_aliasing_size = 1
+_sections_unfolded = [ "Border", "Border Width", "Corner Radius" ]
+
+[sub_resource type="DynamicFont" id=4]
+
+size = 30
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 2 )
+font_data = ExtResource( 3 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=5]
 
 size = 25
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 2 )
+font_data = ExtResource( 3 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [node name="Credits" type="Control"]
@@ -42,7 +101,14 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 1 )
 
-[node name="RichTextLabel" type="RichTextLabel" parent="." index="0"]
+[node name="Full Moon - background" type="Sprite" parent="." index="0"]
+
+position = Vector2( 704.083, 388.742 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -72,7 +138,7 @@ selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "custom_fonts" ]
 
-[node name="Button" type="Button" parent="." index="1"]
+[node name="Button" type="Button" parent="." index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -88,7 +154,10 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -96,9 +165,9 @@ group = null
 text = "Main Menu"
 flat = false
 align = 1
-_sections_unfolded = [ "custom_fonts" ]
+_sections_unfolded = [ "custom_fonts", "custom_styles" ]
 
-[node name="Label" type="Label" parent="." index="2"]
+[node name="Label" type="Label" parent="." index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -113,7 +182,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
 text = "	- Background          Alekei - OpenGameArt.org/users/alekei
 	- Angry Kid              Public Domain CCO - http://bevouliin.com
 	- Monsters              Stephen Challener (Redshrike) - www.angry-turtle.com
@@ -121,8 +190,8 @@ text = "	- Background          Alekei - OpenGameArt.org/users/alekei
 	- Bubble                   Alok Narula - http://fb.com/aloknarula
 	- Music	                    Zander Noriega - https://soundcloud.com/zander-noriega
 	- SFX Bubble pop    Public Domain CCO - Fabien - https://twitter.com/farfadet46
-	- Explosion              @Chris, can you find this one out. i cant find it
-	- Tilemap                @Chris, can you find this one out. i cant find it
+	- Explosion              Public Domain CCO - https://opengameart.org
+	- Tilemap                Public Domain CCO - https://opengameart.org
 	
 	If you feel there is an asset in the game that you have not been given credit for or contact
 	details are incorrect please contact us an we will add  or update your information to the list"
