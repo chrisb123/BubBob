@@ -90,18 +90,20 @@ TO DO LIST  -  add ideas, task etc here
  - add killall button to debug screen (add other uncoded buttons for future use)
 
  - Asset citation screen (licence requirments)
-	- Background		Alekei - OpenGameArt.org/users/alekei
-	- Angry Kid			Public Domain CCO - http://bevouliin.com
-	- Monsters			Stephen Challener (Redshrike) - www.angry-turtle.com  (maybe look for animated ones)
-	- Fireball			Public Domain CCO - No citaction required no webpage
-	- Bubble			Wolfgang Wozniak - http://wolfgame.com/
-		- new bubble	Alok Narula - http://fb.com/aloknarula
-	- Music				Zander Noriega - https://soundcloud.com/zander-noriega
-	- SFX Bubble pop	Public DOmain CCO - Fabien - https://twitter.com/farfadet46
-	- Explosion			@Chris, can you find this one out. i cant find it (maybe look for a better one)
-	- Tilemap			@Chris, can you find this one out. i cant find it
-	- 
+	- Background      CC by 3.0 - Alekei - https://opengameart.org/content/background-night
+	- Monsters        CC by 3.0 - Redshrike - https://opengameart.org/content/3-rpg-enemy-remixes
+	- Music	          CC by 3.0 - Zander Noriega - https://opengameart.org/content/darker-waves
+	
+	All game art sourced from https://opengameart.org/
+	CC by 3.0 licence link - https://creativecommons.org/licenses/by/3.0/
 
+- Public Domain Assests
+	- SFX Bubble pop	Public DOmain CCO
+	- Explosion			Public Domain CCO
+	- Tilemap			Public Domain CCO
+	- Fireball			Public Domain CCO
+	- new bubble		Public Domain CCO
+	- Angry Kid			Public Domain CCO
 ----------------------- NOTES ----------------------------------
 
 - I did some multitouch tests on android, godot connects touch idx and drag idx
