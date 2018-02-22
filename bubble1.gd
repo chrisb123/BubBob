@@ -10,8 +10,10 @@ var player_pushing = false
 const LIFE_TIME = 10
 const pop_time = 0.25
 const sprite_size = Vector2(0.075,0.075)	#(0.1 0.1) with new bubble - (1,1) with old bubble
+var Osys
 
 func _ready():
+	Osys = OS.get_name()
 	$Sprite.scale = sprite_size
 	$Life.wait_time = LIFE_TIME
 	$Life.start()
@@ -46,7 +48,8 @@ func _on_pop_tween_completed( object, key ):
 	$Sprite/AnimationPlayer.stop()
 	$Sprite.visible = false
 	$CollisionShape2D.disabled = true
-	$Particles.emitting = true
+	if Osys != "HTML5":
+		$Particles.emitting = true
 
 func _on_Pop_Bubble_finished():
 	yield(get_tree().create_timer(pop_time),"timeout")
@@ -78,7 +81,8 @@ func killbub(pk):
 		#$pop.interpolate_property($Sprite, 'scale', $Sprite.get_scale(), Vector2(1.5,1.5) , pop_time, Tween.TRANS_QUAD, Tween.EASE_OUT)
 		#$pop.interpolate_property($Sprite, 'rotation_degrees', 0 , 360 , pop_time, Tween.TRANS_QUAD, Tween.EASE_OUT)	
 		#$pop.start()
-		$Particles.emitting = true
+		if Osys != "HTML5":
+			$Particles.emitting = true
 		$Pop_Bubble.volume_db = -(randi()%20) - 5
 		$Pop_Bubble.play()
 		#$AnimatedSprite.play()
