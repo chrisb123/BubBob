@@ -3,13 +3,13 @@ extends KinematicBody2D
 # class member variables go here, for example:
 # var a = 2
 var vel = Vector2()
-var SPEED_CONST = 1750
-var SPEED = 1750
-var speed_factor = 2
 
+const SPEED_CONST = 1750
+var SPEED = 1750
 const jump_speed_const = -525
-const jump_speed = -525
-var jump_factor = 1.5
+var jump_speed = -525
+const FIRING_SPEED_CONST = 0.25 #0.3 normal
+var FIRING_SPEED = 0.25 #0.3 normal
 
 var onGround = 0
 signal fired
@@ -17,17 +17,11 @@ var fired = 1
 var facing = 1
 var action = 0
 var invincible = false
+
 var Screen_Shoot = 0
 var Screen_Left = 0
 var Screen_Right = 0
 var Screen_Up = 0
-
-const FIRING_SPEED_CONST = 0.25 #0.3 normal
-var FIRING_SPEED = 0.25 #0.3 normal
-var firing_factor = 2
-
-var boost_time = 20
-
 var screen_xsize
 var screen_ysize
 var scrxa
@@ -37,7 +31,6 @@ var scryb
 
 var joypad_eventid = null
 var shoot_eventid = null
-
 var joypad_xpos = 150	# how to get this dynamically from GUI ?
 var joypad_ypos = 600	# how to get this dynamically from GUI ?
 var joypad_xoffset = 16	# to centre point
@@ -186,19 +179,19 @@ func _on_Invincible_Flash_timeout():
 	else:
 		$AnimatedSprite.visible = true
 
-func _firing_factor():		#called by PowerUp
-	$Timer.wait_time = FIRING_SPEED / firing_factor	 # (inverse) bubble shooting timer
-	yield(get_tree().create_timer(5),"timeout")
+func _powerup_firing(factor,time):		#called by PowerUp
+	$Timer.wait_time = FIRING_SPEED / factor	 # (inverse) bubble shooting timer
+	yield(get_tree().create_timer(time),"timeout")
 	$Timer.wait_time = FIRING_SPEED_CONST
 		
-func _speed_factor():		#called by PowerUp
-	SPEED *= speed_factor
-	yield(get_tree().create_timer(5),"timeout")
+func _powerup_speed(factor,time):		#called by PowerUp
+	SPEED *= factor
+	yield(get_tree().create_timer(time),"timeout")
 	SPEED = SPEED_CONST
 
-func _jump_factor():	#caller by PowerUp
-	jump_speed *= jump_factor
-	yield(get_tree().create_timer(5),"timeout")
+func _powerup_jump(factor,time):	#called by PowerUp
+	jump_speed *= factor
+	yield(get_tree().create_timer(time),"timeout")
 	jump_speed = jump_speed_const
 
 

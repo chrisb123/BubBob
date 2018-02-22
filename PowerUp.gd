@@ -7,23 +7,32 @@ extends RigidBody2D
 var frames_increase = true
 var powerup_type
 
+var shoot_factor = 2
+var shoot_duration = 20
+
+var speed_factor = 3
+var speed_duration = 20
+
+var jump_factor = 1.5
+var jump_duration = 20
+
 func _ready():
-	if powerup_type == 1:
+	if powerup_type == 1:	#bonus points
 		$Coin.show()
 		$Potion_Shoot.hide()
 		$Potion_Speed.hide()
 		$Potion_Jump.hide()
-	elif powerup_type == 2:
+	elif powerup_type == 2: #Shooting speed
 		$Coin.hide()
 		$Potion_Shoot.show() 
 		$Potion_Speed.hide()
 		$Potion_Jump.hide()
-	elif powerup_type == 3:
+	elif powerup_type == 3: #running_speed
 		$Coin.hide()
 		$Potion_Shoot.hide() 
 		$Potion_Speed.show()
 		$Potion_Jump.hide()
-	elif powerup_type == 4:
+	elif powerup_type == 4: #jump_height
 		$Coin.hide()
 		$Potion_Shoot.hide() 
 		$Potion_Speed.hide()
@@ -47,15 +56,15 @@ func _on_Area2D_body_entered( body ):
 			Global_Vars.score += 150
 			$Potion_Shoot.hide()
 			$CollisionShape2D.disabled = true
-			body._firing_factor()
+			body._powerup_firing(shoot_factor,shoot_duration)
 		if powerup_type == 3:
 			Global_Vars.score += 200
 			$Potion_Speed.hide()
 			$CollisionShape2D.disabled = true
-			body._speed_factor()
+			body._powerup_speed(speed_factor,speed_duration)
 		if powerup_type == 4:
 			Global_Vars.score += 250
 			$Potion_Jump.hide()
 			$CollisionShape2D.disabled = true
-			body._jump_factor()
+			body._powerup_jump(jump_factor,jump_duration)
 		queue_free()	
