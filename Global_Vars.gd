@@ -10,6 +10,7 @@ var score = 0
 var lives = start_lives
 var leveln = 0
 var waven = 0
+var Osys
 
 var enemyn = 0
 
@@ -117,6 +118,7 @@ even with multiple fingers touching at same time
  - More Power Ups
  - AdMob Installation
  - Debug Overlay
+ - Bug with file on the highscores screen
 
  -------------- CHRIS CURRENT TASKS ---------------------------
 

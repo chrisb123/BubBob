@@ -24,7 +24,8 @@ func _die():
 	#$Area2D.monitoring = false #not needed and causes error messages
 	#$Area2D.monitorable = false
 	$Area2D/CollisionShape2D.disabled = true
-	$Particles2D.emitting = true
+	if Global_Vars.Osys != "HTML5":
+		$Particles2D.emitting = true
 	$Explosion.playing = true
 	$Fireballanim.visible = false
 		

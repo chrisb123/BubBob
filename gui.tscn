@@ -140,7 +140,34 @@ flat = false
 align = 1
 _sections_unfolded = [ "Margin", "Visibility", "custom_fonts" ]
 
-[node name="Left" type="Button" parent="." index="4"]
+[node name="KillAll" type="Button" parent="." index="4"]
+
+modulate = Color( 1, 1, 1, 0.392157 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -123.0
+margin_top = -66.0
+margin_right = 133.0
+margin_bottom = 78.0
+rect_pivot_offset = Vector2( 0, 0 )
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Kill All"
+flat = false
+align = 1
+_sections_unfolded = [ "Margin", "Visibility", "custom_fonts" ]
+
+[node name="Left" type="Button" parent="." index="5"]
 
 modulate = Color( 1, 1, 1, 0.392157 )
 anchor_left = 0.0
@@ -167,7 +194,7 @@ flat = false
 align = 1
 _sections_unfolded = [ "Margin", "Visibility", "custom_fonts" ]
 
-[node name="Right" type="Button" parent="." index="5"]
+[node name="Right" type="Button" parent="." index="6"]
 
 modulate = Color( 1, 1, 1, 0.392157 )
 anchor_left = 0.0
@@ -194,7 +221,7 @@ flat = false
 align = 1
 _sections_unfolded = [ "Margin", "Visibility", "custom_fonts" ]
 
-[node name="Jump" type="Button" parent="." index="6"]
+[node name="Jump" type="Button" parent="." index="7"]
 
 modulate = Color( 1, 1, 1, 0.392157 )
 anchor_left = 0.0
@@ -221,7 +248,7 @@ flat = false
 align = 1
 _sections_unfolded = [ "Margin", "Visibility", "custom_fonts" ]
 
-[node name="JoyPad" type="Button" parent="." index="7"]
+[node name="JoyPad" type="Button" parent="." index="8"]
 
 modulate = Color( 1, 1, 1, 0.392157 )
 anchor_left = 0.0
@@ -249,5 +276,7 @@ align = 1
 _sections_unfolded = [ "Anchor", "Margin", "Rect", "Visibility", "custom_fonts" ]
 
 [connection signal="tween_completed" from="Level/Level_Change" to="." method="_on_Level_Change_tween_completed"]
+
+[connection signal="pressed" from="KillAll" to="." method="_on_KillAll_pressed"]
 
 

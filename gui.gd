@@ -32,19 +32,28 @@ func _ready():
 	$JoyPad.rect_position.x = xsize * 0.12
 	$JoyPad.rect_position.y = ysize * 0.85
 	
-	if OS.has_touchscreen_ui_hint():
+	if Global_Vars.Osys == "Android":
 		#$Shoot.hide()
 		$Jump.hide()
 		$Left.hide()
 		$Right.hide()
 		$JoyPad.show()
 	else:
-		$Jump.show()
-		$Left.show()
-		$Right.show()
+		$Jump.hide()
+		$Left.hide()
+		$Right.hide()
 		$JoyPad.hide()
+		$Shoot.hide()
+		
+	if OS.is_debug_build():
+		$KillAll.margin_right = xsize
+		$KillAll.margin_bottom = 0 + ysize * 0.15
+		$KillAll.margin_left = xsize - xsize * 0.15
+		$KillAll.margin_top = 0
+	else:
+		$KillAll.hide()
 
-func _process(delta):
+func _process(delta): #Change this
 	score.text = str("Score: " + str(Global_Vars.score))
 	lives.text = str("Lives: " + str(Global_Vars.lives))
 	level.text = str("Level " + str(Global_Vars.leveln))
@@ -58,3 +67,11 @@ func _process(delta):
 
 func _on_Level_Change_tween_completed( object, key ):
 	level.visible = false
+
+
+func _on_KillAll_pressed():
+	print("kill all")
+	var enemies = get_tree().get_nodes_in_group("enemy")
+	for i in enemies:
+		print(i)
+		i.get_node("AnimatedSprite").play()

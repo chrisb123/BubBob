@@ -63,7 +63,8 @@ func killbub(pk):
 		#Stop enemy
 		$AnimatedSprite.play()
 		$Death_Sound.play()
-		$Particles.emitting = true
+		if Global_Vars.Osys != "HTML5":
+			$Particles.emitting = true
 		$Enemy.hide()
 		$Bubble.hide()
 		$Move_Timer.stop()

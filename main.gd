@@ -50,6 +50,7 @@ func _ready():
 	Global_Vars.enemyn = 0
 	Global_Vars.waven = 0
 	Global_Vars.leveln = 0
+	Global_Vars.Osys = OS.get_name()
 
 	#Instance Debug Overlay if in Debug
 	if OS.is_debug_build():
@@ -185,7 +186,8 @@ func _load_level():
 
 func _title():
 	#Show title screen
-	remove_child(credits)
+	if self.has_node("Credits"):
+		remove_child(credits)
 	title = Title.instance()
 	add_child(title)
 	title.connect("start",self,"_start")
