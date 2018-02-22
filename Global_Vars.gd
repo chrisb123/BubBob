@@ -93,6 +93,7 @@ TO DO LIST  -  add ideas, task etc here
 	- Background      CC by 3.0 - Alekei - https://opengameart.org/content/background-night
 	- Monsters        CC by 3.0 - Redshrike - https://opengameart.org/content/3-rpg-enemy-remixes
 	- Music	          CC by 3.0 - Zander Noriega - https://opengameart.org/content/darker-waves
+	- Coin            CC by 3.0 - JM.Atencia - https://opengameart.org/content/spinning-coin
 	
 	All game art sourced from https://opengameart.org/
 	CC by 3.0 licence link - https://creativecommons.org/licenses/by/3.0/

@@ -86,7 +86,7 @@ use_filter = false
 font_data = ExtResource( 3 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Credits" type="Control" index="0"]
+[node name="Credits" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -186,7 +186,7 @@ custom_fonts/font = SubResource( 5 )
 text = "	- Background      CC by 3.0 - Alekei - https://opengameart.org/content/background-night
 	- Monsters          CC by 3.0 - Redshrike - https://opengameart.org/content/3-rpg-enemy-remixes
 	- Music	                CC by 3.0 - Zander Noriega - https://opengameart.org/content/darker-waves
-	"
+	- Coin                  CC by 3.0 - JM.Atencia - https://opengameart.org/content/spinning-coin	"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1

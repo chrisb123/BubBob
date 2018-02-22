@@ -1,16 +1,19 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://PowerUp.gd" type="Script" id=1]
 [ext_resource path="res://asset/coins2.png" type="Texture" id=2]
 [ext_resource path="res://PowerUp_Sprite.gd" type="Script" id=3]
 [ext_resource path="res://sounds/coin.wav" type="AudioStream" id=4]
-
-[sub_resource type="CircleShape2D" id=1]
-
-custom_solver_bias = 0.0
-radius = 20.8414
+[ext_resource path="res://asset/potions/pt2.png" type="Texture" id=5]
+[ext_resource path="res://asset/potions/pt1.png" type="Texture" id=6]
+[ext_resource path="res://asset/potions/pt3.png" type="Texture" id=7]
 
 [sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 17.7261
+
+[sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 23.1487
@@ -40,21 +43,21 @@ angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Angular", "Collision", "Linear", "Pickable", "Transform", "Visibility", "Z" ]
 
-[node name="PowerUp" type="Sprite" parent="." index="0"]
+[node name="Coin" type="Sprite" parent="." index="0"]
 
 texture = ExtResource( 2 )
 vframes = 4
 script = ExtResource( 3 )
 _sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform", "Visibility", "Z" ]
 
-[node name="Frame_Increase" type="Timer" parent="PowerUp" index="0"]
+[node name="Frame_Increase" type="Timer" parent="Coin" index="0"]
 
 process_mode = 1
 wait_time = 0.05
 one_shot = false
 autostart = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PowerUp" index="1"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Coin" index="1"]
 
 stream = ExtResource( 4 )
 volume_db = -0.5
@@ -62,12 +65,29 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+[node name="Potion_Shoot" type="Sprite" parent="." index="1"]
 
-shape = SubResource( 1 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Area2D" type="Area2D" parent="." index="2"]
+[node name="Potion_Speed" type="Sprite" parent="." index="2"]
+
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 6 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Potion_Jump" type="Sprite" parent="." index="3"]
+
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 7 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
+
+shape = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="." index="5"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -80,11 +100,9 @@ _sections_unfolded = [ "Audio Bus", "Collision", "Material", "Pickable", "Transf
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
-[connection signal="timeout" from="PowerUp/Frame_Increase" to="PowerUp" method="_on_Frame_Increase_timeout"]
-
-[connection signal="finished" from="PowerUp/AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]
+[connection signal="timeout" from="Coin/Frame_Increase" to="Coin" method="_on_Frame_Increase_timeout"]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 

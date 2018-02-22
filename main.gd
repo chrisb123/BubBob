@@ -316,7 +316,16 @@ func _on_Enemy_timeout():
 					enemy.boss_type = 3
 				elif EnemyArray[i] == 201:	#Powerup, no enemy +1 count
 					enemy = PowerUp.instance()
-					
+					enemy.powerup_type = 1					
+				elif EnemyArray[i] == 202:	#Powerup, no enemy +1 count
+					enemy = PowerUp.instance()
+					enemy.powerup_type = 2					
+				elif EnemyArray[i] == 203:	#Powerup, no enemy +1 count
+					enemy = PowerUp.instance()
+					enemy.powerup_type = 3					
+				elif EnemyArray[i] == 204:	#Powerup, no enemy +1 count
+					enemy = PowerUp.instance()
+					enemy.powerup_type = 4					
 				elif EnemyArray[i] == 998: #wait till all enemies destroyed
 					if Global_Vars.enemyn == 0:
 						EnemyArray[i] = 999

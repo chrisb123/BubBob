@@ -3,8 +3,14 @@ extends KinematicBody2D
 # class member variables go here, for example:
 # var a = 2
 var vel = Vector2()
+var SPEED_CONST = 1750
 var SPEED = 1750
+var speed_factor = 2
+
+const jump_speed_const = -525
 const jump_speed = -525
+var jump_factor = 1.5
+
 var onGround = 0
 signal fired
 var fired = 1
@@ -15,7 +21,13 @@ var Screen_Shoot = 0
 var Screen_Left = 0
 var Screen_Right = 0
 var Screen_Up = 0
-const FIRING_SPEED = 0.25 #0.3 normal
+
+const FIRING_SPEED_CONST = 0.25 #0.3 normal
+var FIRING_SPEED = 0.25 #0.3 normal
+var firing_factor = 2
+
+var boost_time = 20
+
 var screen_xsize
 var screen_ysize
 var scrxa
@@ -173,7 +185,27 @@ func _on_Invincible_Flash_timeout():
 			$AnimatedSprite.visible = true
 	else:
 		$AnimatedSprite.visible = true
+
+func _firing_factor():		#called by PowerUp
+	$Timer.wait_time = FIRING_SPEED / firing_factor	 # (inverse) bubble shooting timer
+	yield(get_tree().create_timer(5),"timeout")
+	$Timer.wait_time = FIRING_SPEED_CONST
 		
+func _speed_factor():		#called by PowerUp
+	SPEED *= speed_factor
+	yield(get_tree().create_timer(5),"timeout")
+	SPEED = SPEED_CONST
+
+func _jump_factor():	#caller by PowerUp
+	jump_speed *= jump_factor
+	yield(get_tree().create_timer(5),"timeout")
+	jump_speed = jump_speed_const
+
+
+
+
+
+
 func _input(event):
 
 #JOY PAD	
