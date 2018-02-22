@@ -144,7 +144,8 @@ func _on_Bubble_Timer_timeout():
 
 
 func _on_Pop_tween_completed( object, key ):
-	$Particles_start.emitting = true
+	if Global_Vars.Osys != "HTML5":
+		$Particles_start.emitting = true
 	$Pop_Bubble.play()
 	$Enemy/Shrink.interpolate_property($Enemy, 'scale', $Enemy.get_scale(),
 	Vector2(2.0,2.0), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
@@ -206,4 +207,4 @@ func _on_Bubble_Shrink_timeout():
 	bubble_count -= 1
 	if bubble_count == 0:
 		$Bubble.hide()
-	pass # replace with function body
+	
