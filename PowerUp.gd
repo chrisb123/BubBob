@@ -17,26 +17,42 @@ var jump_factor = 1.5
 var jump_duration = 20
 
 func _ready():
+	$Coin.hide()
+	$Potion_Shoot.hide()
+	$Potion_Speed.hide()
+	$Potion_Jump.hide()
+	$Potion_Particles.emitting = false
+	$Potion_Particles.hide()
+	
 	if powerup_type == 1:	#bonus points
 		$Coin.show()
-		$Potion_Shoot.hide()
-		$Potion_Speed.hide()
-		$Potion_Jump.hide()
+		#$Potion_Shoot.hide()
+		#$Potion_Speed.hide()
+		#$Potion_Jump.hide()
 	elif powerup_type == 2: #Shooting speed
-		$Coin.hide()
-		$Potion_Shoot.show() 
-		$Potion_Speed.hide()
-		$Potion_Jump.hide()
+		#$Coin.hide()
+		$Potion_Shoot.show()
+		if Global_Vars.Osys != "HTML5": 
+			$Potion_Particles.emitting = true
+			$Potion_Particles.show()
+		#$Potion_Speed.hide()
+		#$Potion_Jump.hide()
 	elif powerup_type == 3: #running_speed
-		$Coin.hide()
-		$Potion_Shoot.hide() 
+		#$Coin.hide()
+		#$Potion_Shoot.hide() 
 		$Potion_Speed.show()
-		$Potion_Jump.hide()
+		if Global_Vars.Osys != "HTML5": 
+			$Potion_Particles.emitting = true
+			$Potion_Particles.show()
+		#$Potion_Jump.hide()
 	elif powerup_type == 4: #jump_height
-		$Coin.hide()
-		$Potion_Shoot.hide() 
-		$Potion_Speed.hide()
+		#$Coin.hide()
+		#$Potion_Shoot.hide() 
+		#$Potion_Speed.hide()
 		$Potion_Jump.show()
+		if Global_Vars.Osys != "HTML5": 
+			$Potion_Particles.emitting = true
+			$Potion_Particles.show()
 
 func _process():
 	pass
@@ -53,18 +69,21 @@ func _on_Area2D_body_entered( body ):
 			$Coin/AudioStreamPlayer.play()
 			yield($Coin/AudioStreamPlayer,"finished")
 		if powerup_type == 2:
-			Global_Vars.score += 150
 			$Potion_Shoot.hide()
 			$CollisionShape2D.disabled = true
 			body._powerup_firing(shoot_factor,shoot_duration)
+			$Potion_SFX.play()
+			yield($Potion_SFX,"finished")
 		if powerup_type == 3:
-			Global_Vars.score += 200
 			$Potion_Speed.hide()
 			$CollisionShape2D.disabled = true
 			body._powerup_speed(speed_factor,speed_duration)
+			$Potion_SFX.play()
+			yield($Potion_SFX,"finished")
 		if powerup_type == 4:
-			Global_Vars.score += 250
 			$Potion_Jump.hide()
 			$CollisionShape2D.disabled = true
 			body._powerup_jump(jump_factor,jump_duration)
+			$Potion_SFX.play()
+			yield($Potion_SFX,"finished")
 		queue_free()	

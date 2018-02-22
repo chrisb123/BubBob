@@ -105,6 +105,8 @@ TO DO LIST  -  add ideas, task etc here
 	- Fireball			Public Domain CCO
 	- new bubble		Public Domain CCO
 	- Angry Kid			Public Domain CCO
+	- Potions			Public Domain CCO
+	- Drink SFX			Public Domain CCO
 ----------------------- NOTES ----------------------------------
 
 - I did some multitouch tests on android, godot connects touch idx and drag idx
