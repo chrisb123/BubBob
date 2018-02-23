@@ -15,8 +15,8 @@ func _ready():
 #	pass
 
 func waves():
-	var levelwave1 = [1,1,1,1,1,998,1,1,1,1,3]
-	var levelwave2 = [1,1,1,1,1,1,1,1,1,1,1,3]
+	var levelwave1 = [1,1,1,1,1,1,1,1,1,1,1,3]
+	var levelwave2 = [3,1,1,1,1,1,1,1,1,1,1,3]
 	var levelwave3 = [101]
 	var debugwave1 = [201,202,203,204,0,0,0,0,0,0,0,0,0,0,0,1]
 	var debugwave2 = [1,1,1,1,1,3,1,1,1,1,1,3]

@@ -74,12 +74,18 @@ TO DO LIST  -  add ideas, task etc here
 -------------------------------------------------------------
 
 -------------------- TODO Before Release ----------------------------
+
 - (DONE, just using NewBubble.png ) new App Icon
 - (DONE) Music on/off button main menu
 - (DONE) Intro instructions for PC or Android
-- check crash between LVL1 and LVL2 after loading screen in Android
 - (DONE. Explaned in Intro Screen) Joypad button needs to be more obvious or better explained
 - (DONE. Only hidden) remove lives from GUI
+
+- check crash between LVL1 and LVL2 after loading screen in Android released
+	(crashed on Monicas phone, only tried once though) (my phone worked fine)
+- see if you like joypad, may need to adjust angles were it changes player direction ??
+- Powerups have/need timeout ??
+- change CIMAD "we have no idea what we're doing" ??
 
 I think thats enough unless you can think of something else.
 
