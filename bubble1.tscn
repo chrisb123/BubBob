@@ -74,7 +74,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Emission Shape", "Gravity", "Initial Velocity", "Spread" ]
 
-[node name="Bubble" type="RigidBody2D" groups=[
+[node name="Bubble" type="RigidBody2D" index="0" groups=[
 "bubble",
 ]]
 
@@ -97,7 +97,7 @@ linear_damp = 0.75
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Applied Forces", "Collision", "Linear", "Transform" ]
+_sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Transform" ]
 facing = null
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
@@ -106,7 +106,7 @@ scale = Vector2( 0.075, 0.075 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Animation", "Offset", "Transform", "Visibility" ]
 
-[node name="Grow" type="Tween" parent="Sprite" index="0"]
+[node name="Squish" type="Tween" parent="Sprite" index="0"]
 
 repeat = false
 playback_process_mode = 1
@@ -114,8 +114,19 @@ playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
+_sections_unfolded = [ "playback" ]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite" index="1"]
+[node name="Grow" type="Tween" parent="Sprite" index="1"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+_sections_unfolded = [ "playback" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite" index="2"]
 
 root_node = NodePath("..")
 autoplay = ""

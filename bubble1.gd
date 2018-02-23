@@ -62,6 +62,19 @@ func _on_pop_time_timeout():
 func _on_Float_timeout():
 	gravity_scale = -1
 
+func unsquish():
+	$Sprite/Squish.stop_all()
+	var scale1 = $Sprite.get_scale()
+	var scale2 = sprite_size
+	$Sprite/Squish.interpolate_property($Sprite, 'scale', scale1, scale2, 0.25, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	$Sprite/Squish.start()
+
+func squish():
+	var scale1 = $Sprite.get_scale()
+	var scale2 = Vector2(scale1.x,scale1.y/2)
+	$Sprite/Squish.interpolate_property($Sprite, 'scale', scale1, scale2, 0.25, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	$Sprite/Squish.start()
+
 #pk, true if player popped the bubbles
 func killbub(pk):
 	if dying == false:

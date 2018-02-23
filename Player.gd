@@ -69,8 +69,7 @@ func _physics_process(delta):
 #		vel.y = -SPEED * delta #justify this? why jump at a rate determined by delta
 #		if vel.y < 425: #this makes no sense, if you are trying to jump and your velocity is smashing you into the ground
 #			vel.y = -525 #then jump instead
-	elif is_on_ceiling() and vel.y < 0:
-		vel.y = 0	
+	
 	else:
 		if ! is_on_floor():
 			vel.y += delta * 700 #decelerate
@@ -117,6 +116,7 @@ func _physics_process(delta):
 				data.killbub(true)
 			if vel.y > 25 and ! StandBubble:
 				StandBubble = col.collider
+				StandBubble.squish()
 				$OnBubble.start()
 					
 			#elif is_on_floor() && !is_on_wall() && !Input.is_action_pressed("ui_up"):
@@ -144,7 +144,8 @@ func _physics_process(delta):
 					vel.x = 500
 				elif vel.x < 0 && vel.x > -500:
 					vel.x = -500
-			
+		elif col.collider.is_in_group("tiles") and is_on_ceiling() and vel.y < 0:
+			vel.y = 0		
 	#If space is pressed fire bubble
 	if (Input.is_action_pressed("ui_accept") || Screen_Shoot) && fired:
 		fired = 0
@@ -154,6 +155,8 @@ func _physics_process(delta):
 		
 func _on_Area2D_area_exited( area ):
 	if area.get_parent() == StandBubble:
+		if StandBubble.is_in_group("bubble"):
+			StandBubble.unsquish()
 		StandBubble = null
 	
 func _on_OnBubble_timeout():
