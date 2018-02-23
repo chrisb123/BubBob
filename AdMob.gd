@@ -35,13 +35,13 @@ func _ready():
 func _initialize(isReal):
 	admob.init(isReal, get_instance_id())
 	if isReal == true:
-		adBannerId = "ca-app-pub-3940256099942544/6300978111"	# change to Admob Account details
-		adInterstitialId = "ca-app-pub-3940256099942544/1033173712" # change to Admob Account details
-		adRewardedId = "ca-app-pub-3940256099942544/5224354917" # change to Admob Account details
+		adBannerId = "ca-app-pub-3314225270255384/8529490625"	# change to Admob Account details
+		adInterstitialId = "ca-app-pub-3314225270255384/9428527376" # change to Admob Account details
+		#adRewardedId = "ca-app-pub-3940256099942544/5224354917" # change to Admob Account details
 	else:
 		adBannerId = "ca-app-pub-3940256099942544/6300978111"	# Test Ad ID
 		adInterstitialId = "ca-app-pub-3940256099942544/1033173712" # Test Ad ID
-		adRewardedId = "ca-app-pub-3940256099942544/5224354917" # Test Ad ID
+		#adRewardedId = "ca-app-pub-3940256099942544/5224354917" # Test Ad ID
 	loadBanner()
 	loadInterstitial()
 	#loadRewardedVideo()
