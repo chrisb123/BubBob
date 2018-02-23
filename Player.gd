@@ -180,19 +180,22 @@ func _on_Invincible_Flash_timeout():
 		$AnimatedSprite.visible = true
 
 func _powerup_firing(factor,time):		#called by PowerUp
-	$Timer.wait_time = FIRING_SPEED / factor	 # (inverse) bubble shooting timer
-	yield(get_tree().create_timer(time),"timeout")
-	$Timer.wait_time = FIRING_SPEED_CONST
+	if $Timer.wait_time == FIRING_SPEED_CONST:
+		$Timer.wait_time = FIRING_SPEED / factor	 # (inverse) bubble shooting timer
+		yield(get_tree().create_timer(time),"timeout")
+		$Timer.wait_time = FIRING_SPEED_CONST
 		
 func _powerup_speed(factor,time):		#called by PowerUp
-	SPEED *= factor
-	yield(get_tree().create_timer(time),"timeout")
-	SPEED = SPEED_CONST
+	if SPEED == SPEED_CONST:
+		SPEED *= factor
+		yield(get_tree().create_timer(time),"timeout")
+		SPEED = SPEED_CONST
 
 func _powerup_jump(factor,time):	#called by PowerUp
-	jump_speed *= factor
-	yield(get_tree().create_timer(time),"timeout")
-	jump_speed = jump_speed_const
+	if jump_speed == jump_speed_const:
+		jump_speed *= factor
+		yield(get_tree().create_timer(time),"timeout")
+		jump_speed = jump_speed_const
 
 
 

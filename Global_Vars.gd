@@ -114,6 +114,10 @@ even with multiple fingers touching at same time
 - joypad is centred around X "button"
 - small deadspace just around the X, joypad has range of about 150 pixels
 - Joypad position currently fixed, will make dynamic later, if better than buttons.
+- I don't think we should be using exported packed scenes, maybe if creating creating dynamic content where the scenes are set programatically
+	export (PackedScene) var Player
+	Instead declare the resource dynamicallly or statically
+	var resource = load("res://levels/level"+str(Global_Vars.leveln)+".tscn")
 
 ---------------------- BUGS ----------------------------------
 

@@ -266,25 +266,40 @@ func _fired(facing):
 func do_nothing():
 	pass
 
+func find_spawn(dist, maxdist):
+	var mag = 0
+	if dist < 25:
+		dist = 150
+	if maxdist < (dist + 25):
+		maxdist = dist + 9999
+	var spos = Vector2()
+	while mag < dist or mag > maxdist:
+		var i = 0
+		#dont create enemies on tile map
+		while i >= 0:
+			spos.x = randi()%int(levsize[0])+int(levsize[1])
+			spos.y = randi()%int(levsize[2])+int(levsize[3])
+			i = level.get_cellv(level.world_to_map(Vector2(spos))) 
+		var ab = spos - player.position
+		mag = sqrt(ab.x*ab.x+ab.y*ab.y)
+	return spos
+
 func _on_Enemy_timeout():
+	#Add powerups randomly 10% chance
+	if ! randi()%10:
+		var powerpos = find_spawn(150,300)
+		var powerups = PowerUp.instance()
+		powerups.powerup_type = randi()%4+1
+		powerups.position = Vector2(powerpos.x,powerpos.y)
+		add_child(powerups)
 
 	var enemy_count = get_tree().get_nodes_in_group("enemy").size()
 	if enemy_count < max_enemies and Global_Vars.gameover == false:
 		randomize()
-		var mag = 0
-		var epos = Vector2()
-		while mag < 150:
-			var i = 0
-			#dont create enemies on tile map
-			while i >= 0:
-				epos.x = randi()%int(levsize[0])+int(levsize[1])
-				epos.y = randi()%int(levsize[2])+int(levsize[3])
-				i = level.get_cellv(level.world_to_map(Vector2(epos))) 
-			var ab = epos - player.position
-			mag = sqrt(ab.x*ab.x+ab.y*ab.y)
-
+		var epos = find_spawn(150,0)
+		
 		#randomize new enemy type
-		randomize()
+#		randomize()
 		#Enemy spawn is defined in Global_Vars in as array
 
 		#print ("wave # ",Global_Vars.waven)
