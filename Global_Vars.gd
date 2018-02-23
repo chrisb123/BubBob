@@ -73,15 +73,27 @@ func _process(delta):
 TO DO LIST  -  add ideas, task etc here
 -------------------------------------------------------------
 
+-------------------- TODO Before Release ----------------------------
+- (DONE, just using NewBubble.png ) new App Icon
+- (DONE) Music on/off button main menu
+- (DONE) Intro instructions for PC or Android
+- check crash between LVL1 and LVL2 after loading screen in Android
+- (DONE. Explaned in Intro Screen) Joypad button needs to be more obvious or better explained
+- (DONE. Only hidden) remove lives from GUI
+
+I think thats enough unless you can think of something else.
+
+
+
  --------------------  IDEAS --------------------------------
 
 - quit button for android while playing
 - Zoom & Music button implemented for android 
-- implement Advertising (Splash screen before level start, or constant banner while playing)
+- (DONE) implement Advertising (Splash screen before level start, or constant banner while playing)
 - balance monster waves
 - Change lives to unlimited but reduce score (done)
 - Change poping bubble combos and emey to a higher score
-- Change enemy score to be higher
+- (DONE) Change enemy score to be higher
 
 ----------------------- ToDO ----------------------------------
 
@@ -124,9 +136,9 @@ even with multiple fingers touching at same time
 
 --------------- ADRIAN CURRENT TASKS -------------------------
 
- - More Power Ups
- - AdMob Installation
- - Debug Overlay
+ - (DONE) More Power Ups
+ - (DONE) AdMob Installation
+ - (DONE) Debug Overlay
  - Bug with file on the highscores screen
 
  -------------- CHRIS CURRENT TASKS ---------------------------

@@ -16,7 +16,7 @@ modules="org/godotengine/godot/GodotAdMob"
 
 config/name="BubBob"
 run/main_scene="res://main.tscn"
-config/icon="res://icon.png"
+config/icon="res://asset/BubbleSimple.png"
 
 [autoload]
 
