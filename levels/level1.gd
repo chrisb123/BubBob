@@ -23,7 +23,7 @@ func waves():
 	var debugwave3 = [101]
 	
 	if OS.is_debug_build():
-		return [0, debugwave1, debugwave2, debugwave3]
+		return [0, debugwave2, debugwave2, debugwave3]
 	else:
 		return [0, levelwave1, levelwave2, levelwave3]
 	

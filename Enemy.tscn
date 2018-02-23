@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Explosion.tscn" type="PackedScene" id=2]
@@ -116,6 +116,11 @@ anim_offset = 0.0
 anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Color", "Emission Shape", "Gravity", "Initial Velocity", "Spread" ]
+
+[sub_resource type="CircleShape2D" id=8]
+
+custom_solver_bias = 0.0
+radius = 45.9931
 
 [node name="RigidBody2D" type="RigidBody2D" groups=[
 "enemy",
@@ -284,6 +289,21 @@ volume_db = -5.0
 autoplay = false
 mix_target = 0
 bus = "Master"
+
+[node name="Area2D" type="Area2D" parent="." index="12"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+monitoring = false
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
+shape = SubResource( 8 )
 
 [connection signal="body_entered" from="." to="." method="_on_RigidBody2D_body_entered"]
 

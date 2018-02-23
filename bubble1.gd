@@ -68,7 +68,7 @@ func killbub(pk):
 		dying = true
 		$Area2D.monitorable = false
 		for item in $Area2D.get_overlapping_bodies():
-			if item.is_in_group("bubble") || item.is_in_group("enemy"):
+			if pk and (item.is_in_group("bubble") || item.is_in_group("enemy")):
 				item.killbub(pk)
 		$CollisionShape2D.disabled = true
 		$Area2D/CollisionShape2D.disabled = true

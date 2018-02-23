@@ -18,6 +18,8 @@ var facing = 1
 var action = 0
 var invincible = false
 
+var StandBubble
+
 var Screen_Shoot = 0
 var Screen_Left = 0
 var Screen_Right = 0
@@ -67,10 +69,11 @@ func _physics_process(delta):
 #		vel.y = -SPEED * delta #justify this? why jump at a rate determined by delta
 #		if vel.y < 425: #this makes no sense, if you are trying to jump and your velocity is smashing you into the ground
 #			vel.y = -525 #then jump instead
-	elif is_on_ceiling():
+	elif is_on_ceiling() and vel.y < 0:
 		vel.y = 0	
 	else:
-		vel.y += delta * 700 #decelerate
+		if ! is_on_floor():
+			vel.y += delta * 700 #decelerate
 		if vel.y > 1000: #max out falling speen
 			vel.y = 1000
 			
@@ -110,8 +113,12 @@ func _physics_process(delta):
 			#data.linear_velocity += col.remainder * 2
 			data.apply_impulse(Vector2(),col.remainder)
 			#hit bubble with head (explode), hit bubble with feet (shirnk/vanish)
-			if is_on_ceiling() && vel.y < 0:
+			if is_on_ceiling() and vel.y < 0:
 				data.killbub(true)
+			if vel.y > 25 and ! StandBubble:
+				StandBubble = col.collider
+				$OnBubble.start()
+					
 			#elif is_on_floor() && !is_on_wall() && !Input.is_action_pressed("ui_up"):
 				#data.popbub()
 		#if collide with monster, kill if in bubble, or player bounce off
@@ -121,7 +128,9 @@ func _physics_process(delta):
 				data.linear_velocity += col.remainder * 2
 				if is_on_ceiling() && !is_on_wall():
 					data.killbub(true)
-
+				if vel.y > 25 and ! StandBubble:
+					StandBubble = col.collider
+					$OnBubble.start()
 			else:
 				if invincible == false:
 					invincible = true
@@ -135,12 +144,25 @@ func _physics_process(delta):
 					vel.x = 500
 				elif vel.x < 0 && vel.x > -500:
 					vel.x = -500
+			
 	#If space is pressed fire bubble
 	if (Input.is_action_pressed("ui_accept") || Screen_Shoot) && fired:
 		fired = 0
 		#shoot = 0
 		$Timer.start()
 		emit_signal("fired",facing)
+		
+func _on_Area2D_area_exited( area ):
+	if area.get_parent() == StandBubble:
+		StandBubble = null
+	
+func _on_OnBubble_timeout():
+	if StandBubble:
+		if StandBubble.is_in_group("enemy"):
+			StandBubble.killbub(true)
+		elif StandBubble.is_in_group("bubble"):
+			StandBubble.killbub(false)
+		StandBubble = null
 
 func _on_Timer_timeout():
 	fired = 1
@@ -353,5 +375,9 @@ func _input(event):
 			Screen_Right = 0
 			
 """
-		
+
+
+
+
+
 

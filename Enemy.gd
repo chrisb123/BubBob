@@ -41,6 +41,8 @@ func _ready():
 	if get_parent().is_in_group("enemyboss"):
 		_is_minion = true
 
+	if OS.is_debug_build():
+		$Bubble_Timer.wait_time = 10
 #func _process(delta):
 
 #no need to process physics every frame for rigid bodies

@@ -61,6 +61,7 @@ func _ready():
 	#Instance AdMob if available
 	if OS.is_debug_build():
 		get_node("/root/Main/Debug")._String("AdMob Initializing")
+		get_node("Music").playing = !get_node("Music").playing
 	if(Engine.has_singleton("AdMob")):
 		if OS.is_debug_build():
 			get_node("/root/Main/Debug")._String("AdMob Singleton OK")

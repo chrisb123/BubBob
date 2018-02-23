@@ -79,7 +79,7 @@ TO DO LIST  -  add ideas, task etc here
 - Zoom & Music button implemented for android 
 - implement Advertising (Splash screen before level start, or constant banner while playing)
 - balance monster waves
-- Change lives to unlimited but reduce score
+- Change lives to unlimited but reduce score (done)
 - Change poping bubble combos and emey to a higher score
 - Change enemy score to be higher
 
