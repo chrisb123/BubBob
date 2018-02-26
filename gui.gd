@@ -45,13 +45,12 @@ func _ready():
 		$JoyPad.hide()
 		$Shoot.hide()
 		
-	if OS.is_debug_build():
-		$KillAll.margin_right = xsize
-		$KillAll.margin_bottom = 0 + ysize * 0.15
-		$KillAll.margin_left = xsize - xsize * 0.15
-		$KillAll.margin_top = 0
-	else:
-		$KillAll.hide()
+	$KillAll.margin_right = xsize
+	$KillAll.margin_bottom = 0 + ysize * 0.15
+	$KillAll.margin_left = xsize - xsize * 0.15
+	$KillAll.margin_top = 0
+	if ! OS.is_debug_build():
+		$KillAll.text = "Quit"
 
 func _process(delta): #Change this
 	score.text = str("Score: " + str(Global_Vars.score))
@@ -70,8 +69,9 @@ func _on_Level_Change_tween_completed( object, key ):
 
 
 func _on_KillAll_pressed():
-	print("kill all")
-	var enemies = get_tree().get_nodes_in_group("enemy")
-	for i in enemies:
-		print(i)
-		i.get_node("AnimatedSprite").play()
+	if ! OS.is_debug_build():
+		Global_Vars.gameover = true
+	else:
+		var enemies = get_tree().get_nodes_in_group("enemy")
+		for i in enemies:
+			i.get_node("AnimatedSprite").play()

@@ -210,6 +210,7 @@ func _powerup_firing(factor,time):		#called by PowerUp
 		yield(get_tree().create_timer(time),"timeout")
 		$Timer.wait_time = FIRING_SPEED_CONST
 		
+		
 func _powerup_speed(factor,time):		#called by PowerUp
 	if SPEED == SPEED_CONST:
 		SPEED *= factor
@@ -251,33 +252,33 @@ func _input(event):
 				if OS.is_debug_build():
 					get_node("/root/Main/Debug")._String3(str(angle))
 
-				if angle > 70 && angle < 110:
+				if angle > 50 && angle < 130:
 					Screen_Up = 1
 					Screen_Left = 0
 					Screen_Right = 0
 					if OS.is_debug_build():
 						get_node("/root/Main/Debug")._String2("UP")
 	
-				elif angle > 45 && angle < 70:
+				elif angle > 0 && angle < 50:
 					Screen_Up = 1
 					Screen_Left = 1
 					Screen_Right = 0
 					if OS.is_debug_build():
 						get_node("/root/Main/Debug")._String2("UP LEFT")
-				elif angle > -45 && angle < 20:
+				elif angle > -90 && angle < 0:
 					Screen_Up = 0
 					Screen_Left = 1
 					Screen_Right = 0
 					if OS.is_debug_build():
 						get_node("/root/Main/Debug")._String2("LEFT")
 					
-				elif angle > 110 && angle < 135:
+				elif angle > 130:# && angle < 180:
 					Screen_Up = 1
 					Screen_Left = 0
 					Screen_Right = 1
 					if OS.is_debug_build():
 						get_node("/root/Main/Debug")._String2("UP RIGHT")
-				elif angle > 135 && angle < 180 || angle > -180 && angle < -135: #Angle (0 - 180 degrees CW and 0 - -180 degrees CCW)
+				elif angle < -90: #> 135 && angle < 180 || angle > -180 && angle < -135: #Angle (0 - 180 degrees CW and 0 - -180 degrees CCW)
 					Screen_Up = 0
 					Screen_Left = 0
 					Screen_Right = 1

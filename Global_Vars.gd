@@ -81,11 +81,9 @@ TO DO LIST  -  add ideas, task etc here
 - (DONE. Explaned in Intro Screen) Joypad button needs to be more obvious or better explained
 - (DONE. Only hidden) remove lives from GUI
 
-- check crash between LVL1 and LVL2 after loading screen in Android released
-	(crashed on Monicas phone, only tried once though) (my phone worked fine)
-- see if you like joypad, may need to adjust angles were it changes player direction ??
-- Powerups have/need timeout ??
-- change CIMAD "we have no idea what we're doing" ??
+- see if you like joypad, may need to adjust angles were it changes player direction ?? (changed)
+- Powerups have/need timeout ?? (no spam the crap out of it)
+- change CIMAD "we have no idea what we're doing" ?? (to what?)
 
 I think thats enough unless you can think of something else.
 
@@ -93,11 +91,11 @@ I think thats enough unless you can think of something else.
 
  --------------------  IDEAS --------------------------------
 
-- quit button for android while playing
+- (DONE) quit button for android while playing
 - Zoom & Music button implemented for android 
 - (DONE) implement Advertising (Splash screen before level start, or constant banner while playing)
 - balance monster waves
-- Change lives to unlimited but reduce score (done)
+- (DONE) Change lives to unlimited but reduce score 
 - Change poping bubble combos and emey to a higher score
 - (DONE) Change enemy score to be higher
 
@@ -105,7 +103,7 @@ I think thats enough unless you can think of something else.
 
  - (Intial done) CIMAD spalsh screen before title screen
  - (Initial done) Loading screen for 1s before showing intertital ads (admob requirment)
- - add killall button to debug screen (add other uncoded buttons for future use)
+ - add other uncoded buttons for future use
 
  - Asset citation screen (licence requirments)
 	- Background      CC by 3.0 - Alekei - https://opengameart.org/content/background-night

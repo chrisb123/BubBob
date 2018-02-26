@@ -379,6 +379,24 @@ func _on_Enemy_timeout():
 		_load_level()
 		
 func _gameover():
+	
+	#Duplicating code....
+	var Loading = Loading_Screen.instance()
+	add_child(Loading)
+	
+	#Step 2:- Show Interstital ADs if available
+	if(Engine.has_singleton("AdMob")):
+		if get_node("/root/Main/AdMob").inter_ready:
+			yield(get_tree().create_timer(1),"timeout")
+			get_node("/root/Main/AdMob")._show_interstital()
+			yield(get_node("/root/Main/AdMob"),"LoadScreen_Finished") #emitted when ad closed
+		else:
+			get_node("/root/Main/AdMob").loadInterstitial() #try reloading interstital for next LVL change
+			yield(get_tree().create_timer(5),"timeout") #Fake loading time, avoids turning off network to skip ads
+
+	#Step 3:- Remove Loading Screen after Ad closed, or no ad shown
+	remove_child(Loading)
+	
 	gameover = GameOver.instance()
 	add_child(gameover)
 
