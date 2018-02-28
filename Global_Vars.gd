@@ -12,6 +12,13 @@ var leveln = 0
 var waven = 0
 var Osys
 
+var Difficulty = 1		#factor based set in main menu
+const easy = 0.7
+const normal = 1
+const hard = 1.3
+const insane = 2
+
+
 var enemyn = 0
 
 #Scores for enemy kills

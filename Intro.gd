@@ -14,6 +14,14 @@ func _ready():
 	else:
 		$VBoxContainer/Info_Other.visible = true
 		$VBoxContainer/Info_Android.visible = false
+	if Global_Vars.Difficulty == Global_Vars.easy:
+		$Difficulty.text = "Difficulty: Easy"
+	elif Global_Vars.Difficulty == Global_Vars.normal:
+		$Difficulty.text = "Difficulty: Normal"
+	elif Global_Vars.Difficulty == Global_Vars.hard:
+		$Difficulty.text = "Difficulty: Hard"
+	elif Global_Vars.Difficulty == Global_Vars.insane:
+		$Difficulty.text = "Difficulty: Insane"
 		
 		
 
@@ -35,6 +43,22 @@ func _on_Credits_pressed():
 	pass # replace with function body
 
 
-func _on_Button_pressed():
+func _on_Music_pressed():
 	get_parent().get_node("Music").playing = !get_parent().get_node("Music").playing
 	pass # replace with function body
+
+
+func _on_Difficulty_pressed():
+	if Global_Vars.Difficulty == Global_Vars.easy:
+		$Difficulty.text = "Difficulty: Normal"
+		Global_Vars.Difficulty = Global_Vars.normal
+	elif Global_Vars.Difficulty == Global_Vars.normal:
+		$Difficulty.text = "Difficulty: Hard"
+		Global_Vars.Difficulty = Global_Vars.hard
+	elif Global_Vars.Difficulty == Global_Vars.hard:
+		$Difficulty.text = "Difficulty: Insane"
+		Global_Vars.Difficulty = Global_Vars.insane
+	elif Global_Vars.Difficulty == Global_Vars.insane:
+		$Difficulty.text = "Difficulty: Easy"
+		Global_Vars.Difficulty = Global_Vars.easy
+		

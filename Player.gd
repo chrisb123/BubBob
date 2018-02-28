@@ -259,26 +259,26 @@ func _input(event):
 					if OS.is_debug_build():
 						get_node("/root/Main/Debug")._String2("UP")
 	
-				elif angle > 0 && angle < 50:
+				elif angle > 30 && angle < 50:
 					Screen_Up = 1
 					Screen_Left = 1
 					Screen_Right = 0
 					if OS.is_debug_build():
 						get_node("/root/Main/Debug")._String2("UP LEFT")
-				elif angle > -90 && angle < 0:
+				elif angle > -90 && angle < 30:
 					Screen_Up = 0
 					Screen_Left = 1
 					Screen_Right = 0
 					if OS.is_debug_build():
 						get_node("/root/Main/Debug")._String2("LEFT")
 					
-				elif angle > 130:# && angle < 180:
+				elif angle > 130 && angle < 150:
 					Screen_Up = 1
 					Screen_Left = 0
 					Screen_Right = 1
 					if OS.is_debug_build():
 						get_node("/root/Main/Debug")._String2("UP RIGHT")
-				elif angle < -90: #> 135 && angle < 180 || angle > -180 && angle < -135: #Angle (0 - 180 degrees CW and 0 - -180 degrees CCW)
+				elif angle > 150 && angle < 180 || angle > -180 && angle < -135: #Angle (0 - 180 degrees CW and 0 - -180 degrees CCW)
 					Screen_Up = 0
 					Screen_Left = 0
 					Screen_Right = 1

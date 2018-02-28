@@ -5,8 +5,8 @@ extends RigidBody2D
 # var b = "textvar"
 var _in_bubble = false
 var vel = Vector2()
-const MIN_SPEED = 150
-const MAX_SPEED = 350
+var MIN_SPEED = 0	#Set in ready based upon phone or PC
+var MAX_SPEED = 0	#Set in ready based upon phone or PC
 const Y_SPEED_REDUCTION = 0.5 #divisor factor for Y axis speeds
 export (PackedScene) var Explode
 export (PackedScene) var Fireball
@@ -22,19 +22,26 @@ const bubble_size = Vector2(0.075,0.075)
 #initialise scene depending on enemy_type
 # - Need to add in different speeds and other changes to make enemies different
 func _ready():
+	if OS.has_touchscreen_ui_hint():
+		MIN_SPEED = int(100 * Global_Vars.Difficulty)
+		MAX_SPEED = int(250 * Global_Vars.Difficulty)
+	else:
+		MIN_SPEED = int(150 * Global_Vars.Difficulty)
+		MAX_SPEED = int(350 * Global_Vars.Difficulty)
+	
 	$Bubble.scale = bubble_size
 	randomize()
 	if enemy_type == 1:
 		$Enemy.region_rect = Rect2(0,0,80,100)
-		score_for_killing = Global_Vars.score_enemy1
+		score_for_killing = int(Global_Vars.score_enemy1 * Global_Vars.Difficulty)
 	if enemy_type == 2:
 		$Enemy.region_rect = Rect2(73,0,70,100)
-		score_for_killing = Global_Vars.score_enemy2
+		score_for_killing = int(Global_Vars.score_enemy2 * Global_Vars.Difficulty)
 		$Fireball_Timer.wait_time = 3
 		$Fireball_Timer.start()
 	if enemy_type == 3:
 		$Enemy.region_rect = Rect2(143,0,70,100)
-		score_for_killing = Global_Vars.score_enemy3
+		score_for_killing = int(Global_Vars.score_enemy3 * Global_Vars.Difficulty)
 		$Fireball_Timer.wait_time = 2
 		$Fireball_Timer.start()
 		
@@ -161,7 +168,7 @@ func _on_Fireball_Timer_timeout():
 	if enemy_type == 2:
 		var pos = $Enemy.position
 		var rot = 0
-		var lin = 150
+		var lin = int(150 * Global_Vars.Difficulty)
 		var i = 1
 		pos.x += 0 #* facing
 		pos.y -= 0
@@ -179,7 +186,7 @@ func _on_Fireball_Timer_timeout():
 		var pos = $Enemy.position
 		pos.x += 50 * facing
 		pos.y -= 0
-		fireball.linear_velocity = Vector2(300 * facing,0)
+		fireball.linear_velocity = Vector2(300 * Global_Vars.Difficulty * facing,0)
 		if fireball.linear_velocity.x > 0:
 			fireball.rotation_degrees += 0 
 		else:

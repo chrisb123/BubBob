@@ -5,9 +5,9 @@ extends RigidBody2D
 # var b = "textvar"
 var _in_bubble = false
 var vel = Vector2()
-const MAX_MINIONS = 4
-const MIN_SPEED = 150
-const MAX_SPEED = 350
+var MAX_MINIONS = int(4 * Global_Vars.Difficulty)
+var MIN_SPEED = 0	# set in _ready
+var MAX_SPEED = 0	#set in _ready
 const Y_SPEED_REDUCTION = 0.5 #divisor factor for Y axis speeds
 export (PackedScene) var Explode
 export (PackedScene) var Enemy
@@ -26,16 +26,26 @@ const bubble_size_inc = Vector2(0.005,0.005)
 
 #setup boss type
 func _ready():
+	if OS.has_touchscreen_ui_hint():
+		MIN_SPEED = int(100 * Global_Vars.Difficulty)
+		MAX_SPEED = int(250 * Global_Vars.Difficulty)
+	else:
+		MIN_SPEED = int(150 * Global_Vars.Difficulty)
+		MAX_SPEED = int(350 * Global_Vars.Difficulty)
+			
 	$Bubble.scale = bubble_size
 	if boss_type == 1:
 		$Enemy.region_rect = Rect2(0,0,80,100)
-		score_for_killing = Global_Vars.score_enemyboss1
+		score_for_killing = int(Global_Vars.score_enemyboss1 * Global_Vars.Difficulty)
+		$Minion_Spawn.wait_time = 1 / Global_Vars.Difficulty
 	if boss_type == 2:
 		$Enemy.region_rect = Rect2(73,0,70,100)
-		score_for_killing = Global_Vars.score_enemyboss2
+		score_for_killing = int(Global_Vars.score_enemyboss2 * Global_Vars.Difficulty)
+		$Minion_Spawn.wait_time = 0.5 / Global_Vars.Difficulty
 	if boss_type == 3:
 		$Enemy.region_rect = Rect2(143,0,70,100)
-		score_for_killing = Global_Vars.score_enemyboss3
+		score_for_killing = int(Global_Vars.score_enemyboss3 * Global_Vars.Difficulty)
+		$Minion_Spawn.wait_time = 3 / Global_Vars.Difficulty
 
 func _process(delta):
 	if _in_bubble == true:
@@ -169,7 +179,7 @@ func _on_Minion_Spawn_timeout():
 
 	if _in_bubble == false and boss_type == 2:
 		var pos = $Enemy.position
-		var lin = 150
+		var lin = int(150 * Global_Vars.Difficulty)
 		pos.x += 0 #* facing
 		pos.y = -30
 		var fireball = Fireball.instance()
@@ -192,7 +202,7 @@ func _on_Minion_Spawn_timeout():
 			if yoffset > 50:
 				yoffset = -50				
 			pos.y += yoffset
-			fireball.linear_velocity = Vector2(float(FireballSpeed + FireballSpeed / FireballCount * i) * facing,0)
+			fireball.linear_velocity = Vector2(float((FireballSpeed + FireballSpeed / FireballCount * i) * Global_Vars.Difficulty) * facing,0)
 			if fireball.linear_velocity.x > 0:
 				fireball.rotation_degrees += 0 
 			else:
