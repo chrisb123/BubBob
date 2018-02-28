@@ -6,7 +6,7 @@ extends Camera2D
 
 func _ready():
 	if OS.has_touchscreen_ui_hint():
-		self.zoom = Vector2(0.8,0.8)
+		self.zoom = Vector2(0.75,0.75)
 	else:
 		self.zoom = Vector2(1.0,1.0)	
 
