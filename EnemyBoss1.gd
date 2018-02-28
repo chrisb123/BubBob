@@ -46,6 +46,8 @@ func _ready():
 		$Enemy.region_rect = Rect2(143,0,70,100)
 		score_for_killing = int(Global_Vars.score_enemyboss3 * Global_Vars.Difficulty)
 		$Minion_Spawn.wait_time = 3 / Global_Vars.Difficulty
+		
+	$Bubble_Timer.wait_time = 10 / Global_Vars.Difficulty
 
 func _process(delta):
 	if _in_bubble == true:
