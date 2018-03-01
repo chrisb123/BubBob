@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://asset/font/Comfortaa-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://levels/Full Moon - background.png" type="Texture" id=2]
@@ -10,14 +10,6 @@ use_mipmaps = false
 use_filter = false
 font_data = ExtResource( 1 )
 _sections_unfolded = [ "Font", "Resource", "Settings" ]
-
-[sub_resource type="DynamicFont" id=2]
-
-size = 48
-use_mipmaps = false
-use_filter = false
-font_data = ExtResource( 1 )
-_sections_unfolded = [ "Font", "Settings" ]
 
 [node name="CIMAD" type="Control" index="0"]
 
@@ -58,39 +50,9 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="." index="1"]
+[node name="Full Moon - background" type="Sprite" parent="." index="1"]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 127.0
-margin_top = 586.0
-margin_right = 1132.0
-margin_bottom = 660.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = true
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-custom_fonts/normal_font = SubResource( 2 )
-bbcode_enabled = false
-bbcode_text = ""
-visible_characters = -1
-percent_visible = 1.0
-meta_underlined = true
-tab_size = 4
-text = "WE HAVE NO IDEA WHAT WE'RE DOING"
-scroll_active = true
-scroll_following = false
-selection_enabled = false
-override_selected_font_color = false
-_sections_unfolded = [ "custom_colors", "custom_fonts" ]
-
-[node name="Full Moon - background" type="Sprite" parent="." index="2"]
-
-position = Vector2( 558, 551 )
+position = Vector2( 558, 547 )
 z_index = -1
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Z Index" ]
