@@ -243,7 +243,8 @@ func _input(event):
 		Screen_Up = 0
 		Screen_Left = 0
 		Screen_Right = 0
-		get_node("/root/Main/Debug")._String2("NOT TOUCHED")
+		if OS.is_debug_build():
+			get_node("/root/Main/Debug")._String2("NOT TOUCHED")
 
 	#If touched or dragging, check index and alter movement if drag IDX is same as touch IDX. else ignore.
 	elif (event.get_class() == ("InputEventScreenTouch") || event.get_class() == ("InputEventScreenDrag")) && joypad_eventid == event.get_index():

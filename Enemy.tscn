@@ -122,7 +122,7 @@ _sections_unfolded = [ "Color", "Emission Shape", "Gravity", "Initial Velocity",
 custom_solver_bias = 0.0
 radius = 45.9931
 
-[node name="RigidBody2D" type="RigidBody2D" index="0" groups=[
+[node name="RigidBody2D" type="RigidBody2D" groups=[
 "enemy",
 "enemy1",
 ]]

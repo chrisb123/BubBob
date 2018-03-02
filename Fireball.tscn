@@ -16,15 +16,15 @@
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
-"frames": [  ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "New Anim",
 "speed": 20.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
@@ -109,6 +109,7 @@ rotation = -1.5708
 scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 1 )
 animation = "New Anim"
+frame = 3
 playing = true
 _sections_unfolded = [ "Transform", "Visibility" ]
 

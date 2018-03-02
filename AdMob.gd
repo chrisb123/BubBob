@@ -138,5 +138,6 @@ func onResize():
 		admob.resize()
 
 func _on_Inter_Timeout_timeout():
-	get_node("/root/Main/Debug")._String("AdMob Inter Timeout (reloading)")
+	if OS.is_debug_build():
+		get_node("/root/Main/Debug")._String("AdMob Inter Timeout (reloading)")
 	loadInterstitial()

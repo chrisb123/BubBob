@@ -89,7 +89,8 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("ui_music"):
 		get_node("Music").playing = !get_node("Music").playing
-		get_node("/root/Main/Debug")._String("Toggle music")
+		if OS.is_debug_build():
+			get_node("/root/Main/Debug")._String("Toggle music")
 
 #func _process(delta):
 #	if Input.is_action_just_pressed("ui_music"):
