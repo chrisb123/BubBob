@@ -39,6 +39,8 @@ var joypad_xoffset = 16	# to centre point
 var joypad_yoffset = 23 # to centre point
 var joypad_xcentre = joypad_xpos + joypad_xoffset
 var joypad_ycentre = joypad_ypos + joypad_yoffset
+var joypad_maxdistance = 300
+var joypad_horizontal_velocity = 0
 
 func _ready():
 	set_process_input(true)
@@ -79,13 +81,19 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_right") || Screen_Right:
 		facing = 1
 		$AnimatedSprite.flip_h = false
-		vel.x += SPEED * delta
+		if Screen_Right:
+			vel.x += joypad_horizontal_velocity * delta
+		else:
+			vel.x += SPEED * delta
 		if vel.x > 500:
 			vel.x = 500
 	if Input.is_action_pressed("ui_left") || Screen_Left:
 		facing = -1
 		$AnimatedSprite.flip_h = true
-		vel.x -= SPEED * delta
+		if Screen_Left:
+			vel.x -= joypad_horizontal_velocity * delta
+		else:
+			vel.x -= SPEED * delta
 		if vel.x < -500:
 			vel.x = -500
 	vel.x /= 1 + delta * 5
@@ -234,7 +242,7 @@ func _input(event):
 
 	#Record index of only first touch inside joypad
 	if event.get_class() == ("InputEventScreenTouch") && joypad_eventid == null:
-		if event.position.distance_to(Vector2(joypad_xcentre,joypad_ycentre)) < 300:
+		if event.position.distance_to(Vector2(joypad_xcentre,joypad_ycentre)) < joypad_maxdistance:
 			joypad_eventid = event.get_index()	
 
 	#check screen touch release for IDX. if same set EventID to null
@@ -248,49 +256,45 @@ func _input(event):
 
 	#If touched or dragging, check index and alter movement if drag IDX is same as touch IDX. else ignore.
 	elif (event.get_class() == ("InputEventScreenTouch") || event.get_class() == ("InputEventScreenDrag")) && joypad_eventid == event.get_index():
-			if event.position.distance_to(Vector2(joypad_xcentre,joypad_ycentre)) < 300 && event.position.distance_to(Vector2(joypad_xcentre,joypad_ycentre)) > 40:
+			if event.position.distance_to(Vector2(joypad_xcentre,joypad_ycentre)) < joypad_maxdistance && event.position.distance_to(Vector2(joypad_xcentre,joypad_ycentre)) > 40:
 				var angle = rad2deg(Vector2(joypad_xcentre,joypad_ycentre).angle_to_point(event.position))
 				if OS.is_debug_build():
 					get_node("/root/Main/Debug")._String3(str(angle))
 
-				if angle > 50 && angle < 130:
+#				if angle > 50 && angle < 130:
+#					Screen_Up = 1
+#					Screen_Left = 0
+#					Screen_Right = 0
+#					if OS.is_debug_build():
+#						get_node("/root/Main/Debug")._String2("UP")
+
+				if event.position.y < joypad_ycentre - 100:
 					Screen_Up = 1
-					Screen_Left = 0
-					Screen_Right = 0
-					if OS.is_debug_build():
-						get_node("/root/Main/Debug")._String2("UP")
-	
-				elif angle > 30 && angle < 50:
-					Screen_Up = 1
-					Screen_Left = 1
-					Screen_Right = 0
-					if OS.is_debug_build():
-						get_node("/root/Main/Debug")._String2("UP LEFT")
-				elif angle > -90 && angle < 30:
+				else:
 					Screen_Up = 0
-					Screen_Left = 1
-					Screen_Right = 0
-					if OS.is_debug_build():
-						get_node("/root/Main/Debug")._String2("LEFT")
 					
-				elif angle > 130 && angle < 150:
-					Screen_Up = 1
+				if event.position.x > joypad_xcentre:
 					Screen_Left = 0
 					Screen_Right = 1
+					joypad_horizontal_velocity = -(SPEED / (joypad_maxdistance/2)) * (joypad_xcentre - event.position.x)
 					if OS.is_debug_build():
-						get_node("/root/Main/Debug")._String2("UP RIGHT")
-				elif angle > 150 && angle < 180 || angle > -180 && angle < -135: #Angle (0 - 180 degrees CW and 0 - -180 degrees CCW)
-					Screen_Up = 0
-					Screen_Left = 0
-					Screen_Right = 1
+						get_node("/root/Main/Debug")._String2(str("XAxisVel ",joypad_horizontal_velocity))
+				else:
+					Screen_Left = 1
+					Screen_Right = 0
+					joypad_horizontal_velocity = (SPEED / (joypad_maxdistance/2)) * (joypad_xcentre - event.position.x)
 					if OS.is_debug_build():
-						get_node("/root/Main/Debug")._String2("RIGHT")
+						get_node("/root/Main/Debug")._String2(str("XAxisVel ",joypad_horizontal_velocity))
+						
 			else:
 				Screen_Up = 0
 				Screen_Left = 0
 				Screen_Right = 0
 				if OS.is_debug_build():
 					get_node("/root/Main/Debug")._String2("OFF KEYPAD")
+					get_node("/root/Main/Debug")._String2(str("XAxisVel 0"))
+
+	
 				
 #Shoot Bubbles
 	#Set index only on first tough
