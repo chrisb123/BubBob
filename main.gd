@@ -179,10 +179,11 @@ func _load_level():
 	Global_Vars.MAX_WAVES = Enemy_Spawn.size() - 1
 	print("Enemy array ", Enemy_Spawn)
 	print("Waves in level ",Global_Vars.MAX_WAVES)
-	player = Player.instance()
+	if ! self.has_node("Player"):
+		player = Player.instance()
+		add_child(player)
+		player.connect("fired",self,"_fired")
 	player.position = Vector2(0,0)
-	add_child(player)
-	player.connect("fired",self,"_fired")
 	$Enemy.start()
 
 func _title():
@@ -237,9 +238,6 @@ func clear_nodes():
 	var bubbles = get_tree().get_nodes_in_group("bubble")
 	for bubble in bubbles:
 		bubble.queue_free()
-	var players = get_tree().get_nodes_in_group("player")
-	for player in players:
-		player.queue_free()
 	var powerups = get_tree().get_nodes_in_group("powerup")
 	for powerup in powerups:
 		powerup.queue_free()
@@ -379,6 +377,9 @@ func _on_Enemy_timeout():
 		_load_level()
 		
 func _gameover():
+	var players = get_tree().get_nodes_in_group("player")
+	for player in players:
+		player.queue_free()
 	
 	#Duplicating code....
 	var Loading = Loading_Screen.instance()
