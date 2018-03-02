@@ -13,7 +13,7 @@ var shoot_duration = 20
 var speed_factor = 2
 var speed_duration = 20
 
-var jump_factor = 1.2
+var jump_factor = 1.3
 var jump_duration = 20
 
 func _ready():
