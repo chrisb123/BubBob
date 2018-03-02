@@ -115,7 +115,7 @@ use_filter = false
 font_data = ExtResource( 3 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Intro" type="Control" index="0"]
+[node name="Intro" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -507,6 +507,9 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
 custom_fonts/font = SubResource( 7 )
 toggle_mode = false
 enabled_focus_mode = 2
@@ -515,7 +518,7 @@ group = null
 text = "Music On/Off"
 flat = false
 align = 1
-_sections_unfolded = [ "custom_fonts" ]
+_sections_unfolded = [ "custom_fonts", "custom_styles" ]
 
 [node name="Difficulty" type="Button" parent="." index="7"]
 
@@ -534,6 +537,9 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
 custom_fonts/font = SubResource( 8 )
 toggle_mode = false
 enabled_focus_mode = 2
@@ -542,7 +548,7 @@ group = null
 text = "Difficulty: Normal"
 flat = false
 align = 1
-_sections_unfolded = [ "custom_fonts" ]
+_sections_unfolded = [ "custom_fonts", "custom_styles" ]
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_Start_pressed"]
 
