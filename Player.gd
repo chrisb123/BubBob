@@ -268,7 +268,7 @@ func _input(event):
 #					if OS.is_debug_build():
 #						get_node("/root/Main/Debug")._String2("UP")
 
-				if event.position.y < joypad_ycentre - 100:
+				if event.position.y < joypad_ycentre - 50:
 					Screen_Up = 1
 				else:
 					Screen_Up = 0

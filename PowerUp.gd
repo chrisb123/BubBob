@@ -10,10 +10,10 @@ var powerup_type
 var shoot_factor = 2
 var shoot_duration = 20
 
-var speed_factor = 3
+var speed_factor = 2
 var speed_duration = 20
 
-var jump_factor = 1.5
+var jump_factor = 1.2
 var jump_duration = 20
 
 func _ready():
