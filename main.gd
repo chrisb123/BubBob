@@ -45,6 +45,8 @@ var Enemy_Spawn
 # var b = "textvar"
 
 func _ready():
+	get_tree().set_auto_accept_quit(false)
+	
 	Global_Vars.score = 0
 	Global_Vars.lives = Global_Vars.start_lives
 	Global_Vars.enemyn = 0

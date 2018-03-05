@@ -34,25 +34,18 @@ func _ready():
 
 func _initialize(isReal):
 	if isReal == true:
-		adBannerId = "ca-app-pub-9184033356247970/9995395781"	# change to Admob Account details
+		adBannerId = "ca-app-pub-3940256099942544/6300978111" #"ca-app-pub-9184033356247970/9995395781"	# Banners are useless in Bubbob
 		adInterstitialId = "ca-app-pub-9184033356247970/1542190692" # change to Admob Account details
-		#adRewardedId = "ca-app-pub-3940256099942544/5224354917" # change to Admob Account details
+		adRewardedId = "ca-app-pub-3940256099942544/5224354917" # change to Admob Account details
 	else:
 		adBannerId = "ca-app-pub-3940256099942544/6300978111"	# Test Ad ID
 		adInterstitialId = "ca-app-pub-3940256099942544/1033173712" # Test Ad ID
-		#adRewardedId = "ca-app-pub-3940256099942544/5224354917" # Test Ad ID
+		adRewardedId = "ca-app-pub-3940256099942544/5224354917" # Test Ad ID
 	admob.init(isReal, get_instance_id())
 	loadBanner()
+	_hide_banner()
 	loadInterstitial()
 	#loadRewardedVideo()
-
-func loadBanner():
-	if admob != null:
-		admob.loadBanner(adBannerId, isTop)
-	if OS.is_debug_build():
-		get_node("/root/Main/Debug")._String("AdMob Banner Loading")
-		BannerStartTime = OS.get_unix_time()
-	#admob.showBanner() #tesing only, should be called in program proper
 		
 func loadInterstitial():
 	if admob != null:
@@ -63,33 +56,10 @@ func loadInterstitial():
 		InterStartTime = OS.get_unix_time()
 		get_node("/root/Main/Debug")._String("AdMob Inter Loading")
 		
-#func loadRewardedVideo():
-#	if admob != null:
-#		admob.loadRewardedVideo(adRewardedId)
-
-# Events
-
-func _hide_banner():
-	if admob != null:
-		admob.hideBanner()
-
-#func _on_BtnInterstitial_pressed():
-#	if admob != null:
-#		admob.showInterstitial()
-		
-#func _on_BtnRewardedVideo_pressed():
-#	if admob != null:
-#		admob.showRewardedVideo()
-
 func _on_admob_network_error():
 	if OS.is_debug_build():
 		get_node("/root/Main/Debug")._String("AdMob Network Error")
-
-func _on_admob_ad_loaded():
-	if OS.is_debug_build():
-		BannerEndTime = OS.get_unix_time()
-		get_node("/root/Main/Debug")._String(str("Admob Banner Loaded ", BannerEndTime - BannerStartTime, "s"))
-		BannerStartTime = OS.get_unix_time()
+	pass
 
 func _on_interstitial_not_loaded():
 	if OS.is_debug_build():
@@ -118,6 +88,51 @@ func _on_interstitial_close():
 	emit_signal("LoadScreen_Finished")
 	#loadInterstitial() #Closing internally automatically starts loadinterstitional()
 
+func onResize():
+	if admob != null:
+		admob.resize()
+		_hide_banner()
+		
+func _hide_banner():
+	if admob != null:
+		admob.hideBanner()
+
+func _on_Inter_Timeout_timeout():
+	if OS.is_debug_build():
+		get_node("/root/Main/Debug")._String("AdMob Inter Timeout (reloading)")
+	loadInterstitial()
+
+func loadBanner():
+	if admob != null:
+		admob.loadBanner(adBannerId, isTop)
+	if OS.is_debug_build():
+		get_node("/root/Main/Debug")._String("AdMob Banner Loading")
+		BannerStartTime = OS.get_unix_time()
+	#admob.showBanner() #tesing only, should be called in program proper
+
+
+#func _on_admob_ad_loaded():
+	#if OS.is_debug_build():
+		#BannerEndTime = OS.get_unix_time()
+		#get_node("/root/Main/Debug")._String(str("Admob Banner Loaded ", BannerEndTime - BannerStartTime, "s"))
+		#BannerStartTime = OS.get_unix_time()
+
+#func loadRewardedVideo():
+#	if admob != null:
+#		admob.loadRewardedVideo(adRewardedId)
+
+# Events
+
+
+
+#func _on_BtnInterstitial_pressed():
+#	if admob != null:
+#		admob.showInterstitial()
+		
+#func _on_BtnRewardedVideo_pressed():
+#	if admob != null:
+#		admob.showRewardedVideo()
+
 #func _on_rewarded_video_ad_loaded():
 #	print("Rewarded loaded success")
 #	get_node("CanvasLayer/BtnRewardedVideo").set_disabled(false)
@@ -133,11 +148,3 @@ func _on_interstitial_close():
 
 # Resize
 
-func onResize():
-	if admob != null:
-		admob.resize()
-
-func _on_Inter_Timeout_timeout():
-	if OS.is_debug_build():
-		get_node("/root/Main/Debug")._String("AdMob Inter Timeout (reloading)")
-	loadInterstitial()
