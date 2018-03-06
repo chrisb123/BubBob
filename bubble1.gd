@@ -50,7 +50,7 @@ func _on_pop_tween_completed( object, key ):
 		$Particles.emitting = true
 
 func _on_Pop_Bubble_finished():
-	yield(get_tree().create_timer(pop_time),"timeout")
+	#yield(get_tree().create_timer(pop_time),"timeout") <----- i think this is causing the random crashes in release versions
 	queue_free()
 
 func _on_pop_time_timeout():
