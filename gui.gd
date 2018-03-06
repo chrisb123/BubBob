@@ -7,6 +7,7 @@ extends Control
 onready var score = get_node("Score")
 onready var lives = get_node("Lives")
 onready var level = get_node("Level")
+onready var enemies = get_node("Enemies")
 var leveln_backup = 0
 onready var camera = get_node("/root/Main/Player/AnimatedSprite/Camera2D")
 
@@ -56,7 +57,11 @@ func _process(delta): #Change this
 	score.text = str("Score: " + str(Global_Vars.score))
 	lives.text = str("Lives: " + str(Global_Vars.lives))
 	level.text = str("Level " + str(Global_Vars.leveln))
-	
+	enemies.text = str("Enemies till Boss " + str(Global_Vars.enemyn))
+	if Global_Vars.waven == Global_Vars.MAX_WAVES || Global_Vars.enemyn == 0:
+		enemies.hide()
+	else:
+		enemies.show()	
 	#if Global_Vars.leveln != leveln_backup:
 	#	leveln_backup = Global_Vars.leveln
 	#	level.visible = true
