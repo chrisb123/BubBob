@@ -39,6 +39,7 @@ var max_enemies = 10
 var levsize
 const SCORE_TO_LEVEL = 10
 var Enemy_Spawn
+var camera
 
 # class member variables go here, for example:
 # var a = 2
@@ -153,10 +154,14 @@ func _input(event):
 #				i += i
 			
 func _load_level():
-	
+	if self.has_node("Player"):
+		player.set_physics_process(false)
+		player.visible = false
+		camera.visible = false
+		player.position = Vector2(640,360) #This is a terrible solution
 	#step 1:- Show Loading Screen, Interstital Available determines loading screen time
 	var Loading = Loading_Screen.instance()
-	add_child(Loading)
+	add_child(Loading) #why does this not load up in the center of the screen
 	
 	#Step 2:- Show Interstital ADs if available
 	if(Engine.has_singleton("AdMob")):
@@ -167,7 +172,10 @@ func _load_level():
 		else:
 			get_node("/root/Main/AdMob").loadInterstitial() #try reloading interstital for next LVL change
 			yield(get_tree().create_timer(5),"timeout") #Fake loading time, avoids turning off network to skip ads
-
+	else:
+		yield(get_tree().create_timer(2),"timeout") #Load screen for no Admob
+		
+		
 	#Step 3:- Remove Loading Screen after Ad closed, or no ad shown
 	remove_child(Loading)
 		
@@ -186,6 +194,10 @@ func _load_level():
 		player = Player.instance()
 		add_child(player)
 		player.connect("fired",self,"_fired")
+		camera = get_node("/root/Main/Player/AnimatedSprite/Camera2D")
+	camera.current = true
+	player.set_physics_process(true)
+	player.visible = true
 	player.position = Vector2(0,0)
 	$Enemy.start()
 
@@ -235,6 +247,7 @@ func _start():
 	
 
 func clear_nodes():
+	$Enemy.stop()	
 	var enemies = get_tree().get_nodes_in_group("enemy")
 	for enemy in enemies:
 		enemy.queue_free()
@@ -244,7 +257,6 @@ func clear_nodes():
 	var powerups = get_tree().get_nodes_in_group("powerup")
 	for powerup in powerups:
 		powerup.queue_free()
-	$Enemy.stop()
 	level.queue_free()
 	#Global_Vars.score = 0
 	

@@ -10,8 +10,8 @@
 [ext_resource path="res://asset/player/running/run-frame-4.png" type="Texture" id=8]
 [ext_resource path="res://asset/player/running/run-frame-6.png" type="Texture" id=9]
 [ext_resource path="res://asset/player/running/run-frame-5.png" type="Texture" id=10]
-[ext_resource path="res://asset/player/jump/jump_fall.png" type="Texture" id=11]
-[ext_resource path="res://asset/player/jump/jump_up.png" type="Texture" id=12]
+[ext_resource path="res://asset/player/jump/jump_up.png" type="Texture" id=11]
+[ext_resource path="res://asset/player/jump/jump_fall.png" type="Texture" id=12]
 [ext_resource path="res://AnimatedSprite.gd" type="Script" id=13]
 [ext_resource path="res://sounds/steps_platform.ogg" type="AudioStream" id=14]
 [ext_resource path="res://sounds/Jump.wav" type="AudioStream" id=15]
@@ -40,12 +40,12 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 11 ) ],
 "loop": true,
-"name": "fall",
+"name": "jump",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 12 ) ],
 "loop": true,
-"name": "jump",
+"name": "fall",
 "speed": 5.0
 } ]
 
@@ -65,7 +65,7 @@ collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform", "collision" ]
+_sections_unfolded = [ "Pause", "Transform", "Visibility", "collision" ]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
@@ -186,7 +186,7 @@ editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = true
 script = ExtResource( 18 )
-_sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Offset", "Pause", "Smoothing" ]
+_sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Offset", "Pause", "Smoothing", "Transform", "Visibility" ]
 
 [node name="Zoom" type="Tween" parent="AnimatedSprite/Camera2D" index="0"]
 

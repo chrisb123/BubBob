@@ -105,6 +105,7 @@ I think thats enough unless you can think of something else.
 - (DONE) Change lives to unlimited but reduce score 
 - Change poping bubble combos and emey to a higher score
 - (DONE) Change enemy score to be higher
+- Replace the packed scenes
 
 ----------------------- ToDO ----------------------------------
 

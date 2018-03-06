@@ -20,22 +20,25 @@ anchor_bottom = 0.0
 margin_right = 40.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+_sections_unfolded = [ "Anchor", "Margin" ]
 
 [node name="Loading" type="Label" parent="." index="0"]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 507.0
-margin_top = 307.0
-margin_right = 761.0
-margin_bottom = 364.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 468.0
+margin_top = 294.0
+margin_right = 722.0
+margin_bottom = 351.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -45,13 +48,13 @@ text = "Loading..."
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
+_sections_unfolded = [ "Anchor", "Margin", "Visibility", "custom_fonts" ]
 
 [node name="Full Moon - background" type="Sprite" parent="Loading" index="0"]
 
-position = Vector2( 70.1414, 224.68 )
+position = Vector2( 88.1731, 186.508 )
 z_index = -1
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Z Index" ]
+_sections_unfolded = [ "Transform", "Z Index" ]
 
 
