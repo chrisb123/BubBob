@@ -14,7 +14,7 @@
 
 custom_solver_bias = 0.0
 radius = 41.9004
-height = 56.6809
+height = 26.51
 
 [sub_resource type="Gradient" id=2]
 
@@ -118,10 +118,10 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Color", "Emission Shape", "Gravity", "Initial Velocity", "Scale", "Spread" ]
 
-[node name="RigidBody2D" type="RigidBody2D" groups=[
+[node name="RigidBody2D" type="RigidBody2D" index="0" groups=[
+"enemy",
 "enemy1",
 "enemyboss",
-"enemy",
 ]]
 
 input_pickable = false
