@@ -180,8 +180,17 @@ _sections_unfolded = [ "Audio Bus", "Collision", "Material", "Pickable", "Transf
 
 shape = SubResource( 3 )
 
+[node name="Life_Time" type="Timer" parent="." index="8"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
 [connection signal="timeout" from="Coin/Frame_Increase" to="Coin" method="_on_Frame_Increase_timeout"]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+
+[connection signal="timeout" from="Life_Time" to="." method="_on_Life_Time_timeout"]
 
 

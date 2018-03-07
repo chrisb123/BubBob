@@ -16,7 +16,12 @@ var speed_duration = 20
 var jump_factor = 1.3
 var jump_duration = 20
 
+const LIFE_TIME_CONST = 10
+
 func _ready():
+	$Life_Time.wait_time = LIFE_TIME_CONST / Global_Vars.Difficulty
+	$Life_Time.start()
+	
 	$Coin.hide()
 	$Potion_Shoot.hide()
 	$Potion_Speed.hide()
@@ -61,7 +66,9 @@ func _on_Area2D_body_entered( body ):
 	#BUG :- player is only recognised as entering body at certain angles
 	#Solution Use Area2d so its not affected by physics
 	#201 power up now ads score
+	
 	if body.is_in_group("player"):
+		$Life_Time.stop()	#Necessary to prevent multiple functions Queue freeing. (Life Timeout while Yielding for SFX)
 		if powerup_type == 1:
 			Global_Vars.score += 100
 			$Coin.hide()
@@ -86,4 +93,10 @@ func _on_Area2D_body_entered( body ):
 			body._powerup_jump(jump_factor,jump_duration)
 			$Potion_SFX.play()
 			yield($Potion_SFX,"finished")
-		queue_free()	
+		_delete()	
+
+func _on_Life_Time_timeout():
+	_delete()
+
+func _delete():
+	queue_free()
