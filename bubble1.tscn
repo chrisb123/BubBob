@@ -74,7 +74,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Emission Shape", "Gravity", "Initial Velocity", "Spread" ]
 
-[node name="Bubble" type="RigidBody2D" groups=[
+[node name="Bubble" type="RigidBody2D" index="0" groups=[
 "bubble",
 ]]
 
@@ -135,6 +135,7 @@ playback_default_blend_time = 0.0
 playback_speed = 1.0
 anims/Flicker = SubResource( 1 )
 blend_times = [  ]
+autoplay = ""
 _sections_unfolded = [ "Playback Options" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]

@@ -8,8 +8,9 @@ var velocity = 350
 var dying = false
 var player_pushing = false
 const LIFE_TIME = 10
-const pop_time = 0.25
+const pop_time = 0.75
 const sprite_size = Vector2(0.075,0.075)	#(0.1 0.1) with new bubble - (1,1) with old bubble
+var Queue_Free_Triggered = false
 
 func _ready():
 	$Sprite.scale = sprite_size
@@ -50,8 +51,13 @@ func _on_pop_tween_completed( object, key ):
 		$Particles.emitting = true
 
 func _on_Pop_Bubble_finished():
-	#yield(get_tree().create_timer(pop_time),"timeout") <----- i think this is causing the random crashes in release versions
-	queue_free()
+	if Queue_Free_Triggered == false:
+		Queue_Free_Triggered = true
+		yield(get_tree().create_timer(pop_time),"timeout") #<- Proven, Function was called more than once cause resume after deletion
+		queue_free()
+	else:
+		#print("QueueFree Double call")
+		return
 
 func _on_pop_time_timeout():
 	if $Sprite.visible == true:
