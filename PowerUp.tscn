@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://PowerUp.gd" type="Script" id=1]
 [ext_resource path="res://asset/coins2.png" type="Texture" id=2]
@@ -9,7 +9,19 @@
 [ext_resource path="res://asset/potions/pt3.png" type="Texture" id=7]
 [ext_resource path="res://sounds/Drink.wav" type="AudioStream" id=8]
 
-[sub_resource type="ParticlesMaterial" id=1]
+[sub_resource type="DynamicFontData" id=1]
+
+font_path = "res://asset/font/Comfortaa-Bold.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+
+size = 20
+use_mipmaps = false
+use_filter = true
+font_data = SubResource( 1 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="ParticlesMaterial" id=3]
 
 render_priority = 0
 trail_divisor = 1
@@ -49,20 +61,49 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Emission Shape", "Flags", "Gravity", "Scale", "Spread", "Trail" ]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=4]
 
 custom_solver_bias = 0.0
 radius = 17.7261
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=5]
 
 custom_solver_bias = 0.0
 radius = 23.1487
 
-[node name="RigidBody2D" type="RigidBody2D" index="0" groups=[
+[node name="Base" type="Node2D" index="0" groups=[
 "powerup",
 ]]
 
+_sections_unfolded = [ "Angular", "Collision", "Linear", "Pickable", "Transform", "Visibility", "Z" ]
+
+[node name="Text" type="Label" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -336.0
+margin_top = -56.0
+margin_right = 339.0
+margin_bottom = -33.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+text = "Place_Holder"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Grow Direction", "Rect", "Size Flags", "Visibility", "custom_fonts" ]
+
+[node name="PowerUp" type="RigidBody2D" parent="." index="1"]
+
+editor/display_folded = true
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -73,8 +114,8 @@ bounce = 0.0
 gravity_scale = 1.0
 custom_integrator = false
 continuous_cd = 0
-contacts_reported = 5
-contact_monitor = true
+contacts_reported = 0
+contact_monitor = false
 sleeping = false
 can_sleep = true
 linear_velocity = Vector2( 0, 0 )
@@ -82,9 +123,8 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Angular", "Collision", "Linear", "Pickable", "Transform", "Visibility", "Z" ]
 
-[node name="Coin" type="Sprite" parent="." index="0"]
+[node name="Coin" type="Sprite" parent="PowerUp" index="0"]
 
 visible = false
 texture = ExtResource( 2 )
@@ -92,14 +132,14 @@ vframes = 4
 script = ExtResource( 3 )
 _sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform", "Visibility", "Z" ]
 
-[node name="Frame_Increase" type="Timer" parent="Coin" index="0"]
+[node name="Frame_Increase" type="Timer" parent="PowerUp/Coin" index="0"]
 
 process_mode = 1
 wait_time = 0.05
 one_shot = false
 autostart = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Coin" index="1"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PowerUp/Coin" index="1"]
 
 stream = ExtResource( 4 )
 volume_db = -0.5
@@ -107,28 +147,28 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="Potion_Shoot" type="Sprite" parent="." index="1"]
+[node name="Potion_Shoot" type="Sprite" parent="PowerUp" index="1"]
 
 visible = false
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Potion_Speed" type="Sprite" parent="." index="2"]
+[node name="Potion_Speed" type="Sprite" parent="PowerUp" index="2"]
 
 visible = false
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 6 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Potion_Jump" type="Sprite" parent="." index="3"]
+[node name="Potion_Jump" type="Sprite" parent="PowerUp" index="3"]
 
 visible = false
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 7 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Potion_Particles" type="Particles2D" parent="." index="4"]
+[node name="Potion_Particles" type="Particles2D" parent="PowerUp" index="4"]
 
 visible = false
 position = Vector2( 0.239113, -17.6084 )
@@ -146,14 +186,14 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 1 )
+process_material = SubResource( 3 )
 texture = null
 normal_map = null
 h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material" ]
 
-[node name="Potion_SFX" type="AudioStreamPlayer" parent="." index="5"]
+[node name="Potion_SFX" type="AudioStreamPlayer" parent="PowerUp" index="5"]
 
 stream = ExtResource( 8 )
 volume_db = -5.0
@@ -161,11 +201,11 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="6"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PowerUp" index="6"]
 
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
-[node name="Area2D" type="Area2D" parent="." index="7"]
+[node name="Area2D" type="Area2D" parent="PowerUp" index="7"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -176,21 +216,19 @@ audio_bus_override = false
 audio_bus_name = "Master"
 _sections_unfolded = [ "Audio Bus", "Collision", "Material", "Pickable", "Transform", "Visibility", "Z" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PowerUp/Area2D" index="0"]
 
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 
-[node name="Life_Time" type="Timer" parent="." index="8"]
+[node name="Life_Time" type="Timer" parent="PowerUp" index="8"]
 
 process_mode = 1
 wait_time = 1.0
 one_shot = false
 autostart = false
 
-[connection signal="timeout" from="Coin/Frame_Increase" to="Coin" method="_on_Frame_Increase_timeout"]
+[connection signal="timeout" from="PowerUp/Coin/Frame_Increase" to="PowerUp/Coin" method="_on_Frame_Increase_timeout"]
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
-
-[connection signal="timeout" from="Life_Time" to="." method="_on_Life_Time_timeout"]
+[connection signal="body_entered" from="PowerUp/Area2D" to="PowerUp" method="_on_Area2D_body_entered"]
 
 

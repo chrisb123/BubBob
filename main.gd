@@ -229,8 +229,8 @@ func _on_Enemy_timeout():
 	if ! randi()%10:
 		var powerpos = find_spawn(150,300)
 		var powerups = PowerUp.instance()
-		powerups.powerup_type = randi()%4+1
-		powerups.position = Vector2(powerpos.x,powerpos.y)
+		powerups.get_node("PowerUp").powerup_type = randi()%4+1
+		powerups.get_node("PowerUp").position = Vector2(powerpos.x,powerpos.y)
 		add_child(powerups)
 
 	var enemy_count = get_tree().get_nodes_in_group("enemy").size()

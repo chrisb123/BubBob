@@ -4,8 +4,12 @@ extends RigidBody2D
 # var a = 2
 # var b = "textvar"
 
+onready var Text = get_parent().get_node("Text")
+
 var frames_increase = true
 var powerup_type
+
+var coin_bonus = 100
 
 var shoot_factor = 2
 var shoot_duration = 20
@@ -22,6 +26,7 @@ func _ready():
 	$Life_Time.wait_time = LIFE_TIME_CONST / Global_Vars.Difficulty
 	$Life_Time.start()
 	
+	Text.hide()
 	$Coin.hide()
 	$Potion_Shoot.hide()
 	$Potion_Speed.hide()
@@ -59,8 +64,12 @@ func _ready():
 			$Potion_Particles.emitting = true
 			$Potion_Particles.show()
 
-func _process():
-	pass
+#func _process(delta):
+#	pass
+	#if Text.visible == true:
+	#	Text.rect_position = self.position + Vector2(Text.rect_size.x/2 ,-50) #Move Text to Powerup Position
+	#else:
+	#	return
 
 func _on_Area2D_body_entered( body ):
 	#BUG :- player is only recognised as entering body at certain angles
@@ -68,26 +77,33 @@ func _on_Area2D_body_entered( body ):
 	#201 power up now ads score
 	
 	if body.is_in_group("player"):
-		$Life_Time.stop()	#Necessary to prevent multiple functions Queue freeing. (Life Timeout while Yielding for SFX)
+		$Life_Time.stop()	#DO NOT DELETE :- to prevent multiple functions Queue freeing. (Life Timeout while Yielding for SFX)
+		Text.rect_position = self.position + Vector2(-Text.rect_size.x/2 ,-75) #Move Text to Powerup Position
+		Text.show()
+		$Potion_Particles.hide()
 		if powerup_type == 1:
-			Global_Vars.score += 100
+			Global_Vars.score += coin_bonus
+			Text.text = str("+",coin_bonus, " Points")
 			$Coin.hide()
 			$CollisionShape2D.disabled = true
 			$Coin/AudioStreamPlayer.play()
 			yield($Coin/AudioStreamPlayer,"finished")
 		if powerup_type == 2:
+			Text.set_text("Bubbles")
 			$Potion_Shoot.hide()
 			$CollisionShape2D.disabled = true
 			body._powerup_firing(shoot_factor,shoot_duration)
 			$Potion_SFX.play()
 			yield($Potion_SFX,"finished")
 		if powerup_type == 3:
+			Text.set_text("Speed")
 			$Potion_Speed.hide()
 			$CollisionShape2D.disabled = true
 			body._powerup_speed(speed_factor,speed_duration)
 			$Potion_SFX.play()
 			yield($Potion_SFX,"finished")
 		if powerup_type == 4:
+			Text.set_text("Jump")
 			$Potion_Jump.hide()
 			$CollisionShape2D.disabled = true
 			body._powerup_jump(jump_factor,jump_duration)
@@ -99,4 +115,4 @@ func _on_Life_Time_timeout():
 	_delete()
 
 func _delete():
-	queue_free()
+	get_parent().queue_free()
