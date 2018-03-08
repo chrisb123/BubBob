@@ -253,22 +253,22 @@ func _on_Enemy_timeout():
 					return
 				elif EnemyArray[i] == 1:	#Enemy
 					enemy = Enemy.instance()
-					enemy.enemy_type = 1 #set enemy_type
+					enemy.get_node("Enemy").enemy_type = 1 #set enemy_type
 				elif EnemyArray[i] == 2:	#Enemy2
 					enemy = Enemy.instance()
-					enemy.enemy_type = 2
+					enemy.get_node("Enemy").enemy_type = 2
 				elif EnemyArray[i] == 3:	#Enemy3
 					enemy = Enemy.instance()
-					enemy.enemy_type = 3
+					enemy.get_node("Enemy").enemy_type = 3
 				elif EnemyArray[i] == 101:	#EnemyBoss1
 					enemy = EnemyBoss1.instance()
-					enemy.boss_type = 1 #set boss_type
+					enemy.get_node("Enemy").boss_type = 1 #set boss_type
 				elif EnemyArray[i] == 102:	#EnemyBoss2
 					enemy = EnemyBoss1.instance()
-					enemy.boss_type = 2
+					enemy.get_node("Enemy").boss_type = 2
 				elif EnemyArray[i] == 103:	#EnemyBoss3
 					enemy = EnemyBoss1.instance()
-					enemy.boss_type = 3
+					enemy.get_node("Enemy").boss_type = 3
 				elif EnemyArray[i] == 201:	#Powerup, no enemy +1 count
 					enemy = PowerUp.instance()
 					enemy.powerup_type = 1					

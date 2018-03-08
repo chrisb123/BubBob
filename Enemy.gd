@@ -3,6 +3,8 @@ extends RigidBody2D
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
+
+onready var Text = get_parent().get_node("Text")
 var _in_bubble = false
 var vel = Vector2()
 var MIN_SPEED = 0	#Set in ready based upon phone or PC
@@ -30,6 +32,7 @@ func _ready():
 		MAX_SPEED = int(350 * Global_Vars.Difficulty)
 	
 	$Bubble.scale = bubble_size
+	Text.hide()
 	randomize()
 	if enemy_type == 1:
 		$Enemy.region_rect = Rect2(0,0,80,100)
@@ -71,6 +74,9 @@ func killbub(pk):
 		#Stop enemy
 		$AnimatedSprite.play()
 		$Death_Sound.play()
+		Text.rect_position = self.position + Vector2(-Text.rect_size.x/2 ,-75) #Move Text to Powerup Position
+		Text.show()
+		Text.text = str("+", score_for_killing, " points")
 		if Global_Vars.Osys != "HTML5":
 			$Particles.emitting = true
 		$Enemy.hide()
@@ -86,7 +92,7 @@ func _on_AnimatedSprite_animation_finished():
 		Global_Vars.enemyn -= 1
 	else:
 		get_parent().minion_count -= 1
-	queue_free()
+	get_parent().queue_free()
 
 
 func _on_RigidBody2D_body_entered( body ):
