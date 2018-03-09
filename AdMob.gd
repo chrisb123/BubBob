@@ -63,8 +63,9 @@ func _on_admob_network_error():
 func _on_interstitial_not_loaded():
 	if OS.is_debug_build():
 		get_node("/root/Main/Debug")._String("AdMob Inter Load Error")
-	yield(get_tree().create_timer(5),"timeout")
+	#yield(get_tree().create_timer(5),"timeout")
 	loadInterstitial()
+	emit_signal("LoadScreen_Finished")
 
 func _on_interstitial_loaded():
 	if admob != null:
