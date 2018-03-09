@@ -46,7 +46,6 @@ func _initialize(isReal):
 	_hide_banner()
 	loadInterstitial()
 	#loadRewardedVideo()
-		
 func loadInterstitial():
 	if admob != null:
 		inter_ready = false

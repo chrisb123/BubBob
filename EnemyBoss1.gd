@@ -178,6 +178,7 @@ func _on_Minion_Spawn_timeout():
 			pos.y -= 0
 			minion_count += 1
 			add_child(enemy)
+			enemy.get_node("Enemy")._is_minion = true
 
 	if _in_bubble == false and boss_type == 2:
 		var pos = $Enemy.position
