@@ -49,7 +49,7 @@ func _ready():
 	get_tree().set_auto_accept_quit(false)
 	
 	Global_Vars.score = 0
-	Global_Vars.lives = Global_Vars.start_lives
+	Global_Vars.lives = Global_Vars.start_lives #the point of this line?
 	Global_Vars.enemyn = 0
 	Global_Vars.waven = 0
 	Global_Vars.leveln = 0

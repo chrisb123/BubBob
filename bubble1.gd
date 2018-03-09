@@ -55,9 +55,9 @@ func _on_Pop_Bubble_finished():
 		Queue_Free_Triggered = true
 		yield(get_tree().create_timer(pop_time),"timeout") #<- Proven, Function was called more than once cause resume after deletion
 		queue_free()
-	else:
+	#else:
 		#print("QueueFree Double call")
-		return
+		#return you are going to return either way
 
 func _on_pop_time_timeout():
 	if $Sprite.visible == true:

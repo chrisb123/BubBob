@@ -23,11 +23,11 @@ func _ready():
 func _on_Start_pressed():
 	get_parent()._title()
 	Global_Vars.score = 0
-	Global_Vars.lives = Global_Vars.start_lives
+	Global_Vars.lives = Global_Vars.start_lives #??
 	Global_Vars.enemyn = 0
 	Global_Vars.waven = 0
 	Global_Vars.leveln = 0
-	Global_Vars.Osys = OS.get_name()
+	#Global_Vars.Osys = OS.get_name() OS want be changing
 	queue_free()
 	
 func _on_Quit_pressed():
