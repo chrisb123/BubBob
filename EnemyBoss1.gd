@@ -9,9 +9,9 @@ var MAX_MINIONS = int(4 * Global_Vars.Difficulty)
 var MIN_SPEED = 0	# set in _ready
 var MAX_SPEED = 0	#set in _ready
 const Y_SPEED_REDUCTION = 0.5 #divisor factor for Y axis speeds
-export (PackedScene) var Explode
-export (PackedScene) var Enemy
-export (PackedScene) var Fireball
+var Explode = load("res://Explosion.tscn")
+var Fireball = load("res://Fireball.tscn")
+var Enemy = load("res://Enemy.tscn")
 var facing = 1
 var minion_count = 0
 var bubble_count = 0

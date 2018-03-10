@@ -1,30 +1,30 @@
 extends Node
 
-export (PackedScene) var Title
-export (PackedScene) var Credits
-export (PackedScene) var CIMAD
-export (PackedScene) var Loading_Screen
+var Title = load("res://Intro.tscn")
+var Credits = load("res://Credits.tscn")
+var CIMAD = load("res://CIMAD.tscn")
+var Loading_Screen = load("res://Loading_Screen.tscn")
 #export (PackedScene) var Level1
 #Level assigining needs fixing
 #export (PackedScene) var Level2
-export (PackedScene) var Player
-export (PackedScene) var GUI
-export (PackedScene) var Bubble
-export (PackedScene) var Enemy
+var Player = load("res://player.tscn")
+var GUI = load("res://gui.tscn")
+var Bubble = load("res://bubble1.tscn")
+var Enemy = load("res://Enemy.tscn")
 #export (PackedScene) var Enemy2
 #export (PackedScene) var Enemy3
-export (PackedScene) var EnemyBoss1
+var EnemyBoss1 = load("res://EnemyBoss1.tscn")
 #export (PackedScene) var EnemyBoss2
 #export (PackedScene) var EnemyBoss3
-export (PackedScene) var PowerUp
-export (PackedScene) var GameOver
-export (PackedScene) var File_Main
+var PowerUp = load("res://PowerUp.tscn")
+var GameOver = load("res://GameOver.tscn")
+var File_Main = load("res://File_Main.tscn")
 
 #Advertising
-export (PackedScene) var AdMob
+var AdMob = load("res://AdMob.tscn")
 
 #Debugging
-export (PackedScene) var Debug
+var Debug = load("res://Debug.tscn")
 
 var title
 var credits

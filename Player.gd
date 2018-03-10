@@ -31,6 +31,10 @@ var scrya
 var scrxb
 var scryb
 
+var fire_ups = 0
+var speed_ups = 0
+var jump_ups = 0
+
 var joypad_eventid = null
 var shoot_eventid = null
 var joypad_xpos = 150	# how to get this dynamically from GUI ?
@@ -210,28 +214,31 @@ func _on_Invincible_Flash_timeout():
 		$AnimatedSprite.visible = true
 
 func _powerup_firing(factor,time):		#called by PowerUp
+	fire_ups += 1
 	if $Timer.wait_time == FIRING_SPEED_CONST:
 		$Timer.wait_time = FIRING_SPEED / factor	 # (inverse) bubble shooting timer
-		yield(get_tree().create_timer(time),"timeout")
+		while fire_ups > 0:
+			yield(get_tree().create_timer(time),"timeout")
+			fire_ups -=1
 		$Timer.wait_time = FIRING_SPEED_CONST
 		
-		
 func _powerup_speed(factor,time):		#called by PowerUp
+	speed_ups += 1
 	if SPEED == SPEED_CONST:
 		SPEED *= factor
-		yield(get_tree().create_timer(time),"timeout")
+		if speed_ups > 0:
+			yield(get_tree().create_timer(time),"timeout")
+			speed_ups -= 1
 		SPEED = SPEED_CONST
 
 func _powerup_jump(factor,time):	#called by PowerUp
+	jump_ups += 1
 	if jump_speed == jump_speed_const:
 		jump_speed *= factor
-		yield(get_tree().create_timer(time),"timeout")
+		if jump_ups > 0:
+			yield(get_tree().create_timer(time),"timeout")
+			jump_ups -= 1
 		jump_speed = jump_speed_const
-
-
-
-
-
 
 func _input(event):
 

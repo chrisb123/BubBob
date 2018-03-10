@@ -10,8 +10,8 @@ var vel = Vector2()
 var MIN_SPEED = 0	#Set in ready based upon phone or PC
 var MAX_SPEED = 0	#Set in ready based upon phone or PC
 const Y_SPEED_REDUCTION = 0.5 #divisor factor for Y axis speeds
-export (PackedScene) var Explode
-export (PackedScene) var Fireball
+var Explode = load("res://Explosion.tscn")
+var Fireball = load("res://Fireball.tscn")
 var _is_minion = false
 var facing #1 right, 2 left
 const NUM_FIREBALLS = 8

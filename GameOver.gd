@@ -5,7 +5,7 @@ signal start
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
-export (PackedScene) var File_Main
+var File_Main = load("res://File_Main.tscn")
 
 
 func _ready():
