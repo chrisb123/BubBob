@@ -216,8 +216,10 @@ func _on_Minion_Spawn_timeout():
 
 
 func _on_Bubble_Shrink_timeout():
-	$Bubble.scale -= bubble_size_inc
-	bubble_count -= 1
-	if bubble_count == 0:
+	if $Bubble.scale > bubble_size:
+		$Bubble.scale -= bubble_size_inc
+	if bubble_count > 0:
+		bubble_count -= 1
+	if bubble_count < 1:
 		$Bubble.hide()
 	

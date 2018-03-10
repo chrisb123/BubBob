@@ -135,7 +135,6 @@ playback_default_blend_time = 0.0
 playback_speed = 1.0
 anims/Flicker = SubResource( 1 )
 blend_times = [  ]
-autoplay = ""
 _sections_unfolded = [ "Playback Options" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
@@ -229,10 +228,6 @@ volume_db = 0.0
 autoplay = false
 mix_target = 0
 bus = "Master"
-
-[connection signal="body_entered" from="." to="." method="_on_Bubble_body_entered"]
-
-[connection signal="body_exited" from="." to="." method="_on_Bubble_body_exited"]
 
 [connection signal="timeout" from="Life" to="." method="_on_Life_timeout"]
 

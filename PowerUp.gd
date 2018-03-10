@@ -36,6 +36,7 @@ func _ready():
 	
 	if powerup_type == 1:	#bonus points
 		$Coin.show()
+		$CollisionCoin.disabled = false
 		#$Potion_Shoot.hide()
 		#$Potion_Speed.hide()
 		#$Potion_Jump.hide()
@@ -63,6 +64,8 @@ func _ready():
 		if Global_Vars.Osys != "HTML5": 
 			$Potion_Particles.emitting = true
 			$Potion_Particles.show()
+	if powerup_type > 1:
+		$CollisionPotion.disabled = false
 
 #func _process(delta):
 #	pass
@@ -85,28 +88,23 @@ func _on_Area2D_body_entered( body ):
 			Global_Vars.score += coin_bonus
 			Text.text = str("+",coin_bonus, " Points")
 			$Coin.hide()
-			$CollisionShape2D.disabled = true
+			$CollisionCoin.disabled = true
 			$Coin/AudioStreamPlayer.play()
 			yield($Coin/AudioStreamPlayer,"finished")
-		if powerup_type == 2:
-			Text.set_text("Bubbles")
-			$Potion_Shoot.hide()
-			$CollisionShape2D.disabled = true
-			body._powerup_firing(shoot_factor,shoot_duration)
-			$Potion_SFX.play()
-			yield($Potion_SFX,"finished")
-		if powerup_type == 3:
-			Text.set_text("Speed")
-			$Potion_Speed.hide()
-			$CollisionShape2D.disabled = true
-			body._powerup_speed(speed_factor,speed_duration)
-			$Potion_SFX.play()
-			yield($Potion_SFX,"finished")
-		if powerup_type == 4:
-			Text.set_text("Jump")
-			$Potion_Jump.hide()
-			$CollisionShape2D.disabled = true
-			body._powerup_jump(jump_factor,jump_duration)
+		else:
+			if powerup_type == 2:
+				Text.set_text("Bubbles")
+				$Potion_Shoot.hide()
+				body._powerup_firing(shoot_factor,shoot_duration)
+			elif powerup_type == 3:
+				Text.set_text("Speed")
+				$Potion_Speed.hide()
+				body._powerup_speed(speed_factor,speed_duration)
+			elif powerup_type == 4:
+				Text.set_text("Jump")
+				$Potion_Jump.hide()
+				body._powerup_jump(jump_factor,jump_duration)
+			$CollisionPotion.disabled = true
 			$Potion_SFX.play()
 			yield($Potion_SFX,"finished")
 		_delete()	

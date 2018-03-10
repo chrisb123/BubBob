@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://PowerUp.gd" type="Script" id=1]
 [ext_resource path="res://asset/coins2.png" type="Texture" id=2]
@@ -66,12 +66,18 @@ _sections_unfolded = [ "Emission Shape", "Flags", "Gravity", "Scale", "Spread", 
 custom_solver_bias = 0.0
 radius = 17.7261
 
+[sub_resource type="CapsuleShape2D" id=6]
+
+custom_solver_bias = 0.0
+radius = 11.0484
+height = 12.4772
+
 [sub_resource type="CircleShape2D" id=5]
 
 custom_solver_bias = 0.0
 radius = 23.1487
 
-[node name="Base" type="Node2D" index="0" groups=[
+[node name="Base" type="Node2D" groups=[
 "powerup",
 ]]
 
@@ -104,7 +110,6 @@ _sections_unfolded = [ "Grow Direction", "Rect", "Size Flags", "Visibility", "cu
 
 [node name="PowerUp" type="RigidBody2D" parent="." index="1"]
 
-editor/display_folded = true
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -167,7 +172,7 @@ _sections_unfolded = [ "Transform" ]
 visible = false
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 7 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="Potion_Particles" type="Particles2D" parent="PowerUp" index="4"]
 
@@ -202,11 +207,17 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PowerUp" index="6"]
+[node name="CollisionCoin" type="CollisionShape2D" parent="PowerUp" index="6"]
 
 shape = SubResource( 4 )
+disabled = true
 
-[node name="Area2D" type="Area2D" parent="PowerUp" index="7"]
+[node name="CollisionPotion" type="CollisionShape2D" parent="PowerUp" index="7"]
+
+shape = SubResource( 6 )
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="PowerUp" index="8"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -221,7 +232,7 @@ _sections_unfolded = [ "Audio Bus", "Collision", "Material", "Pickable", "Transf
 
 shape = SubResource( 5 )
 
-[node name="Life_Time" type="Timer" parent="PowerUp" index="8"]
+[node name="Life_Time" type="Timer" parent="PowerUp" index="9"]
 
 process_mode = 1
 wait_time = 1.0

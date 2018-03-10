@@ -99,7 +99,7 @@ I think thats enough unless you can think of something else.
  --------------------  IDEAS --------------------------------
 
 - (DONE) quit button for android while playing
-- Zoom & Music button implemented for android 
+- (DONE) Zoom & Music button implemented for android 
 - (DONE) implement Advertising (Splash screen before level start, or constant banner while playing)
 - balance monster waves
 - (DONE) Change lives to unlimited but reduce score 

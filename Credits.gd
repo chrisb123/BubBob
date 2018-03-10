@@ -6,10 +6,10 @@ extends Control
 
 signal quit_credits
 
-func _ready():
+#func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
-	pass
+#	pass
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
@@ -19,4 +19,4 @@ func _ready():
 
 func _on_Button_pressed():
 	emit_signal("quit_credits")
-	pass # replace with function body
+#	pass # replace with function body

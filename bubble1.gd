@@ -6,7 +6,7 @@ extends RigidBody2D
 export (int) var facing
 var velocity = 350
 var dying = false
-var player_pushing = false
+#var player_pushing = false
 const LIFE_TIME = 10
 const pop_time = 0.75
 const sprite_size = Vector2(0.075,0.075)	#(0.1 0.1) with new bubble - (1,1) with old bubble
@@ -23,13 +23,13 @@ func _ready():
 	$Sprite/Grow.start()
 	#print(facing)
 
-func _process(delta):
+#func _process(delta):
 	#if playing is not pushing they limit min speed
-	if !player_pushing:
-		if linear_velocity.x < 25 && linear_velocity.x >= 0:
-			apply_impulse(Vector2(),Vector2(1,0))
-		if linear_velocity.x > -25 && linear_velocity.x <= 0:
-			apply_impulse(Vector2(),Vector2(-1,0))
+#	if !player_pushing:
+#		if linear_velocity.x < 25 && linear_velocity.x >= 0:
+#			apply_impulse(Vector2(),Vector2(1,0))
+#		if linear_velocity.x > -25 && linear_velocity.x <= 0:
+#			apply_impulse(Vector2(),Vector2(-1,0))
 
 func _on_Life_timeout():
 	#killbub(false)
@@ -55,9 +55,9 @@ func _on_Pop_Bubble_finished():
 		Queue_Free_Triggered = true
 		yield(get_tree().create_timer(pop_time),"timeout") #<- Proven, Function was called more than once cause resume after deletion
 		queue_free()
-	#else:
-		#print("QueueFree Double call")
-		#return you are going to return either way
+#	else:
+#		print("QueueFree Double call")
+#		return #you are going to return either way
 
 func _on_pop_time_timeout():
 	if $Sprite.visible == true:
@@ -67,6 +67,7 @@ func _on_pop_time_timeout():
 
 func _on_Float_timeout():
 	gravity_scale = -1
+	add_force(Vector2(),Vector2(facing*7.5,0))
 
 func unsquish():
 	$Sprite/Squish.stop_all()
@@ -119,13 +120,13 @@ func killbub(pk):
 
 
 #is player nearyb, ie pushing
-func _on_Bubble_body_entered( body ):
-	if body.is_in_group("player"):
-		player_pushing = true
-
-func _on_Bubble_body_exited( body ):
-	if body.is_in_group("player"):
-		player_pushing = false
+#func _on_Bubble_body_entered( body ):
+#	if body.is_in_group("player"):
+#		player_pushing = true
+#
+#func _on_Bubble_body_exited( body ):
+#	if body.is_in_group("player"):
+#		player_pushing = false
 
 
 

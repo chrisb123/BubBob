@@ -1,3 +1,5 @@
+# Delete me, can thes enemy files be deleted?
+
 extends RigidBody2D
 
 # class member variables go here, for example:

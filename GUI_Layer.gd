@@ -6,7 +6,7 @@ extends CanvasLayer
 
 func _ready():
 	set_process_input(true)
-	pass
+#	pass
 
 func _input():
 	print("test")
