@@ -140,7 +140,7 @@ func _on_Move_Timer_timeout():
 		vel.y = clamp(vel.y, -MAX_SPEED/Y_SPEED_REDUCTION,-MIN_SPEED/Y_SPEED_REDUCTION)
 	#print(temp," ",temp2)
 	if _in_bubble == false:
-		ray = vel.normalized() * 100
+		ray = vel.normalized() * 50
 		$Enemy/RayL.cast_to = ray.rotated(.5)
 		$Enemy/RayR.cast_to = ray.rotated(-.5)
 		#linear_velocity.x = vel.x
