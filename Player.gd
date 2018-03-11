@@ -218,41 +218,41 @@ func _on_Invincible_Flash_timeout():
 		$AnimatedSprite.visible = true
 
 func _powerup_firing(factor,time):		#called by PowerUp
-	fire_ups += 1
-	BubbleGUI.get_node("Text").text = "X" + str(fire_ups)
+	fire_ups += time
 	if $Timer.wait_time == FIRING_SPEED_CONST:
+		var putext = BubbleGUI.get_node("Text")
 		BubbleGUI.visible = true
 		$Timer.wait_time = FIRING_SPEED / factor	 # (inverse) bubble shooting timer
 		while fire_ups > 0:
-			yield(get_tree().create_timer(time),"timeout")
+			putext.text = str(fire_ups)
+			yield(get_tree().create_timer(1),"timeout")
 			fire_ups -=1
-			BubbleGUI.get_node("Text").text = "X" + str(fire_ups)
 		$Timer.wait_time = FIRING_SPEED_CONST
 		BubbleGUI.visible = false
 		
 func _powerup_speed(factor,time):		#called by PowerUp
-	speed_ups += 1
-	SpeedGUI.get_node("Text").text = "X" + str(speed_ups)
+	speed_ups += time
 	if SPEED == SPEED_CONST:
+		var putext = SpeedGUI.get_node("Text")
 		SpeedGUI.visible = true
 		SPEED *= factor
 		while speed_ups > 0:
-			yield(get_tree().create_timer(time),"timeout")
+			putext.text = str(speed_ups)
+			yield(get_tree().create_timer(1),"timeout")
 			speed_ups -= 1
-			SpeedGUI.get_node("Text").text = "X" + str(speed_ups)
 		SPEED = SPEED_CONST
 		SpeedGUI.visible = false
 
 func _powerup_jump(factor,time):	#called by PowerUp
-	jump_ups += 1
-	JumpGUI.get_node("Text").text = "X" + str(jump_ups)
+	jump_ups += time
 	if jump_speed == jump_speed_const:
+		var putext = JumpGUI.get_node("Text")
 		JumpGUI.visible = true
 		jump_speed *= factor
 		while jump_ups > 0:
-			yield(get_tree().create_timer(time),"timeout")
+			putext.text = str(jump_ups)
+			yield(get_tree().create_timer(1),"timeout")
 			jump_ups -= 1
-			JumpGUI.get_node("Text").text = "X" + str(jump_ups)
 		jump_speed = jump_speed_const
 		JumpGUI.visible = false
 
