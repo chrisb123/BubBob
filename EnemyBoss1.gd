@@ -33,6 +33,8 @@ func _ready():
 		MIN_SPEED = int(150 * Global_Vars.Difficulty)
 		MAX_SPEED = int(350 * Global_Vars.Difficulty)
 			
+	var Announce = get_node("/root/Main/GUI_Layer/Control/Announce")
+	Announce.msg("Boss fight")
 	$Bubble.scale = bubble_size
 	if boss_type == 1:
 		$Enemy.region_rect = Rect2(0,0,80,100)

@@ -5,7 +5,7 @@ extends Control
 # var b = "textvar"
 
 onready var score = get_node("Score")
-onready var lives = get_node("Lives")
+#onready var lives = get_node("Lives")
 onready var level = get_node("Level")
 onready var enemies = get_node("Enemies")
 var leveln_backup = 0
@@ -72,7 +72,6 @@ func _process(delta): #Change this
 func _on_Level_Change_tween_completed( object, key ):
 	level.visible = false
 
-
 #func _on_KillAll_pressed():
 #	if ! OS.is_debug_build():
 #		Global_Vars.gameover = true
@@ -81,9 +80,10 @@ func _on_Level_Change_tween_completed( object, key ):
 #		for i in enemies:
 #			i.get_node("AnimatedSprite").play()
 
-
 func _on_Menu_pressed():
 	print("menu")
 	var resource = load("res://menu.tscn")
 	var menu = resource.instance()
 	add_child(menu)
+
+

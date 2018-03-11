@@ -40,6 +40,9 @@ var levsize
 const SCORE_TO_LEVEL = 10
 var Enemy_Spawn
 var camera
+var Announce
+
+
 
 # class member variables go here, for example:
 # var a = 2
@@ -127,6 +130,7 @@ func _load_level():
 	level = resource.instance()
 	add_child(level)
 	move_child(level,0)
+	Announce.msg("level "+str(Global_Vars.leveln))
 	levsize = level.find_node("Size").size()
 	Enemy_Spawn = level.waves()
 	Global_Vars.MAX_WAVES = Enemy_Spawn.size() - 1
@@ -170,6 +174,7 @@ func _start():
 	
 	gui = GUI.instance()
 	$GUI_Layer.add_child(gui)
+	Announce = get_node("/root/Main/GUI_Layer/Control/Announce")
 	
 
 func clear_nodes():
