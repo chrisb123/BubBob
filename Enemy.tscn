@@ -130,7 +130,7 @@ _sections_unfolded = [ "Color", "Emission Shape", "Gravity", "Initial Velocity",
 custom_solver_bias = 0.0
 radius = 45.9931
 
-[node name="Base" type="Node2D" index="0"]
+[node name="Base" type="Node2D"]
 
 rotation = -0.000737004
 

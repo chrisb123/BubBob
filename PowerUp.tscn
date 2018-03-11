@@ -2,12 +2,11 @@
 
 [ext_resource path="res://PowerUp.gd" type="Script" id=1]
 [ext_resource path="res://asset/coins2.png" type="Texture" id=2]
-[ext_resource path="res://PowerUp_Sprite.gd" type="Script" id=3]
-[ext_resource path="res://sounds/coin.wav" type="AudioStream" id=4]
-[ext_resource path="res://asset/potions/pt2.png" type="Texture" id=5]
-[ext_resource path="res://asset/potions/pt1.png" type="Texture" id=6]
-[ext_resource path="res://asset/potions/pt3.png" type="Texture" id=7]
-[ext_resource path="res://sounds/Drink.wav" type="AudioStream" id=8]
+[ext_resource path="res://sounds/coin.wav" type="AudioStream" id=3]
+[ext_resource path="res://asset/potions/pt2.png" type="Texture" id=4]
+[ext_resource path="res://asset/potions/pt1.png" type="Texture" id=5]
+[ext_resource path="res://asset/potions/pt3.png" type="Texture" id=6]
+[ext_resource path="res://sounds/Drink.wav" type="AudioStream" id=7]
 
 [sub_resource type="DynamicFontData" id=1]
 
@@ -20,6 +19,34 @@ use_mipmaps = false
 use_filter = true
 font_data = SubResource( 1 )
 _sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="GDScript" id=10]
+
+script/source = "extends Sprite
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+var frames_increase = true
+
+func _ready():
+	pass
+
+func _on_Frame_Increase_timeout():
+	if frames_increase == true:
+		if frame == 3:
+			frames_increase = false
+			frame -= 1
+		else:
+			frame += 1
+	else:
+		if frame == 0:
+			frames_increase = true
+			frame += 1
+		else:
+			frame -= 1"
+_sections_unfolded = [ "Resource" ]
 
 [sub_resource type="ParticlesMaterial" id=3]
 
@@ -135,7 +162,7 @@ script = ExtResource( 1 )
 visible = false
 texture = ExtResource( 2 )
 vframes = 4
-script = ExtResource( 3 )
+script = SubResource( 10 )
 _sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform", "Visibility", "Z" ]
 
 [node name="Frame_Increase" type="Timer" parent="PowerUp/Coin" index="0"]
@@ -147,7 +174,7 @@ autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PowerUp/Coin" index="1"]
 
-stream = ExtResource( 4 )
+stream = ExtResource( 3 )
 volume_db = -0.5
 autoplay = false
 mix_target = 0
@@ -157,21 +184,21 @@ bus = "Master"
 
 visible = false
 scale = Vector2( 0.1, 0.1 )
-texture = ExtResource( 5 )
+texture = ExtResource( 4 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Potion_Speed" type="Sprite" parent="PowerUp" index="2"]
 
 visible = false
 scale = Vector2( 0.1, 0.1 )
-texture = ExtResource( 6 )
+texture = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Potion_Jump" type="Sprite" parent="PowerUp" index="3"]
 
 visible = false
 scale = Vector2( 0.1, 0.1 )
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="Potion_Particles" type="Particles2D" parent="PowerUp" index="4"]
@@ -201,7 +228,7 @@ _sections_unfolded = [ "Drawing", "Process Material" ]
 
 [node name="Potion_SFX" type="AudioStreamPlayer" parent="PowerUp" index="5"]
 
-stream = ExtResource( 8 )
+stream = ExtResource( 7 )
 volume_db = -5.0
 autoplay = false
 mix_target = 0

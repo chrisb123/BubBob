@@ -14,14 +14,19 @@ func _ready():
 	else:
 		$VBoxContainer/Info_Other.visible = true
 		$VBoxContainer/Info_Android.visible = false
-	if Global_Vars.Difficulty == Global_Vars.easy:
-		$Difficulty.text = "Difficulty: Easy"
-	elif Global_Vars.Difficulty == Global_Vars.normal:
-		$Difficulty.text = "Difficulty: Normal"
-	elif Global_Vars.Difficulty == Global_Vars.hard:
-		$Difficulty.text = "Difficulty: Hard"
-	elif Global_Vars.Difficulty == Global_Vars.insane:
-		$Difficulty.text = "Difficulty: Insane"
+	Global_Vars.Difficulty == Global_Vars.easy
+	_on_Difficulty_pressed()
+	Global_Vars.gameMode = Global_Vars.PUZZLE
+	_on_Mode_pressed()
+		
+#	if Global_Vars.Difficulty == Global_Vars.easy:
+#		$VBoxContainer/HBox/Difficulty.text = "Difficulty: Easy"
+#	elif Global_Vars.Difficulty == Global_Vars.normal:
+#		$VBoxContainer/HBox/Difficulty.text = "Difficulty: Normal"
+#	elif Global_Vars.Difficulty == Global_Vars.hard:
+#		$VBoxContainer/HBox/Difficulty.text = "Difficulty: Hard"
+#	elif Global_Vars.Difficulty == Global_Vars.insane:
+#		$VBoxContainer/HBox/Difficulty.text = "Difficulty: Insane"
 		
 		
 
@@ -50,15 +55,24 @@ func _on_Music_pressed():
 
 func _on_Difficulty_pressed():
 	if Global_Vars.Difficulty == Global_Vars.easy:
-		$Difficulty.text = "Difficulty: Normal"
+		$VBoxContainer/HBox/Difficulty.text = "Difficulty: Normal"
 		Global_Vars.Difficulty = Global_Vars.normal
 	elif Global_Vars.Difficulty == Global_Vars.normal:
-		$Difficulty.text = "Difficulty: Hard"
+		$VBoxContainer/HBox/Difficulty.text = "Difficulty: Hard"
 		Global_Vars.Difficulty = Global_Vars.hard
 	elif Global_Vars.Difficulty == Global_Vars.hard:
-		$Difficulty.text = "Difficulty: Insane"
+		$VBoxContainer/HBox/Difficulty.text = "Difficulty: Insane"
 		Global_Vars.Difficulty = Global_Vars.insane
 	elif Global_Vars.Difficulty == Global_Vars.insane:
-		$Difficulty.text = "Difficulty: Easy"
+		$VBoxContainer/HBox/Difficulty.text = "Difficulty: Easy"
 		Global_Vars.Difficulty = Global_Vars.easy
 		
+
+
+func _on_Mode_pressed():
+	if Global_Vars.gameMode == Global_Vars.ARENA:
+		$VBoxContainer/HBox/Mode.text = "Mode: Puzzle"
+		Global_Vars.gameMode = Global_Vars.PUZZLE
+	elif Global_Vars.gameMode == Global_Vars.PUZZLE:
+		$VBoxContainer/HBox/Mode.text = "Mode: Arena"
+		Global_Vars.gameMode = Global_Vars.ARENA

@@ -25,6 +25,7 @@ var AdMob = load("res://AdMob.tscn")
 
 #Debugging
 var Debug = load("res://Debug.tscn")
+var Puzzle = load("res://Puzzle.tscn")
 
 var title
 var credits
@@ -130,6 +131,8 @@ func _load_level():
 	level = resource.instance()
 	add_child(level)
 	move_child(level,0)
+	$GUI_Layer/Control/Score.show()
+	$GUI_Layer/Control/Level.show()
 	Announce.msg("level "+str(Global_Vars.leveln))
 	levsize = level.find_node("Size").size()
 	Enemy_Spawn = level.waves()
@@ -166,19 +169,25 @@ func _credits():
 func _start():
 	#change to is title exists then remove
 	remove_child(title)
-	if(Engine.has_singleton("AdMob")):
-		get_node("/root/Main/AdMob")._hide_banner()
-	Global_Vars.leveln = 1
-	Global_Vars.waven = 1
-	_load_level()
-	
-	gui = GUI.instance()
-	$GUI_Layer.add_child(gui)
-	Announce = get_node("/root/Main/GUI_Layer/Control/Announce")
-	
+
+	if Global_Vars.gameMode == Global_Vars.ARENA:
+		if(Engine.has_singleton("AdMob")):
+			get_node("/root/Main/AdMob")._hide_banner()
+		Global_Vars.leveln = 1
+		Global_Vars.waven = 1
+		_load_level()
+		gui = GUI.instance()
+		$GUI_Layer.add_child(gui)
+		Announce = get_node("/root/Main/GUI_Layer/Control/Announce")
+		
+	elif Global_Vars.gameMode == Global_Vars.PUZZLE:
+		var puzzle = Puzzle.instance()
+		add_child(puzzle)
 
 func clear_nodes():
 	$Enemy.stop()	
+	$GUI_Layer/Control/Score.hide()
+	$GUI_Layer/Control/Level.hide()
 	var enemies = get_tree().get_nodes_in_group("enemy")
 	for enemy in enemies:
 		enemy.queue_free()
