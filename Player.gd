@@ -46,6 +46,10 @@ var joypad_ycentre = joypad_ypos + joypad_yoffset
 var joypad_maxdistance = 300
 var joypad_horizontal_velocity = 0
 
+onready var SpeedGUI = get_node("/root/Main/GUI_Layer/Control/PowerUps/Speed")
+onready var BubbleGUI = get_node("/root/Main/GUI_Layer/Control/PowerUps/Bubble")
+onready var JumpGUI = get_node("/root/Main/GUI_Layer/Control/PowerUps/Jump")
+
 func _ready():
 	set_process_input(true)
 	$Timer.wait_time = FIRING_SPEED
@@ -215,30 +219,42 @@ func _on_Invincible_Flash_timeout():
 
 func _powerup_firing(factor,time):		#called by PowerUp
 	fire_ups += 1
+	BubbleGUI.get_node("Text").text = "X" + str(fire_ups)
 	if $Timer.wait_time == FIRING_SPEED_CONST:
+		BubbleGUI.visible = true
 		$Timer.wait_time = FIRING_SPEED / factor	 # (inverse) bubble shooting timer
 		while fire_ups > 0:
 			yield(get_tree().create_timer(time),"timeout")
 			fire_ups -=1
+			BubbleGUI.get_node("Text").text = "X" + str(fire_ups)
 		$Timer.wait_time = FIRING_SPEED_CONST
+		BubbleGUI.visible = false
 		
 func _powerup_speed(factor,time):		#called by PowerUp
 	speed_ups += 1
+	SpeedGUI.get_node("Text").text = "X" + str(speed_ups)
 	if SPEED == SPEED_CONST:
+		SpeedGUI.visible = true
 		SPEED *= factor
-		if speed_ups > 0:
+		while speed_ups > 0:
 			yield(get_tree().create_timer(time),"timeout")
 			speed_ups -= 1
+			SpeedGUI.get_node("Text").text = "X" + str(speed_ups)
 		SPEED = SPEED_CONST
+		SpeedGUI.visible = false
 
 func _powerup_jump(factor,time):	#called by PowerUp
 	jump_ups += 1
+	JumpGUI.get_node("Text").text = "X" + str(jump_ups)
 	if jump_speed == jump_speed_const:
+		JumpGUI.visible = true
 		jump_speed *= factor
-		if jump_ups > 0:
+		while jump_ups > 0:
 			yield(get_tree().create_timer(time),"timeout")
 			jump_ups -= 1
+			JumpGUI.get_node("Text").text = "X" + str(jump_ups)
 		jump_speed = jump_speed_const
+		JumpGUI.visible = false
 
 func _input(event):
 

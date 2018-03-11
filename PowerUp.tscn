@@ -66,13 +66,13 @@ _sections_unfolded = [ "Emission Shape", "Flags", "Gravity", "Scale", "Spread", 
 custom_solver_bias = 0.0
 radius = 17.7261
 
-[sub_resource type="CapsuleShape2D" id=6]
+[sub_resource type="CapsuleShape2D" id=5]
 
 custom_solver_bias = 0.0
 radius = 11.0484
 height = 12.4772
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=6]
 
 custom_solver_bias = 0.0
 radius = 23.1487
@@ -214,7 +214,7 @@ disabled = true
 
 [node name="CollisionPotion" type="CollisionShape2D" parent="PowerUp" index="7"]
 
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 disabled = true
 
 [node name="Area2D" type="Area2D" parent="PowerUp" index="8"]
@@ -230,7 +230,7 @@ _sections_unfolded = [ "Audio Bus", "Collision", "Material", "Pickable", "Transf
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PowerUp/Area2D" index="0"]
 
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="Life_Time" type="Timer" parent="PowerUp" index="9"]
 

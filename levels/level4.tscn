@@ -5,7 +5,7 @@
 [ext_resource path="res://levels/BackGround.tscn" type="PackedScene" id=3]
 [ext_resource path="res://levels/Size.gd" type="Script" id=4]
 
-[node name="Level4" type="TileMap" index="0" groups=[
+[node name="Level4" type="TileMap" groups=[
 "tiles",
 ]]
 
