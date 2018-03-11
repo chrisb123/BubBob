@@ -49,13 +49,8 @@ func _ready():
 		score_for_killing = int(Global_Vars.score_enemyboss3 * Global_Vars.Difficulty)
 		$Minion_Spawn.wait_time = 3 / Global_Vars.Difficulty
 		
-	$Bubble_Timer.wait_time = 10 / Global_Vars.Difficulty
-
-func _process(delta):
-	if _in_bubble == true:
-		if $Bubble_Timer.is_stopped():
-			$Bubble_Timer.start()
-	
+	$Bubble_Timer.wait_time = 15 / Global_Vars.Difficulty #Defeating boss too hard
+	$Enemy/Ray.add_exception(self)
 
 #no need to process physics every frame for rigid bodies
 #func _physics_process(delta):
@@ -100,6 +95,7 @@ func _on_RigidBody2D_body_entered( body ):
 		bubble_count += 1
 		if bubble_count == 20:
 			_in_bubble = true
+			$Bubble_Timer.start()
 			#Shrink monster into bubble (Animated)
 			$Enemy/Shrink.interpolate_property($Enemy, 'scale', $Enemy.get_scale(),
 			Vector2(0.75,0.75), 0.5, Tween.TRANS_QUAD, Tween.EASE_OUT)
@@ -140,11 +136,19 @@ func _on_Move_Timer_timeout():
 		vel.y = clamp(vel.y, -MAX_SPEED/Y_SPEED_REDUCTION,-MIN_SPEED/Y_SPEED_REDUCTION)
 	#print(temp," ",temp2)
 	if _in_bubble == false:
+		var ray = vel.normalized() * 100
+		$Enemy/Ray.cast_to = ray
 		#linear_velocity.x = vel.x
 		#linear_velocity.y = vel.y
 		$Enemy/Move.interpolate_property(self, 'linear_velocity', linear_velocity, Vector2(vel.x,vel.y), 0.25, Tween.TRANS_QUAD, Tween.EASE_OUT)
 		$Enemy/Move.start()
-	
+
+func _process(delta):
+	if $Enemy/Ray.is_colliding() and _in_bubble == false:
+		var col = $Enemy/Ray.get_collider()
+#		if ! col.is_in_group("player"):
+		print ("avoid object ", col)
+		_on_Move_Timer_timeout()
 
 func _on_Bubble_Timer_timeout():
 	#Remove Bubble and expand Enemy to original size

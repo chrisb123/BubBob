@@ -52,6 +52,7 @@ func _ready():
 		_is_minion = true
 
 	$Bubble_Timer.wait_time = 10 / Global_Vars.Difficulty
+	$Enemy/Ray.add_exception(self)
 #func _process(delta):
 
 #no need to process physics every frame for rigid bodies
@@ -139,11 +140,20 @@ func _on_Move_Timer_timeout():
 		vel.y = clamp(vel.y, -MAX_SPEED/Y_SPEED_REDUCTION,-MIN_SPEED/Y_SPEED_REDUCTION)
 	#print(temp," ",temp2)
 	if _in_bubble == false:
+		var ray = vel.normalized() * 100
+		$Enemy/Ray.cast_to = ray
 		#linear_velocity.x = vel.x
 		#linear_velocity.y = vel.y
 		$Enemy/Move.interpolate_property(self, 'linear_velocity', linear_velocity, Vector2(vel.x,vel.y), 0.25, Tween.TRANS_LINEAR, Tween.EASE_IN)
 		$Enemy/Move.start()
-	
+
+func _process(delta):
+	if $Enemy/Ray.is_colliding() and _in_bubble == false:
+		var col = $Enemy/Ray.get_collider()
+		if ! col.is_in_group("player"):
+			print ("avoid object ", col)
+			_on_Move_Timer_timeout()
+			
 
 func _on_Bubble_Timer_timeout():
 	#Remove Bubble and expand Enemy to original size

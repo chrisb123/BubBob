@@ -68,7 +68,7 @@ func _on_pop_time_timeout():
 
 func _on_Float_timeout():
 	gravity_scale = -1
-	add_force(Vector2(),Vector2(facing*7.5,0))
+	add_force(Vector2(),Vector2(facing*6.5,0))
 
 func unsquish():
 	$Sprite/Squish.stop_all()
