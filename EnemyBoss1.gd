@@ -23,6 +23,9 @@ var score_for_killing = Global_Vars.score_enemyboss1
 export (int) var boss_type 
 const bubble_size = Vector2(0.075,0.075)
 const bubble_size_inc = Vector2(0.005,0.005)
+var ray = Vector2()
+var free_move = false
+var coldir = 0
 
 #setup boss type
 func _ready():
@@ -50,7 +53,8 @@ func _ready():
 		$Minion_Spawn.wait_time = 3 / Global_Vars.Difficulty
 		
 	$Bubble_Timer.wait_time = 15 / Global_Vars.Difficulty #Defeating boss too hard
-	$Enemy/Ray.add_exception(self)
+	$Enemy/RayL.add_exception(self)
+	$Enemy/RayR.add_exception(self)
 
 #no need to process physics every frame for rigid bodies
 #func _physics_process(delta):
@@ -136,19 +140,36 @@ func _on_Move_Timer_timeout():
 		vel.y = clamp(vel.y, -MAX_SPEED/Y_SPEED_REDUCTION,-MIN_SPEED/Y_SPEED_REDUCTION)
 	#print(temp," ",temp2)
 	if _in_bubble == false:
-		var ray = vel.normalized() * 100
-		$Enemy/Ray.cast_to = ray
+		ray = vel.normalized() * 100
+		$Enemy/RayL.cast_to = ray.rotated(.5)
+		$Enemy/RayR.cast_to = ray.rotated(-.5)
 		#linear_velocity.x = vel.x
 		#linear_velocity.y = vel.y
 		$Enemy/Move.interpolate_property(self, 'linear_velocity', linear_velocity, Vector2(vel.x,vel.y), 0.25, Tween.TRANS_QUAD, Tween.EASE_OUT)
 		$Enemy/Move.start()
 
 func _process(delta):
-	if $Enemy/Ray.is_colliding() and _in_bubble == false:
-		var col = $Enemy/Ray.get_collider()
-#		if ! col.is_in_group("player"):
-		print ("avoid object ", col)
-		_on_Move_Timer_timeout()
+	if $Enemy/RayL.is_colliding() and _in_bubble == false:
+		coldir = 1
+	elif $Enemy/RayR.is_colliding() and _in_bubble == false:
+		coldir = -1
+	if ! coldir == 0:
+		var col
+		if coldir == 1:
+			col = $Enemy/RayL.get_collider()
+		elif coldir == -1:
+			col = $Enemy/RayR.get_collider()
+		if col and ! col.is_in_group("player"):
+			ray = ray.rotated(-.2 * coldir)
+			vel = vel.rotated(-.2 * coldir)
+			$Enemy/RayL.cast_to = ray.rotated(.5)
+			$Enemy/RayR.cast_to = ray.rotated(-.5)
+			free_move = true
+			coldir = 0
+	elif free_move:	
+		free_move = false
+		$Enemy/Move.interpolate_property(self, 'linear_velocity', linear_velocity, Vector2(vel.x,vel.y), 0.25, Tween.TRANS_LINEAR, Tween.EASE_IN)
+		$Enemy/Move.start()
 
 func _on_Bubble_Timer_timeout():
 	#Remove Bubble and expand Enemy to original size

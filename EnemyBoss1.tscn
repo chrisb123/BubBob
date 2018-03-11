@@ -182,7 +182,14 @@ playback/repeat = false
 playback/speed = 1.0
 _sections_unfolded = [ "playback" ]
 
-[node name="Ray" type="RayCast2D" parent="Enemy/Enemy" index="3"]
+[node name="RayL" type="RayCast2D" parent="Enemy/Enemy" index="3"]
+
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 50 )
+collision_mask = 1
+
+[node name="RayR" type="RayCast2D" parent="Enemy/Enemy" index="4"]
 
 enabled = true
 exclude_parent = true
