@@ -26,6 +26,7 @@ var AdMob = load("res://AdMob.tscn")
 #Debugging
 var Debug = load("res://Debug.tscn")
 var Puzzle = load("res://Puzzle.tscn")
+var Story = load("res://Story.tscn")
 
 var title
 var credits
@@ -43,6 +44,7 @@ var Enemy_Spawn
 var camera
 var Announce
 
+var rain = false
 
 
 # class member variables go here, for example:
@@ -183,7 +185,10 @@ func _start():
 	elif Global_Vars.gameMode == Global_Vars.PUZZLE:
 		var puzzle = Puzzle.instance()
 		add_child(puzzle)
-
+	elif Global_Vars.gameMode == Global_Vars.STORY:
+		var story = Story.instance()
+		add_child(story)
+		
 func clear_nodes():
 	$Enemy.stop()	
 	$GUI_Layer/Control/Score.hide()

@@ -11,15 +11,16 @@ var lives = start_lives
 var leveln = 0
 var waven = 0
 var Osys
-enum {ARENA,PUZZLE}
-var gameMode = ARENA
+enum {ARENA,PUZZLE,STORY}
+var gameMode = 0
 
 
+var Difficulty = normal
 const easy = 0.7
 const normal = 1
 const hard = 1.3
 const insane = 2
-var Difficulty = easy	#factor based set in main menu
+	#factor based set in main menu
 
 var enemyn = 0
 
