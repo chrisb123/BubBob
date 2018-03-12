@@ -18,7 +18,7 @@ const NUM_FIREBALLS = 8
 export (int) var enemy_type 
 var score_for_killing 
 const bubble_size = Vector2(0.075,0.075)
-var ray = Vector2()
+var ray = Vector2(randf()-0.5,randf()-0.5)
 var free_move = false
 var coldir = 0
 
@@ -123,34 +123,47 @@ func _on_RigidBody2D_body_entered( body ):
 
 func _on_Move_Timer_timeout():
 #Randomize Enemy direction and speed every timeout
+#
+#	var temp = randi()%2
+#	if temp == 1:
+#		vel.x = randi()%MAX_SPEED
+#		vel.x = clamp(vel.x, MIN_SPEED,MAX_SPEED)
+#		facing = 1
+#		$Enemy.flip_h = false
+#	else:
+#		vel.x = -1 * randi()%MAX_SPEED
+#		vel.x = clamp(vel.x, -MAX_SPEED,-MIN_SPEED)
+#		facing = -1
+#		$Enemy.flip_h = true
+#	var temp2 = randi()%2
+#	if temp2 == 1:
+#		vel.y = randi()%MAX_SPEED
+#		vel.y = clamp(vel.y, MIN_SPEED/Y_SPEED_REDUCTION,MAX_SPEED/Y_SPEED_REDUCTION)
+#	else:
+#		vel.y = -1 * randi()%MAX_SPEED
+#		vel.y = clamp(vel.y, -MAX_SPEED/Y_SPEED_REDUCTION,-MIN_SPEED/Y_SPEED_REDUCTION)
 	
-	var temp = randi()%2
-	if temp == 1:
-		vel.x = randi()%MAX_SPEED
-		vel.x = clamp(vel.x, MIN_SPEED,MAX_SPEED)
-		facing = 1
-		$Enemy.flip_h = false
-	else:
-		vel.x = -1 * randi()%MAX_SPEED
-		vel.x = clamp(vel.x, -MAX_SPEED,-MIN_SPEED)
-		facing = -1
-		$Enemy.flip_h = true
-	var temp2 = randi()%2
-	if temp2 == 1:
-		vel.y = randi()%MAX_SPEED
-		vel.y = clamp(vel.y, MIN_SPEED/Y_SPEED_REDUCTION,MAX_SPEED/Y_SPEED_REDUCTION)
-	else:
-		vel.y = -1 * randi()%MAX_SPEED
-		vel.y = clamp(vel.y, -MAX_SPEED/Y_SPEED_REDUCTION,-MIN_SPEED/Y_SPEED_REDUCTION)
+	var speed = MAX_SPEED - MIN_SPEED #New speed, randomly pick a speed, randomly rotate upto 1 radian either way
+	speed = randi()%speed+MIN_SPEED
+	vel = ray.normalized() * speed
+	vel = vel.rotated(randf(2) - 1)
+		
 	#print(temp," ",temp2)
 	if _in_bubble == false:
-		ray = vel.normalized() * 100
+		ray = vel.normalized() * 125
 		$Enemy/RayL.cast_to = ray.rotated(.5)
 		$Enemy/RayR.cast_to = ray.rotated(-.5)
 		#linear_velocity.x = vel.x
 		#linear_velocity.y = vel.y
-		$Enemy/Move.interpolate_property(self, 'linear_velocity', linear_velocity, Vector2(vel.x,vel.y), 0.25, Tween.TRANS_LINEAR, Tween.EASE_IN)
-		$Enemy/Move.start()
+		move_enemy(vel)
+
+func move_enemy(vel):
+	$Enemy/Move.interpolate_property(self, 'linear_velocity', linear_velocity, Vector2(vel.x,vel.y), 0.25, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	$Enemy/Move.start()
+	if vel.x < 0:
+		$Enemy.flip_h = true
+	else:
+		$Enemy.flip_h = false
 
 func _process(delta):
 	if $Enemy/RayL.is_colliding() and _in_bubble == false:
@@ -172,8 +185,7 @@ func _process(delta):
 			coldir = 0
 	elif free_move:	
 		free_move = false
-		$Enemy/Move.interpolate_property(self, 'linear_velocity', linear_velocity, Vector2(vel.x,vel.y), 0.25, Tween.TRANS_LINEAR, Tween.EASE_IN)
-		$Enemy/Move.start()
+		move_enemy(vel)
 
 func _on_Bubble_Timer_timeout():
 	#Remove Bubble and expand Enemy to original size

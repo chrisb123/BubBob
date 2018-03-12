@@ -26,13 +26,13 @@ var enemyn = 0
 
 #Scores for enemy kills
 
-var	score_enemy1 = 5
-var score_enemy2 = 10
-var score_enemy3 = 30
+var score_enemy1 = 5
+var score_enemy2 = 30
+var score_enemy3 = 15
 var score_enemyboss1 = 100
 var score_enemyboss2 = 200
 var score_enemyboss3 = 300
-var score_death = -20
+var score_death = -50
 
 #Enemy spawning
 #Set Maximum levels and maximum waves
