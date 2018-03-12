@@ -56,12 +56,12 @@ func _ready():
 func _process(delta): #Change this
 	score.text = str("Score: " + str(Global_Vars.score))
 #	lives.text = str("Lives: " + str(Global_Vars.lives)) #whats this for?
-	level.text = str("Level " + str(Global_Vars.leveln))
-	enemies.text = str("Enemies till Boss " + str(Global_Vars.enemyn))
-	if Global_Vars.waven == Global_Vars.MAX_WAVES || Global_Vars.enemyn == 0: #what is this for? why is it checking waves and enemy number in GUI?
-		enemies.hide()
-	else:
-		enemies.show()	
+	#level.text = str("Level " + str(Global_Vars.leveln))
+	#enemies.text = str("Enemies till Boss " + str(Global_Vars.enemyn))
+	#if Global_Vars.waven == Global_Vars.MAX_WAVES || Global_Vars.enemyn == 0: #what is this for? why is it checking waves and enemy number in GUI?
+	#	enemies.hide()
+	#else:
+	#	enemies.show()	
 	#if Global_Vars.leveln != leveln_backup:
 	#	leveln_backup = Global_Vars.leveln
 	#	level.visible = true

@@ -22,6 +22,9 @@ var ray = Vector2(randf()-0.5,randf()-0.5)
 var free_move = false
 var coldir = 0
 
+onready var Enemy1GUI = get_node("/root/Main/GUI_Layer/Control/Enemies/Enemy1")
+onready var Enemy2GUI = get_node("/root/Main/GUI_Layer/Control/Enemies/Enemy2")
+onready var Enemy3GUI = get_node("/root/Main/GUI_Layer/Control/Enemies/Enemy3")
 #add variables and node from other enemies
 #add enemy_type variable
 #initialise scene depending on enemy_type
@@ -33,6 +36,10 @@ func _ready():
 	else:
 		MIN_SPEED = int(150 * Global_Vars.Difficulty)
 		MAX_SPEED = int(350 * Global_Vars.Difficulty)
+
+	#GUI Enemy = Enemy + 1
+	
+
 	
 	$Bubble.scale = bubble_size
 	Text.hide()
@@ -57,6 +64,34 @@ func _ready():
 	$Bubble_Timer.wait_time = 10 / Global_Vars.Difficulty
 	$Enemy/RayL.add_exception(self)
 	$Enemy/RayR.add_exception(self)
+	_update_GUI(1)	#Enemy = Enemy + 1
+	
+func _update_GUI(amount):
+	if enemy_type == 1:
+		var puttext = Enemy1GUI.get_node("Text")
+		var temp = (int(puttext.text) + amount)
+		puttext.text = str(temp) 
+		if temp != 0:
+			Enemy1GUI.visible = true
+		else:	
+			Enemy1GUI.visible = false
+	elif enemy_type == 2:
+		var puttext = Enemy2GUI.get_node("Text")
+		var temp = (int(puttext.text) + amount)
+		puttext.text = str(temp) 
+		if temp != 0:
+			Enemy2GUI.visible = true
+		else:	
+			Enemy2GUI.visible = false
+	elif enemy_type == 3:
+		var puttext = Enemy3GUI.get_node("Text")
+		var temp = (int(puttext.text) + amount)
+		puttext.text = str(temp) 
+		if temp != 0:
+			Enemy3GUI.visible = true
+		else:	
+			Enemy3GUI.visible = false
+
 #func _process(delta):
 
 #no need to process physics every frame for rigid bodies
@@ -98,6 +133,8 @@ func _on_AnimatedSprite_animation_finished():
 		Global_Vars.enemyn -= 1
 	else:
 		get_parent().get_parent().minion_count -= 1
+		
+	_update_GUI(-1)	
 	get_parent().queue_free()
 
 
@@ -188,6 +225,7 @@ func _process(delta):
 	elif free_move:	
 		free_move = false
 		move_enemy(vel)
+
 
 func _on_Bubble_Timer_timeout():
 	#Remove Bubble and expand Enemy to original size

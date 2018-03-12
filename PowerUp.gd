@@ -93,15 +93,15 @@ func _on_Area2D_body_entered( body ):
 			yield($Coin/AudioStreamPlayer,"finished")
 		else:
 			if powerup_type == 2:
-				Text.set_text("Bubbles")
+				Text.set_text("Bubbles +")
 				$Potion_Shoot.hide()
 				body._powerup_firing(shoot_factor,shoot_duration)
 			elif powerup_type == 3:
-				Text.set_text("Speed")
+				Text.set_text("Speed +")
 				$Potion_Speed.hide()
 				body._powerup_speed(speed_factor,speed_duration)
 			elif powerup_type == 4:
-				Text.set_text("Jump")
+				Text.set_text("Jump +")
 				$Potion_Jump.hide()
 				body._powerup_jump(jump_factor,jump_duration)
 			$CollisionPotion.disabled = true

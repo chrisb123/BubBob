@@ -224,7 +224,7 @@ func _powerup_firing(factor,time):		#called by PowerUp
 		BubbleGUI.visible = true
 		$Timer.wait_time = FIRING_SPEED / factor	 # (inverse) bubble shooting timer
 		while fire_ups > 0:
-			putext.text = str(fire_ups)
+			putext.text = str(fire_ups,"s")
 			yield(get_tree().create_timer(1),"timeout")
 			fire_ups -=1
 		$Timer.wait_time = FIRING_SPEED_CONST
@@ -237,7 +237,7 @@ func _powerup_speed(factor,time):		#called by PowerUp
 		SpeedGUI.visible = true
 		SPEED *= factor
 		while speed_ups > 0:
-			putext.text = str(speed_ups)
+			putext.text = str(speed_ups,"s")
 			yield(get_tree().create_timer(1),"timeout")
 			speed_ups -= 1
 		SPEED = SPEED_CONST
@@ -250,7 +250,7 @@ func _powerup_jump(factor,time):	#called by PowerUp
 		JumpGUI.visible = true
 		jump_speed *= factor
 		while jump_ups > 0:
-			putext.text = str(jump_ups)
+			putext.text = str(jump_ups,"s")
 			yield(get_tree().create_timer(1),"timeout")
 			jump_ups -= 1
 		jump_speed = jump_speed_const
