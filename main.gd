@@ -192,7 +192,7 @@ func _start():
 func clear_nodes():
 	$Enemy.stop()	
 	$GUI_Layer/Control/Score.hide()
-	$GUI_Layer/Control/Level.hide()
+	#$GUI_Layer/Control/Level.hide()
 	var enemies = get_tree().get_nodes_in_group("enemy")
 	for enemy in enemies:
 		enemy.queue_free()
