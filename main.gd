@@ -134,7 +134,7 @@ func _load_level():
 	add_child(level)
 	move_child(level,0)
 	$GUI_Layer/Control/Score.show()
-	$GUI_Layer/Control/Level.show()
+	#$GUI_Layer/Control/Level.show()
 	Announce.msg("level "+str(Global_Vars.leveln))
 	levsize = level.find_node("Size").size()
 	Enemy_Spawn = level.waves()
