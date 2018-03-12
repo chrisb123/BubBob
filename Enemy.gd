@@ -162,8 +162,10 @@ func move_enemy(vel):
 	$Enemy/Move.start()
 	if vel.x < 0:
 		$Enemy.flip_h = true
+		facing = -1
 	else:
 		$Enemy.flip_h = false
+		facing = 1
 
 func _process(delta):
 	if $Enemy/RayL.is_colliding() and _in_bubble == false:
