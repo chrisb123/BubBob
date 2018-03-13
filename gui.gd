@@ -9,7 +9,7 @@ onready var score = get_node("Score")
 #onready var level = get_node("Level")
 #onready var enemies = get_node("Enemies")
 var leveln_backup = 0
-onready var camera = get_node("/root/Main/Player/AnimatedSprite/Camera2D")
+
 
 func _ready(): 
 	var xsize = (get_viewport().get_visible_rect().size.x)
@@ -81,6 +81,7 @@ func _process(delta): #Change this
 #			i.get_node("AnimatedSprite").play()
 
 func _on_Menu_pressed():
+	var camera = get_node("/root/Main/Player/AnimatedSprite/Camera2D")
 	print("menu")
 	var resource = load("res://menu.tscn")
 	var menu = resource.instance()

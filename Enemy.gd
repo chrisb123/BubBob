@@ -67,30 +67,39 @@ func _ready():
 	_update_GUI(1)	#Enemy = Enemy + 1
 	
 func _update_GUI(amount):
+	var EnemyGUI 
 	if enemy_type == 1:
-		var puttext = Enemy1GUI.get_node("Text")
-		var temp = (int(puttext.text) + amount)
-		puttext.text = str(temp) 
-		if temp != 0:
-			Enemy1GUI.visible = true
-		else:	
-			Enemy1GUI.visible = false
+		EnemyGUI = Enemy1GUI
 	elif enemy_type == 2:
-		var puttext = Enemy2GUI.get_node("Text")
-		var temp = (int(puttext.text) + amount)
-		puttext.text = str(temp) 
-		if temp != 0:
-			Enemy2GUI.visible = true
-		else:	
-			Enemy2GUI.visible = false
+		EnemyGUI = Enemy2GUI
 	elif enemy_type == 3:
-		var puttext = Enemy3GUI.get_node("Text")
-		var temp = (int(puttext.text) + amount)
-		puttext.text = str(temp) 
-		if temp != 0:
-			Enemy3GUI.visible = true
-		else:	
-			Enemy3GUI.visible = false
+		EnemyGUI = Enemy3GUI
+	else:
+		return
+	var puttext = EnemyGUI.get_node("Text")
+	var temp = (int(puttext.text) + amount)
+	puttext.text = str(temp) 
+	if temp != 0:
+		EnemyGUI.visible = true
+	else:	
+		EnemyGUI.visible = false
+	
+#	elif enemy_type == 2:
+#		var puttext = Enemy2GUI.get_node("Text")
+#		var temp = (int(puttext.text) + amount)
+#		puttext.text = str(temp) 
+#		if temp != 0:
+#			Enemy2GUI.visible = true
+#		else:	
+#			Enemy2GUI.visible = false
+#	elif enemy_type == 3:
+#		var puttext = Enemy3GUI.get_node("Text")
+#		var temp = (int(puttext.text) + amount)
+#		puttext.text = str(temp) 
+#		if temp != 0:
+#			Enemy3GUI.visible = true
+#		else:	
+#			Enemy3GUI.visible = false
 
 #func _process(delta):
 

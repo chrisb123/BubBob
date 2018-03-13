@@ -108,13 +108,13 @@ I think thats enough unless you can think of something else.
 - (DONE) Change lives to unlimited but reduce score 
 - Change poping bubble combos and emey to a higher score
 - (DONE) Change enemy score to be higher
-- Replace the packed scenes
+- (Done) Replace the packed scenes
 
 ----------------------- ToDO ----------------------------------
 
  - (Intial done) CIMAD spalsh screen before title screen
  - (Initial done) Loading screen for 1s before showing intertital ads (admob requirment)
- - add other uncoded buttons for future use
+ - add other uncoded buttons for future use, such as?
 
  - Asset citation screen (licence requirments)
 	- Background      CC by 3.0 - Alekei - https://opengameart.org/content/background-night
@@ -141,8 +141,7 @@ even with multiple fingers touching at same time
 - joypad is centred around X "button"
 - small deadspace just around the X, joypad has range of about 150 pixels
 - Joypad position currently fixed, will make dynamic later, if better than buttons.
-- I don't think we should be using exported packed scenes, maybe if creating creating dynamic content where the scenes are set programatically
-	export (PackedScene) var Player
+- Dont use export (PackedScene) var Player
 	Instead declare the resource dynamicallly or statically
 	var resource = load("res://levels/level"+str(Global_Vars.leveln)+".tscn")
 

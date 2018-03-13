@@ -109,8 +109,7 @@ func _on_Area2D_body_entered( body ):
 			yield($Potion_SFX,"finished")
 		_delete()	
 
-func _on_Life_Time_timeout():
-	_delete()
-
 func _delete():
+	print("time out")
 	get_parent().queue_free()
+

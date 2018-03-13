@@ -26,6 +26,9 @@ const bubble_size_inc = Vector2(0.005,0.005)
 var ray = Vector2(randf()-0.5,randf()-0.5)
 var free_move = false
 var coldir = 0
+onready var Enemy1GUI = get_node("/root/Main/GUI_Layer/Control/HBox/Enemies/Boss1")
+onready var Enemy2GUI = get_node("/root/Main/GUI_Layer/Control/HBox/Enemies/Boss2")
+onready var Enemy3GUI = get_node("/root/Main/GUI_Layer/Control/HBox/Enemies/Boss3")
 
 #setup boss type
 func _ready():
@@ -55,7 +58,21 @@ func _ready():
 	$Bubble_Timer.wait_time = 15 / Global_Vars.Difficulty #Defeating boss too hard
 	$Enemy/RayL.add_exception(self)
 	$Enemy/RayR.add_exception(self)
-
+	_update_GUI(1)	#Enemy = Enemy + 1
+	
+func _update_GUI(temp):
+	var EnemyGUI 
+	if boss_type == 1:
+		EnemyGUI = Enemy1GUI
+	elif boss_type == 2:
+		EnemyGUI = Enemy2GUI
+	elif boss_type == 3:
+		EnemyGUI = Enemy3GUI
+	if temp:
+		EnemyGUI.visible = true
+	else:	
+		EnemyGUI.visible = false
+		
 #no need to process physics every frame for rigid bodies
 #func _physics_process(delta):
 #	rotation_degrees = 0
@@ -88,6 +105,7 @@ func killbub(pk):
 func _on_AnimatedSprite_animation_finished():
 	Global_Vars.score += score_for_killing
 	Global_Vars.enemyn -= 1
+	_update_GUI(0)
 	queue_free()
 
 
