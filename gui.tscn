@@ -3,12 +3,12 @@
 [ext_resource path="res://gui.gd" type="Script" id=1]
 [ext_resource path="res://asset/font/Comfortaa-Bold.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Announce.gd" type="Script" id=3]
-[ext_resource path="res://asset/potions/pt1.png" type="Texture" id=4]
-[ext_resource path="res://asset/potions/pt2.png" type="Texture" id=5]
-[ext_resource path="res://asset/potions/pt3.png" type="Texture" id=6]
-[ext_resource path="res://asset/enemy1.png" type="Texture" id=7]
-[ext_resource path="res://asset/enemy3.png" type="Texture" id=8]
-[ext_resource path="res://asset/enemy2.png" type="Texture" id=9]
+[ext_resource path="res://asset/enemy1.png" type="Texture" id=4]
+[ext_resource path="res://asset/enemy3.png" type="Texture" id=5]
+[ext_resource path="res://asset/enemy2.png" type="Texture" id=6]
+[ext_resource path="res://asset/potions/pt1.png" type="Texture" id=7]
+[ext_resource path="res://asset/potions/pt2.png" type="Texture" id=8]
+[ext_resource path="res://asset/potions/pt3.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -72,30 +72,6 @@ use_filter = false
 font_data = ExtResource( 2 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="DynamicFont" id=6]
-
-size = 20
-use_mipmaps = false
-use_filter = false
-font_data = ExtResource( 2 )
-_sections_unfolded = [ "Font", "Settings" ]
-
-[sub_resource type="DynamicFont" id=7]
-
-size = 20
-use_mipmaps = false
-use_filter = false
-font_data = ExtResource( 2 )
-_sections_unfolded = [ "Font", "Settings" ]
-
-[sub_resource type="DynamicFont" id=8]
-
-size = 20
-use_mipmaps = false
-use_filter = false
-font_data = ExtResource( 2 )
-_sections_unfolded = [ "Font", "Settings" ]
-
 [sub_resource type="DynamicFont" id=9]
 
 size = 20
@@ -120,7 +96,31 @@ use_filter = false
 font_data = ExtResource( 2 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Control" type="Control" index="0"]
+[sub_resource type="DynamicFont" id=6]
+
+size = 20
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 2 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=7]
+
+size = 20
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 2 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=8]
+
+size = 20
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 2 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="Control" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -141,6 +141,7 @@ _sections_unfolded = [ "Theme", "Visibility" ]
 
 [node name="Score" type="Label" parent="." index="0"]
 
+visible = false
 anchor_left = 0.5
 anchor_top = 0.0
 anchor_right = 0.5
@@ -375,98 +376,34 @@ flat = false
 align = 1
 _sections_unfolded = [ "Anchor", "Margin", "Rect", "Visibility", "custom_fonts" ]
 
-[node name="PowerUps" type="VBoxContainer" parent="." index="8"]
+[node name="HBox" type="HBoxContainer" parent="." index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 10.0
+margin_left = 6.0
+margin_top = 9.0
 margin_right = 40.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
-_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect" ]
-
-[node name="Speed" type="HBoxContainer" parent="PowerUps" index="0"]
-
-editor/display_folded = true
-visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 115.0
-margin_bottom = 37.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
-_sections_unfolded = [ "Margin", "Size Flags", "Visibility" ]
+_sections_unfolded = [ "Margin", "Rect" ]
 
-[node name="TextureRect2" type="TextureRect" parent="PowerUps/Speed" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 37.0
-margin_bottom = 37.0
-rect_min_size = Vector2( 37, 37 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-size_flags_stretch_ratio = 0.1
-texture = ExtResource( 4 )
-expand = true
-stretch_mode = 0
-_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect", "Size Flags" ]
-
-[node name="Text" type="Label" parent="PowerUps/Speed" index="1"]
+[node name="Enemies" type="VBoxContainer" parent="HBox" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 41.0
-margin_top = 7.0
-margin_right = 107.0
-margin_bottom = 30.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_fonts/font = SubResource( 6 )
-text = "Speed"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
-
-[node name="Bubble" type="HBoxContainer" parent="PowerUps" index="1"]
-
-editor/display_folded = true
-visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 115.0
-margin_bottom = 37.0
+margin_right = 75.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 75, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -474,134 +411,10 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
-_sections_unfolded = [ "Visibility" ]
-
-[node name="TextureRect2" type="TextureRect" parent="PowerUps/Bubble" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 37.0
-margin_bottom = 37.0
-rect_min_size = Vector2( 37, 37 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-texture = ExtResource( 5 )
-expand = true
-stretch_mode = 0
-_sections_unfolded = [ "Rect", "Size Flags" ]
-
-[node name="Text" type="Label" parent="PowerUps/Bubble" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 41.0
-margin_top = 7.0
-margin_right = 115.0
-margin_bottom = 30.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_fonts/font = SubResource( 7 )
-text = "Bubble"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
-
-[node name="Jump" type="HBoxContainer" parent="PowerUps" index="2"]
-
-editor/display_folded = true
-visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 115.0
-margin_bottom = 37.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
-_sections_unfolded = [ "Visibility" ]
-
-[node name="TextureRect2" type="TextureRect" parent="PowerUps/Jump" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 37.0
-margin_bottom = 37.0
-rect_min_size = Vector2( 37, 37 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-texture = ExtResource( 6 )
-expand = true
-stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
-[node name="Text" type="Label" parent="PowerUps/Jump" index="1"]
+[node name="Enemy1" type="HBoxContainer" parent="HBox/Enemies" index="0"]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 41.0
-margin_top = 7.0
-margin_right = 101.0
-margin_bottom = 30.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_fonts/font = SubResource( 8 )
-text = "Jump"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
-
-[node name="Enemies" type="VBoxContainer" parent="." index="9"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 182.0
-margin_top = 7.0
-margin_right = 235.0
-margin_bottom = 150.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
-
-[node name="Enemy1" type="HBoxContainer" parent="Enemies" index="0"]
-
-editor/display_folded = true
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
@@ -609,6 +422,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 53.0
 margin_bottom = 45.0
+rect_min_size = Vector2( 0, 45 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -616,8 +430,9 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
+_sections_unfolded = [ "Rect" ]
 
-[node name="EnemySprite" type="TextureRect" parent="Enemies/Enemy1" index="0"]
+[node name="EnemySprite" type="TextureRect" parent="HBox/Enemies/Enemy1" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -632,12 +447,12 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 7 )
+texture = ExtResource( 4 )
 expand = true
 stretch_mode = 0
 _sections_unfolded = [ "Anchor", "Grow Direction", "Hint", "Margin", "Rect", "Size Flags" ]
 
-[node name="Text" type="Label" parent="Enemies/Enemy1" index="1"]
+[node name="Text" type="Label" parent="HBox/Enemies/Enemy1" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -660,7 +475,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts" ]
 
-[node name="Enemy2" type="HBoxContainer" parent="Enemies" index="1"]
+[node name="Enemy2" type="HBoxContainer" parent="HBox/Enemies" index="1"]
 
 editor/display_folded = true
 visible = false
@@ -670,6 +485,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 53.0
 margin_bottom = 45.0
+rect_min_size = Vector2( 0, 45 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -677,8 +493,9 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
+_sections_unfolded = [ "Rect" ]
 
-[node name="EnemySprite" type="TextureRect" parent="Enemies/Enemy2" index="0"]
+[node name="EnemySprite" type="TextureRect" parent="HBox/Enemies/Enemy2" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -693,12 +510,12 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 8 )
+texture = ExtResource( 5 )
 expand = true
 stretch_mode = 0
 _sections_unfolded = [ "Focus", "Hint", "Margin", "Rect" ]
 
-[node name="Text" type="Label" parent="Enemies/Enemy2" index="1"]
+[node name="Text" type="Label" parent="HBox/Enemies/Enemy2" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -721,7 +538,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts" ]
 
-[node name="Enemy3" type="HBoxContainer" parent="Enemies" index="2"]
+[node name="Enemy3" type="HBoxContainer" parent="HBox/Enemies" index="2"]
 
 editor/display_folded = true
 visible = false
@@ -731,6 +548,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 53.0
 margin_bottom = 45.0
+rect_min_size = Vector2( 0, 45 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -740,7 +558,7 @@ size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Rect" ]
 
-[node name="EnemySprite" type="TextureRect" parent="Enemies/Enemy3" index="0"]
+[node name="EnemySprite" type="TextureRect" parent="HBox/Enemies/Enemy3" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -755,12 +573,12 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 9 )
+texture = ExtResource( 6 )
 expand = true
 stretch_mode = 0
 _sections_unfolded = [ "Focus", "Hint", "Margin", "Rect" ]
 
-[node name="Text" type="Label" parent="Enemies/Enemy3" index="1"]
+[node name="Text" type="Label" parent="HBox/Enemies/Enemy3" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -778,6 +596,209 @@ size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 11 )
 text = "0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="PowerUps" type="VBoxContainer" parent="HBox" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 79.0
+margin_right = 159.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 80, 0 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect" ]
+
+[node name="Speed" type="HBoxContainer" parent="HBox/PowerUps" index="0"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 115.0
+margin_bottom = 37.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+_sections_unfolded = [ "Margin", "Rect", "Size Flags", "Visibility" ]
+
+[node name="TextureRect2" type="TextureRect" parent="HBox/PowerUps/Speed" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 37.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 45, 45 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.1
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 0
+_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect", "Size Flags" ]
+
+[node name="Text" type="Label" parent="HBox/PowerUps/Speed" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 41.0
+margin_top = 7.0
+margin_right = 107.0
+margin_bottom = 30.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 6 )
+text = "Speed"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="Bubble" type="HBoxContainer" parent="HBox/PowerUps" index="1"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 115.0
+margin_bottom = 37.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="TextureRect2" type="TextureRect" parent="HBox/PowerUps/Bubble" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 37.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 45, 45 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 0
+_sections_unfolded = [ "Rect", "Size Flags" ]
+
+[node name="Text" type="Label" parent="HBox/PowerUps/Bubble" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 41.0
+margin_top = 7.0
+margin_right = 115.0
+margin_bottom = 30.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 7 )
+text = "Bubble"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="Jump" type="HBoxContainer" parent="HBox/PowerUps" index="2"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 115.0
+margin_bottom = 37.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="TextureRect2" type="TextureRect" parent="HBox/PowerUps/Jump" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 37.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 45, 45 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="Text" type="Label" parent="HBox/PowerUps/Jump" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 41.0
+margin_top = 7.0
+margin_right = 101.0
+margin_bottom = 30.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 8 )
+text = "Jump"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1

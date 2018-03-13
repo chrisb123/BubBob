@@ -46,9 +46,9 @@ var joypad_ycentre = joypad_ypos + joypad_yoffset
 var joypad_maxdistance = 300
 var joypad_horizontal_velocity = 0
 
-onready var SpeedGUI = get_node("/root/Main/GUI_Layer/Control/PowerUps/Speed")
-onready var BubbleGUI = get_node("/root/Main/GUI_Layer/Control/PowerUps/Bubble")
-onready var JumpGUI = get_node("/root/Main/GUI_Layer/Control/PowerUps/Jump")
+onready var SpeedGUI = get_node("/root/Main/GUI_Layer/Control/HBox/PowerUps/Speed")
+onready var BubbleGUI = get_node("/root/Main/GUI_Layer/Control/HBox/PowerUps/Bubble")
+onready var JumpGUI = get_node("/root/Main/GUI_Layer/Control/HBox/PowerUps/Jump")
 
 func _ready():
 	set_process_input(true)

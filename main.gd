@@ -88,7 +88,7 @@ func _ready():
 	var CIMAD_splash = CIMAD.instance()
 	add_child(CIMAD_splash)
 	if OS.is_debug_build():
-		yield(get_tree().create_timer(1),"timeout")
+		yield(get_tree().create_timer(.5),"timeout")
 	else:
 		yield(get_tree().create_timer(5),"timeout")		
 	remove_child(CIMAD_splash)
@@ -121,7 +121,7 @@ func _load_level():
 			get_node("/root/Main/AdMob").loadInterstitial() #try reloading interstital for next LVL change
 			yield(get_tree().create_timer(5),"timeout") #Fake loading time, avoids turning off network to skip ads
 	else:
-		yield(get_tree().create_timer(2),"timeout") #Load screen for no Admob
+		yield(get_tree().create_timer(.5),"timeout") #Load screen for no Admob
 		
 		
 	#Step 3:- Remove Loading Screen after Ad closed, or no ad shown
@@ -245,7 +245,10 @@ func find_spawn(dist, maxdist):
 
 func _on_Enemy_timeout():
 	#Add powerups randomly 10% chance
-	if ! randi()%10:
+	var puchance = 10
+	if OS.is_debug_build():
+		puchance = 3
+	if ! randi()%puchance:
 		var powerpos = find_spawn(150,300)
 		var powerups = PowerUp.instance()
 		powerups.get_node("PowerUp").powerup_type = randi()%4+1

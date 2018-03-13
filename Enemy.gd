@@ -22,9 +22,9 @@ var ray = Vector2(randf()-0.5,randf()-0.5)
 var free_move = false
 var coldir = 0
 
-onready var Enemy1GUI = get_node("/root/Main/GUI_Layer/Control/Enemies/Enemy1")
-onready var Enemy2GUI = get_node("/root/Main/GUI_Layer/Control/Enemies/Enemy2")
-onready var Enemy3GUI = get_node("/root/Main/GUI_Layer/Control/Enemies/Enemy3")
+onready var Enemy1GUI = get_node("/root/Main/GUI_Layer/Control/HBox/Enemies/Enemy1")
+onready var Enemy2GUI = get_node("/root/Main/GUI_Layer/Control/HBox/Enemies/Enemy2")
+onready var Enemy3GUI = get_node("/root/Main/GUI_Layer/Control/HBox/Enemies/Enemy3")
 #add variables and node from other enemies
 #add enemy_type variable
 #initialise scene depending on enemy_type
