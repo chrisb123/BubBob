@@ -7,7 +7,7 @@ extends Control
 onready var score = get_node("Score")
 #onready var lives = get_node("Lives")
 #onready var level = get_node("Level")
-onready var enemies = get_node("Enemies")
+#onready var enemies = get_node("Enemies")
 var leveln_backup = 0
 onready var camera = get_node("/root/Main/Player/AnimatedSprite/Camera2D")
 
