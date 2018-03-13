@@ -95,7 +95,7 @@ height = 12.4772
 custom_solver_bias = 0.0
 radius = 23.1487
 
-[node name="Base" type="Node2D" index="0" groups=[
+[node name="Base" type="Node2D" groups=[
 "powerup",
 ]]
 

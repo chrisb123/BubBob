@@ -93,8 +93,7 @@ func _ready():
 		yield(get_tree().create_timer(5),"timeout")		
 	remove_child(CIMAD_splash)
 	_title()
-
-
+	
 func _input(event):
 	if event.is_action_pressed("ui_music"):
 		get_node("Music").playing = !get_node("Music").playing
@@ -151,7 +150,7 @@ func _load_level():
 	player.visible = true
 	player.position = Vector2(0,0)
 	$Enemy.start()
-
+	
 func _title():
 	#Show title screen
 	if self.has_node("Credits"):
@@ -198,10 +197,11 @@ func clear_nodes():
 		enemy.queue_free()
 	var bubbles = get_tree().get_nodes_in_group("bubble")
 	for bubble in bubbles:
-		bubble.queue_free()
+		bubble.hide()
+		bubble._on_Pop_Bubble_finished()
 	var powerups = get_tree().get_nodes_in_group("powerup")
 	for powerup in powerups:
-		powerup.queue_free()
+  		powerup.queue_free()
 	level.queue_free()
 	#Global_Vars.score = 0
 	
@@ -243,11 +243,20 @@ func find_spawn(dist, maxdist):
 		mag = sqrt(ab.x*ab.x+ab.y*ab.y)
 	return spos
 
+func poweruprain():
+	var powerpos = find_spawn(150,300)
+	var powerups = PowerUp.instance()
+	powerups.get_node("PowerUp").powerup_type = randi()%4+1
+	powerups.get_node("PowerUp").position = Vector2(powerpos.x,powerpos.y)
+	add_child(powerups)
+
 func _on_Enemy_timeout():
 	#Add powerups randomly 10% chance
+#	for i in range (10):
+#		poweruprain()
 	var puchance = 10
 	if OS.is_debug_build():
-		puchance = 3
+		puchance = 1
 	if ! randi()%puchance:
 		var powerpos = find_spawn(150,300)
 		var powerups = PowerUp.instance()

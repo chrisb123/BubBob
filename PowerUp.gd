@@ -110,6 +110,5 @@ func _on_Area2D_body_entered( body ):
 		_delete()	
 
 func _delete():
-	print("time out")
 	get_parent().queue_free()
 
