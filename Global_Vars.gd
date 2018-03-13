@@ -45,7 +45,7 @@ var score_death = -50
 #0 = nothing this spawn cycle
 #998 = wait till all all enemies detroyed before continuing
 
-const MAX_LEVELS = 4
+const MAX_LEVELS = 5
 var  MAX_WAVES = 0
 
 #var Level0Enemies = [0]	# for title screens etc. to ensure nothing spawns at wrong time.
