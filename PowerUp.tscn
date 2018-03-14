@@ -169,9 +169,9 @@ flag_disable_z = true
 spread = 5.0
 flatness = 0.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 500.0
-initial_velocity_random = 0.5
-angular_velocity = 0.0
+initial_velocity = 75.0
+initial_velocity_random = 0.25
+angular_velocity = 1.0
 angular_velocity_random = 0.0
 orbit_velocity = 0.0
 orbit_velocity_random = 1.0
@@ -179,13 +179,13 @@ linear_accel = 0.0
 linear_accel_random = 0.0
 radial_accel = 0.0
 radial_accel_random = 0.0
-tangential_accel = 100.0
+tangential_accel = 0.0
 tangential_accel_random = 1.0
 damping = 100.0
 damping_random = 1.0
 angle = 0.0
 angle_random = 0.0
-scale = 25.0
+scale = 2.0
 scale_random = 1.0
 color_ramp = SubResource( 12 )
 hue_variation = 0.0
@@ -368,7 +368,7 @@ shape = SubResource( 7 )
 [node name="Life_Time" type="Timer" parent="PowerUp" index="10"]
 
 process_mode = 1
-wait_time = 30.0
+wait_time = 60.0
 one_shot = true
 autostart = false
 
@@ -397,6 +397,7 @@ _sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Trans
 
 [node name="Fuse" type="Particles2D" parent="PowerUp" index="12"]
 
+position = Vector2( 0, -17.8214 )
 rotation = -1.5708
 emitting = false
 amount = 200

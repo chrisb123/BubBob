@@ -107,6 +107,7 @@ func _on_Area2D_body_entered( body ):
 				$Potion_Jump.hide()
 				body._powerup_jump(jump_factor,jump_duration)
 			elif powerup_type == 5:
+				gravity_scale = 0
 				if Global_Vars.Osys != "HTML5":
 					$Fuse.emitting = true
 				Text.set_text("tick")
@@ -115,10 +116,8 @@ func _on_Area2D_body_entered( body ):
 				yield(get_tree().create_timer(.25),"timeout")
 				Text.set_text("KABOOOMMMMMMM !!!!!!!")
 				yield(get_tree().create_timer(.25),"timeout")
-				self.gravity_scale = 0
-				self.linear_velocity = Vector2()
-				self.angular_velocity = 0
-				self.rotation = 0
+				angular_velocity = 0
+				linear_velocity = Vector2()
 				var explosion_base = Explode.instance()
 				explosion_base.scale = Vector2(15,15)
 				add_child(explosion_base)
@@ -126,7 +125,7 @@ func _on_Area2D_body_entered( body ):
 				explosion_base.get_node("sound").playing = true
 				$Potion_Bomb.hide()
 				if Global_Vars.Osys != "HTML5":
-					$Fuse.emitting = true
+					$Fuse.emitting = false
 					$BombPart.emitting = true
 				for i in range(25):
 					var explosion = Explode.instance()
