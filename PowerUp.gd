@@ -5,6 +5,7 @@ extends RigidBody2D
 # var b = "textvar"
 
 onready var Text = get_parent().get_node("Text")
+var Explode = load("res://Explosion.tscn")
 
 var frames_increase = true
 var powerup_type
@@ -31,6 +32,7 @@ func _ready():
 	$Potion_Shoot.hide()
 	$Potion_Speed.hide()
 	$Potion_Jump.hide()
+	$Potion_Bomb.hide()
 	$Potion_Particles.emitting = false
 	$Potion_Particles.hide()
 	
@@ -43,27 +45,26 @@ func _ready():
 	elif powerup_type == 2: #Shooting speed
 		#$Coin.hide()
 		$Potion_Shoot.show()
-		if Global_Vars.Osys != "HTML5": 
-			$Potion_Particles.emitting = true
-			$Potion_Particles.show()
 		#$Potion_Speed.hide()
 		#$Potion_Jump.hide()
 	elif powerup_type == 3: #running_speed
 		#$Coin.hide()
 		#$Potion_Shoot.hide() 
 		$Potion_Speed.show()
-		if Global_Vars.Osys != "HTML5": 
-			$Potion_Particles.emitting = true
-			$Potion_Particles.show()
 		#$Potion_Jump.hide()
 	elif powerup_type == 4: #jump_height
 		#$Coin.hide()
 		#$Potion_Shoot.hide() 
 		#$Potion_Speed.hide()
 		$Potion_Jump.show()
-		if Global_Vars.Osys != "HTML5": 
-			$Potion_Particles.emitting = true
-			$Potion_Particles.show()
+	elif powerup_type == 5: #jump_height
+		#$Coin.hide()
+		#$Potion_Shoot.hide() 
+		#$Potion_Speed.hide()
+		$Potion_Bomb.show()
+	if powerup_type > 1 and Global_Vars.Osys != "HTML5": 
+		$Potion_Particles.emitting = true
+		$Potion_Particles.show()
 	if powerup_type > 1:
 		$CollisionPotion.disabled = false
 
@@ -92,6 +93,7 @@ func _on_Area2D_body_entered( body ):
 			$Coin/AudioStreamPlayer.play()
 			yield($Coin/AudioStreamPlayer,"finished")
 		else:
+			$CollisionPotion.disabled = true
 			if powerup_type == 2:
 				Text.set_text("Bubbles +")
 				$Potion_Shoot.hide()
@@ -104,7 +106,43 @@ func _on_Area2D_body_entered( body ):
 				Text.set_text("Jump +")
 				$Potion_Jump.hide()
 				body._powerup_jump(jump_factor,jump_duration)
-			$CollisionPotion.disabled = true
+			elif powerup_type == 5:
+				$Potion_Bomb.hide()
+				Text.set_text("tick")
+				yield(get_tree().create_timer(.25),"timeout")
+				Text.set_text("tick, tick...")
+				yield(get_tree().create_timer(.25),"timeout")
+				Text.set_text("KABOOOMMMMMMM !!!!!!!")
+				yield(get_tree().create_timer(.25),"timeout")
+				self.gravity_scale = 0
+				self.linear_velocity = Vector2()
+				self.angular_velocity = 0
+				self.rotation = 0
+				var explosion_base = Explode.instance()
+				explosion_base.scale = Vector2(15,15)
+				add_child(explosion_base)
+				explosion_base.play()
+				explosion_base.get_node("sound").playing = true
+				if Global_Vars.Osys != "HTML5":
+					$BombPart.emitting = true
+				for i in range(25):
+					var explosion = Explode.instance()
+					explosion.position = Vector2(randi()%500-250,randi()%500-250)
+					var scal = randi()%5+2.5
+					explosion.scale = Vector2(scal,scal)
+					add_child(explosion)
+					explosion.play()
+				var fballs = get_tree().get_nodes_in_group("fireball")
+				for fball in fballs:
+					fball._die()
+				var epos = Vector2()
+				var enemies = get_tree().get_nodes_in_group("enemy")
+				for enemy in enemies:
+					var ab = enemy.global_position - self.global_position
+					var mag = sqrt(ab.x*ab.x+ab.y*ab.y)
+					if mag < 400:
+						enemy._in_bubble = true
+						enemy.killbub(true)
 			$Potion_SFX.play()
 			yield($Potion_SFX,"finished")
 		_delete()	

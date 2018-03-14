@@ -239,14 +239,14 @@ func find_spawn(dist, maxdist):
 			spos.x = randi()%int(levsize[0])+int(levsize[1])
 			spos.y = randi()%int(levsize[2])+int(levsize[3])
 			i = level.get_cellv(level.world_to_map(Vector2(spos))) 
-		var ab = spos - player.position
+		var ab = spos - player.global_position
 		mag = sqrt(ab.x*ab.x+ab.y*ab.y)
 	return spos
 
 func poweruprain():
 	var powerpos = find_spawn(150,300)
 	var powerups = PowerUp.instance()
-	powerups.get_node("PowerUp").powerup_type = randi()%4+1
+	powerups.get_node("PowerUp").powerup_type = randi()%5+1
 	powerups.get_node("PowerUp").position = Vector2(powerpos.x,powerpos.y)
 	add_child(powerups)
 
@@ -260,7 +260,7 @@ func _on_Enemy_timeout():
 	if ! randi()%puchance:
 		var powerpos = find_spawn(150,300)
 		var powerups = PowerUp.instance()
-		powerups.get_node("PowerUp").powerup_type = randi()%4+1
+		powerups.get_node("PowerUp").powerup_type = randi()%5+1
 		powerups.get_node("PowerUp").position = Vector2(powerpos.x,powerpos.y)
 		add_child(powerups)
 

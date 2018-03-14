@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://PowerUp.gd" type="Script" id=1]
 [ext_resource path="res://asset/coins2.png" type="Texture" id=2]
@@ -6,7 +6,8 @@
 [ext_resource path="res://asset/potions/pt2.png" type="Texture" id=4]
 [ext_resource path="res://asset/potions/pt1.png" type="Texture" id=5]
 [ext_resource path="res://asset/potions/pt3.png" type="Texture" id=6]
-[ext_resource path="res://sounds/Drink.wav" type="AudioStream" id=7]
+[ext_resource path="res://asset/potions/pt4.png" type="Texture" id=7]
+[ext_resource path="res://sounds/Drink.wav" type="AudioStream" id=8]
 
 [sub_resource type="DynamicFontData" id=1]
 
@@ -95,7 +96,58 @@ height = 12.4772
 custom_solver_bias = 0.0
 radius = 23.1487
 
-[node name="Base" type="Node2D" groups=[
+[sub_resource type="Gradient" id=8]
+
+offsets = PoolRealArray( 0, 0.5, 1 )
+colors = PoolColorArray( 1, 1, 0, 1, 1, 0, 0, 1, 1, 0.498039, 0, 0.498039 )
+
+[sub_resource type="GradientTexture" id=9]
+
+flags = 4
+gradient = SubResource( 8 )
+width = 2048
+
+[sub_resource type="ParticlesMaterial" id=10]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 1
+emission_sphere_radius = 10.0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 500.0
+initial_velocity_random = 0.1
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 50.0
+damping_random = 1.0
+angle = 0.0
+angle_random = 0.0
+scale = 10.0
+scale_random = 1.0
+color_ramp = SubResource( 9 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Color", "Damping", "Emission Shape", "Flags", "Gravity", "Hue Variation", "Initial Velocity", "Linear Accel", "Scale", "Spread", "Trail" ]
+
+[node name="Base" type="Node2D" index="0" groups=[
 "powerup",
 ]]
 
@@ -147,9 +199,11 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
+_sections_unfolded = [ "Angular", "Applied Forces", "Linear", "Transform" ]
 
 [node name="Coin" type="Sprite" parent="PowerUp" index="0"]
 
+editor/display_folded = true
 visible = false
 texture = ExtResource( 2 )
 vframes = 4
@@ -196,7 +250,14 @@ scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 6 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
-[node name="Potion_Particles" type="Particles2D" parent="PowerUp" index="4"]
+[node name="Potion_Bomb" type="Sprite" parent="PowerUp" index="4"]
+
+visible = false
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 7 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="Potion_Particles" type="Particles2D" parent="PowerUp" index="5"]
 
 visible = false
 position = Vector2( 0.239113, -17.6084 )
@@ -221,25 +282,25 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material", "Time" ]
 
-[node name="Potion_SFX" type="AudioStreamPlayer" parent="PowerUp" index="5"]
+[node name="Potion_SFX" type="AudioStreamPlayer" parent="PowerUp" index="6"]
 
-stream = ExtResource( 7 )
+stream = ExtResource( 8 )
 volume_db = -5.0
 autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="CollisionCoin" type="CollisionShape2D" parent="PowerUp" index="6"]
+[node name="CollisionCoin" type="CollisionShape2D" parent="PowerUp" index="7"]
 
 shape = SubResource( 5 )
 disabled = true
 
-[node name="CollisionPotion" type="CollisionShape2D" parent="PowerUp" index="7"]
+[node name="CollisionPotion" type="CollisionShape2D" parent="PowerUp" index="8"]
 
 shape = SubResource( 6 )
 disabled = true
 
-[node name="Area2D" type="Area2D" parent="PowerUp" index="8"]
+[node name="Area2D" type="Area2D" parent="PowerUp" index="9"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -254,12 +315,35 @@ _sections_unfolded = [ "Audio Bus", "Collision", "Material", "Pickable", "Transf
 
 shape = SubResource( 7 )
 
-[node name="Life_Time" type="Timer" parent="PowerUp" index="9"]
+[node name="Life_Time" type="Timer" parent="PowerUp" index="10"]
 
 process_mode = 1
 wait_time = 30.0
 one_shot = true
 autostart = false
+
+[node name="BombPart" type="Particles2D" parent="PowerUp" index="11"]
+
+z_index = 1
+emitting = false
+amount = 250
+lifetime = 1.0
+one_shot = true
+preprocess = 0.0
+speed_scale = 2.0
+explosiveness = 0.5
+randomness = 1.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 10 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Transform", "Visibility", "Z Index" ]
 
 [connection signal="body_entered" from="PowerUp/Area2D" to="PowerUp" method="_on_Area2D_body_entered"]
 

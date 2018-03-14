@@ -119,9 +119,9 @@ _sections_unfolded = [ "Color", "Emission Shape", "Gravity", "Initial Velocity",
 [node name="Base" type="Node2D"]
 
 [node name="Enemy" type="RigidBody2D" parent="." index="0" groups=[
-"enemy",
 "enemy1",
 "enemyboss",
+"enemy",
 ]]
 
 input_pickable = false

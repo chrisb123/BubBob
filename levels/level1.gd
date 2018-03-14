@@ -20,7 +20,7 @@ func waves():
 	var levelwave3 = [101]
 	var debugwave1 = [1,1,103,2,2,102,3,3,101]
 	var debugwave2 = [0]
-	var debugwave3 = [101]
+	var debugwave3 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 	
 	if OS.is_debug_build():
 		return [0, debugwave3]
