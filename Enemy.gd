@@ -118,8 +118,8 @@ func _update_GUI(amount):
 #			linear_velocity.y = linear_velocity.y * 0.97
 
 
-func killbub(pk):
-	if _in_bubble && pk:
+func killbub(pk,bomb=null):
+	if (_in_bubble and pk) or bomb:
 		#Stop enemy
 		$AnimatedSprite.play()
 		$Death_Sound.play()

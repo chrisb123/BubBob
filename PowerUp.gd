@@ -6,7 +6,7 @@ extends RigidBody2D
 
 onready var Text = get_parent().get_node("Text")
 var Explode = load("res://Explosion.tscn")
-
+var is_exploding = false
 var frames_increase = true
 var powerup_type
 
@@ -61,6 +61,7 @@ func _ready():
 		#$Coin.hide()
 		#$Potion_Shoot.hide() 
 		#$Potion_Speed.hide()
+		add_to_group("bomb")
 		$Potion_Bomb.show()
 	if powerup_type > 1 and Global_Vars.Osys != "HTML5": 
 		$Potion_Particles.emitting = true
@@ -144,12 +145,10 @@ func _on_Area2D_body_entered( body ):
 						var ab = enemy.global_position - self.global_position
 						var mag = sqrt(ab.x*ab.x+ab.y*ab.y)
 						if mag < 400:
-							enemy._in_bubble = true
-							enemy.killbub(true)
+							enemy.killbub(true,true)
 			$Potion_SFX.play()
 			yield($Potion_SFX,"finished")
 		_delete()	
 
 func _delete():
 	get_parent().queue_free()
-
