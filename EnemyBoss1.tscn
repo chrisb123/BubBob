@@ -116,7 +116,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Color", "Emission Shape", "Gravity", "Initial Velocity", "Scale", "Spread" ]
 
-[node name="Base" type="Node2D"]
+[node name="Base" type="Node2D" index="0"]
 
 [node name="Enemy" type="RigidBody2D" parent="." index="0" groups=[
 "enemy1",

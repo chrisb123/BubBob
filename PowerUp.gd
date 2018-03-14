@@ -138,11 +138,12 @@ func _on_Area2D_body_entered( body ):
 				var epos = Vector2()
 				var enemies = get_tree().get_nodes_in_group("enemy")
 				for enemy in enemies:
-					var ab = enemy.global_position - self.global_position
-					var mag = sqrt(ab.x*ab.x+ab.y*ab.y)
-					if mag < 400:
-						enemy._in_bubble = true
-						enemy.killbub(true)
+					if ! enemy.is_in_group("enemyboss"):
+						var ab = enemy.global_position - self.global_position
+						var mag = sqrt(ab.x*ab.x+ab.y*ab.y)
+						if mag < 400:
+							enemy._in_bubble = true
+							enemy.killbub(true)
 			$Potion_SFX.play()
 			yield($Potion_SFX,"finished")
 		_delete()	
