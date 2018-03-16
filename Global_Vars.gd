@@ -4,6 +4,14 @@ extends Node
 # var a = 2
 # var b = "textvar"
 
+# Colision layers
+# 0 - Tiles
+# 1 - Player
+# 2 - Enemy
+# 3 - boss
+# 4 - bubble
+# 5 - power ups
+
 const start_lives = 0
 var gameover = false #add gameover ability
 var score = 0

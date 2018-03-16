@@ -90,11 +90,11 @@ func _on_Area2D_body_entered( body ):
 			Global_Vars.score += coin_bonus
 			Text.text = str("+",coin_bonus, " Points")
 			$Coin.hide()
-			$CollisionCoin.disabled = true
+#			$CollisionCoin.disabled = true
 			$Coin/AudioStreamPlayer.play()
 			yield($Coin/AudioStreamPlayer,"finished")
 		else:
-			$CollisionPotion.disabled = true
+#			$CollisionPotion.disabled = true
 			if powerup_type == 2:
 				Text.set_text("Bubbles +")
 				$Potion_Shoot.hide()
@@ -108,7 +108,7 @@ func _on_Area2D_body_entered( body ):
 				$Potion_Jump.hide()
 				body._powerup_jump(jump_factor,jump_duration)
 			elif powerup_type == 5:
-				gravity_scale = 0
+#				gravity_scale = 0
 				if Global_Vars.Osys != "HTML5":
 					$Fuse.emitting = true
 				Text.set_text("tick")
@@ -117,8 +117,9 @@ func _on_Area2D_body_entered( body ):
 				yield(get_tree().create_timer(.25),"timeout")
 				Text.set_text("KABOOOMMMMMMM !!!!!!!")
 				yield(get_tree().create_timer(.25),"timeout")
-				angular_velocity = 0
 				linear_velocity = Vector2()
+				applied_torque = 0
+				angular_velocity = 0
 				var explosion_base = Explode.instance()
 				explosion_base.scale = Vector2(15,15)
 				add_child(explosion_base)

@@ -14,47 +14,47 @@ extents = Vector2( 18, 18 )
 custom_solver_bias = 0.0
 extents = Vector2( 35, 35 )
 
-[sub_resource type="ConvexPolygonShape2D" id=8]
+[sub_resource type="ConvexPolygonShape2D" id=3]
 
 custom_solver_bias = 0.0
 points = PoolVector2Array( 18, 18, -18, 18, -18, -18 )
 
-[sub_resource type="ConvexPolygonShape2D" id=9]
+[sub_resource type="ConvexPolygonShape2D" id=4]
 
 custom_solver_bias = 0.0
 points = PoolVector2Array( 10, 18, -8, 11, -18, -1, -18, -18, 18, -18, 18, 18 )
 
-[sub_resource type="ConvexPolygonShape2D" id=10]
+[sub_resource type="ConvexPolygonShape2D" id=5]
 
 custom_solver_bias = 0.0
 points = PoolVector2Array( 18, -18, 18, 18, 6, 18, -18, -7, -18, -18 )
 
-[sub_resource type="ConvexPolygonShape2D" id=11]
+[sub_resource type="ConvexPolygonShape2D" id=6]
 
 custom_solver_bias = 0.0
 points = PoolVector2Array( 18, -18, -18, 18, -18, -18 )
 
-[sub_resource type="ConvexPolygonShape2D" id=12]
+[sub_resource type="ConvexPolygonShape2D" id=7]
 
 custom_solver_bias = 0.0
 points = PoolVector2Array( -3, -18, -18, 18, -18, -18 )
 
-[sub_resource type="ConvexPolygonShape2D" id=4]
+[sub_resource type="ConvexPolygonShape2D" id=8]
 
 custom_solver_bias = 0.0
 points = PoolVector2Array( 17, 17, -17, 17, -17, -16 )
 
-[sub_resource type="ConvexPolygonShape2D" id=5]
+[sub_resource type="ConvexPolygonShape2D" id=9]
 
 custom_solver_bias = 0.0
 points = PoolVector2Array( 35, -35, 35, 34, -34, 34 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=10]
 
 custom_solver_bias = 0.0
 extents = Vector2( 17, 17 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=11]
 
 custom_solver_bias = 0.0
 extents = Vector2( 16, 16 )
@@ -128,7 +128,7 @@ extents = Vector2( 16, 16 )
 4/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
-"shape": SubResource( 4 ),
+"shape": SubResource( 8 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 17.5, 17.5 )
 } ]
 5/name = "Wall6"
@@ -142,7 +142,7 @@ extents = Vector2( 16, 16 )
 5/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
-"shape": SubResource( 5 ),
+"shape": SubResource( 9 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 35, 35 )
 } ]
 6/name = "Wall7"
@@ -170,7 +170,7 @@ extents = Vector2( 16, 16 )
 7/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
-"shape": SubResource( 6 ),
+"shape": SubResource( 10 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 17.5, 17.5 )
 } ]
 8/name = "Wall9"
@@ -184,7 +184,7 @@ extents = Vector2( 16, 16 )
 8/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
-"shape": SubResource( 7 ),
+"shape": SubResource( 11 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 16, 16 )
 } ]
 9/name = "Floor"
@@ -212,7 +212,7 @@ extents = Vector2( 16, 16 )
 10/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
-"shape": SubResource( 8 ),
+"shape": SubResource( 3 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 17.5, 17.5 )
 } ]
 11/name = "Floor2"
@@ -254,7 +254,7 @@ extents = Vector2( 16, 16 )
 13/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
-"shape": SubResource( 9 ),
+"shape": SubResource( 4 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 17.5, 17.5 )
 } ]
 14/name = "Floor4"
@@ -268,7 +268,7 @@ extents = Vector2( 16, 16 )
 14/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
-"shape": SubResource( 10 ),
+"shape": SubResource( 5 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 17.5, 17.5 )
 } ]
 15/name = "Floor Angle2"
@@ -282,7 +282,7 @@ extents = Vector2( 16, 16 )
 15/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
-"shape": SubResource( 11 ),
+"shape": SubResource( 6 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 17.5, 17.5 )
 } ]
 16/name = "Floor Angle3"
@@ -296,7 +296,7 @@ extents = Vector2( 16, 16 )
 16/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
-"shape": SubResource( 12 ),
+"shape": SubResource( 7 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 17.5, 17.5 )
 } ]
 

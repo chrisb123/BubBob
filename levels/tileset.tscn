@@ -24,11 +24,12 @@ __meta__ = {
 
 input_pickable = false
 collision_layer = 1
-collision_mask = 1
+collision_mask = 63
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
+_sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/StaticBody2D" index="0"]
 
@@ -50,11 +51,12 @@ __meta__ = {
 
 input_pickable = false
 collision_layer = 1
-collision_mask = 1
+collision_mask = 63
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
+_sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2/StaticBody2D" index="0"]
 
@@ -76,11 +78,12 @@ __meta__ = {
 
 input_pickable = false
 collision_layer = 1
-collision_mask = 1
+collision_mask = 63
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
+_sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor3/StaticBody2D" index="0"]
 
@@ -102,7 +105,7 @@ __meta__ = {
 
 input_pickable = false
 collision_layer = 1
-collision_mask = 1
+collision_mask = 63
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
@@ -128,7 +131,7 @@ __meta__ = {
 
 input_pickable = false
 collision_layer = 1
-collision_mask = 1
+collision_mask = 63
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
@@ -154,7 +157,7 @@ __meta__ = {
 
 input_pickable = false
 collision_layer = 1
-collision_mask = 1
+collision_mask = 63
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
@@ -180,11 +183,12 @@ __meta__ = {
 
 input_pickable = false
 collision_layer = 1
-collision_mask = 1
+collision_mask = 63
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
+_sections_unfolded = [ "Collision" ]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor Angle/StaticBody2D" index="0"]
 
@@ -206,7 +210,7 @@ __meta__ = {
 
 input_pickable = false
 collision_layer = 1
-collision_mask = 1
+collision_mask = 63
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
@@ -232,7 +236,7 @@ __meta__ = {
 
 input_pickable = false
 collision_layer = 1
-collision_mask = 1
+collision_mask = 63
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
