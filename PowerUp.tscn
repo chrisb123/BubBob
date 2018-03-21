@@ -197,7 +197,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angle", "Angular Velocity", "Color", "Damping", "Emission Shape", "Gravity", "Initial Velocity", "Linear Accel", "Orbit Velocity", "Scale", "Spread", "Tangential Accel" ]
 
-[node name="Base" type="Node2D" index="0" groups=[
+[node name="Base" type="Node2D" groups=[
 "powerup",
 ]]
 
@@ -214,7 +214,6 @@ margin_top = -56.0
 margin_right = 339.0
 margin_bottom = -33.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1

@@ -145,7 +145,6 @@ margin_top = -78.0
 margin_right = 214.0
 margin_bottom = -53.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -160,8 +159,8 @@ max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts" ]
 
 [node name="Enemy" type="RigidBody2D" parent="." index="1" groups=[
-"enemy1",
 "enemy",
+"enemy1",
 ]]
 
 input_pickable = false
