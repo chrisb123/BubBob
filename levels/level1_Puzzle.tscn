@@ -65,12 +65,7 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
-
-shape = SubResource( 3 )
-disabled = true
-
-[node name="Sprite" type="Sprite" parent="StaticBody2D" index="1"]
+[node name="Sprite" type="Sprite" parent="StaticBody2D" index="0"]
 
 position = Vector2( 23.2762, 5.28174 )
 rotation = 1.5708
@@ -78,6 +73,10 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 offset = Vector2( 111.722, 52.9143 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="1"]
+
+shape = SubResource( 3 )
 
 [node name="PinJoint2D" type="PinJoint2D" parent="StaticBody2D" index="2"]
 
@@ -125,7 +124,6 @@ _sections_unfolded = [ "Transform" ]
 
 position = Vector2( 630.863, 431.423 )
 shape = SubResource( 2 )
-disabled = true
 
 [node name="PinJoint2D" type="PinJoint2D" parent="wood2" index="2"]
 
@@ -173,6 +171,5 @@ _sections_unfolded = [ "Transform" ]
 
 position = Vector2( 570.436, 539.918 )
 shape = SubResource( 1 )
-disabled = true
 
 
