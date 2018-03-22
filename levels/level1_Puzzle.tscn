@@ -5,20 +5,20 @@
 [ext_resource path="res://levels/Size.gd" type="Script" id=3]
 [ext_resource path="res://asset/Puzzle/wood tex2.png" type="Texture" id=4]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
-radius = 48.9207
+extents = Vector2( 42.5948, 244.267 )
 
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 15.1172, 118.219 )
+extents = Vector2( 19.9441, 122.271 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
-extents = Vector2( 124.198, 18.8495 )
+extents = Vector2( 124.198, 19.7413 )
 
 [node name="Level1" type="TileMap" index="0" groups=[
 "tiles",
@@ -53,47 +53,42 @@ scale = Vector2( 70, 52.5 )
 script = ExtResource( 3 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="2"]
+[node name="Post1" type="StaticBody2D" parent="." index="2"]
 
-position = Vector2( 423.861, 534.785 )
-scale = Vector2( 0.276742, 0.244744 )
+position = Vector2( 439.733, 432.322 )
 input_pickable = false
 collision_layer = 1
-collision_mask = 1
+collision_mask = 63
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
+_sections_unfolded = [ "Collision", "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="Sprite" type="Sprite" parent="StaticBody2D" index="0"]
+[node name="Sprite" type="Sprite" parent="Post1" index="0"]
 
-position = Vector2( 23.2762, 5.28174 )
 rotation = 1.5708
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 offset = Vector2( 111.722, 52.9143 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Post1" index="1"]
 
-shape = SubResource( 3 )
-
-[node name="PinJoint2D" type="PinJoint2D" parent="StaticBody2D" index="2"]
-
-position = Vector2( 17.4941, 5.39502 )
-rotation = 1.5708
-scale = Vector2( 0.5, 0.5 )
-node_a = NodePath("..")
-node_b = NodePath("../../wood3")
-bias = 0.0
-disable_collision = true
-softness = 0.0
+position = Vector2( -11.812, 22.6817 )
+shape = SubResource( 4 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="wood2" type="RigidBody2D" parent="." index="3"]
 
+position = Vector2( 426.999, 519.999 )
+rotation = 1.5708
 input_pickable = false
 collision_layer = 1
-collision_mask = 1
+collision_mask = 63
 mode = 0
 mass = 1.0
 friction = 1.0
@@ -104,16 +99,18 @@ continuous_cd = 0
 contacts_reported = 0
 contact_monitor = false
 sleeping = false
-can_sleep = false
+can_sleep = true
 linear_velocity = Vector2( 0, 0 )
 linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Collision", "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Sprite" type="Sprite" parent="wood2" index="0"]
 
-position = Vector2( 632.462, 536.077 )
 rotation = 1.5708
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 4 )
@@ -122,46 +119,39 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wood2" index="1"]
 
-position = Vector2( 630.863, 431.423 )
+position = Vector2( 0.352966, -104.353 )
 shape = SubResource( 2 )
-
-[node name="PinJoint2D" type="PinJoint2D" parent="wood2" index="2"]
-
-position = Vector2( 633.068, 535.351 )
-rotation = -3.20941e-15
-scale = Vector2( 0.276742, 0.244744 )
-node_a = NodePath("../../wood3")
-node_b = NodePath("..")
-bias = 0.0
-disable_collision = true
-softness = 0.0
+_sections_unfolded = [ "Transform" ]
 
 [node name="wood3" type="RigidBody2D" parent="." index="4"]
 
-position = Vector2( -40.5153, -3.68323 )
+position = Vector2( 628.999, 517.999 )
+rotation = 2.96706
 input_pickable = false
 collision_layer = 1
-collision_mask = 1
+collision_mask = 63
 mode = 0
 mass = 1.0
 friction = 1.0
 bounce = 0.0
 gravity_scale = 1.0
 custom_integrator = false
-continuous_cd = 1
+continuous_cd = 0
 contacts_reported = 0
 contact_monitor = false
 sleeping = false
-can_sleep = false
+can_sleep = true
 linear_velocity = Vector2( 0, 0 )
 linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
-_sections_unfolded = [ "Angular", "Applied Forces", "Linear", "Transform" ]
+_sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Sprite" type="Sprite" parent="wood3" index="0"]
 
-position = Vector2( 672.978, 541.566 )
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 4 )
 offset = Vector2( -1045.82, -18.9899 )
@@ -169,7 +159,30 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wood3" index="1"]
 
-position = Vector2( 570.436, 539.918 )
-shape = SubResource( 1 )
+position = Vector2( -104.063, -1.81793 )
+shape = SubResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Post1Wood2" type="PinJoint2D" parent="." index="5"]
+
+position = Vector2( 430.702, 519.105 )
+rotation = 1.5708
+node_a = NodePath("../wood2")
+node_b = NodePath("../Post1")
+bias = 0.0
+disable_collision = true
+softness = 0.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="Wood2Wood3" type="PinJoint2D" parent="." index="6"]
+
+position = Vector2( 632.336, 516.757 )
+scale = Vector2( 1, 1 )
+node_a = NodePath("../wood3")
+node_b = NodePath("../wood2")
+bias = 0.0
+disable_collision = true
+softness = 0.0
+_sections_unfolded = [ "Transform" ]
 
 
