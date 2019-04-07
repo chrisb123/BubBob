@@ -6,7 +6,8 @@ path="res://.import/Picked Coin Echo.wav-31111c20d64bbf4e35d1226bc9aa88d9.sample
 
 [deps]
 
-source_md5="4f7523406d2c28b65b4e056c99c5c9af"
+source_file="res://sounds/Picked Coin Echo.wav"
+dest_files=[ "res://.import/Picked Coin Echo.wav-31111c20d64bbf4e35d1226bc9aa88d9.sample" ]
 
 [params]
 

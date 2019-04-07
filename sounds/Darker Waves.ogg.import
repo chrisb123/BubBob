@@ -6,7 +6,8 @@ path="res://.import/Darker Waves.ogg-ce256314075454cbd6ff71ed4954dc5d.oggstr"
 
 [deps]
 
-source_md5="9efd053629057f5f8f5a8f431605504b"
+source_file="res://sounds/Darker Waves.ogg"
+dest_files=[ "res://.import/Darker Waves.ogg-ce256314075454cbd6ff71ed4954dc5d.oggstr" ]
 
 [params]
 

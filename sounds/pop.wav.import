@@ -6,7 +6,8 @@ path="res://.import/pop.wav-caea051cf3692d1fea44d2218ecc425e.sample"
 
 [deps]
 
-source_md5="dc1adb43ce0fb24228a89125ee01f821"
+source_file="res://sounds/pop.wav"
+dest_files=[ "res://.import/pop.wav-caea051cf3692d1fea44d2218ecc425e.sample" ]
 
 [params]
 

@@ -6,7 +6,8 @@ path="res://.import/explosion_dull.wav-08609722b05791f3daeaa07b146ae3e3.sample"
 
 [deps]
 
-source_md5="deec8e6988e3265c6fe867cc4b58140e"
+source_file="res://sounds/explosion_dull.wav"
+dest_files=[ "res://.import/explosion_dull.wav-08609722b05791f3daeaa07b146ae3e3.sample" ]
 
 [params]
 

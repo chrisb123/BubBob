@@ -6,7 +6,8 @@ path="res://.import/steps_platform.ogg-bd8ae2c4f9ba9924a8666ed860bd7afc.oggstr"
 
 [deps]
 
-source_md5="288922139c6ace5df44d1766d5ccc327"
+source_file="res://sounds/steps_platform.ogg"
+dest_files=[ "res://.import/steps_platform.ogg-bd8ae2c4f9ba9924a8666ed860bd7afc.oggstr" ]
 
 [params]
 

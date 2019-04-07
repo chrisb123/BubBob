@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/run-frame-3.png-e32d4984b57db97bd478af6a23b4cdd3.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://asset/player/running/run-frame-3.png"
-source_md5="198f9238398a36dfc32919d7a58d3f22"
-
 dest_files=[ "res://.import/run-frame-3.png-e32d4984b57db97bd478af6a23b4cdd3.stex" ]
-dest_md5="75bb62082f6c949db635f2ff97b77438"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

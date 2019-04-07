@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/wood tex2.png-e3fcfe004370b5b65ef4b479b9843265.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://asset/Puzzle/wood tex2.png"
-source_md5="d47a944e4309d688b515ad7cb53bc507"
-
 dest_files=[ "res://.import/wood tex2.png-e3fcfe004370b5b65ef4b479b9843265.stex" ]
-dest_md5="8b3a4cf8947f7b5d4e95e589486a6b9d"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

@@ -6,7 +6,8 @@ path="res://.import/bubble2.wav-6de0eb269703e41ade23bfcfd96f5a76.sample"
 
 [deps]
 
-source_md5="51b0ec6436930aa20265e6226a2e4ed7"
+source_file="res://sounds/bubble2.wav"
+dest_files=[ "res://.import/bubble2.wav-6de0eb269703e41ade23bfcfd96f5a76.sample" ]
 
 [params]
 

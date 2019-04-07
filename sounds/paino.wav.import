@@ -6,7 +6,8 @@ path="res://.import/paino.wav-427f106d003e6b12cf1442d407982183.sample"
 
 [deps]
 
-source_md5="93f17d8dd506ff3727ea0eddd7a3c5fe"
+source_file="res://sounds/paino.wav"
+dest_files=[ "res://.import/paino.wav-427f106d003e6b12cf1442d407982183.sample" ]
 
 [params]
 

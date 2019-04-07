@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/human-male-base.png-d92abb93a9355715afd587dcf43207c8.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://asset/human-male-base.png"
-source_md5="2e684c96bd8e6482caffce575b534700"
-
 dest_files=[ "res://.import/human-male-base.png-d92abb93a9355715afd587dcf43207c8.stex" ]
-dest_md5="ca527af846840fa231b529bef54c4f59"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

@@ -6,7 +6,8 @@ path="res://.import/Enemy_Spawn.wav-3f0a3ae54430acbfca649c0f7ab24c74.sample"
 
 [deps]
 
-source_md5="88de31a8de9fc73db3929ae71e2728f5"
+source_file="res://sounds/Enemy_Spawn.wav"
+dest_files=[ "res://.import/Enemy_Spawn.wav-3f0a3ae54430acbfca649c0f7ab24c74.sample" ]
 
 [params]
 

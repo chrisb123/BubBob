@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/idle-frame-2.png-b9e3b653cd9242bda13e02b6df2e33ae.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://asset/player/idle/idle-frame-2.png"
-source_md5="f3f91d316e5227841dd5c856122d8f33"
-
 dest_files=[ "res://.import/idle-frame-2.png-b9e3b653cd9242bda13e02b6df2e33ae.stex" ]
-dest_md5="01572448c8b3d2672310122abd9c120b"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true
