@@ -238,7 +238,7 @@ func find_spawn(dist, maxdist):
 		while i >= 0:
 			spos.x = randi()%int(levsize[0])+int(levsize[1])
 			spos.y = randi()%int(levsize[2])+int(levsize[3])
-			i = level.get_cellv(level.world_to_map(Vector2(spos))) 
+			i = level.get_cellv(level.world_to_map(Vector2(spos.x,spos.y)))
 		var ab = spos - player.global_position
 		mag = sqrt(ab.x*ab.x+ab.y*ab.y)
 	return spos

@@ -3,36 +3,16 @@
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://sounds/Darker Waves.ogg" type="AudioStream" id=2]
 
-[node name="Main" type="Node" index="0"]
-
+[node name="Main" type="Node"]
 script = ExtResource( 1 )
 
-[node name="Enemy" type="Timer" parent="." index="0"]
+[node name="Enemy" type="Timer" parent="."]
 
-process_mode = 1
-wait_time = 1.0
-one_shot = false
-autostart = false
-
-[node name="Music" type="AudioStreamPlayer" parent="." index="1"]
-
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
-volume_db = 0.0
-pitch_scale = 1.0
 autoplay = true
-mix_target = 0
-bus = "Master"
 
-[node name="GUI_Layer" type="CanvasLayer" parent="." index="2" groups=[
+[node name="GUI_Layer" type="CanvasLayer" parent="." groups=[
 "gui",
 ]]
-
-layer = 1
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-
 [connection signal="timeout" from="Enemy" to="." method="_on_Enemy_timeout"]
-
-

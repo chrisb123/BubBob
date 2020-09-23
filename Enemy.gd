@@ -192,7 +192,7 @@ func _on_Move_Timer_timeout():
 	var speed = MAX_SPEED - MIN_SPEED #New speed, randomly pick a speed, randomly rotate upto 1 radian either way
 	speed = randi()%speed+MIN_SPEED
 	vel = ray.normalized() * speed
-	vel = vel.rotated(randf(2) - 1)
+	vel = vel.rotated(randf()*2 - 1)
 		
 	#print(temp," ",temp2)
 	if _in_bubble == false:
